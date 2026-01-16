@@ -1,0 +1,49 @@
+{
+    "about": {
+        "title": "About",
+        "paragraphs": [
+            "Sono un grande fan della nerchia, i love it",
+            "Scrivi qui il secondo paragrafo (opzionale)..."
+        ],
+        "cvNote": "CV disponibile su richiesta"
+    },
+    "contact": {
+        "title": "Contact",
+        "email": {
+            "address": "francìluzuz@gmail.com",
+            "display": "francìluzuz@gmail.com"
+        },
+        "instagram": {
+            "url": "https://instagram.com/tuousername",
+            "display": "@tuousername"
+        },
+        "linkedin": {
+            "url": "https://linkedin.com/in/tuoprofilo",
+            "display": "LinkedIn"
+        },
+        "availability": "Disponibile per collaborazioni"
+    },
+    "collections": {
+        "greenheart": {
+            "description": "Descrizione della collezione GreenHeart..."
+        },
+        "temporary-structures": {
+            "description": "Descrizione della collezione Temporary Structures..."
+        },
+        "candiani": {
+            "description": "Descrizione della collezione Candiani..."
+        },
+        "dolly-noire": {
+            "description": "Descrizione della collezione Dolly Noire..."
+        },
+        "fw2026": {
+            "description": "Descrizione della collezione FW2026..."
+        },
+        "growstyled": {
+            "description": "Descrizione della collezione GrowStyled..."
+        },
+        "immortalis": {
+            "description": "Descrizione della collezione Immortalis..."
+        }
+    }
+}

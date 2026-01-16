@@ -1,0 +1,4119 @@
+{
+  "design": {
+    "title": "Fashion Design",
+    "collections": [
+      {
+        "id": "design-fw2026",
+        "title": "Fw2026",
+        "year": "2024",
+        "brand": "Fashion Design",
+        "description": "Fw2026 - 76 images",
+        "images": [
+          "/assets-optimized/design/Fw2026/full/_DSC6053.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6058.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6064.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6074.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6092.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6120.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6137.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6149.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6158.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6172.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6180.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6192.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6200.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6220.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6248.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6252.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6265.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6275.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6277.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6282.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6293.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6323.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6325.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6350.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6352.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6356.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6360.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6364.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6375.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6385.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6406.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6409.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6418.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6420.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6426.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6431.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6444.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6462.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6471.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6474.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6492.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6503.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6529.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6533.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6540.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6547.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6558.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6565.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6578.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6626.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6639.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6657.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6665.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6686.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6707.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6732.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6740.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6766.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6798.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6816.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6845.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6872.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6917.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6924.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6945.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6968.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC6978.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC7006.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC7035.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC7084.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC7114.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC7127.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC7144.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC7182.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC7197.webp",
+          "/assets-optimized/design/Fw2026/full/_DSC7281.webp"
+        ]
+      },
+      {
+        "id": "design-greenheart",
+        "title": "GreenHeart",
+        "year": "2024",
+        "brand": "Fashion Design",
+        "description": "Green Heart celebra l'incontro tra tradizione e modernità, tra natura e città. Un viaggio stilistico che parte dall'Umbria per arrivare nel cuore pulsante delle metropoli, dedicato all'uomo che ama distinguersi con classe e personalità.",
+        "images": [
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-27-39 2.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-28-04.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-28-05.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-28-06.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-28-09.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-28-16 2.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-28-16 3.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-28-16.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-28-18.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-29-19.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-29-20.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-29-25.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-29-27.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-29-28.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-29-30 2.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-29-30.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-29-35 2.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-29-35.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-01 2.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-02 2.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-03 2.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-04 2.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-04.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-05 2.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-06.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-07 3.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-07.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-08 2.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-08 3.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-09 3.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-10.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-26 3.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-27.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-28 2.webp",
+          "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-30.webp"
+        ]
+      },
+      {
+        "id": "design-immortalis",
+        "title": "Immortalis",
+        "year": "2024",
+        "brand": "Fashion Design",
+        "description": "Immortalis - 15 images",
+        "images": [
+          "/assets-optimized/design/Immortalis/full/_DSC3322.webp",
+          "/assets-optimized/design/Immortalis/full/_DSC3329.webp",
+          "/assets-optimized/design/Immortalis/full/_DSC3339.webp",
+          "/assets-optimized/design/Immortalis/full/_DSC3347.webp",
+          "/assets-optimized/design/Immortalis/full/_DSC3352.webp",
+          "/assets-optimized/design/Immortalis/full/_DSC3373.webp",
+          "/assets-optimized/design/Immortalis/full/_DSC3388.webp",
+          "/assets-optimized/design/Immortalis/full/_DSC3401.webp",
+          "/assets-optimized/design/Immortalis/full/_DSC3414.webp",
+          "/assets-optimized/design/Immortalis/full/_DSC3420.webp",
+          "/assets-optimized/design/Immortalis/full/_DSC3434.webp",
+          "/assets-optimized/design/Immortalis/full/_DSC3455.webp",
+          "/assets-optimized/design/Immortalis/full/_DSC3526.webp",
+          "/assets-optimized/design/Immortalis/full/_DSC3571.webp",
+          "/assets-optimized/design/Immortalis/full/_DSC3615.webp"
+        ]
+      },
+      {
+        "id": "design-spring-summer",
+        "title": "Spring Summer",
+        "year": "2024",
+        "brand": "Fashion Design",
+        "description": "Spring Summer - 47 images",
+        "images": [
+          "/assets-optimized/design/Spring Summer/full/GRS05772.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS05781.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS05793.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS05821.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS05834.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS05862.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS05892.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS05896.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS05970.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS05984.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS05993.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06021.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06059.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06084.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06119.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06126.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06133.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06150.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06172.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06195.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06199.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06222.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06238.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06250.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06265.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06283.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06309.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06328.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06375.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06382.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06384.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06386.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06458.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06480.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06492.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06498.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06510.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06514.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06564.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06609.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06660.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06696.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06765.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06767.webp",
+          "/assets-optimized/design/Spring Summer/full/GRS06776.webp",
+          "/assets-optimized/design/Spring Summer/full/PHOTO-2025-06-23-11-46-24.webp",
+          "/assets-optimized/design/Spring Summer/full/PHOTO-2025-06-23-11-46-26 2.webp"
+        ]
+      },
+      {
+        "id": "design-tetsu-no-hana-esterno",
+        "title": "Tetsu no hana esterno",
+        "year": "2024",
+        "brand": "Fashion Design",
+        "description": "Tetsu no hana esterno - 136 images",
+        "images": [
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7144.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7151.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7159.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7167.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7170.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7173.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7179.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7185.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7188.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7197.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7201.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7210.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7212.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7216.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7221.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7224.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7239.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7242.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7245.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7256.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7258.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7262.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7278.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7283.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7286.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7292.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7300.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7302.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7304.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7307.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7318.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7322.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7334.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7340.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7345.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7348.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7352.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7358.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7364.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7367.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7369.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7373.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7378.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7385.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7394.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7396.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7400.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7406.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7409.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7413.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7420.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7428.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7431.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7433.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7441.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7443.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7447.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7452.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7458.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7460.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7466.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7473.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7480.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7483.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7489.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7492.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7497.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7500.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7504.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7507.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7514.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7521.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7526.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7534.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7539.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7550.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7553.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7557.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7569.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7575.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7578.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7580.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7584.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7586.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7590.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7593.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7597.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7605.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7610.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7615.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7619.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7622.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7628.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7631.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7636.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7641.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7651.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7659.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7663.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7669.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7677.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7680.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7694.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7702.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7705.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7710.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7713.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7724.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7727.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7731.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7736.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7740.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7744.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7747.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7754.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7759.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7766.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7771.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7773.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7783.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7790.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7799.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7805.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7818.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7823.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7827.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7837.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7841.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7843.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7846.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7865.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7868.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7874.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7881.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7885.webp",
+          "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7887.webp"
+        ]
+      },
+      {
+        "id": "design-tetsu-no-hana-interna",
+        "title": "Tetsu no hana interna",
+        "year": "2024",
+        "brand": "Fashion Design",
+        "description": "Tetsu no hana interna - 51 images",
+        "images": [
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC5414.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC5430.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC5446.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC5461.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC5527.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC5550.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC5568.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC5584.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC5595.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC5616.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC5637.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC5695.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC5704.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC5723.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC5821.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC5890.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC5896.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC5927.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC5938.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC5980.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6008.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6037.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6069.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6137.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6161.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6175.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6215.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6236.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6268.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6296.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6313.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6323.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6448.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6460.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6480.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6513.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6526.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6606.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6762.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6788.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6836.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6863.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6893.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6906.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC6951.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC7063.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC7076.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC7084.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC7086.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC7108.webp",
+          "/assets-optimized/design/Tetsu no hana interna/full/_DSC7128.webp"
+        ]
+      }
+    ]
+  },
+  "styling": {
+    "title": "Styling",
+    "collections": [
+      {
+        "id": "styling-candiani",
+        "title": "Candiani",
+        "year": "2024",
+        "brand": "Styling",
+        "description": "Candiani - 92 images",
+        "images": [
+          "/assets-optimized/styling/Candiani/full/CandianiDenim1.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim10.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim11.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim12.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim13.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim14.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim15.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim16.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim17.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim18.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim19.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim2.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim20.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim21.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim22.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim23.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim24.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim25.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim26.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim27.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim28.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim29.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim3.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim30.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim31.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim32.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim33.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim34.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim35.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim36.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim37.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim38.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim39.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim4.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim40.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim41.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim42.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim43.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim44.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim45.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim46.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim47.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim48.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim49.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim5.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim50.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim51.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim52.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim53.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim54.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim55.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim56.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim57.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim58.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim59.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim6.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim60.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim61.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim62.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim63.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim64.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim65.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim66.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim67.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim68.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim69.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim7.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim70.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim71.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim72.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim73.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim74 3.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim75.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim76.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim77.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim78.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim79.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim8.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim80.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim81.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim82.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim83.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim84.2.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim84.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim85.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim86.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim87.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim88.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim89.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim9.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim90.webp",
+          "/assets-optimized/styling/Candiani/full/CandianiDenim91.webp"
+        ]
+      },
+      {
+        "id": "styling-dolly-noire",
+        "title": "Dolly Noire",
+        "year": "2024",
+        "brand": "Styling",
+        "description": "Dolly Noire - 22 images",
+        "images": [
+          "/assets-optimized/styling/Dolly Noire/full/DollyN1.webp",
+          "/assets-optimized/styling/Dolly Noire/full/DollyN16.webp",
+          "/assets-optimized/styling/Dolly Noire/full/DollyN17.webp",
+          "/assets-optimized/styling/Dolly Noire/full/DollyN21.webp",
+          "/assets-optimized/styling/Dolly Noire/full/DollyN23.webp",
+          "/assets-optimized/styling/Dolly Noire/full/DollyN24.webp",
+          "/assets-optimized/styling/Dolly Noire/full/DollyN27.webp",
+          "/assets-optimized/styling/Dolly Noire/full/DollyN28.webp",
+          "/assets-optimized/styling/Dolly Noire/full/DollyN3.webp",
+          "/assets-optimized/styling/Dolly Noire/full/DollyN31.webp",
+          "/assets-optimized/styling/Dolly Noire/full/DollyN32.webp",
+          "/assets-optimized/styling/Dolly Noire/full/DollyN33.webp",
+          "/assets-optimized/styling/Dolly Noire/full/DollyN34.webp",
+          "/assets-optimized/styling/Dolly Noire/full/DollyN35 copia.webp",
+          "/assets-optimized/styling/Dolly Noire/full/DollyN36.webp",
+          "/assets-optimized/styling/Dolly Noire/full/DollyN42.webp",
+          "/assets-optimized/styling/Dolly Noire/full/DollyN44.webp",
+          "/assets-optimized/styling/Dolly Noire/full/DollyN45.webp",
+          "/assets-optimized/styling/Dolly Noire/full/DollyN46.webp",
+          "/assets-optimized/styling/Dolly Noire/full/DollyN47.webp",
+          "/assets-optimized/styling/Dolly Noire/full/DollyN48.webp",
+          "/assets-optimized/styling/Dolly Noire/full/DollyN6.webp"
+        ]
+      },
+      {
+        "id": "styling-temporary-structures",
+        "title": "Temporary Structures",
+        "year": "2024",
+        "brand": "Styling",
+        "description": "Temporary Structures - 29 images",
+        "images": [
+          "/assets-optimized/styling/Temporary Structures/full/001.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0010.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0011.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0012.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0014.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0015.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0017.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0019.webp",
+          "/assets-optimized/styling/Temporary Structures/full/002 border.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0020.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0023.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0024.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0026.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0027.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0028.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0029.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0031.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0032 cut.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0035.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0036.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0038.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0039.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0040.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0041.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0042.webp",
+          "/assets-optimized/styling/Temporary Structures/full/0044 2.webp",
+          "/assets-optimized/styling/Temporary Structures/full/006 cut.webp",
+          "/assets-optimized/styling/Temporary Structures/full/007 border.webp",
+          "/assets-optimized/styling/Temporary Structures/full/009 border.webp"
+        ]
+      }
+    ]
+  },
+  "sphereImages": [
+    {
+      "id": "design-Fw2026-1",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6053.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6053.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-2",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6058.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6058.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-3",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6064.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6064.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-4",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6074.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6074.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-5",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6092.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6092.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-6",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6120.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6120.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-7",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6137.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6137.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-8",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6149.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6149.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-9",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6158.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6158.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-10",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6172.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6172.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-11",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6180.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6180.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-12",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6192.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6192.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-13",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6200.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6200.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-14",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6220.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6220.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-15",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6248.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6248.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-16",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6252.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6252.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-17",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6265.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6265.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-18",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6275.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6275.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-19",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6277.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6277.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-20",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6282.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6282.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-21",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6293.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6293.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-22",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6323.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6323.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-23",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6325.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6325.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-24",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6350.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6350.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-25",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6352.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6352.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-26",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6356.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6356.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-27",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6360.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6360.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-28",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6364.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6364.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-29",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6375.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6375.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-30",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6385.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6385.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-31",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6406.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6406.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-32",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6409.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6409.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-33",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6418.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6418.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-34",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6420.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6420.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-35",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6426.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6426.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-36",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6431.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6431.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-37",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6444.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6444.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-38",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6462.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6462.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-39",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6471.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6471.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-40",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6474.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6474.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-41",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6492.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6492.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-42",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6503.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6503.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-43",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6529.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6529.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-44",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6533.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6533.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-45",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6540.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6540.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-46",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6547.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6547.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-47",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6558.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6558.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-48",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6565.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6565.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-49",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6578.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6578.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-50",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6626.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6626.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-51",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6639.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6639.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-52",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6657.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6657.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-53",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6665.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6665.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-54",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6686.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6686.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-55",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6707.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6707.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-56",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6732.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6732.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-57",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6740.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6740.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-58",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6766.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6766.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-59",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6798.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6798.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-60",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6816.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6816.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-61",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6845.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6845.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-62",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6872.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6872.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-63",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6917.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6917.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-64",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6924.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6924.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-65",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6945.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6945.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-66",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6968.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6968.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-67",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC6978.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC6978.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-68",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC7006.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC7006.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-69",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC7035.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC7035.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-70",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC7084.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC7084.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-71",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC7114.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC7114.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-72",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC7127.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC7127.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-73",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC7144.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC7144.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-74",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC7182.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC7182.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-75",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC7197.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC7197.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-Fw2026-76",
+      "image": "/assets-optimized/design/Fw2026/thumb/_DSC7281.webp",
+      "fullImage": "/assets-optimized/design/Fw2026/full/_DSC7281.webp",
+      "category": "design",
+      "collection": "Fw2026"
+    },
+    {
+      "id": "design-GreenHeart-1",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-27-39 2.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-27-39 2.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-2",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-28-04.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-28-04.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-3",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-28-05.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-28-05.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-4",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-28-06.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-28-06.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-5",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-28-09.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-28-09.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-6",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-28-16 2.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-28-16 2.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-7",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-28-16 3.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-28-16 3.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-8",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-28-16.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-28-16.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-9",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-28-18.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-28-18.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-10",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-29-19.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-29-19.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-11",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-29-20.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-29-20.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-12",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-29-25.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-29-25.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-13",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-29-27.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-29-27.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-14",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-29-28.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-29-28.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-15",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-29-30 2.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-29-30 2.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-16",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-29-30.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-29-30.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-17",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-29-35 2.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-29-35 2.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-18",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-29-35.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-29-35.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-19",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-31-01 2.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-01 2.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-20",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-31-02 2.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-02 2.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-21",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-31-03 2.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-03 2.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-22",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-31-04 2.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-04 2.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-23",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-31-04.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-04.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-24",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-31-05 2.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-05 2.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-25",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-31-06.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-06.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-26",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-31-07 3.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-07 3.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-27",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-31-07.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-07.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-28",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-31-08 2.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-08 2.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-29",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-31-08 3.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-08 3.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-30",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-31-09 3.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-09 3.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-31",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-31-10.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-10.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-32",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-31-26 3.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-26 3.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-33",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-31-27.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-27.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-34",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-31-28 2.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-28 2.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-GreenHeart-35",
+      "image": "/assets-optimized/design/GreenHeart/thumb/PHOTO-2024-12-01-18-31-30.webp",
+      "fullImage": "/assets-optimized/design/GreenHeart/full/PHOTO-2024-12-01-18-31-30.webp",
+      "category": "design",
+      "collection": "GreenHeart"
+    },
+    {
+      "id": "design-Immortalis-1",
+      "image": "/assets-optimized/design/Immortalis/thumb/_DSC3322.webp",
+      "fullImage": "/assets-optimized/design/Immortalis/full/_DSC3322.webp",
+      "category": "design",
+      "collection": "Immortalis"
+    },
+    {
+      "id": "design-Immortalis-2",
+      "image": "/assets-optimized/design/Immortalis/thumb/_DSC3329.webp",
+      "fullImage": "/assets-optimized/design/Immortalis/full/_DSC3329.webp",
+      "category": "design",
+      "collection": "Immortalis"
+    },
+    {
+      "id": "design-Immortalis-3",
+      "image": "/assets-optimized/design/Immortalis/thumb/_DSC3339.webp",
+      "fullImage": "/assets-optimized/design/Immortalis/full/_DSC3339.webp",
+      "category": "design",
+      "collection": "Immortalis"
+    },
+    {
+      "id": "design-Immortalis-4",
+      "image": "/assets-optimized/design/Immortalis/thumb/_DSC3347.webp",
+      "fullImage": "/assets-optimized/design/Immortalis/full/_DSC3347.webp",
+      "category": "design",
+      "collection": "Immortalis"
+    },
+    {
+      "id": "design-Immortalis-5",
+      "image": "/assets-optimized/design/Immortalis/thumb/_DSC3352.webp",
+      "fullImage": "/assets-optimized/design/Immortalis/full/_DSC3352.webp",
+      "category": "design",
+      "collection": "Immortalis"
+    },
+    {
+      "id": "design-Immortalis-6",
+      "image": "/assets-optimized/design/Immortalis/thumb/_DSC3373.webp",
+      "fullImage": "/assets-optimized/design/Immortalis/full/_DSC3373.webp",
+      "category": "design",
+      "collection": "Immortalis"
+    },
+    {
+      "id": "design-Immortalis-7",
+      "image": "/assets-optimized/design/Immortalis/thumb/_DSC3388.webp",
+      "fullImage": "/assets-optimized/design/Immortalis/full/_DSC3388.webp",
+      "category": "design",
+      "collection": "Immortalis"
+    },
+    {
+      "id": "design-Immortalis-8",
+      "image": "/assets-optimized/design/Immortalis/thumb/_DSC3401.webp",
+      "fullImage": "/assets-optimized/design/Immortalis/full/_DSC3401.webp",
+      "category": "design",
+      "collection": "Immortalis"
+    },
+    {
+      "id": "design-Immortalis-9",
+      "image": "/assets-optimized/design/Immortalis/thumb/_DSC3414.webp",
+      "fullImage": "/assets-optimized/design/Immortalis/full/_DSC3414.webp",
+      "category": "design",
+      "collection": "Immortalis"
+    },
+    {
+      "id": "design-Immortalis-10",
+      "image": "/assets-optimized/design/Immortalis/thumb/_DSC3420.webp",
+      "fullImage": "/assets-optimized/design/Immortalis/full/_DSC3420.webp",
+      "category": "design",
+      "collection": "Immortalis"
+    },
+    {
+      "id": "design-Immortalis-11",
+      "image": "/assets-optimized/design/Immortalis/thumb/_DSC3434.webp",
+      "fullImage": "/assets-optimized/design/Immortalis/full/_DSC3434.webp",
+      "category": "design",
+      "collection": "Immortalis"
+    },
+    {
+      "id": "design-Immortalis-12",
+      "image": "/assets-optimized/design/Immortalis/thumb/_DSC3455.webp",
+      "fullImage": "/assets-optimized/design/Immortalis/full/_DSC3455.webp",
+      "category": "design",
+      "collection": "Immortalis"
+    },
+    {
+      "id": "design-Immortalis-13",
+      "image": "/assets-optimized/design/Immortalis/thumb/_DSC3526.webp",
+      "fullImage": "/assets-optimized/design/Immortalis/full/_DSC3526.webp",
+      "category": "design",
+      "collection": "Immortalis"
+    },
+    {
+      "id": "design-Immortalis-14",
+      "image": "/assets-optimized/design/Immortalis/thumb/_DSC3571.webp",
+      "fullImage": "/assets-optimized/design/Immortalis/full/_DSC3571.webp",
+      "category": "design",
+      "collection": "Immortalis"
+    },
+    {
+      "id": "design-Immortalis-15",
+      "image": "/assets-optimized/design/Immortalis/thumb/_DSC3615.webp",
+      "fullImage": "/assets-optimized/design/Immortalis/full/_DSC3615.webp",
+      "category": "design",
+      "collection": "Immortalis"
+    },
+    {
+      "id": "design-Spring Summer-1",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS05772.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS05772.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-2",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS05781.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS05781.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-3",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS05793.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS05793.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-4",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS05821.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS05821.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-5",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS05834.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS05834.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-6",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS05862.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS05862.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-7",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS05892.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS05892.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-8",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS05896.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS05896.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-9",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS05970.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS05970.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-10",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS05984.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS05984.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-11",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS05993.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS05993.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-12",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06021.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06021.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-13",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06059.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06059.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-14",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06084.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06084.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-15",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06119.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06119.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-16",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06126.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06126.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-17",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06133.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06133.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-18",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06150.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06150.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-19",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06172.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06172.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-20",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06195.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06195.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-21",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06199.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06199.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-22",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06222.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06222.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-23",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06238.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06238.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-24",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06250.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06250.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-25",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06265.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06265.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-26",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06283.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06283.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-27",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06309.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06309.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-28",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06328.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06328.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-29",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06375.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06375.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-30",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06382.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06382.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-31",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06384.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06384.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-32",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06386.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06386.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-33",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06458.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06458.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-34",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06480.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06480.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-35",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06492.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06492.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-36",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06498.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06498.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-37",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06510.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06510.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-38",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06514.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06514.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-39",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06564.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06564.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-40",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06609.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06609.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-41",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06660.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06660.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-42",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06696.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06696.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-43",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06765.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06765.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-44",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06767.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06767.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-45",
+      "image": "/assets-optimized/design/Spring Summer/thumb/GRS06776.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/GRS06776.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-46",
+      "image": "/assets-optimized/design/Spring Summer/thumb/PHOTO-2025-06-23-11-46-24.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/PHOTO-2025-06-23-11-46-24.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Spring Summer-47",
+      "image": "/assets-optimized/design/Spring Summer/thumb/PHOTO-2025-06-23-11-46-26 2.webp",
+      "fullImage": "/assets-optimized/design/Spring Summer/full/PHOTO-2025-06-23-11-46-26 2.webp",
+      "category": "design",
+      "collection": "Spring Summer"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-1",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7144.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7144.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-2",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7151.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7151.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-3",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7159.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7159.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-4",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7167.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7167.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-5",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7170.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7170.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-6",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7173.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7173.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-7",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7179.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7179.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-8",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7185.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7185.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-9",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7188.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7188.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-10",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7197.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7197.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-11",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7201.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7201.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-12",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7210.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7210.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-13",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7212.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7212.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-14",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7216.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7216.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-15",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7221.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7221.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-16",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7224.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7224.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-17",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7239.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7239.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-18",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7242.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7242.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-19",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7245.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7245.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-20",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7256.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7256.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-21",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7258.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7258.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-22",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7262.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7262.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-23",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7278.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7278.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-24",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7283.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7283.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-25",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7286.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7286.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-26",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7292.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7292.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-27",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7300.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7300.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-28",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7302.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7302.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-29",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7304.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7304.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-30",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7307.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7307.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-31",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7318.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7318.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-32",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7322.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7322.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-33",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7334.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7334.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-34",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7340.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7340.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-35",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7345.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7345.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-36",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7348.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7348.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-37",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7352.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7352.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-38",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7358.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7358.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-39",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7364.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7364.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-40",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7367.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7367.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-41",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7369.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7369.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-42",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7373.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7373.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-43",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7378.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7378.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-44",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7385.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7385.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-45",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7394.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7394.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-46",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7396.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7396.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-47",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7400.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7400.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-48",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7406.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7406.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-49",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7409.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7409.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-50",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7413.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7413.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-51",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7420.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7420.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-52",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7428.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7428.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-53",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7431.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7431.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-54",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7433.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7433.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-55",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7441.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7441.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-56",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7443.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7443.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-57",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7447.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7447.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-58",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7452.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7452.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-59",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7458.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7458.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-60",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7460.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7460.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-61",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7466.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7466.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-62",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7473.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7473.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-63",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7480.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7480.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-64",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7483.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7483.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-65",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7489.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7489.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-66",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7492.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7492.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-67",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7497.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7497.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-68",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7500.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7500.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-69",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7504.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7504.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-70",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7507.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7507.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-71",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7514.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7514.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-72",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7521.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7521.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-73",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7526.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7526.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-74",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7534.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7534.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-75",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7539.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7539.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-76",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7550.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7550.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-77",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7553.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7553.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-78",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7557.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7557.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-79",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7569.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7569.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-80",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7575.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7575.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-81",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7578.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7578.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-82",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7580.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7580.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-83",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7584.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7584.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-84",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7586.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7586.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-85",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7590.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7590.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-86",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7593.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7593.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-87",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7597.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7597.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-88",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7605.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7605.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-89",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7610.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7610.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-90",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7615.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7615.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-91",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7619.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7619.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-92",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7622.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7622.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-93",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7628.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7628.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-94",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7631.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7631.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-95",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7636.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7636.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-96",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7641.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7641.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-97",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7651.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7651.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-98",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7659.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7659.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-99",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7663.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7663.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-100",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7669.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7669.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-101",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7677.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7677.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-102",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7680.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7680.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-103",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7694.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7694.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-104",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7702.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7702.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-105",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7705.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7705.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-106",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7710.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7710.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-107",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7713.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7713.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-108",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7724.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7724.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-109",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7727.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7727.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-110",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7731.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7731.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-111",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7736.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7736.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-112",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7740.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7740.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-113",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7744.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7744.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-114",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7747.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7747.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-115",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7754.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7754.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-116",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7759.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7759.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-117",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7766.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7766.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-118",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7771.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7771.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-119",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7773.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7773.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-120",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7783.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7783.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-121",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7790.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7790.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-122",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7799.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7799.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-123",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7805.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7805.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-124",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7818.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7818.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-125",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7823.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7823.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-126",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7827.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7827.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-127",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7837.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7837.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-128",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7841.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7841.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-129",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7843.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7843.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-130",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7846.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7846.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-131",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7865.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7865.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-132",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7868.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7868.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-133",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7874.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7874.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-134",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7881.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7881.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-135",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7885.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7885.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana esterno-136",
+      "image": "/assets-optimized/design/Tetsu no hana esterno/thumb/_DSC7887.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana esterno/full/_DSC7887.webp",
+      "category": "design",
+      "collection": "Tetsu no hana esterno"
+    },
+    {
+      "id": "design-Tetsu no hana interna-1",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC5414.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC5414.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-2",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC5430.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC5430.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-3",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC5446.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC5446.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-4",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC5461.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC5461.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-5",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC5527.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC5527.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-6",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC5550.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC5550.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-7",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC5568.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC5568.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-8",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC5584.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC5584.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-9",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC5595.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC5595.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-10",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC5616.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC5616.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-11",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC5637.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC5637.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-12",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC5695.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC5695.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-13",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC5704.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC5704.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-14",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC5723.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC5723.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-15",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC5821.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC5821.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-16",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC5890.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC5890.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-17",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC5896.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC5896.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-18",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC5927.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC5927.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-19",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC5938.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC5938.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-20",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC5980.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC5980.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-21",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6008.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6008.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-22",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6037.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6037.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-23",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6069.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6069.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-24",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6137.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6137.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-25",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6161.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6161.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-26",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6175.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6175.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-27",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6215.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6215.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-28",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6236.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6236.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-29",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6268.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6268.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-30",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6296.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6296.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-31",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6313.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6313.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-32",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6323.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6323.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-33",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6448.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6448.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-34",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6460.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6460.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-35",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6480.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6480.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-36",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6513.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6513.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-37",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6526.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6526.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-38",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6606.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6606.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-39",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6762.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6762.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-40",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6788.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6788.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-41",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6836.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6836.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-42",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6863.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6863.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-43",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6893.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6893.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-44",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6906.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6906.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-45",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC6951.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC6951.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-46",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC7063.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC7063.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-47",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC7076.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC7076.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-48",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC7084.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC7084.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-49",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC7086.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC7086.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-50",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC7108.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC7108.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "design-Tetsu no hana interna-51",
+      "image": "/assets-optimized/design/Tetsu no hana interna/thumb/_DSC7128.webp",
+      "fullImage": "/assets-optimized/design/Tetsu no hana interna/full/_DSC7128.webp",
+      "category": "design",
+      "collection": "Tetsu no hana interna"
+    },
+    {
+      "id": "styling-Candiani-1",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim1.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim1.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-2",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim10.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim10.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-3",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim11.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim11.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-4",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim12.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim12.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-5",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim13.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim13.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-6",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim14.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim14.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-7",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim15.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim15.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-8",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim16.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim16.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-9",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim17.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim17.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-10",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim18.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim18.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-11",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim19.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim19.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-12",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim2.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim2.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-13",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim20.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim20.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-14",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim21.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim21.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-15",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim22.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim22.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-16",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim23.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim23.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-17",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim24.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim24.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-18",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim25.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim25.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-19",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim26.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim26.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-20",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim27.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim27.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-21",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim28.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim28.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-22",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim29.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim29.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-23",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim3.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim3.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-24",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim30.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim30.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-25",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim31.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim31.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-26",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim32.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim32.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-27",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim33.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim33.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-28",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim34.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim34.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-29",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim35.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim35.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-30",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim36.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim36.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-31",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim37.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim37.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-32",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim38.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim38.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-33",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim39.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim39.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-34",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim4.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim4.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-35",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim40.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim40.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-36",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim41.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim41.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-37",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim42.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim42.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-38",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim43.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim43.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-39",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim44.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim44.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-40",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim45.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim45.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-41",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim46.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim46.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-42",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim47.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim47.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-43",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim48.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim48.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-44",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim49.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim49.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-45",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim5.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim5.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-46",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim50.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim50.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-47",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim51.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim51.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-48",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim52.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim52.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-49",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim53.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim53.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-50",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim54.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim54.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-51",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim55.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim55.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-52",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim56.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim56.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-53",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim57.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim57.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-54",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim58.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim58.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-55",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim59.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim59.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-56",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim6.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim6.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-57",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim60.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim60.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-58",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim61.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim61.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-59",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim62.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim62.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-60",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim63.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim63.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-61",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim64.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim64.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-62",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim65.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim65.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-63",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim66.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim66.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-64",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim67.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim67.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-65",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim68.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim68.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-66",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim69.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim69.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-67",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim7.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim7.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-68",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim70.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim70.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-69",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim71.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim71.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-70",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim72.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim72.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-71",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim73.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim73.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-72",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim74 3.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim74 3.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-73",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim75.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim75.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-74",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim76.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim76.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-75",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim77.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim77.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-76",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim78.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim78.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-77",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim79.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim79.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-78",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim8.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim8.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-79",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim80.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim80.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-80",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim81.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim81.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-81",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim82.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim82.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-82",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim83.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim83.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-83",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim84.2.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim84.2.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-84",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim84.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim84.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-85",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim85.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim85.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-86",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim86.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim86.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-87",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim87.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim87.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-88",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim88.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim88.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-89",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim89.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim89.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-90",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim9.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim9.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-91",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim90.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim90.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Candiani-92",
+      "image": "/assets-optimized/styling/Candiani/thumb/CandianiDenim91.webp",
+      "fullImage": "/assets-optimized/styling/Candiani/full/CandianiDenim91.webp",
+      "category": "styling",
+      "collection": "Candiani"
+    },
+    {
+      "id": "styling-Dolly Noire-1",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN1.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN1.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Dolly Noire-2",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN16.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN16.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Dolly Noire-3",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN17.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN17.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Dolly Noire-4",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN21.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN21.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Dolly Noire-5",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN23.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN23.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Dolly Noire-6",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN24.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN24.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Dolly Noire-7",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN27.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN27.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Dolly Noire-8",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN28.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN28.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Dolly Noire-9",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN3.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN3.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Dolly Noire-10",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN31.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN31.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Dolly Noire-11",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN32.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN32.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Dolly Noire-12",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN33.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN33.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Dolly Noire-13",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN34.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN34.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Dolly Noire-14",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN35 copia.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN35 copia.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Dolly Noire-15",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN36.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN36.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Dolly Noire-16",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN42.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN42.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Dolly Noire-17",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN44.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN44.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Dolly Noire-18",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN45.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN45.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Dolly Noire-19",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN46.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN46.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Dolly Noire-20",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN47.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN47.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Dolly Noire-21",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN48.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN48.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Dolly Noire-22",
+      "image": "/assets-optimized/styling/Dolly Noire/thumb/DollyN6.webp",
+      "fullImage": "/assets-optimized/styling/Dolly Noire/full/DollyN6.webp",
+      "category": "styling",
+      "collection": "Dolly Noire"
+    },
+    {
+      "id": "styling-Temporary Structures-1",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/001.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/001.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-2",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0010.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0010.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-3",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0011.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0011.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-4",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0012.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0012.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-5",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0014.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0014.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-6",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0015.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0015.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-7",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0017.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0017.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-8",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0019.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0019.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-9",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/002 border.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/002 border.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-10",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0020.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0020.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-11",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0023.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0023.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-12",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0024.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0024.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-13",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0026.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0026.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-14",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0027.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0027.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-15",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0028.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0028.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-16",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0029.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0029.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-17",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0031.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0031.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-18",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0032 cut.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0032 cut.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-19",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0035.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0035.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-20",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0036.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0036.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-21",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0038.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0038.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-22",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0039.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0039.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-23",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0040.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0040.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-24",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0041.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0041.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-25",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0042.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0042.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-26",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/0044 2.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/0044 2.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-27",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/006 cut.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/006 cut.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-28",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/007 border.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/007 border.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    },
+    {
+      "id": "styling-Temporary Structures-29",
+      "image": "/assets-optimized/styling/Temporary Structures/thumb/009 border.webp",
+      "fullImage": "/assets-optimized/styling/Temporary Structures/full/009 border.webp",
+      "category": "styling",
+      "collection": "Temporary Structures"
+    }
+  ]
+}

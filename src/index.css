@@ -1,0 +1,1750 @@
+/* Typography - Apple SF Pro System */
+/* SF Pro is available on Apple devices; uses system fonts as fallback on other platforms */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Soft Light Theme - 'Bone' / Light Gray */
+  --bg-primary: #e6e6e6;
+  /* Soft gray, not blinding white */
+  --bg-secondary: #f0f0f0;
+  --bg-tertiary: #ffffff;
+  --bg-elevated: #ffffff;
+
+  /* Dark Text for Light Theme */
+  --text-primary: #1d1d1f;
+  /* Near black */
+  --text-secondary: #6e6e73;
+  --text-tertiary: #86868b;
+  --text-muted: #cecece;
+
+  /* Accent (subtle dark) */
+  --accent: rgba(0, 0, 0, 0.05);
+  --accent-hover: rgba(0, 0, 0, 0.08);
+
+  /* Typography - Apple SF Pro */
+  --font-primary: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', sans-serif;
+
+  /* Font Weights */
+  --weight-regular: 400;
+  /* Body text */
+  --weight-medium: 500;
+  /* Micro-text, UI elements */
+  --weight-semibold: 600;
+  /* Titles, headings */
+
+  /* Premium Motion Timing - Apple Style */
+  --ease-standard: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-premium: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spatial: cubic-bezier(0.33, 1, 0.68, 1);
+
+  /* Duration Standards */
+  --duration-fast: 0.25s;
+  --duration-medium: 0.5s;
+  --duration-slow: 1s;
+  --duration-cinematic: 1.5s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg-primary);
+  font-family: var(--font-primary);
+  font-weight: var(--weight-regular);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   BACKGROUND - Flat Apple Graphite
+   ============================================ */
+
+.spatial-bg {
+  background: var(--bg-primary);
+  position: relative;
+}
+
+/* Legacy support */
+.apple-bg,
+.editorial-bg {
+  background: var(--bg-primary);
+  position: relative;
+}
+
+/* ============================================
+   TYPOGRAPHY - Inter System
+   ============================================ */
+
+/* Titles - Inter Semibold */
+h1,
+h2,
+h3 {
+  font-family: var(--font-primary);
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+/* Body text - Inter Regular */
+p,
+span,
+div {
+  font-family: var(--font-primary);
+  font-weight: var(--weight-regular);
+}
+
+/* UI elements, buttons, labels - Inter Medium */
+button,
+label,
+.ui-text {
+  font-family: var(--font-primary);
+  font-weight: var(--weight-medium);
+}
+
+/* ============================================
+   LANDING MENU - Gateway Feel
+   ============================================ */
+
+.menu-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  z-index: 50;
+}
+
+.menu-item {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 1rem 2.5rem;
+  margin: 0.3rem 0;
+  position: relative;
+  transition:
+    color var(--duration-medium) var(--ease-premium),
+    transform var(--duration-medium) var(--ease-cinematic);
+  text-decoration: none;
+}
+
+.menu-item:hover {
+  color: var(--text-primary);
+  transform: translateX(4px);
+}
+
+.menu-item--primary {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.menu-item--primary:hover {
+  color: var(--text-primary);
+  transform: translateX(8px);
+}
+
+/* Fashion Film - Same color as primary, slightly smaller */
+.menu-item--film {
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.menu-item--film:hover {
+  color: var(--text-primary);
+  transform: translateX(6px);
+}
+
+/* Subtle line indicator on hover */
+.menu-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleX(0);
+  width: 20px;
+  height: 1px;
+  background: var(--text-tertiary);
+  transition: transform var(--duration-medium) var(--ease-cinematic);
+  transform-origin: left;
+}
+
+.menu-item:hover::before {
+  transform: translateY(-50%) scaleX(1);
+}
+
+/* ============================================
+   CANVAS CONTAINER
+   ============================================ */
+
+.canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* ============================================
+   SPATIAL EXPLORER
+   ============================================ */
+
+.spatial-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-primary);
+  z-index: 20;
+  cursor: grab;
+}
+
+.spatial-container:active {
+  cursor: grabbing;
+}
+
+/* ============================================
+   IMAGE PREVIEW MODAL - New Redesigned Layout
+   ============================================ */
+
+.preview-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-primary);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Close Button - Top Left */
+.preview-close-btn {
+  position: fixed;
+  top: 4%;
+  left: 4%;
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.preview-close-btn:hover {
+  color: var(--text-primary);
+}
+
+.preview-close-btn .close-icon {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.preview-close-btn .close-text {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* View Collection Button - Right Side (Horizontal, Site Style) */
+.preview-view-collection-btn {
+  position: fixed;
+  right: 4%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 110;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-family: var(--font-primary);
+  font-size: 0.85rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  background: none;
+  border: 1px solid var(--text-tertiary);
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 1rem 1.5rem;
+  transition: all var(--duration-fast) var(--ease-standard);
+}
+
+.preview-view-collection-btn:hover {
+  border-color: var(--text-secondary);
+  transform: translateY(-50%) translateX(-4px);
+}
+
+.preview-view-collection-btn .view-text {
+  letter-spacing: 0.05em;
+}
+
+.preview-view-collection-btn .view-icon {
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
+/* Main Content Container */
+.preview-content {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  max-width: 1100px;
+  width: 100%;
+  margin-right: 100px;
+  /* Space for view collection button */
+}
+
+/* Left Panel - Info */
+.preview-info-panel {
+  flex: 0 0 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.preview-title {
+  font-family: var(--font-primary);
+  font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.preview-meta {
+  font-family: var(--font-primary);
+  font-size: 0.75rem;
+  font-weight: var(--weight-regular);
+  color: var(--text-secondary);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.preview-description {
+  font-family: var(--font-primary);
+  font-size: 0.85rem;
+  font-weight: var(--weight-regular);
+  color: var(--text-tertiary);
+  line-height: 1.7;
+}
+
+/* Main Area - Image + Random Thumbnails */
+.preview-main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.preview-image-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-main-image {
+  max-width: 100%;
+  max-height: 55vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+}
+
+/* 3 Random Images Below - Progressive "Alive" Effect */
+/* Bottom Row: Random Images + View Button */
+.preview-bottom-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  /* Center images, button on right */
+  align-items: center;
+  width: 100%;
+  max-width: 70vw;
+  /* Match main image width */
+  margin-top: 2rem;
+}
+
+.preview-random-images {
+  grid-column: 2;
+  /* Center column */
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.preview-view-collection-inline {
+  grid-column: 3;
+  /* Right column */
+  justify-self: end;
+  /* Align to far right */
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: none;
+  border: 1px solid var(--text-tertiary);
+  border-radius: 4px;
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  color: var(--text-primary);
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.preview-view-collection-inline:hover {
+  opacity: 1;
+  border-color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.preview-view-collection-inline .view-text {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.preview-view-collection-inline .view-icon {
+  font-size: 1.1rem;
+}
+
+.random-image-wrapper {
+  width: 85px;
+  height: 110px;
+  border-radius: 4px;
+  overflow: visible;
+  cursor: pointer;
+  position: relative;
+  transform: scale(1) translateY(0);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Desktop hover - perfectly smooth linear growth */
+@media (hover: hover) {
+  .random-image-wrapper:hover {
+    animation: growContinuous 3s linear forwards;
+    z-index: 10;
+  }
+
+  .random-image-wrapper:hover .random-image {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.8s ease;
+  }
+}
+
+/* Perfectly smooth linear animation - no steps, pure continuous motion */
+@keyframes growContinuous {
+  from {
+    transform: scale(1) translateY(0);
+  }
+
+  to {
+    transform: scale(1.5) translateY(-20px);
+  }
+}
+
+.random-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Touch devices - MUST HOLD to trigger growth */
+@media (hover: none) and (pointer: coarse) {
+  .random-image-wrapper {
+    user-select: none;
+  }
+
+  .random-image-wrapper:active {
+    animation: growContinuous 3s linear forwards;
+    z-index: 10;
+  }
+
+  .random-image-wrapper:active .random-image {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Responsive - Tablet and Mobile */
+@media (max-width: 1024px) {
+  .preview-bottom-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+    max-width: 90vw;
+  }
+
+  /* Hide random images on smaller screens to save space */
+  .preview-random-images {
+    display: none;
+  }
+
+  .preview-view-collection-inline {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem;
+    border-color: var(--text-secondary);
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .preview-content {
+    margin-right: 0;
+    gap: 1.5rem;
+  }
+
+  .preview-info-panel {
+    flex: 0 0 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .preview-image-container {
+    max-width: 95vw;
+    max-height: 50vh;
+  }
+
+  .preview-modal-overlay {
+    padding: 1rem;
+  }
+
+  .preview-close-btn {
+    top: 2%;
+    left: 2%;
+    padding: 0.5rem;
+  }
+
+  .preview-close-btn .close-text {
+    display: none;
+  }
+
+  .preview-view-collection-btn {
+    position: fixed;
+    bottom: 3%;
+    right: auto;
+    left: 50%;
+    top: auto;
+    transform: translateX(-50%);
+    writing-mode: horizontal-tb;
+    flex-direction: row;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+  }
+
+  .preview-view-collection-btn .view-icon {
+    transform: none;
+  }
+
+  .preview-content {
+    flex-direction: column;
+    margin-right: 0;
+    margin-bottom: 80px;
+    gap: 1.5rem;
+  }
+
+  .preview-info-panel {
+    flex: 0 0 auto;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .preview-main-image {
+    max-height: 40vh;
+  }
+
+  .preview-random-images {
+    gap: 0.75rem;
+  }
+
+  .random-image-wrapper {
+    width: 60px;
+    height: 75px;
+  }
+}
+
+/* Legacy focus styles - keep for CollectionFocus component */
+.focus-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(240, 240, 240, 0.95);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.focus-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr 180px;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1400px;
+  height: 85vh;
+  align-items: center;
+}
+
+.focus-left-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding-right: 1rem;
+}
+
+.focus-title {
+  font-family: var(--font-primary);
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.focus-meta {
+  font-family: var(--font-primary);
+  font-size: 0.75rem;
+  font-weight: var(--weight-regular);
+  color: var(--text-secondary);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.focus-description {
+  font-family: var(--font-primary);
+  font-size: 0.85rem;
+  font-weight: var(--weight-regular);
+  color: var(--text-tertiary);
+  line-height: 1.7;
+}
+
+.focus-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.focus-image-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.focus-image {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 3px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+.focus-actions {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.focus-button {
+  font-family: var(--font-primary);
+  font-size: 0.8rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.6rem 1.2rem;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.focus-button:hover {
+  color: var(--text-primary);
+}
+
+.focus-button--primary {
+  color: var(--text-primary);
+  border: 1px solid var(--text-tertiary);
+  border-radius: 3px;
+}
+
+.focus-button--primary:hover {
+  border-color: var(--text-secondary);
+}
+
+/* ============================================
+   PORTFOLIO VIEW - Apple Style
+   ============================================ */
+
+.portfolio-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 40;
+  background: var(--bg-primary);
+}
+
+.image-display {
+  max-width: 96vw;
+  max-height: 94vh;
+  object-fit: contain;
+  border-radius: 2px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+.project-info {
+  position: absolute;
+  bottom: 2%;
+  left: 3%;
+  text-align: left;
+  z-index: 10;
+}
+
+.project-title {
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.2rem;
+  color: var(--text-secondary);
+}
+
+.project-meta {
+  font-family: var(--font-body);
+  font-size: clamp(0.6rem, 0.8vw, 0.75rem);
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   NAVIGATION DOTS - Minimal
+   ============================================ */
+
+.nav-dots {
+  position: fixed;
+  right: 3%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 50;
+}
+
+.nav-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--text-muted);
+  border: none;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-standard);
+  padding: 0;
+}
+
+.nav-dot:hover {
+  background-color: var(--text-tertiary);
+}
+
+.nav-dot.active {
+  background-color: var(--text-primary);
+  transform: scale(1.5);
+}
+
+/* ============================================
+   LOADING SCREEN
+   ============================================ */
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-primary);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   BACK BUTTON - Minimal Apple Style
+   ============================================ */
+
+.back-button {
+  position: fixed;
+  top: 4%;
+  left: 4%;
+  z-index: 60;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: var(--text-tertiary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color var(--duration-fast) var(--ease-standard);
+  text-transform: uppercase;
+}
+
+.back-button:hover {
+  color: var(--text-secondary);
+}
+
+.back-button::before {
+  content: '←';
+  font-size: 1em;
+  font-weight: 300;
+}
+
+/* ============================================
+   IMAGE COUNTER
+   ============================================ */
+
+.image-counter {
+  position: fixed;
+  bottom: 4%;
+  right: 4%;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+
+/* ============================================
+   PAGE LAYOUTS (About, Contact)
+   ============================================ */
+
+.page-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  z-index: 50;
+  padding: 5vh 10vw;
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 2.5rem;
+}
+
+.page-content {
+  max-width: 550px;
+  text-align: center;
+}
+
+.page-text {
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  letter-spacing: 0;
+}
+
+.contact-link {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  padding: 0.5rem 0;
+  display: block;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.contact-link:hover {
+  color: var(--text-primary);
+}
+
+/* ============================================
+   SCROLLBAR - Hidden
+   ============================================ */
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ============================================
+   HINT TEXT
+   ============================================ */
+
+.hint-text {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.project-meta {
+  font-family: var(--font-body);
+  font-size: clamp(0.7rem, 0.9vw, 0.85rem);
+  font-weight: 400;
+  color: var(--text-tertiary);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   NAVIGATION DOTS - Minimal
+   ============================================ */
+
+.nav-dots {
+  position: fixed;
+  right: 3%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 50;
+}
+
+.nav-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--text-muted);
+  border: none;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-standard);
+  padding: 0;
+}
+
+.nav-dot:hover {
+  background-color: var(--text-tertiary);
+}
+
+.nav-dot.active {
+  background-color: var(--text-primary);
+  transform: scale(1.5);
+}
+
+/* ============================================
+   LOADING SCREEN
+   ============================================ */
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-primary);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   BACK BUTTON - Minimal Apple Style
+   ============================================ */
+
+.back-button {
+  position: fixed;
+  top: 4%;
+  left: 4%;
+  z-index: 60;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: var(--text-tertiary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color var(--duration-fast) var(--ease-standard);
+  text-transform: uppercase;
+}
+
+.back-button:hover {
+  color: var(--text-secondary);
+}
+
+.back-button::before {
+  content: '←';
+  font-size: 1em;
+  font-weight: 300;
+}
+
+/* ============================================
+   IMAGE COUNTER
+   ============================================ */
+
+.image-counter {
+  position: fixed;
+  bottom: 4%;
+  right: 4%;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+
+/* ============================================
+   PAGE LAYOUTS (About, Contact)
+   ============================================ */
+
+.page-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  z-index: 50;
+  padding: 5vh 10vw;
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 2.5rem;
+}
+
+.page-content {
+  max-width: 550px;
+  text-align: center;
+}
+
+.page-text {
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  letter-spacing: 0;
+}
+
+.contact-link {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  padding: 0.5rem 0;
+  display: block;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.contact-link:hover {
+  color: var(--text-primary);
+}
+
+/* ============================================
+   SCROLLBAR - Hidden
+   ============================================ */
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ============================================
+   HINT TEXT
+   ============================================ */
+
+.hint-text {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   SPATIAL NAVIGATION HINT
+   ============================================ */
+
+.spatial-hint {
+  position: fixed;
+  bottom: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+/* ============================================
+   HORIZONTAL SCROLL - Collection Navigation
+   ============================================ */
+
+.horizontal-scroll-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-primary);
+  z-index: 20;
+  overflow: hidden;
+  cursor: grab;
+}
+
+.horizontal-scroll-container:active {
+  cursor: grabbing;
+}
+
+.scroll-category-title {
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  z-index: 10;
+}
+
+.tiles-track {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 15vw;
+  gap: 0;
+}
+
+.collection-tile {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.4s var(--ease-cinematic);
+}
+
+.tile-image-container {
+  width: 100%;
+  height: 55vh;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--bg-secondary);
+}
+
+.tile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-cinematic);
+}
+
+.collection-tile:hover .tile-image {
+  transform: scale(1.02);
+}
+
+.tile-info {
+  margin-top: 1.2rem;
+  padding: 0 0.25rem;
+}
+
+.tile-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.3rem;
+}
+
+.tile-meta {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+}
+
+/* Parallax Background */
+.parallax-background {
+  position: absolute;
+  top: 0;
+  left: -20%;
+  width: 140%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.parallax-shape {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  opacity: 0.3;
+}
+
+.shape-1 {
+  width: 40vw;
+  height: 40vw;
+  top: 10%;
+  left: 15%;
+}
+
+.shape-2 {
+  width: 25vw;
+  height: 25vw;
+  bottom: 15%;
+  right: 20%;
+}
+
+.shape-3 {
+  width: 15vw;
+  height: 15vw;
+  top: 50%;
+  left: 60%;
+}
+
+/* Scroll Hint */
+.scroll-hint {
+  position: fixed;
+  bottom: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Scroll Progress */
+.scroll-progress {
+  position: fixed;
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 2px;
+  background: var(--bg-tertiary);
+  border-radius: 1px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  background: var(--text-muted);
+  transform-origin: left;
+  border-radius: 1px;
+}
+
+/* ============================================
+   IMMERSIVE SPHERE - Inside the sphere view
+   ============================================ */
+
+.immersive-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-primary);
+  z-index: 20;
+  cursor: grab;
+}
+
+.immersive-container:active {
+  cursor: grabbing;
+}
+
+.immersive-hint {
+  position: fixed;
+  bottom: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.immersive-category {
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  z-index: 10;
+}
+
+
+/* ============================================
+   FASHION FILM PAGE - Carousel Layout
+   ============================================ */
+
+.fashion-film-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  z-index: 50;
+  padding: 3vh 2vw;
+  overflow: hidden;
+}
+
+.fashion-film-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.5vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Carousel Container */
+.video-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1400px;
+  height: 60vh;
+  padding: 0 1rem;
+}
+
+/* Side Preview Videos */
+.video-preview {
+  flex: 0 0 auto;
+  width: 180px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all var(--duration-medium) var(--ease-cinematic);
+}
+
+.video-preview:hover {
+  opacity: 0.9;
+}
+
+.preview-video-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #1a1a1a;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.preview-video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.preview-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-standard);
+}
+
+.video-preview:hover .preview-overlay {
+  opacity: 1;
+}
+
+.preview-nav-icon {
+  font-size: 2.5rem;
+  color: white;
+  font-weight: 300;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.preview-title {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-tertiary);
+  text-align: center;
+  margin-top: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+/* Main Video */
+.video-main {
+  flex: 1;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.main-video-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0a0a0a;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+}
+
+.main-video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+
+/* Play Button Overlay */
+.play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.play-button-large {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1d1d1f;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.play-button-large svg {
+  width: 32px;
+  height: 32px;
+  margin-left: 4px;
+}
+
+.play-button-large:hover {
+  transform: scale(1.08);
+}
+
+/* Video Info */
+.video-main-info {
+  text-align: center;
+  margin-top: 1.5rem;
+  pointer-events: none;
+}
+
+.main-video-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.4rem;
+}
+
+.main-video-description {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--text-tertiary);
+}
+
+/* Fullscreen Button */
+.fullscreen-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  transition: background var(--duration-fast) var(--ease-standard);
+}
+
+.fullscreen-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* Video Indicators */
+.video-indicators {
+  display: flex;
+  gap: 10px;
+  margin-top: 2rem;
+}
+
+.video-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all var(--duration-fast) var(--ease-standard);
+}
+
+.video-indicator:hover {
+  background: var(--text-tertiary);
+  transform: scale(1.2);
+}
+
+.video-indicator.active {
+  background: var(--text-primary);
+  transform: scale(1.3);
+}
+
+/* Hint */
+.fashion-film-hint {
+  position: fixed;
+  bottom: 3%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Fullscreen mode */
+.video-main:fullscreen {
+  max-width: 100%;
+  background: #000;
+  padding: 0;
+}
+
+.video-main:fullscreen .main-video-container {
+  height: 100vh;
+  width: 100vw;
+  border-radius: 0;
+  aspect-ratio: unset;
+}
+
+.video-main:fullscreen .video-main-info {
+  display: none;
+}
+
+.video-main:fullscreen .fullscreen-btn {
+  top: 20px;
+  right: 20px;
+}
+
+/* Playing state */
+.video-main--playing .main-video-container {
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive - Tablet */
+@media (max-width: 1024px) {
+  .video-carousel {
+    gap: 1.5rem;
+  }
+
+  .video-preview {
+    width: 140px;
+  }
+
+  .video-main {
+    max-width: 650px;
+  }
+
+  .play-button-large {
+    width: 70px;
+    height: 70px;
+  }
+
+  .play-button-large svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+  .fashion-film-page {
+    padding: 2vh 1rem;
+  }
+
+  .fashion-film-title {
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+  }
+
+  .video-carousel {
+    flex-direction: column;
+    height: auto;
+    gap: 1.5rem;
+  }
+
+  .video-preview {
+    display: none;
+  }
+
+  .video-main {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .main-video-container {
+    border-radius: 8px;
+  }
+
+  .play-button-large {
+    width: 60px;
+    height: 60px;
+  }
+
+  .play-button-large svg {
+    width: 24px;
+    height: 24px;
+    margin-left: 3px;
+  }
+
+  .video-indicators {
+    margin-top: 1.5rem;
+  }
+
+  .video-indicator {
+    width: 10px;
+    height: 10px;
+  }
+}
