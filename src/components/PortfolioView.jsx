@@ -1,15 +1,26 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 // Premium cinematic easing
 const cinematicEasing = [0.16, 1, 0.3, 1]
 const premiumEasing = [0.4, 0, 0.2, 1]
 
+// Preload an image and return a promise
+const preloadImage = (src) => {
+    return new Promise((resolve, reject) => {
+        const img = new Image()
+        img.onload = () => resolve(src)
+        img.onerror = reject
+        img.src = src
+    })
+}
+
 export default function PortfolioView({ category, data, onBack }) {
     const [activeCollectionIndex, setActiveCollectionIndex] = useState(0)
     const [activeImageIndex, setActiveImageIndex] = useState(0)
     const [imageLoaded, setImageLoaded] = useState(false)
     const [isTransitioning, setIsTransitioning] = useState(false)
+    const preloadedImages = useRef(new Set()) // Track which images are preloaded
 
     const collections = data?.collections || []
 
@@ -32,6 +43,32 @@ export default function PortfolioView({ category, data, onBack }) {
         window.addEventListener('keydown', handleKeyDown)
         return () => window.removeEventListener('keydown', handleKeyDown)
     }, [activeImageIndex, activeCollectionIndex, isTransitioning])
+
+    // Preload adjacent images for smoother navigation
+    useEffect(() => {
+        if (collections.length === 0) return
+
+        const activeCollection = collections[activeCollectionIndex]
+        const images = activeCollection?.images || []
+
+        // Images to preload: current, next 2, and previous 1
+        const indicesToPreload = [
+            activeImageIndex,
+            activeImageIndex + 1,
+            activeImageIndex + 2,
+            activeImageIndex - 1
+        ].filter(i => i >= 0 && i < images.length)
+
+        indicesToPreload.forEach(index => {
+            const src = images[index]
+            if (src && !preloadedImages.current.has(src)) {
+                preloadedImages.current.add(src)
+                preloadImage(src).catch(() => {
+                    // Silent fail - just means image won't be preloaded
+                })
+            }
+        })
+    }, [activeImageIndex, activeCollectionIndex, collections])
 
     if (collections.length === 0) {
         return (
