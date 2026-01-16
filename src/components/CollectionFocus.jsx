@@ -42,6 +42,29 @@ export default function CollectionFocus({
         return () => window.removeEventListener('keydown', handleKeyDown)
     }, [onClose, onView, selectedImageIndex, images.length])
 
+    // Touch/click navigation on the image itself
+    const handleImageAreaClick = useCallback((e) => {
+        // Get click position relative to the image container
+        const rect = e.currentTarget.getBoundingClientRect()
+        const clickX = e.clientX - rect.left
+        const containerWidth = rect.width
+
+        // Left half = go back, Right half = go forward
+        if (clickX < containerWidth / 2) {
+            // Left side - previous image
+            if (selectedImageIndex > 0) {
+                setSelectedImageIndex(prev => prev - 1)
+                setImageLoaded(false)
+            }
+        } else {
+            // Right side - next image
+            if (selectedImageIndex < images.length - 1) {
+                setSelectedImageIndex(prev => prev + 1)
+                setImageLoaded(false)
+            }
+        }
+    }, [selectedImageIndex, images.length])
+
     const handleThumbnailClick = useCallback((index) => {
         setSelectedImageIndex(index)
         setImageLoaded(false)
@@ -86,8 +109,12 @@ export default function CollectionFocus({
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, ease: cinematicEasing }}
                 >
-                    {/* Main Image */}
-                    <div className="focus-image-container">
+                    {/* Main Image - Tap left/right to navigate */}
+                    <div
+                        className="focus-image-container"
+                        onClick={handleImageAreaClick}
+                        style={{ cursor: 'pointer' }}
+                    >
                         {currentImage && (
                             <motion.img
                                 key={selectedImageIndex}
@@ -101,6 +128,16 @@ export default function CollectionFocus({
                                 draggable={false}
                             />
                         )}
+
+                        {/* Image counter - subtle, bottom right */}
+                        <motion.div
+                            className="focus-image-counter"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.5 }}
+                            transition={{ delay: 0.5, duration: 0.3 }}
+                        >
+                            {selectedImageIndex + 1}/{images.length}
+                        </motion.div>
                     </div>
 
                     {/* Action Buttons - Below Image */}

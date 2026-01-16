@@ -153,6 +153,7 @@ function LoopableCameraController({ isActive, sphereRadius }) {
             const deltaX = (e.clientX - previousMouse.current.x) * 0.003
             const deltaY = (e.clientY - previousMouse.current.y) * 0.003
 
+            // Controlateral movement: drag right = images move right
             velocity.current.x = deltaX
             velocity.current.y = deltaY
 
@@ -177,6 +178,7 @@ function LoopableCameraController({ isActive, sphereRadius }) {
             const deltaX = (touch.clientX - previousMouse.current.x) * 0.003
             const deltaY = (touch.clientY - previousMouse.current.y) * 0.003
 
+            // Controlateral movement: drag right = images move right
             velocity.current.x = deltaX
             velocity.current.y = deltaY
 

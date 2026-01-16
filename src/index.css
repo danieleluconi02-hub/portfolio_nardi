@@ -672,6 +672,7 @@ label,
 }
 
 .focus-image-container {
+  position: relative;
   flex: 1;
   display: flex;
   align-items: center;
@@ -686,6 +687,24 @@ label,
   object-fit: contain;
   border-radius: 3px;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+/* Image counter - subtle, bottom right of image container */
+.focus-image-counter {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
 }
 
 .focus-actions {

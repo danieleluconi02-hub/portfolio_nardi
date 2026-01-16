@@ -243,6 +243,7 @@ export default function ImmersiveSphere({
                 const deltaX = e.clientX - lastMouse.current.x
                 const deltaY = e.clientY - lastMouse.current.y
 
+                // Controlateral movement: drag right = images move right (camera looks left)
                 targetRotationRef.current.y -= deltaX * 0.004
                 targetRotationRef.current.x -= deltaY * 0.002
 
@@ -282,6 +283,7 @@ export default function ImmersiveSphere({
                 const deltaX = e.touches[0].clientX - lastMouse.current.x
                 const deltaY = e.touches[0].clientY - lastMouse.current.y
 
+                // Controlateral movement: drag right = images move right (camera looks left)
                 targetRotationRef.current.y -= deltaX * 0.004
                 targetRotationRef.current.x -= deltaY * 0.002
 

@@ -117,11 +117,22 @@ export default function PortfolioView({ category, data, onBack }) {
                 Back
             </motion.button>
 
-            {/* Main Image Area */}
+            {/* Main Image Area - Tap left half = prev, right half = next */}
             <div
                 className="relative w-full h-full flex items-center justify-center cursor-pointer px-16"
-                onClick={nextImage}
-                onContextMenu={(e) => { e.preventDefault(); prevImage(); }}
+                onClick={(e) => {
+                    // Get click position relative to the container
+                    const rect = e.currentTarget.getBoundingClientRect()
+                    const clickX = e.clientX - rect.left
+                    const containerWidth = rect.width
+
+                    // Left half = go back, Right half = go forward
+                    if (clickX < containerWidth / 2) {
+                        prevImage()
+                    } else {
+                        nextImage()
+                    }
+                }}
             >
                 <AnimatePresence mode="wait">
                     {currentImage && (
@@ -206,7 +217,7 @@ export default function PortfolioView({ category, data, onBack }) {
                 animate={{ opacity: 0.25 }}
                 transition={{ delay: 1.2 }}
             >
-                Click → · Right-click ← · Keys
+                ← Tap left | Tap right →
             </motion.p>
         </motion.div>
     )
