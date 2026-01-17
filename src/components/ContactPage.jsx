@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useLanguage } from '../contexts/LanguageContext'
 import content from '../data/content.json'
 
 // Apple-like easing
@@ -6,21 +7,22 @@ const appleEasing = [0.25, 0.1, 0.25, 1]
 const cinematicEasing = [0.16, 1, 0.3, 1]
 
 export default function ContactPage({ onBack }) {
-    const { contact } = content
+    const { t } = useLanguage()
+    const { contact } = content // Keep contact info (email, urls) from content.json
 
     const contactLinks = [
         {
-            label: 'Email',
+            label: t.contact.email,
             href: `mailto:${contact.email.address}`,
             display: contact.email.display
         },
         {
-            label: 'Instagram',
+            label: t.contact.instagram,
             href: contact.instagram.url,
             display: contact.instagram.display
         },
         {
-            label: 'LinkedIn',
+            label: t.contact.linkedin,
             href: contact.linkedin.url,
             display: contact.linkedin.display
         }
@@ -42,7 +44,7 @@ export default function ContactPage({ onBack }) {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
             >
-                Back
+                {t.ui.back}
             </motion.button>
 
             {/* Content */}
@@ -52,7 +54,7 @@ export default function ContactPage({ onBack }) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8, ease: cinematicEasing }}
             >
-                <h1 className="page-title">{contact.title}</h1>
+                <h1 className="page-title">{t.contact.title}</h1>
 
                 <motion.div
                     className="flex flex-col items-center gap-3 mt-6"
@@ -94,7 +96,7 @@ export default function ContactPage({ onBack }) {
                     animate={{ opacity: 0.35 }}
                     transition={{ delay: 1, duration: 0.6 }}
                 >
-                    {contact.availability}
+                    {t.contact.availability}
                 </motion.p>
             </motion.div>
         </motion.div>

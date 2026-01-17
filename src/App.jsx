@@ -1,6 +1,7 @@
 import { useState, Suspense, useCallback, useMemo } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { motion, AnimatePresence } from 'framer-motion'
+import { LanguageProvider } from './contexts/LanguageContext'
 import LandingMenu from './components/LandingMenu'
 import AboutPage from './components/AboutPage'
 import ContactPage from './components/ContactPage'
@@ -341,5 +342,14 @@ function App() {
     )
 }
 
-export default App
+// Wrap App with LanguageProvider
+function AppWithLanguage() {
+    return (
+        <LanguageProvider>
+            <App />
+        </LanguageProvider>
+    )
+}
+
+export default AppWithLanguage
 

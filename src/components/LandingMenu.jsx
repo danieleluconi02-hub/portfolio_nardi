@@ -1,6 +1,10 @@
 import { motion } from 'framer-motion'
+import { useLanguage } from '../contexts/LanguageContext'
+import LanguageSwitcher from './LanguageSwitcher'
 
 export default function LandingMenu({ onNavigate }) {
+    const { t } = useLanguage()
+
     // Apple-like easing curves
     const appleEasing = [0.25, 0.1, 0.25, 1]
     const cinematicEasing = [0.16, 1, 0.3, 1]
@@ -43,11 +47,11 @@ export default function LandingMenu({ onNavigate }) {
     }
 
     const menuItems = [
-        { id: 'design', label: 'FASHION DESIGN', primary: true },
-        { id: 'styling', label: 'STYLING', primary: true },
-        { id: 'fashionfilm', label: 'FASHION FILM', primary: false, isFilm: true },
-        { id: 'about', label: 'About', primary: false },
-        { id: 'contact', label: 'Contact', primary: false }
+        { id: 'design', label: t.menu.fashionDesign, primary: true },
+        { id: 'styling', label: t.menu.styling, primary: true },
+        { id: 'fashionfilm', label: t.menu.fashionFilm, primary: false, isFilm: true },
+        { id: 'about', label: t.menu.about, primary: false },
+        { id: 'contact', label: t.menu.contact, primary: false }
     ]
 
     return (
@@ -121,8 +125,11 @@ export default function LandingMenu({ onNavigate }) {
                 animate={{ opacity: 0.3 }}
                 transition={{ duration: 0 }}
             >
-                <p className="hint-text">Portfolio</p>
+                <p className="hint-text">{t.ui.portfolio}</p>
             </motion.div>
+
+            {/* Language Switcher - Center bottom */}
+            <LanguageSwitcher />
 
             {/* Year indicator */}
             <motion.div
@@ -136,3 +143,4 @@ export default function LandingMenu({ onNavigate }) {
         </motion.div>
     )
 }
+

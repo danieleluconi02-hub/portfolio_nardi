@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion'
-import content from '../data/content.json'
+import { useLanguage } from '../contexts/LanguageContext'
 
 // Apple-like easing
 const appleEasing = [0.25, 0.1, 0.25, 1]
 const cinematicEasing = [0.16, 1, 0.3, 1]
 
 export default function AboutPage({ onBack }) {
-    const { about } = content
+    const { t } = useLanguage()
+    const about = t.about
 
     return (
         <motion.div
@@ -24,7 +25,7 @@ export default function AboutPage({ onBack }) {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
             >
-                Back
+                {t.ui.back}
             </motion.button>
 
             {/* Content */}
