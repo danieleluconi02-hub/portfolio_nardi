@@ -1778,47 +1778,36 @@ body {
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 0.8rem;
+  gap: 1rem;
   z-index: 20;
-  padding: 0.5rem 1rem;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border-radius: 30px;
-  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .language-flag {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.3rem;
-  opacity: 0.5;
-  transition: all 0.3s var(--ease-standard);
-  filter: grayscale(0.3);
+  padding: 0.2rem;
+  opacity: 0.4;
+  transition: opacity 0.3s var(--ease-standard);
 }
 
 .language-flag:hover {
-  opacity: 0.8;
-  filter: grayscale(0);
+  opacity: 0.7;
 }
 
 .language-flag.active {
   opacity: 1;
-  filter: grayscale(0);
-  transform: scale(1.1);
 }
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
   .language-switcher {
     bottom: 3%;
-    gap: 0.6rem;
-    padding: 0.4rem 0.8rem;
+    gap: 0.8rem;
   }
 
   .language-flag {
-    font-size: 1.2rem;
-    padding: 0.2rem;
+    font-size: 1.1rem;
   }
 }

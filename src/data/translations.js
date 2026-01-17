@@ -149,7 +149,45 @@ const translations = {
             linkedin: 'LinkedIn',
             availability: 'Disponible pour collaborations'
         }
+    },
+    ja: {
+        // Menu
+        menu: {
+            fashionDesign: 'ファッションデザイン',
+            styling: 'スタイリング',
+            fashionFilm: 'ファッションフィルム',
+            about: '私について',
+            contact: 'お問い合わせ'
+        },
+        // UI Elements
+        ui: {
+            back: '戻る',
+            portfolio: 'ポートフォリオ',
+            close: '閉じる',
+            viewCollection: 'コレクションを見る',
+            clickToEnter: 'クリックして入る',
+            dragToExplore: 'ドラッグで探索 · 画像をクリックでプレビュー',
+            tapNavigation: '← 左タップ | 右タップ →'
+        },
+        // About Page
+        about: {
+            title: '私について',
+            paragraphs: [
+                '最初の段落をここに書いてください...',
+                '2番目の段落をここに書いてください（オプション）...'
+            ],
+            cvNote: '履歴書はリクエストに応じて提供'
+        },
+        // Contact Page
+        contact: {
+            title: 'お問い合わせ',
+            email: 'メール',
+            instagram: 'Instagram',
+            linkedin: 'LinkedIn',
+            availability: 'コラボレーション可能'
+        }
     }
 }
 
 export default translations
+

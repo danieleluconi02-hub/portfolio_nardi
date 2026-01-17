@@ -109,8 +109,7 @@ export default function LandingMenu({ onNavigate }) {
                             transition: { duration: 0.1 }
                         }}
                         style={{
-                            marginTop: index === 3 ? '2.5rem' : (index === 2 ? '1.5rem' : undefined),
-                            textShadow: '0 0 30px rgba(0,0,0,0.8)'
+                            marginTop: index === 3 ? '2.5rem' : (index === 2 ? '1.5rem' : undefined)
                         }}
                     >
                         {item.label}
