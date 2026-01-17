@@ -153,9 +153,9 @@ function LoopableCameraController({ isActive, sphereRadius }) {
             const deltaX = (e.clientX - previousMouse.current.x) * 0.003
             const deltaY = (e.clientY - previousMouse.current.y) * 0.003
 
-            // Controlateral movement: drag right = images move right
-            velocity.current.x = deltaX
-            velocity.current.y = deltaY
+            // Natural movement: drag right = sphere rotates right
+            velocity.current.x = -deltaX
+            velocity.current.y = -deltaY
 
             previousMouse.current = { x: e.clientX, y: e.clientY }
         }
@@ -178,9 +178,9 @@ function LoopableCameraController({ isActive, sphereRadius }) {
             const deltaX = (touch.clientX - previousMouse.current.x) * 0.003
             const deltaY = (touch.clientY - previousMouse.current.y) * 0.003
 
-            // Controlateral movement: drag right = images move right
-            velocity.current.x = deltaX
-            velocity.current.y = deltaY
+            // Natural movement: drag right = sphere rotates right
+            velocity.current.x = -deltaX
+            velocity.current.y = -deltaY
 
             previousMouse.current = { x: touch.clientX, y: touch.clientY }
         }
@@ -309,15 +309,7 @@ export default function SpatialExplorer({
                 Back
             </motion.button>
 
-            {/* Category Label - subtle */}
-            <motion.p
-                className="fixed top-[4%] left-1/2 -translate-x-1/2 hint-text z-10"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.4 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-            >
-                {categoryTitle}
-            </motion.p>
+            {/* Category label removed as per user request */}
 
             {/* Navigation Hint */}
             <motion.p

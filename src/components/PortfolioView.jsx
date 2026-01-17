@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useLanguage } from '../contexts/LanguageContext'
 
 // Premium cinematic easing
 const cinematicEasing = [0.16, 1, 0.3, 1]
@@ -16,6 +17,7 @@ const preloadImage = (src) => {
 }
 
 export default function PortfolioView({ category, data, onBack }) {
+    const { t } = useLanguage()
     const [activeCollectionIndex, setActiveCollectionIndex] = useState(0)
     const [activeImageIndex, setActiveImageIndex] = useState(0)
     const [imageLoaded, setImageLoaded] = useState(false)
@@ -247,14 +249,14 @@ export default function PortfolioView({ category, data, onBack }) {
                 </motion.div>
             )}
 
-            {/* Navigation Hint - positioned at bottom right */}
+            {/* Navigation Hint - centered below image */}
             <motion.p
-                className="fixed bottom-[2%] right-[3%] hint-text text-right"
+                className="fixed bottom-[8%] left-1/2 -translate-x-1/2 hint-text text-center"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.25 }}
                 transition={{ delay: 1.2 }}
             >
-                ← Tap left | Tap right →
+                {t.ui.tapNavigation}
             </motion.p>
         </motion.div>
     )

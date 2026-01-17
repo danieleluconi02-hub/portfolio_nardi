@@ -130,14 +130,15 @@ export default function LandingMenu({ onNavigate }) {
             {/* Language Switcher - Center bottom */}
             <LanguageSwitcher />
 
-            {/* Year indicator */}
+            {/* Author name */}
             <motion.div
-                className="fixed bottom-[5%] right-[4%] z-10"
+                className="fixed bottom-[5%] right-[4%] z-10 text-right"
                 initial={{ opacity: 0.3 }}
                 animate={{ opacity: 0.3 }}
                 transition={{ duration: 0 }}
             >
-                <p className="hint-text">2024</p>
+                <p className="hint-text">Francesco</p>
+                <p className="hint-text">Nardi</p>
             </motion.div>
         </motion.div>
     )

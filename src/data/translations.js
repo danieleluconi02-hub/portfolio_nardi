@@ -42,9 +42,9 @@ const translations = {
     it: {
         // Menu
         menu: {
-            fashionDesign: 'FASHION DESIGN',
-            styling: 'STYLING',
-            fashionFilm: 'FASHION FILM',
+            fashionDesign: 'PROGETTAZIONE MODA',
+            styling: "CURA DELL'IMMAGINE",
+            fashionFilm: 'FILM DI MODA',
             about: 'Chi Sono',
             contact: 'Contatti'
         },

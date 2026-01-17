@@ -160,6 +160,8 @@ label,
   font-weight: 500;
   color: var(--text-primary);
   letter-spacing: -0.02em;
+  min-width: 280px;
+  text-align: left;
 }
 
 .menu-item--primary:hover {
@@ -764,7 +766,6 @@ label,
   max-height: 94vh;
   object-fit: contain;
   border-radius: 2px;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
 }
 
 .project-info {
@@ -1775,10 +1776,11 @@ body {
 .language-switcher {
   position: fixed;
   bottom: 5%;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   display: flex;
-  gap: 1rem;
+  justify-content: center;
+  gap: 1.2rem;
   z-index: 20;
 }
 

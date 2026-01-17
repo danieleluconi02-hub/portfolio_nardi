@@ -1,7 +1,7 @@
 import { useState, Suspense, useCallback, useMemo } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { motion, AnimatePresence } from 'framer-motion'
-import { LanguageProvider } from './contexts/LanguageContext'
+import { LanguageProvider, useLanguage } from './contexts/LanguageContext'
 import LandingMenu from './components/LandingMenu'
 import AboutPage from './components/AboutPage'
 import ContactPage from './components/ContactPage'
@@ -19,6 +19,8 @@ const appleEasing = [0.25, 0.1, 0.25, 1]
 const cinematicEasing = [0.16, 1, 0.3, 1]
 
 function App() {
+    const { t } = useLanguage()
+
     // States: 'menu' | 'about' | 'contact' | 'sphere' | 'entering' | 'scroll' | 'preview' | 'focus' | 'collection'
     const [appState, setAppState] = useState('menu')
     const [selectedCategory, setSelectedCategory] = useState(null)
@@ -204,27 +206,16 @@ function App() {
                             Back
                         </motion.button>
 
-                        {/* Category Label */}
-                        <motion.p
-                            className="fixed top-[4%] left-1/2 -translate-x-1/2 hint-text z-10"
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{
-                                opacity: appState === 'sphere' ? 0.5 : 0,
-                                y: appState === 'sphere' ? 0 : -10
-                            }}
-                            transition={{ delay: 0.3, duration: 0.6 }}
-                        >
-                            {selectedCategory === 'design' ? 'Fashion Design' : 'Styling'}
-                        </motion.p>
+                        {/* Category label removed */}
 
-                        {/* Hint */}
+                        {/* Hint - below sphere */}
                         <motion.p
-                            className="fixed bottom-[4%] left-1/2 -translate-x-1/2 hint-text z-10"
+                            className="fixed bottom-[18%] left-1/2 -translate-x-1/2 hint-text z-10"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: appState === 'sphere' ? 0.35 : 0 }}
                             transition={{ delay: 0.8, duration: 0.6 }}
                         >
-                            Click to enter
+                            {t.ui.clickToEnter}
                         </motion.p>
 
                         <Canvas
@@ -266,24 +257,16 @@ function App() {
                             Back
                         </motion.button>
 
-                        {/* Category Title */}
-                        <motion.h2
-                            className="immersive-category"
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2, duration: 0.6, ease: cinematicEasing }}
-                        >
-                            {selectedCategory === 'design' ? 'Fashion Design' : 'Styling'}
-                        </motion.h2>
+                        {/* Category label removed */}
 
-                        {/* Hint */}
+                        {/* Hint - translated */}
                         <motion.p
                             className="immersive-hint"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 0.35 }}
                             transition={{ delay: 1.2, duration: 0.5 }}
                         >
-                            Drag to explore · Click image for preview
+                            {t.ui.dragToExplore}
                         </motion.p>
 
                         <Canvas

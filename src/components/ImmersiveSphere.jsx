@@ -243,9 +243,9 @@ export default function ImmersiveSphere({
                 const deltaX = e.clientX - lastMouse.current.x
                 const deltaY = e.clientY - lastMouse.current.y
 
-                // Controlateral movement: drag right = images move right (camera looks left)
-                targetRotationRef.current.y -= deltaX * 0.004
-                targetRotationRef.current.x -= deltaY * 0.002
+                // Natural movement: drag right = sphere rotates right (images move left)
+                targetRotationRef.current.y += deltaX * 0.004
+                targetRotationRef.current.x += deltaY * 0.002
 
                 // Clamp vertical
                 targetRotationRef.current.x = Math.max(
@@ -283,9 +283,9 @@ export default function ImmersiveSphere({
                 const deltaX = e.touches[0].clientX - lastMouse.current.x
                 const deltaY = e.touches[0].clientY - lastMouse.current.y
 
-                // Controlateral movement: drag right = images move right (camera looks left)
-                targetRotationRef.current.y -= deltaX * 0.004
-                targetRotationRef.current.x -= deltaY * 0.002
+                // Natural movement: drag right = sphere rotates right (images move left)
+                targetRotationRef.current.y += deltaX * 0.004
+                targetRotationRef.current.x += deltaY * 0.002
 
                 targetRotationRef.current.x = Math.max(
                     -Math.PI * 0.2,
