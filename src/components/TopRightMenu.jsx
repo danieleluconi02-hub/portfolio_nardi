@@ -47,7 +47,7 @@ export default function TopRightMenu({ onNavigate }) {
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        className="fixed inset-0 z-40 bg-black/90 backdrop-blur-xl flex flex-col items-center justify-center"
+                        className="fixed inset-0 z-40 bg-black/40 backdrop-blur-md flex flex-col items-center justify-center"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -57,7 +57,7 @@ export default function TopRightMenu({ onNavigate }) {
                             {menuItems.map((item, index) => (
                                 <motion.button
                                     key={item.id}
-                                    className="text-4xl font-light text-white tracking-widest uppercase hover:text-gray-300 transition-colors"
+                                    className="text-4xl font-light text-white tracking-widest hover:text-gray-300 transition-colors capitalize"
                                     onClick={() => handleNavigate(item.id)}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}

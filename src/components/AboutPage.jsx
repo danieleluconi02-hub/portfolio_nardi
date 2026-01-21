@@ -35,9 +35,10 @@ export default function AboutPage({ onBack }) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8, ease: cinematicEasing }}
             >
-                <h1 className="page-title">{about.title}</h1>
+                {/* Title Removed */}
 
                 <motion.div
+                    className="max-w-4xl mx-auto" // Optional constraint for better reading measure
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5, duration: 0.6 }}
@@ -45,8 +46,8 @@ export default function AboutPage({ onBack }) {
                     {about.paragraphs.map((paragraph, index) => (
                         <p
                             key={index}
-                            className="page-text mb-6"
-                            style={{ opacity: index === 0 ? 1 : 0.7 }}
+                            className="page-text mb-6 text-left text-lg md:text-xl leading-relaxed"
+                            style={{ opacity: 1 }} // Uniform opacity
                         >
                             {paragraph}
                         </p>

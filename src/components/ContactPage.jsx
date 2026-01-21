@@ -54,7 +54,7 @@ export default function ContactPage({ onBack }) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8, ease: cinematicEasing }}
             >
-                <h1 className="page-title">{t.contact.title}</h1>
+                {/* Title Removed */}
 
                 <motion.div
                     className="flex flex-col items-center gap-3 mt-6"
