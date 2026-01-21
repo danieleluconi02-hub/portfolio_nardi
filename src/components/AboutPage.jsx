@@ -38,7 +38,7 @@ export default function AboutPage({ onBack }) {
                 {/* Title Removed */}
 
                 <motion.div
-                    className="max-w-4xl mx-auto" // Optional constraint for better reading measure
+                    className="max-w-4xl mx-auto bg-black/70 backdrop-blur-md p-8 md:p-12 rounded-2xl shadow-2xl mt-8" // Added container styling
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5, duration: 0.6 }}
@@ -46,8 +46,8 @@ export default function AboutPage({ onBack }) {
                     {about.paragraphs.map((paragraph, index) => (
                         <p
                             key={index}
-                            className="page-text mb-6 text-left text-lg md:text-xl leading-relaxed"
-                            style={{ opacity: 1 }} // Uniform opacity
+                            className="page-text mb-8 text-left text-lg md:text-2xl leading-relaxed text-gray-100" // Increased size and spacing
+                            style={{ opacity: 1 }}
                         >
                             {paragraph}
                         </p>
