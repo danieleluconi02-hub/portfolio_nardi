@@ -25,7 +25,7 @@ export default function TopRightMenu({ onNavigate }) {
         <>
             {/* Toggle Button (Plus Icon) */}
             <motion.button
-                className="fixed top-8 right-8 z-[200] w-12 h-12 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-colors"
+                className="fixed top-8 right-8 z-[201] w-12 h-12 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-colors"
                 onClick={toggleMenu}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
