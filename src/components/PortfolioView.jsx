@@ -81,8 +81,8 @@ export default function PortfolioView({ category, data, onBack }) {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1, ease: cinematicEasing }}
             >
-                <button className="back-button" onClick={onBack}>Back</button>
-                <p className="text-[var(--text-tertiary)]">No images available</p>
+                <button className="back-button" onClick={onBack}>{t.ui.back}</button>
+                <p className="text-[var(--text-tertiary)]">{t.ui.noImages}</p>
             </motion.div>
         )
     }
@@ -153,7 +153,7 @@ export default function PortfolioView({ category, data, onBack }) {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
             >
-                Back
+                {t.ui.back}
             </motion.button>
 
             {/* Main Image Area - Tap left half = prev, right half = next */}

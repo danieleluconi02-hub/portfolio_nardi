@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useLanguage } from '../contexts/LanguageContext'
 import content from '../data/content.json'
 
 // Apple-like easing
@@ -11,6 +12,7 @@ export default function CollectionFocus({
     onView,
     onClose
 }) {
+    const { t } = useLanguage()
     const [imageLoaded, setImageLoaded] = useState(false)
     const [selectedImageIndex, setSelectedImageIndex] = useState(0)
 
@@ -20,7 +22,7 @@ export default function CollectionFocus({
     // Default description if none exists
     const description = content.collections?.[collection.id]?.description
         || collection.description
-        || "A curated collection showcasing distinctive visual narratives and artistic vision. Each piece represents a unique exploration of form, texture, and composition."
+        || t.ui.descriptionDefault
 
     // Handle keyboard
     useEffect(() => {
@@ -153,7 +155,7 @@ export default function CollectionFocus({
                             whileHover={{ opacity: 0.7 }}
                             whileTap={{ scale: 0.98 }}
                         >
-                            Close
+                            {t.ui.close}
                         </motion.button>
 
                         <motion.button
@@ -162,7 +164,7 @@ export default function CollectionFocus({
                             whileHover={{ opacity: 0.85 }}
                             whileTap={{ scale: 0.98 }}
                         >
-                            View Collection
+                            {t.ui.viewCollection}
                         </motion.button>
                     </motion.div>
                 </motion.div>

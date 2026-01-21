@@ -1813,3 +1813,39 @@ body {
     font-size: 1.1rem;
   }
 }
+/* ============================================
+   MOBILE OPTIMIZATION
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Larger touch targets for better usability */
+  button,
+  a,
+  .menu-item,
+  .back-button,
+  .preview-close-btn,
+  .nav-toggle-btn {
+    touch-action: manipulation; /* Removes tap delay */
+  }
+
+  .back-button {
+    padding: 1rem; /* Increase hit area */
+    margin: -0.5rem; /* Compensate for padding to keep visual position */
+  }
+
+  /* Improved spacing for menu items */
+  .menu-item {
+    padding: 1rem 2rem;
+  }
+
+  .menu-item--primary {
+    min-width: unset; /* Allow flexible width */
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Ensure text doesn't overflow or cause layout shifts */
+  h1, h2, p {
+    overflow-wrap: break-word;
+  }
+}
