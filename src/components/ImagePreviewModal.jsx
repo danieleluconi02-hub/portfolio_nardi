@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { motion } from 'framer-motion'
+import { useLanguage } from '../contexts/LanguageContext'
 
 // Apple-like easing
 const appleEasing = [0.25, 0.1, 0.25, 1]
@@ -11,6 +12,7 @@ export default function ImagePreviewModal({
     onViewCollection,
     onClose
 }) {
+    const { t } = useLanguage()
     const [imageLoaded, setImageLoaded] = useState(false)
     const [selectedImageIndex, setSelectedImageIndex] = useState(0)
     const [randomImages, setRandomImages] = useState([])
@@ -45,8 +47,7 @@ export default function ImagePreviewModal({
     }, [collection, selectedImageIndex])
 
     // Default description
-    const description = collection?.description ||
-        "A curated collection showcasing distinctive visual narratives and artistic vision. Each piece represents a unique exploration of form, texture, and composition."
+    const description = collection?.description || t.ui.descriptionDefault
 
     // Keyboard controls
     useEffect(() => {
@@ -92,7 +93,7 @@ export default function ImagePreviewModal({
                 whileTap={{ scale: 0.95 }}
             >
                 <span className="close-icon">←</span>
-                <span className="close-text">Close</span>
+                <span className="close-text">{t.ui.close}</span>
             </motion.button>
 
             {/* View Collection Button - Right Side */}
@@ -114,7 +115,7 @@ export default function ImagePreviewModal({
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.15, duration: 0.5, ease: cinematicEasing }}
                 >
-                    <h2 className="preview-title">{collection?.title || 'Collection'}</h2>
+                    <h2 className="preview-title">{collection?.title || t.ui.collection}</h2>
 
                     <p className="preview-description">{description}</p>
                 </motion.div>
@@ -172,7 +173,7 @@ export default function ImagePreviewModal({
                             whileHover={{ scale: 1.05, x: 5 }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            <span className="view-text">View Collection</span>
+                            <span className="view-text">{t.ui.viewCollection}</span>
                             <span className="view-icon">→</span>
                         </motion.button>
                     </motion.div>

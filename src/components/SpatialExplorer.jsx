@@ -2,6 +2,7 @@ import { useRef, useMemo, useState, useEffect } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import { motion } from 'framer-motion'
+import { useLanguage } from '../contexts/LanguageContext'
 
 // Get random cover image from collection
 function getRandomCoverImage(collection) {
@@ -280,6 +281,7 @@ export default function SpatialExplorer({
     onSelectCollection,
     onBack
 }) {
+    const { t } = useLanguage()
     const [isReady, setIsReady] = useState(false)
 
     // Delay activation for smooth transition from entering animation
@@ -288,7 +290,7 @@ export default function SpatialExplorer({
         return () => clearTimeout(timer)
     }, [])
 
-    const categoryTitle = category === 'design' ? 'Fashion Design' : 'Stylist'
+    const categoryTitle = category === 'design' ? t.menu.fashionDesign : t.menu.styling
 
     return (
         <motion.div
@@ -306,7 +308,7 @@ export default function SpatialExplorer({
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6, duration: 0.5 }}
             >
-                Back
+                {t.ui.back}
             </motion.button>
 
             {/* Category label removed as per user request */}
@@ -318,7 +320,7 @@ export default function SpatialExplorer({
                 animate={{ opacity: 0.35 }}
                 transition={{ delay: 1.2, duration: 0.5 }}
             >
-                Drag to look around · Click to select
+                {t.ui.dragToExplore}
             </motion.p>
 
             {/* 3D Canvas - User at center looking outward at inner sphere surface */}

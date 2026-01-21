@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect, useMemo } from 'react'
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
+import { useLanguage } from '../contexts/LanguageContext'
 
 // Apple-like easing
 const appleEasing = [0.25, 0.1, 0.25, 1]
@@ -101,6 +102,7 @@ export default function HorizontalScroll({
     onSelectCollection,
     onBack
 }) {
+    const { t } = useLanguage()
     const containerRef = useRef(null)
     const scrollRef = useRef(null)
     const [isDragging, setIsDragging] = useState(false)
@@ -159,7 +161,7 @@ export default function HorizontalScroll({
         return () => window.removeEventListener('keydown', handleKeyDown)
     }, [maxScroll, scrollX])
 
-    const categoryTitle = category === 'design' ? 'Fashion Design' : 'Stylist'
+    const categoryTitle = category === 'design' ? t.menu.fashionDesign : t.menu.styling
 
     return (
         <motion.div
@@ -181,7 +183,7 @@ export default function HorizontalScroll({
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
             >
-                Back
+                {t.ui.back}
             </motion.button>
 
             {/* Category Title */}
@@ -224,7 +226,7 @@ export default function HorizontalScroll({
                 animate={{ opacity: 0.35 }}
                 transition={{ delay: 1.2, duration: 0.5 }}
             >
-                Scroll or drag to explore · Click to select
+                {t.ui.dragToExplore}
             </motion.p>
 
             {/* Progress indicator */}

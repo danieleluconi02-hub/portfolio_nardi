@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useLanguage } from '../contexts/LanguageContext'
 
 export default function CollectionPicker({
     category,
@@ -6,7 +7,8 @@ export default function CollectionPicker({
     onCollectionSelect,
     onBack
 }) {
-    const categoryTitle = category === 'design' ? 'Fashion Design' : 'Styling'
+    const { t } = useLanguage()
+    const categoryTitle = category === 'design' ? t.menu.fashionDesign : t.menu.styling
 
     // Apple-style stagger animation
     const containerVariants = {
@@ -49,7 +51,7 @@ export default function CollectionPicker({
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.4 }}
             >
-                Back
+                {t.ui.back}
             </motion.button>
 
             {/* Category title */}

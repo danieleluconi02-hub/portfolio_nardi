@@ -1,33 +1,36 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useLanguage } from '../contexts/LanguageContext'
 
 // Apple-like easing curves
 const appleEasing = [0.25, 0.1, 0.25, 1]
 const cinematicEasing = [0.16, 1, 0.3, 1]
 
-// Video data - your fashion films
-const videos = [
-    {
-        id: 'shinrai-1',
-        title: 'Shinrai - Part 1',
-        description: 'A cinematic journey through fashion and trust.',
-        src: '/assets/videos/Shinrai parte 1.mp4',
-    },
-    {
-        id: 'shinrai-2',
-        title: 'Shinrai - Part 2',
-        description: 'The continuation of the Shinrai story.',
-        src: '/assets/videos/Shinrai Parte2 .mov',
-    },
-    {
-        id: 'tetsu-no-hana',
-        title: 'Tetsu no Hana',
-        description: 'Iron Flower - A visual poem.',
-        src: '/assets/videos/Tetsu no hana.mp4',
-    }
-]
-
 export default function FashionFilmPage({ onBack }) {
+    const { t } = useLanguage()
+
+    // Video data - your fashion films
+    const videos = [
+        {
+            id: 'shinrai-1',
+            title: t.fashionFilms.shinrai1.title,
+            description: t.fashionFilms.shinrai1.description,
+            src: '/assets/videos/Shinrai parte 1.mp4',
+        },
+        {
+            id: 'shinrai-2',
+            title: t.fashionFilms.shinrai2.title,
+            description: t.fashionFilms.shinrai2.description,
+            src: '/assets/videos/Shinrai Parte2 .mov',
+        },
+        {
+            id: 'tetsu-no-hana',
+            title: t.fashionFilms.tetsuNoHana.title,
+            description: t.fashionFilms.tetsuNoHana.description,
+            src: '/assets/videos/Tetsu no hana.mp4',
+        }
+    ]
+
     const [currentIndex, setCurrentIndex] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
     const [isFullscreen, setIsFullscreen] = useState(false)
@@ -147,7 +150,7 @@ export default function FashionFilmPage({ onBack }) {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
             >
-                Back
+            {t.ui.back}
             </motion.button>
 
             {/* Carousel Container */}
@@ -301,7 +304,7 @@ export default function FashionFilmPage({ onBack }) {
                 animate={{ opacity: isPlaying ? 0 : 0.35 }}
                 transition={{ delay: 1, duration: 0.5 }}
             >
-                Click to play · Use arrows to navigate
+            {t.ui.fashionFilmHint}
             </motion.p>
         </motion.div>
     )

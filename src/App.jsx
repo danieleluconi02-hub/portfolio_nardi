@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { motion, AnimatePresence } from 'framer-motion'
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext'
 import LandingMenu from './components/LandingMenu'
+import NavMenu from './components/NavMenu'
 import AboutPage from './components/AboutPage'
 import ContactPage from './components/ContactPage'
 import FashionFilmPage from './components/FashionFilmPage'
@@ -148,6 +149,9 @@ function App() {
 
     return (
         <div className="w-screen h-screen overflow-hidden spatial-bg">
+            {/* Global Navigation Menu (+ Button) */}
+            <NavMenu onNavigate={handleMenuNavigate} />
+
             {/* Main Menu - Direct Entry */}
             <AnimatePresence>
                 {appState === 'menu' && showMenu && (
@@ -203,7 +207,7 @@ function App() {
                             transition={{ delay: 0.5, duration: 0.5 }}
                             style={{ pointerEvents: appState === 'sphere' ? 'auto' : 'none' }}
                         >
-                            Back
+                            {t.ui.back}
                         </motion.button>
 
                         {/* Category label removed */}
@@ -254,7 +258,7 @@ function App() {
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.4, duration: 0.5 }}
                         >
-                            Back
+                            {t.ui.back}
                         </motion.button>
 
                         {/* Category label removed */}
