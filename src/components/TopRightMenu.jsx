@@ -1,0 +1,80 @@
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useLanguage } from '../contexts/LanguageContext'
+
+// Apple-like easing
+const appleEasing = [0.25, 0.1, 0.25, 1]
+
+export default function TopRightMenu({ onNavigate }) {
+    const { t } = useLanguage()
+    const [isOpen, setIsOpen] = useState(false)
+
+    const toggleMenu = () => setIsOpen(!isOpen)
+
+    const handleNavigate = (destination) => {
+        onNavigate(destination)
+        setIsOpen(false)
+    }
+
+    const menuItems = [
+        { id: 'about', label: t.menu.about },
+        { id: 'contact', label: t.menu.contact }
+    ]
+
+    return (
+        <>
+            {/* Toggle Button (Plus Icon) */}
+            <motion.button
+                className="fixed top-8 right-8 z-50 w-12 h-12 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-colors"
+                onClick={toggleMenu}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                style={{ mixBlendMode: 'difference' }} // Ensure visibility on light/dark backgrounds
+            >
+                <motion.div
+                    animate={{ rotate: isOpen ? 45 : 0 }}
+                    transition={{ duration: 0.4, ease: appleEasing }}
+                >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                </motion.div>
+            </motion.button>
+
+            {/* Overlay Menu */}
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        className="fixed inset-0 z-40 bg-black/90 backdrop-blur-xl flex flex-col items-center justify-center"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.4, ease: appleEasing }}
+                    >
+                        <nav className="flex flex-col items-center gap-8">
+                            {menuItems.map((item, index) => (
+                                <motion.button
+                                    key={item.id}
+                                    className="text-4xl font-light text-white tracking-widest uppercase hover:text-gray-300 transition-colors"
+                                    onClick={() => handleNavigate(item.id)}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: 10 }}
+                                    transition={{
+                                        delay: 0.1 + index * 0.1,
+                                        duration: 0.5,
+                                        ease: appleEasing
+                                    }}
+                                >
+                                    {item.label}
+                                </motion.button>
+                            ))}
+                        </nav>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </>
+    )
+}

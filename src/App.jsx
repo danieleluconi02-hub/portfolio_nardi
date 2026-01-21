@@ -2,6 +2,7 @@ import { useState, Suspense, useCallback, useMemo } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { motion, AnimatePresence } from 'framer-motion'
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext'
+import TopRightMenu from './components/TopRightMenu'
 import LandingMenu from './components/LandingMenu'
 import AboutPage from './components/AboutPage'
 import ContactPage from './components/ContactPage'
@@ -148,6 +149,9 @@ function App() {
 
     return (
         <div className="w-screen h-screen overflow-hidden spatial-bg">
+            {/* Top Right Navigation Menu */}
+            <TopRightMenu onNavigate={handleMenuNavigate} />
+
             {/* Main Menu - Direct Entry */}
             <AnimatePresence>
                 {appState === 'menu' && showMenu && (

@@ -49,9 +49,7 @@ export default function LandingMenu({ onNavigate }) {
     const menuItems = [
         { id: 'design', label: t.menu.fashionDesign, primary: true },
         { id: 'styling', label: t.menu.styling, primary: true },
-        { id: 'fashionfilm', label: t.menu.fashionFilm, primary: false, isFilm: true },
-        { id: 'about', label: t.menu.about, primary: false },
-        { id: 'contact', label: t.menu.contact, primary: false }
+        { id: 'fashionfilm', label: t.menu.fashionFilm, primary: false, isFilm: true }
     ]
 
     return (
