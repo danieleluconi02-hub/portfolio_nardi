@@ -118,8 +118,8 @@ export default function LandingMenu({ onNavigate }) {
             {/* Subtle branding hint */}
             <motion.div
                 className="fixed bottom-[5%] left-[4%] z-10"
-                initial={{ opacity: 0.3 }}
-                animate={{ opacity: 0.3 }}
+                initial={{ opacity: 0.7 }}
+                animate={{ opacity: 0.7 }}
                 transition={{ duration: 0 }}
             >
                 <p className="hint-text">{t.ui.portfolio}</p>
@@ -131,8 +131,8 @@ export default function LandingMenu({ onNavigate }) {
             {/* Author name */}
             <motion.div
                 className="fixed bottom-[5%] right-[4%] z-10 text-right"
-                initial={{ opacity: 0.3 }}
-                animate={{ opacity: 0.3 }}
+                initial={{ opacity: 0.7 }}
+                animate={{ opacity: 0.7 }}
                 transition={{ duration: 0 }}
             >
                 <p className="hint-text">Francesco</p>

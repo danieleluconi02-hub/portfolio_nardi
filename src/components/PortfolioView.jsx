@@ -156,21 +156,17 @@ export default function PortfolioView({ category, data, onBack }) {
                 Back
             </motion.button>
 
-            {/* Main Image Area - Tap left half = prev, right half = next */}
+            {/* Main Image Area - Tap left half = prev, right half = next, or Swipe */}
             <div
                 className="relative w-full h-full flex items-center justify-center cursor-pointer px-16"
                 onClick={(e) => {
-                    // Get click position relative to the container
+                    // Only trigger click if we didn't drag
+                    // (Framer motion handles this distinction well usually, but we keep this as fallback for taps)
                     const rect = e.currentTarget.getBoundingClientRect()
                     const clickX = e.clientX - rect.left
                     const containerWidth = rect.width
-
-                    // Left half = go back, Right half = go forward
-                    if (clickX < containerWidth / 2) {
-                        prevImage()
-                    } else {
-                        nextImage()
-                    }
+                    if (clickX < containerWidth / 2) prevImage()
+                    else nextImage()
                 }}
             >
                 <AnimatePresence mode="wait">
@@ -180,14 +176,26 @@ export default function PortfolioView({ category, data, onBack }) {
                             src={currentImage}
                             alt={`${activeCollection.title} - ${activeImageIndex + 1}`}
                             className="image-display"
-                            initial={{ opacity: 0 }}
+                            initial={{ opacity: 0, x: 0 }}
                             animate={{
-                                opacity: imageLoaded ? 1 : 0.3
+                                opacity: imageLoaded ? 1 : 0.3,
+                                x: 0
                             }}
-                            exit={{ opacity: 0 }}
+                            exit={{ opacity: 0, x: 0 }} // Simple fade out to avoid conflict with drag
                             transition={{
-                                duration: 0.15,
-                                ease: premiumEasing
+                                opacity: { duration: 0.2 },
+                                x: { type: "spring", stiffness: 300, damping: 30 }
+                            }}
+                            drag="x"
+                            dragConstraints={{ left: 0, right: 0 }}
+                            dragElastic={0.2}
+                            onDragEnd={(e, { offset, velocity }) => {
+                                const swipeThreshold = 50;
+                                if (offset.x > swipeThreshold) {
+                                    prevImage();
+                                } else if (offset.x < -swipeThreshold) {
+                                    nextImage();
+                                }
                             }}
                             onLoad={() => setImageLoaded(true)}
                             draggable={false}

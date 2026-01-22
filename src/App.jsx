@@ -12,6 +12,7 @@ import ImmersiveSphere from './components/ImmersiveSphere'
 import ImagePreviewModal from './components/ImagePreviewModal'
 import CollectionFocus from './components/CollectionFocus'
 import PortfolioView from './components/PortfolioView'
+import GlobalFooter from './components/GlobalFooter'
 import manifest from './data/manifest.json'
 import './index.css'
 
@@ -325,6 +326,11 @@ function App() {
                     />
                 )}
             </AnimatePresence>
+
+            {/* Global Footer - Shows on all pages except landing menu */}
+            {appState !== 'menu' && (
+                <GlobalFooter showLanguageSwitcher={true} />
+            )}
         </div>
     )
 }

@@ -138,6 +138,7 @@ export default function FashionFilmPage({ onBack }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6, ease: cinematicEasing }}
+            style={{ overflowX: 'auto', overflowY: 'hidden' }}
         >
             {/* Back Button */}
             <motion.button

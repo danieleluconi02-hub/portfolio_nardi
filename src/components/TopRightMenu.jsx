@@ -25,18 +25,21 @@ export default function TopRightMenu({ onNavigate }) {
         <>
             {/* Toggle Button (Plus Icon) */}
             <motion.button
-                className="fixed top-8 right-8 z-[201] w-12 h-12 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-colors"
+                className="fixed top-8 right-8 z-[201] w-12 h-12 flex items-center justify-center rounded-full backdrop-blur-xl border border-pink-300/30 hover:border-pink-400/50 transition-all duration-300"
                 onClick={toggleMenu}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
-                style={{ mixBlendMode: 'difference' }} // Ensure visibility on light/dark backgrounds
+                style={{
+                    background: 'linear-gradient(135deg, rgba(255, 182, 193, 0.4) 0%, rgba(255, 105, 180, 0.35) 50%, rgba(219, 112, 147, 0.3) 100%)',
+                    boxShadow: '0 8px 32px rgba(255, 105, 180, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.3)'
+                }}
             >
                 <motion.div
                     animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ duration: 0.4, ease: appleEasing }}
                 >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.3))' }}>
                         <line x1="12" y1="5" x2="12" y2="19" />
                         <line x1="5" y1="12" x2="19" y2="12" />
                     </svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20">
+  <!-- UK Flag - Pixel Art Style (Union Jack simplified) -->
+  <rect width="30" height="20" fill="#012169"/>
+  <!-- White diagonal stripes -->
+  <polygon points="0,0 6,0 30,16 30,20 24,20 0,4" fill="#ffffff"/>
+  <polygon points="30,0 30,4 6,20 0,20 0,16 24,0" fill="#ffffff"/>
+  <!-- Red diagonal stripes -->
+  <polygon points="0,0 4,0 30,17 30,20 26,20 0,3" fill="#C8102E"/>
+  <polygon points="30,0 30,3 4,20 0,20 0,17 26,0" fill="#C8102E"/>
+  <!-- White cross -->
+  <rect x="12" y="0" width="6" height="20" fill="#ffffff"/>
+  <rect x="0" y="7" width="30" height="6" fill="#ffffff"/>
+  <!-- Red cross -->
+  <rect x="13" y="0" width="4" height="20" fill="#C8102E"/>
+  <rect x="0" y="8" width="30" height="4" fill="#C8102E"/>
+</svg>

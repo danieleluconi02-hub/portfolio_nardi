@@ -34,20 +34,37 @@ export default function AboutPage({ onBack }) {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8, ease: cinematicEasing }}
+                style={{
+                    marginTop: '12vh',
+                    maxWidth: '900px',
+                    width: '100%',
+                    padding: '0 2rem'
+                }}
             >
-                {/* Title Removed */}
-
+                {/* Scrollable Text Container */}
                 <motion.div
-                    className="max-w-5xl mx-auto h-[80vh] overflow-y-auto pr-4 scrollbar-hide" // Removed bg, added scroll
+                    className="overflow-y-auto pr-6"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5, duration: 0.6 }}
+                    style={{
+                        maxHeight: '65vh',
+                        scrollBehavior: 'smooth'
+                    }}
                 >
                     {about.paragraphs.map((paragraph, index) => (
                         <p
                             key={index}
-                            className="page-text mb-12 text-left text-xl md:text-3xl leading-relaxed text-white drop-shadow-md" // Huge font, readable on bg
-                            style={{ opacity: 1 }}
+                            className="text-left leading-loose"
+                            style={{
+                                fontSize: 'clamp(1rem, 1.8vw, 1.25rem)',
+                                color: 'var(--text-secondary)',
+                                marginBottom: '2rem',
+                                lineHeight: '1.9',
+                                letterSpacing: '0.01em',
+                                textAlign: 'justify',
+                                textJustify: 'inter-word'
+                            }}
                         >
                             {paragraph}
                         </p>
@@ -56,13 +73,13 @@ export default function AboutPage({ onBack }) {
 
                 {/* CV Section */}
                 <motion.div
-                    className="mt-12 pt-6"
+                    className="mt-8 pt-4"
                     style={{ borderTop: '1px solid var(--text-muted)' }}
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: 0.5 }}
+                    animate={{ opacity: 0.6 }}
                     transition={{ delay: 0.8, duration: 0.6 }}
                 >
-                    <p className="hint-text">
+                    <p className="hint-text" style={{ textAlign: 'center' }}>
                         {about.cvNote}
                     </p>
                 </motion.div>
