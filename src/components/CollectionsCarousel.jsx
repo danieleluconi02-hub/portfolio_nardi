@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useLanguage } from '../contexts/LanguageContext'
 
 export default function CollectionsCarousel({
     category,
@@ -7,6 +8,7 @@ export default function CollectionsCarousel({
     onCollectionSelect,
     onBack
 }) {
+    const { t } = useLanguage()
     const cinematicEasing = [0.16, 1, 0.3, 1]
     const [activeIndex, setActiveIndex] = useState(0)
     const [isDragging, setIsDragging] = useState(false)
@@ -95,7 +97,7 @@ export default function CollectionsCarousel({
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
             >
-                Back
+                {t.ui.back}
             </motion.button>
 
             {/* Category Title */}

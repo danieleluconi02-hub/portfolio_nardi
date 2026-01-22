@@ -1,19 +1,15 @@
-import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '../contexts/LanguageContext'
 
 // Apple-like easing
 const appleEasing = [0.25, 0.1, 0.25, 1]
 
-export default function TopRightMenu({ onNavigate }) {
+export default function TopRightMenu({ onNavigate, isOpen, onToggle }) {
     const { t } = useLanguage()
-    const [isOpen, setIsOpen] = useState(false)
-
-    const toggleMenu = () => setIsOpen(!isOpen)
 
     const handleNavigate = (destination) => {
         onNavigate(destination)
-        setIsOpen(false)
+        if (onToggle) onToggle(false)
     }
 
     const menuItems = [
@@ -26,7 +22,7 @@ export default function TopRightMenu({ onNavigate }) {
             {/* Toggle Button (Plus Icon) */}
             <motion.button
                 className="fixed top-8 right-8 z-[201] w-12 h-12 flex items-center justify-center rounded-full backdrop-blur-xl border border-pink-300/30 hover:border-pink-400/50 transition-all duration-300"
-                onClick={toggleMenu}
+                onClick={() => onToggle && onToggle(!isOpen)}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.5 }}

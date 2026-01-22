@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useLanguage } from '../contexts/LanguageContext'
 
 // Apple-like easing curves
 const appleEasing = [0.25, 0.1, 0.25, 1]
@@ -28,6 +29,7 @@ const videos = [
 ]
 
 export default function FashionFilmPage({ onBack }) {
+    const { t } = useLanguage()
     const [currentIndex, setCurrentIndex] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
     const [isFullscreen, setIsFullscreen] = useState(false)
@@ -148,7 +150,7 @@ export default function FashionFilmPage({ onBack }) {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
             >
-                Back
+                {t.ui.back}
             </motion.button>
 
             {/* Carousel Container */}

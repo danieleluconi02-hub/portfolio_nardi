@@ -30,7 +30,7 @@ function App() {
     const [viewingCollection, setViewingCollection] = useState(null)
     const [showMenu, setShowMenu] = useState(true)
     const [previewImageData, setPreviewImageData] = useState(null)
-
+    const [isTopMenuOpen, setIsTopMenuOpen] = useState(false)
 
 
     // Handle menu navigation
@@ -45,6 +45,7 @@ function App() {
         } else if (destination === 'fashionfilm') {
             setAppState('fashionfilm')
         }
+        setIsTopMenuOpen(false)
     }, [])
 
     // Handle sphere click - start "entering" animation
@@ -151,7 +152,11 @@ function App() {
     return (
         <div className="w-screen h-screen overflow-hidden spatial-bg">
             {/* Top Right Navigation Menu */}
-            <TopRightMenu onNavigate={handleMenuNavigate} />
+            <TopRightMenu
+                onNavigate={handleMenuNavigate}
+                isOpen={isTopMenuOpen}
+                onToggle={setIsTopMenuOpen}
+            />
 
             {/* Main Menu - Direct Entry */}
             <AnimatePresence>
@@ -208,7 +213,7 @@ function App() {
                             transition={{ delay: 0.5, duration: 0.5 }}
                             style={{ pointerEvents: appState === 'sphere' ? 'auto' : 'none' }}
                         >
-                            Back
+                            {t.ui.back}
                         </motion.button>
 
                         {/* Category label removed */}
@@ -259,7 +264,7 @@ function App() {
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.4, duration: 0.5 }}
                         >
-                            Back
+                            {t.ui.back}
                         </motion.button>
 
                         {/* Category label removed */}
@@ -327,8 +332,8 @@ function App() {
                 )}
             </AnimatePresence>
 
-            {/* Global Footer - Shows on all pages except landing menu */}
-            {appState !== 'menu' && (
+            {/* Global Footer - Shows on all pages except landing menu and when top menu is open */}
+            {appState !== 'menu' && !isTopMenuOpen && (
                 <GlobalFooter showLanguageSwitcher={true} />
             )}
         </div>
@@ -345,4 +350,3 @@ function AppWithLanguage() {
 }
 
 export default AppWithLanguage
-
