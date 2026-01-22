@@ -1,6 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20">
-  <!-- Spanish Flag - Pixel Art Style -->
-  <rect x="0" y="0" width="30" height="5" fill="#AA151B"/>
-  <rect x="0" y="5" width="30" height="10" fill="#F1BF00"/>
-  <rect x="0" y="15" width="30" height="5" fill="#AA151B"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 14" shape-rendering="crispEdges">
+  <!-- Spain: Red, Yellow, Red Horizontal (1:2:1 ratio approx for pixel art) -->
+  <rect x="0" y="0" width="21" height="4" fill="#aa151b"/>
+  <rect x="0" y="4" width="21" height="7" fill="#f1bf00"/>
+  <rect x="0" y="11" width="21" height="3" fill="#aa151b"/>
+  
+  <!-- Pixelated Crest (Simplified) -->
+  <rect x="4" y="6" width="3" height="3" fill="#aa151b"/>
 </svg>

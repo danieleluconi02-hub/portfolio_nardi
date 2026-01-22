@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20">
-  <!-- Italian Flag - Pixel Art Style -->
-  <rect x="0" y="0" width="10" height="20" fill="#009246"/>
-  <rect x="10" y="0" width="10" height="20" fill="#ffffff"/>
-  <rect x="20" y="0" width="10" height="20" fill="#ce2b37"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 14" shape-rendering="crispEdges">
+  <!-- Italy: Green, White, Red Vertical Stripes -->
+  <rect x="0" y="0" width="7" height="14" fill="#009246"/>
+  <rect x="7" y="0" width="7" height="14" fill="#ffffff"/>
+  <rect x="14" y="0" width="7" height="14" fill="#ce2b37"/>
 </svg>

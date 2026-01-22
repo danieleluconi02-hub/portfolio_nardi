@@ -1,16 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20">
-  <!-- UK Flag - Pixel Art Style (Union Jack simplified) -->
-  <rect width="30" height="20" fill="#012169"/>
-  <!-- White diagonal stripes -->
-  <polygon points="0,0 6,0 30,16 30,20 24,20 0,4" fill="#ffffff"/>
-  <polygon points="30,0 30,4 6,20 0,20 0,16 24,0" fill="#ffffff"/>
-  <!-- Red diagonal stripes -->
-  <polygon points="0,0 4,0 30,17 30,20 26,20 0,3" fill="#C8102E"/>
-  <polygon points="30,0 30,3 4,20 0,20 0,17 26,0" fill="#C8102E"/>
-  <!-- White cross -->
-  <rect x="12" y="0" width="6" height="20" fill="#ffffff"/>
-  <rect x="0" y="7" width="30" height="6" fill="#ffffff"/>
-  <!-- Red cross -->
-  <rect x="13" y="0" width="4" height="20" fill="#C8102E"/>
-  <rect x="0" y="8" width="30" height="4" fill="#C8102E"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14" shape-rendering="crispEdges">
+  <!-- UK Union Jack approximation -->
+  <rect width="22" height="14" fill="#012169"/>
+  <!-- White Diagonals -->
+  <path d="M0 0h3l19 14h-3z" fill="#ffffff"/>
+  <path d="M19 0h3L3 14H0z" fill="#ffffff"/>
+  <!-- Red Diagonals -->
+  <path d="M0 0h1l10 7H9z" fill="#c8102e"/> 
+  <path d="M12 7h2l8 6h-1z" fill="#c8102e"/>
+  <path d="M19 0h1L0 14h-1z" fill="none"/> <!-- skipping complex overlay for simple pixel art feel, focusing on main cross -->
+  <path d="M22 0v1L13 7h-2z" fill="#c8102e"/> 
+  <path d="M9 7h2L3 14H0z" fill="#c8102e"/>
+
+  <!-- White Cross -->
+  <rect x="9" y="0" width="4" height="14" fill="#ffffff"/>
+  <rect x="0" y="5" width="22" height="4" fill="#ffffff"/>
+
+  <!-- Red Cross -->
+  <rect x="10" y="0" width="2" height="14" fill="#c8102e"/>
+  <rect x="0" y="6" width="22" height="2" fill="#c8102e"/>
 </svg>
