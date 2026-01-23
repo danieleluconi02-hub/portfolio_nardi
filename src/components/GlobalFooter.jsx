@@ -15,7 +15,7 @@ export default function GlobalFooter() {
             <motion.div
                 className="fixed bottom-[5%] left-[4%] z-[100]"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 0.7 }}
+                animate={{ opacity: 0.9 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
             >
                 <p className="hint-text">{t.ui.portfolio}</p>
@@ -25,7 +25,7 @@ export default function GlobalFooter() {
             <motion.div
                 className="fixed bottom-[5%] right-[4%] z-[100] text-right"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 0.7 }}
+                animate={{ opacity: 0.9 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
             >
                 <p className="hint-text">Francesco</p>

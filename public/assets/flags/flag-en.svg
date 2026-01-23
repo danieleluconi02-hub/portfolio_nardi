@@ -1,21 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14" shape-rendering="crispEdges">
-  <!-- UK Union Jack approximation -->
+  <!-- Clean Pixel Art UK Union Jack -->
+  <!-- Blue Background -->
   <rect width="22" height="14" fill="#012169"/>
-  <!-- White Diagonals -->
-  <path d="M0 0h3l19 14h-3z" fill="#ffffff"/>
-  <path d="M19 0h3L3 14H0z" fill="#ffffff"/>
-  <!-- Red Diagonals -->
-  <path d="M0 0h1l10 7H9z" fill="#c8102e"/> 
-  <path d="M12 7h2l8 6h-1z" fill="#c8102e"/>
-  <path d="M19 0h1L0 14h-1z" fill="none"/> <!-- skipping complex overlay for simple pixel art feel, focusing on main cross -->
-  <path d="M22 0v1L13 7h-2z" fill="#c8102e"/> 
-  <path d="M9 7h2L3 14H0z" fill="#c8102e"/>
-
-  <!-- White Cross -->
+  
+  <!-- White Diagonals - Thicker, cleaner -->
+  <polygon points="0,0 4,0 22,12 22,14 18,14 0,2" fill="#ffffff"/>
+  <polygon points="22,0 22,2 4,14 0,14 0,12 18,0" fill="#ffffff"/>
+  
+  <!-- Red Diagonals - Half width of white, offset appropriately -->
+  <polygon points="0,0 2,0 11,6 9,7" fill="#c8102e"/>
+  <polygon points="11,8 13,7 22,14 20,14" fill="#c8102e"/>
+  <polygon points="20,0 22,0 22,1 13,7 11,6" fill="#c8102e"/>
+  <polygon points="9,7 11,8 2,14 0,14 0,13" fill="#c8102e"/>
+  
+  <!-- White Cross - Thick center cross -->
   <rect x="9" y="0" width="4" height="14" fill="#ffffff"/>
   <rect x="0" y="5" width="22" height="4" fill="#ffffff"/>
-
-  <!-- Red Cross -->
+  
+  <!-- Red Cross - St George's Cross in center -->
   <rect x="10" y="0" width="2" height="14" fill="#c8102e"/>
   <rect x="0" y="6" width="22" height="2" fill="#c8102e"/>
 </svg>

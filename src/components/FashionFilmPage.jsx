@@ -1,8 +1,8 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useMotionValue, useTransform, animate } from 'framer-motion'
+import { useLanguage } from '../contexts/LanguageContext'
 
 // Apple-like easing curves
-const appleEasing = [0.25, 0.1, 0.25, 1]
 const cinematicEasing = [0.16, 1, 0.3, 1]
 
 // Video data - your fashion films
@@ -28,19 +28,49 @@ const videos = [
 ]
 
 export default function FashionFilmPage({ onBack }) {
+    const { t } = useLanguage()
     const [currentIndex, setCurrentIndex] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
     const [isFullscreen, setIsFullscreen] = useState(false)
+    const [isDragging, setIsDragging] = useState(false)
+
     const mainVideoRef = useRef(null)
     const previewRefs = useRef([])
     const fullscreenContainerRef = useRef(null)
+    const containerRef = useRef(null)
 
-    // Get adjacent indices for the carousel
-    const getPrevIndex = (idx) => (idx - 1 + videos.length) % videos.length
-    const getNextIndex = (idx) => (idx + 1) % videos.length
+    // Touch/swipe state
+    const touchStartX = useRef(0)
+    const touchStartY = useRef(0)
+    const dragX = useMotionValue(0)
 
-    const prevIndex = getPrevIndex(currentIndex)
-    const nextIndex = getNextIndex(currentIndex)
+    // Fullscreen dismiss state
+    const dismissY = useMotionValue(0)
+    const dismissOpacity = useTransform(dismissY, [0, 150], [1, 0.3])
+    const dismissScale = useTransform(dismissY, [0, 150], [1, 0.85])
+
+    const currentVideo = videos[currentIndex]
+
+    // Navigate to video
+    const navigateTo = useCallback((index) => {
+        if (mainVideoRef.current) {
+            mainVideoRef.current.pause()
+            mainVideoRef.current.currentTime = 0
+        }
+        setIsPlaying(false)
+        setCurrentIndex(index)
+    }, [])
+
+    // Navigate prev/next with wrap-around
+    const goToPrev = useCallback(() => {
+        const newIndex = (currentIndex - 1 + videos.length) % videos.length
+        navigateTo(newIndex)
+    }, [currentIndex, navigateTo])
+
+    const goToNext = useCallback(() => {
+        const newIndex = (currentIndex + 1) % videos.length
+        navigateTo(newIndex)
+    }, [currentIndex, navigateTo])
 
     // Handle video play
     const handlePlay = useCallback(() => {
@@ -62,61 +92,105 @@ export default function FashionFilmPage({ onBack }) {
         }
     }, [])
 
-    // Navigate to video
-    const navigateTo = useCallback((index) => {
-        // Pause current video
-        if (mainVideoRef.current) {
-            mainVideoRef.current.pause()
-            mainVideoRef.current.currentTime = 0
+    // Touch handlers for swipe navigation
+    const handleTouchStart = useCallback((e) => {
+        if (isPlaying) return
+        touchStartX.current = e.touches[0].clientX
+        touchStartY.current = e.touches[0].clientY
+        setIsDragging(true)
+    }, [isPlaying])
+
+    const handleTouchMove = useCallback((e) => {
+        if (!isDragging || isPlaying) return
+        const currentX = e.touches[0].clientX
+        const diff = currentX - touchStartX.current
+        dragX.set(diff)
+    }, [isDragging, isPlaying, dragX])
+
+    const handleTouchEnd = useCallback(() => {
+        if (!isDragging) return
+        const swipeThreshold = 80
+        const currentDrag = dragX.get()
+
+        if (currentDrag > swipeThreshold) {
+            goToPrev()
+        } else if (currentDrag < -swipeThreshold) {
+            goToNext()
         }
-        setIsPlaying(false)
-        setCurrentIndex(index)
+
+        animate(dragX, 0, { duration: 0.3 })
+        setIsDragging(false)
+    }, [isDragging, dragX, goToPrev, goToNext])
+
+    // Fullscreen dismiss handlers
+    const handleFullscreenTouchStart = useCallback((e) => {
+        touchStartY.current = e.touches[0].clientY
     }, [])
 
-    // Navigate to previous/next
-    const goToPrev = useCallback(() => navigateTo(prevIndex), [navigateTo, prevIndex])
-    const goToNext = useCallback(() => navigateTo(nextIndex), [navigateTo, nextIndex])
+    const handleFullscreenTouchMove = useCallback((e) => {
+        if (!isFullscreen) return
+        const currentY = e.touches[0].clientY
+        const diff = Math.max(0, currentY - touchStartY.current) // Only allow downward drag
+        dismissY.set(diff)
+    }, [isFullscreen, dismissY])
 
-    // Handle keyboard navigation
+    const handleFullscreenTouchEnd = useCallback(() => {
+        const dismissThreshold = 100
+        if (dismissY.get() > dismissThreshold) {
+            // Exit fullscreen
+            if (document.fullscreenElement) {
+                document.exitFullscreen()
+            }
+            setIsFullscreen(false)
+            handlePause()
+        }
+        animate(dismissY, 0, { duration: 0.3 })
+    }, [dismissY, handlePause])
+
+    // Keyboard navigation
     useEffect(() => {
         const handleKeyDown = (e) => {
             if (e.key === 'ArrowLeft') goToPrev()
             if (e.key === 'ArrowRight') goToNext()
-            if (e.key === 'Escape' && isPlaying) handlePause()
+            if (e.key === 'Escape') {
+                if (isFullscreen) {
+                    document.exitFullscreen()
+                    setIsFullscreen(false)
+                }
+                if (isPlaying) handlePause()
+            }
+            if (e.key === ' ') {
+                e.preventDefault()
+                isPlaying ? handlePause() : handlePlay()
+            }
         }
         window.addEventListener('keydown', handleKeyDown)
         return () => window.removeEventListener('keydown', handleKeyDown)
-    }, [goToPrev, goToNext, isPlaying, handlePause])
+    }, [goToPrev, goToNext, isPlaying, isFullscreen, handlePause, handlePlay])
 
-    // Preview video loop effect - play short highlights
+    // Preview video autoplay on hover/visible
     useEffect(() => {
-        if (isPlaying) return // Don't run previews when main video is playing
+        if (isPlaying) return
 
         const playPreviews = () => {
             previewRefs.current.forEach((ref, idx) => {
                 if (ref && idx !== currentIndex) {
                     ref.currentTime = 0
-                    ref.play().catch(() => { }) // Ignore autoplay errors
+                    ref.play().catch(() => { })
                 }
             })
         }
 
-        // Start previews with a small delay
-        const timeout = setTimeout(playPreviews, 500)
+        const timeout = setTimeout(playPreviews, 300)
         return () => clearTimeout(timeout)
     }, [currentIndex, isPlaying])
 
     // Toggle fullscreen
-    const toggleFullscreen = useCallback(async () => {
+    const enterFullscreen = useCallback(async () => {
         if (!fullscreenContainerRef.current) return
         try {
-            if (!document.fullscreenElement) {
-                await fullscreenContainerRef.current.requestFullscreen()
-                setIsFullscreen(true)
-            } else {
-                await document.exitFullscreen()
-                setIsFullscreen(false)
-            }
+            await fullscreenContainerRef.current.requestFullscreen()
+            setIsFullscreen(true)
         } catch (err) {
             console.error('Fullscreen error:', err)
         }
@@ -124,21 +198,29 @@ export default function FashionFilmPage({ onBack }) {
 
     // Listen for fullscreen changes
     useEffect(() => {
-        const handleFsChange = () => setIsFullscreen(!!document.fullscreenElement)
+        const handleFsChange = () => {
+            const isFull = !!document.fullscreenElement
+            setIsFullscreen(isFull)
+            if (!isFull && mainVideoRef.current) {
+                mainVideoRef.current.pause()
+                setIsPlaying(false)
+            }
+        }
         document.addEventListener('fullscreenchange', handleFsChange)
         return () => document.removeEventListener('fullscreenchange', handleFsChange)
     }, [])
 
-    const currentVideo = videos[currentIndex]
-
     return (
         <motion.div
+            ref={containerRef}
             className="fashion-film-page"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6, ease: cinematicEasing }}
-            style={{ overflowX: 'auto', overflowY: 'hidden' }}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
         >
             {/* Back Button */}
             <motion.button
@@ -151,139 +233,153 @@ export default function FashionFilmPage({ onBack }) {
                 Back
             </motion.button>
 
-            {/* Carousel Container */}
-            <motion.div
-                className="video-carousel"
-                initial={{ opacity: 0, y: 30 }}
+            {/* Section Title */}
+            <motion.h1
+                className="fashion-film-title"
+                initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.8, ease: cinematicEasing }}
+                transition={{ delay: 0.2, duration: 0.6 }}
             >
-                {/* Previous Video Preview */}
-                <motion.div
-                    className="video-preview video-preview--left"
-                    onClick={goToPrev}
-                    whileHover={{ scale: 1.03, x: -5 }}
-                    whileTap={{ scale: 0.98 }}
-                >
-                    <div className="preview-video-container">
-                        <video
-                            ref={el => previewRefs.current[prevIndex] = el}
-                            src={videos[prevIndex].src}
-                            muted
-                            loop
-                            playsInline
-                            preload="metadata"
-                        />
-                        <div className="preview-overlay">
-                            <span className="preview-nav-icon">‹</span>
-                        </div>
-                    </div>
-                    <p className="preview-title">{videos[prevIndex].title}</p>
-                </motion.div>
+                FASHION FILM
+            </motion.h1>
 
-                {/* Main Video */}
-                <motion.div
-                    ref={fullscreenContainerRef}
-                    className={`video-main ${isPlaying ? 'video-main--playing' : ''}`}
-                    layout
-                >
-                    <div className="main-video-container" onClick={isPlaying ? handlePause : handlePlay}>
-                        <video
-                            ref={mainVideoRef}
-                            src={currentVideo.src}
-                            playsInline
-                            preload="metadata"
-                            onEnded={() => setIsPlaying(false)}
-                            controls={isPlaying}
-                        />
+            {/* Swipeable Video Cards Container */}
+            <motion.div
+                className="video-cards-container"
+                style={{ x: dragX }}
+            >
+                {videos.map((video, idx) => {
+                    const isActive = idx === currentIndex
+                    const offset = idx - currentIndex
 
-                        {/* Play Button Overlay */}
-                        <AnimatePresence>
-                            {!isPlaying && (
-                                <motion.div
-                                    className="play-overlay"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.3 }}
-                                >
-                                    <motion.div
-                                        className="play-button-large"
-                                        whileHover={{ scale: 1.1 }}
-                                        whileTap={{ scale: 0.95 }}
-                                    >
-                                        <svg viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M8 5v14l11-7z" />
-                                        </svg>
-                                    </motion.div>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </div>
-
-                    {/* Video Info */}
-                    <motion.div
-                        className="video-main-info"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: isPlaying ? 0 : 1 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        <h2 className="main-video-title">{currentVideo.title}</h2>
-                        <p className="main-video-description">{currentVideo.description}</p>
-                    </motion.div>
-
-                    {/* Fullscreen Button */}
-                    {isPlaying && (
-                        <motion.button
-                            className="fullscreen-btn"
-                            onClick={(e) => { e.stopPropagation(); toggleFullscreen(); }}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            whileHover={{ scale: 1.1 }}
+                    return (
+                        <motion.div
+                            key={video.id}
+                            className={`video-card ${isActive ? 'video-card--active' : ''}`}
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{
+                                opacity: Math.abs(offset) <= 1 ? 1 : 0.3,
+                                scale: isActive ? 1 : 0.85,
+                                x: offset * 320,
+                                zIndex: isActive ? 10 : 5 - Math.abs(offset)
+                            }}
+                            transition={{ duration: 0.5, ease: cinematicEasing }}
+                            onClick={() => !isActive && navigateTo(idx)}
                         >
-                            {isFullscreen ? (
-                                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                                    <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z" />
-                                </svg>
-                            ) : (
-                                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                                    <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" />
-                                </svg>
-                            )}
-                        </motion.button>
-                    )}
-                </motion.div>
+                            {/* Video Preview Container */}
+                            <div
+                                ref={isActive ? fullscreenContainerRef : null}
+                                className={`video-card-inner ${isActive && isPlaying ? 'playing' : ''}`}
+                                onTouchStart={isFullscreen ? handleFullscreenTouchStart : undefined}
+                                onTouchMove={isFullscreen ? handleFullscreenTouchMove : undefined}
+                                onTouchEnd={isFullscreen ? handleFullscreenTouchEnd : undefined}
+                            >
+                                <motion.div
+                                    style={isFullscreen ? {
+                                        opacity: dismissOpacity,
+                                        scale: dismissScale
+                                    } : {}}
+                                >
+                                    <video
+                                        ref={isActive ? mainVideoRef : (el => previewRefs.current[idx] = el)}
+                                        src={video.src}
+                                        muted={!isActive || !isPlaying}
+                                        loop={!isActive}
+                                        playsInline
+                                        preload="metadata"
+                                        poster={video.poster}
+                                        onEnded={() => setIsPlaying(false)}
+                                        controls={isActive && isPlaying}
+                                        onClick={(e) => {
+                                            if (isActive) {
+                                                e.stopPropagation()
+                                                isPlaying ? handlePause() : handlePlay()
+                                            }
+                                        }}
+                                    />
+                                </motion.div>
 
-                {/* Next Video Preview */}
-                <motion.div
-                    className="video-preview video-preview--right"
-                    onClick={goToNext}
-                    whileHover={{ scale: 1.03, x: 5 }}
-                    whileTap={{ scale: 0.98 }}
-                >
-                    <div className="preview-video-container">
-                        <video
-                            ref={el => previewRefs.current[nextIndex] = el}
-                            src={videos[nextIndex].src}
-                            muted
-                            loop
-                            playsInline
-                            preload="metadata"
-                        />
-                        <div className="preview-overlay">
-                            <span className="preview-nav-icon">›</span>
-                        </div>
-                    </div>
-                    <p className="preview-title">{videos[nextIndex].title}</p>
-                </motion.div>
+                                {/* Play Button Overlay */}
+                                <AnimatePresence>
+                                    {isActive && !isPlaying && (
+                                        <motion.div
+                                            className="play-overlay"
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0 }}
+                                            transition={{ duration: 0.3 }}
+                                            onClick={handlePlay}
+                                        >
+                                            <motion.div
+                                                className="play-button-large"
+                                                whileHover={{ scale: 1.1 }}
+                                                whileTap={{ scale: 0.95 }}
+                                            >
+                                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d="M8 5v14l11-7z" />
+                                                </svg>
+                                            </motion.div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+
+                                {/* Fullscreen Button */}
+                                {isActive && isPlaying && (
+                                    <motion.button
+                                        className="fullscreen-btn"
+                                        onClick={(e) => {
+                                            e.stopPropagation()
+                                            enterFullscreen()
+                                        }}
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        whileHover={{ scale: 1.1 }}
+                                    >
+                                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                            <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" />
+                                        </svg>
+                                    </motion.button>
+                                )}
+
+                                {/* Preview indicator for non-active cards */}
+                                {!isActive && (
+                                    <div className="preview-indicator">
+                                        <span className="preview-play-icon">▶</span>
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Video Info */}
+                            <motion.div
+                                className="video-card-info"
+                                animate={{ opacity: isPlaying && isActive ? 0 : 1 }}
+                            >
+                                <h3 className="video-card-title">{video.title}</h3>
+                                <p className="video-card-description">{video.description}</p>
+                            </motion.div>
+                        </motion.div>
+                    )
+                })}
+            </motion.div>
+
+            {/* Swipe Indicator (Mobile) */}
+            <motion.div
+                className="swipe-indicator"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: isPlaying ? 0 : 0.5 }}
+                transition={{ delay: 1, duration: 0.5 }}
+            >
+                <span className="swipe-arrow">←</span>
+                <span className="swipe-text">Swipe</span>
+                <span className="swipe-arrow">→</span>
             </motion.div>
 
             {/* Video Indicators */}
             <motion.div
                 className="video-indicators"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 0.6 }}
-                transition={{ delay: 0.8, duration: 0.5 }}
+                animate={{ opacity: 0.8 }}
+                transition={{ delay: 0.6, duration: 0.5 }}
             >
                 {videos.map((video, idx) => (
                     <button
@@ -295,15 +391,20 @@ export default function FashionFilmPage({ onBack }) {
                 ))}
             </motion.div>
 
-            {/* Hint */}
-            <motion.p
-                className="fashion-film-hint"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: isPlaying ? 0 : 0.35 }}
-                transition={{ delay: 1, duration: 0.5 }}
-            >
-                Click to play · Use arrows to navigate
-            </motion.p>
+            {/* Fullscreen Dismiss Hint */}
+            <AnimatePresence>
+                {isFullscreen && (
+                    <motion.div
+                        className="fullscreen-dismiss-hint"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.6 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ delay: 2, duration: 0.5 }}
+                    >
+                        ↓ Swipe down to close
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.div>
     )
 }
