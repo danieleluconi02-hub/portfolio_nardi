@@ -17,6 +17,7 @@ export default function TopRightMenu({ onNavigate }) {
     }
 
     const menuItems = [
+        { id: 'fashionfilm', label: t.menu.fashionFilm },
         { id: 'about', label: t.menu.about },
         { id: 'contact', label: t.menu.contact }
     ]

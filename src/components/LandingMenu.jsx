@@ -3,8 +3,25 @@ import { useLanguage } from '../contexts/LanguageContext'
 import LanguageSwitcher from './LanguageSwitcher'
 import PhysicalSpheres from './PhysicalSpheres'
 
+import { useState, useCallback } from 'react'
+
 export default function LandingMenu({ onNavigate }) {
     const { t } = useLanguage()
+    const [navigatingTo, setNavigatingTo] = useState(null)
+
+    const handleMenuClick = useCallback((id) => {
+        if (id === 'design' || id === 'styling') {
+            setNavigatingTo(id)
+        } else {
+            onNavigate(id)
+        }
+    }, [onNavigate])
+
+    const handleTransitionComplete = useCallback(() => {
+        if (navigatingTo) {
+            onNavigate(navigatingTo)
+        }
+    }, [navigatingTo, onNavigate])
 
     // Apple-like easing curves
     const appleEasing = [0.25, 0.1, 0.25, 1]
@@ -49,8 +66,7 @@ export default function LandingMenu({ onNavigate }) {
 
     const menuItems = [
         { id: 'design', label: t.menu.fashionDesign, primary: true },
-        { id: 'styling', label: t.menu.styling, primary: true },
-        { id: 'fashionfilm', label: t.menu.fashionFilm, primary: false, isFilm: true }
+        { id: 'styling', label: t.menu.styling, primary: true }
     ]
 
     return (
@@ -83,14 +99,18 @@ export default function LandingMenu({ onNavigate }) {
             />
 
             {/* Physical Spheres - Interactive Background Elements */}
-            <PhysicalSpheres onNavigate={onNavigate} />
+            <PhysicalSpheres
+                onNavigate={onNavigate}
+                targetCategory={navigatingTo}
+                onTransitionComplete={handleTransitionComplete}
+            />
 
             {/* Menu content - centered, above background */}
             <motion.nav
                 className="flex flex-col items-start relative z-10"
                 variants={containerVariants}
                 initial="hidden"
-                animate="visible"
+                animate={navigatingTo ? "exit" : "visible"}
                 exit="exit"
             >
                 {menuItems.map((item, index) => (
@@ -98,7 +118,7 @@ export default function LandingMenu({ onNavigate }) {
                         key={item.id}
                         className={`menu-item ${item.primary ? 'menu-item--primary' : ''} ${item.isFilm ? 'menu-item--film' : ''}`}
                         variants={itemVariants}
-                        onClick={() => onNavigate(item.id)}
+                        onClick={() => handleMenuClick(item.id)}
                         whileHover={{
                             x: item.primary ? 12 : 6,
                             transition: {
