@@ -26,7 +26,7 @@ export default function TopRightMenu({ onNavigate }) {
         <>
             {/* Toggle Button (Plus Icon) */}
             <motion.button
-                className="fixed top-8 right-8 z-[201] w-14 h-14 flex items-center justify-center transition-transform duration-300 hover:scale-105"
+                className="fixed top-8 right-8 z-[201] w-16 h-16 flex items-center justify-center transition-transform duration-300 hover:scale-105"
                 onClick={toggleMenu}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -77,15 +77,16 @@ export default function TopRightMenu({ onNavigate }) {
                 >
                     <span style={{
                         fontFamily: 'GhostFont',
-                        fontSize: '3.5rem', // Slightly reduced to fit new container safely
+                        fontSize: '4.5rem', // Increased size as requested
                         lineHeight: 1,
                         color: 'white',
                         position: 'absolute',
                         top: '50%',
                         left: '50%',
-                        transform: 'translate(-50%, -55%)', // Optical center for '+'. -55% moves it UP slightly.
+                        transform: 'translate(-50%, -60%)', // Adjusted to move it slightly higher
                         filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.3))',
-                        pointerEvents: 'none'
+                        pointerEvents: 'none',
+                        userSelect: 'none'
                     }}>
                         +
                     </span>
