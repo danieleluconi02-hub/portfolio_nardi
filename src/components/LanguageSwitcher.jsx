@@ -1,14 +1,6 @@
 import { motion } from 'framer-motion'
 import { useLanguage, LANGUAGES } from '../contexts/LanguageContext'
-
-// Pixel art flag images
-const FLAG_IMAGES = {
-    en: '/assets/flags/flag-en.svg',
-    it: '/assets/flags/flag-it.svg',
-    es: '/assets/flags/flag-es.svg',
-    fr: '/assets/flags/flag-fr.svg',
-    ja: '/assets/flags/flag-jp.svg'
-}
+import SketchyFlag from './SketchyFlag'
 
 // Order of languages to display
 const LANGUAGE_ORDER = ['it', 'en', 'fr', 'es', 'ja']
@@ -18,7 +10,7 @@ export default function LanguageSwitcher() {
 
     return (
         <motion.div
-            className="language-switcher"
+            className="language-switcher fixed top-8 right-32 z-50 flex gap-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.5 }}
@@ -26,17 +18,14 @@ export default function LanguageSwitcher() {
             {LANGUAGE_ORDER.map((langCode) => (
                 <motion.button
                     key={langCode}
-                    className={`language-flag ${language === langCode ? 'active' : ''}`}
+                    className={`language-flag w-12 h-8 relative ${language === langCode ? 'opacity-100 scale-110' : 'opacity-60 hover:opacity-100'}`}
                     onClick={() => setLanguage(langCode)}
-                    whileHover={{ scale: 1.15 }}
+                    whileHover={{ scale: 1.15, rotate: [-1, 1, -1] }}
                     whileTap={{ scale: 0.95 }}
                     title={LANGUAGES[langCode]?.name}
+                    style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
                 >
-                    <img
-                        src={FLAG_IMAGES[langCode]}
-                        alt={LANGUAGES[langCode]?.name}
-                        className="flag-image"
-                    />
+                    <SketchyFlag code={langCode} />
                 </motion.button>
             ))}
         </motion.div>
