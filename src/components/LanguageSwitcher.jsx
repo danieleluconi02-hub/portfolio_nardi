@@ -10,7 +10,7 @@ export default function LanguageSwitcher() {
 
     return (
         <motion.div
-            className="language-switcher fixed top-8 right-32 z-50 flex gap-4"
+            className="language-switcher flex gap-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.5 }}
