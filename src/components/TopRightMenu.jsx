@@ -26,30 +26,66 @@ export default function TopRightMenu({ onNavigate }) {
         <>
             {/* Toggle Button (Plus Icon) */}
             <motion.button
-                className="fixed top-8 right-8 z-[201] w-12 h-12 flex items-center justify-center backdrop-blur-xl border border-pink-300/30 hover:border-pink-400/50 transition-all duration-300"
+                className="fixed top-8 right-8 z-[201] w-14 h-14 flex items-center justify-center transition-transform duration-300 hover:scale-105"
                 onClick={toggleMenu}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
                 style={{
-                    borderRadius: '54% 46% 70% 30% / 36% 56% 44% 64%', // Organic "hand-drawn" shape
-                    background: 'linear-gradient(135deg, rgba(255, 182, 193, 0.4) 0%, rgba(255, 105, 180, 0.35) 50%, rgba(219, 112, 147, 0.3) 100%)',
-                    boxShadow: '0 8px 32px rgba(255, 105, 180, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.3)'
+                    background: 'none',
+                    border: 'none',
+                    boxShadow: 'none',
+                    // Removing default CSS border/shadows in favor of SVG
                 }}
             >
+                {/* Hand-Drawn Circle SVG Background */}
+                <div className="absolute inset-0 pointer-events-none">
+                    <svg viewBox="0 0 100 100" className="w-full h-full" overflow="visible">
+                        {/* Pink gradient fill (optional) or just stroke */}
+                        <defs>
+                            <linearGradient id="pinkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="rgba(255, 182, 193, 0.4)" />
+                                <stop offset="100%" stopColor="rgba(219, 112, 147, 0.3)" />
+                            </linearGradient>
+                        </defs>
+
+                        {/* Rough scribbled circle path */}
+                        <path
+                            d="M50 5 C 75 5, 95 25, 93 50 C 91 80, 70 95, 50 93 C 25 91, 5 70, 7 50 C 9 25, 30 5, 50 8 C 70 10, 90 30, 88 55"
+                            fill="url(#pinkGradient)"
+                            stroke="rgba(255, 192, 203, 0.6)"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            style={{ filter: 'drop-shadow(0 2px 4px rgba(255, 105, 180, 0.2))' }}
+                        />
+                        <path
+                            d="M45 8 C 70 10, 92 35, 90 55 C 88 78, 65 92, 48 90 C 28 88, 8 65, 10 45 C 12 25, 35 8, 45 8"
+                            fill="none"
+                            stroke="rgba(255, 255, 255, 0.4)"
+                            strokeWidth="1.5"
+                            strokeDasharray="3 2"
+                        />
+                    </svg>
+                </div>
+
                 <motion.div
                     animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ duration: 0.4, ease: appleEasing }}
-                    className="flex items-center justify-center"
+                    className="flex items-center justify-center relative z-10"
+                    style={{ width: '100%', height: '100%' }}
                 >
                     <span style={{
                         fontFamily: 'GhostFont',
-                        fontSize: '4.2rem', // Increased size
-                        lineHeight: 0,
+                        fontSize: '3.5rem', // Slightly reduced to fit new container safely
+                        lineHeight: 1,
                         color: 'white',
-                        transform: 'translateY(-2px) translateX(1px)', // Slight adjustment for optical center
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -55%)', // Optical center for '+'. -55% moves it UP slightly.
                         filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.3))',
-                        display: 'block'
+                        pointerEvents: 'none'
                     }}>
                         +
                     </span>
