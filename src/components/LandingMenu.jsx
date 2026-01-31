@@ -33,24 +33,24 @@ export default function LandingMenu({ onNavigate }) {
     // Unified Font Sizing
     const getUnifiedFontSize = (items) => {
         if (effectiveLanguage === 'jp') {
-            // JP: Hardcoded safe small size. No clamps, no risks. 
-            // 13px on desktop, slightly larger on mobile.
-            return isMobile ? '16px' : '13px'
+            // JP: Tuned larger for readability (Local).
+            // With nowrap active, we can go much larger safely.
+            return isMobile ? 'clamp(1.5rem, 5vw, 2.5rem)' : 'clamp(1.2rem, 1.8vw, 2rem)'
         }
 
         const longestLength = Math.max(...items.filter(i => i.primary).map(i => i.label.length))
 
         // MOBILE LOGIC
         if (isMobile) {
-            if (longestLength > 16) return 'clamp(1rem, 5vw, 1.5rem)'
-            if (longestLength > 10) return 'clamp(1.2rem, 7vw, 2rem)'
-            return 'clamp(1.8rem, 10vw, 3rem)'
+            if (longestLength > 16) return 'clamp(1.4rem, 6.5vw, 2.0rem)'
+            if (longestLength > 10) return 'clamp(1.5rem, 8vw, 2.5rem)'
+            return 'clamp(2.2rem, 12vw, 3.5rem)'
         }
 
         // DESKTOP LOGIC
-        if (longestLength > 16) return 'clamp(0.8rem, 1.5vw, 1.5rem)'
-        if (longestLength > 10) return 'clamp(1.2rem, 2vw, 2.2rem)'
-        return 'clamp(2rem, 3.5vw, 3.5rem)'
+        if (longestLength > 16) return 'clamp(1.1rem, 2.2vw, 2.2rem)'
+        if (longestLength > 10) return 'clamp(1.5rem, 2.5vw, 2.8rem)'
+        return 'clamp(2.5rem, 4vw, 4rem)'
     }
 
     const handleMenuClick = useCallback((id) => {
@@ -94,8 +94,10 @@ export default function LandingMenu({ onNavigate }) {
             {/* Menu content - CENTERED via Flexbox */}
             <motion.nav
                 // Use GAP for even spacing. 
-                // JP: Tiny gap. EN: Standard gap.
-                className={`flex flex-col items-start relative z-10 pr-8 ${effectiveLanguage === 'jp' ? 'gap-2' : 'gap-8 md:gap-12'}`}
+                // JP: Massive gap (single lines).
+                // IT: Tighter gap (compensate for wrapping/length).
+                // EN: Standard gap.
+                className={`flex flex-col items-start relative z-10 pr-8 ${effectiveLanguage === 'jp' ? 'gap-12 md:gap-24' : (language === 'it' ? 'gap-4 md:gap-8' : 'gap-8 md:gap-12')}`}
                 variants={containerVariants}
                 initial="hidden"
                 animate={navigatingTo ? "exit" : "visible"}
