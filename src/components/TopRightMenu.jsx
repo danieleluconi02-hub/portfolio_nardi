@@ -83,7 +83,7 @@ export default function TopRightMenu({ onNavigate }) {
                         position: 'absolute',
                         top: '50%',
                         left: '50%',
-                        transform: 'translate(-50%, -60%)', // Adjusted to move it slightly higher
+                        transform: 'translate(-50%, -42%)', // Adjusted: -60% was too high. -42% moves it down.
                         filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.3))',
                         pointerEvents: 'none',
                         userSelect: 'none'
