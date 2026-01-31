@@ -7,20 +7,19 @@ export default function LandingMenu({ onNavigate }) {
     const { t, language } = useLanguage()
     const [navigatingTo, setNavigatingTo] = useState(null)
 
-    // Dynamic Font Sizing based on character count to ensuring fitting in center column
-    const getDynamicFontSize = (text) => {
-        if (!text) return 'clamp(2rem, 4vw, 3.5rem)'
-        const length = text.length
+    // Unified Font Sizing based on the LONGEST primary item
+    // This guarantees visual consistency between items and prevents overflow
+    const getUnifiedFontSize = (items) => {
+        // Find longest string among primary items
+        const longestLength = Math.max(...items.filter(i => i.primary).map(i => i.label.length))
 
-        // Very long strings (e.g., "Progettazione di Moda" ~21 chars)
-        // Needs significant reduction to fit in 25% width
-        if (length > 18) return 'clamp(1.5rem, 2.5vw, 2.5rem)'
+        // Japanese text is wider per character, so we treat it as 40% longer
+        const effectiveLength = language === 'jp' ? longestLength * 1.4 : longestLength
 
-        // Medium long strings (e.g., "Fashion Design" ~14 chars)
-        if (length > 10) return 'clamp(1.8rem, 3.5vw, 3.2rem)'
-
-        // Short strings (e.g., "Styling" ~7 chars) - Keep big and impactul
-        return 'clamp(2.5rem, 5vw, 4.5rem)'
+        // Aggressive limits for strict containment
+        if (effectiveLength > 16) return 'clamp(1rem, 1.8vw, 2rem)' // Long phrases
+        if (effectiveLength > 10) return 'clamp(1.5rem, 2.5vw, 2.8rem)' // Medium
+        return 'clamp(2rem, 4vw, 3.5rem)' // Short
     }
 
     const handleMenuClick = useCallback((id) => {
@@ -77,6 +76,8 @@ export default function LandingMenu({ onNavigate }) {
         { id: 'styling', label: t.menu.styling, primary: true }
     ]
 
+    const unifiedFontSize = getUnifiedFontSize(menuItems)
+
     return (
         <motion.div
             className="menu-container"
@@ -116,8 +117,9 @@ export default function LandingMenu({ onNavigate }) {
                         }}
                         style={{
                             // Apply dynamic font size ONLY for primary items
-                            fontSize: item.primary ? getDynamicFontSize(item.label) : undefined,
-                            // Margin logic for separartion
+                            fontSize: item.primary ? unifiedFontSize : undefined,
+                            // Margin logic for separation (adjusting indexes since we removed items?)
+                            // Note: original code had strict hardcoded indexes. Keeping safe logic.
                             marginTop: index === 3 ? '2.5rem' : (index === 2 ? '1.5rem' : undefined)
                         }}
                     >
