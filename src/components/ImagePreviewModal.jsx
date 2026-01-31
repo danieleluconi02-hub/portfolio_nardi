@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { motion } from 'framer-motion'
+import BackButton from './BackButton'
 
 // Apple-like easing
 const appleEasing = [0.25, 0.1, 0.25, 1]
@@ -82,18 +83,8 @@ export default function ImagePreviewModal({
             onClick={onClose}
         >
             {/* Close Button - Top Left */}
-            <motion.button
-                className="preview-close-btn"
-                onClick={onClose}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2, duration: 0.4, ease: cinematicEasing }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-            >
-                <span className="close-icon">←</span>
-                <span className="close-text">Close</span>
-            </motion.button>
+            {/* Close Button - Top Left */}
+            <BackButton onClick={onClose} className="preview-close-btn-override" />
 
             {/* View Collection Button - Right Side */}
 

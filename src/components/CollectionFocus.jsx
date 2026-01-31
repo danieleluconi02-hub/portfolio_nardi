@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import content from '../data/content.json'
+import BackButton from './BackButton'
 
 // Apple-like easing
 const appleEasing = [0.25, 0.1, 0.25, 1]
@@ -147,14 +148,9 @@ export default function CollectionFocus({
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.3, duration: 0.4 }}
                     >
-                        <motion.button
-                            className="focus-button"
-                            onClick={onClose}
-                            whileHover={{ opacity: 0.7 }}
-                            whileTap={{ scale: 0.98 }}
-                        >
-                            Close
-                        </motion.button>
+                        <div className="absolute top-4 left-4 z-50">
+                            <BackButton onClick={onClose} />
+                        </div>
 
                         <motion.button
                             className="focus-button focus-button--primary"
