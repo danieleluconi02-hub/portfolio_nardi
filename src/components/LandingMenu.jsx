@@ -127,7 +127,7 @@ export default function LandingMenu({ onNavigate }) {
                 animate={{ opacity: 0.9 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
             >
-                <p className="hint-text">FN</p>
+                <p className="fn-signature">FN</p>
             </motion.div>
         </motion.div>
     )

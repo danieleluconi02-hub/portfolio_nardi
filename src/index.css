@@ -1859,10 +1859,22 @@ body {
 }
 
 
-/* Global Hint/Footer Text (FN, Portfolio) */
+/* Global Hint/Footer Text - Standard (Portfolio) */
 .hint-text {
   font-family: 'GhostFont', sans-serif;
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  /* Slightly larger than standard but not huge */
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  margin: 0;
+  line-height: 1;
+}
+
+/* Author Signature (FN) - Large */
+.fn-signature {
+  font-family: 'GhostFont', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: normal;
   color: var(--text-secondary);
   letter-spacing: 0.05em;
