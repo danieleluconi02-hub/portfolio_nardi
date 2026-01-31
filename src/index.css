@@ -1855,4 +1855,17 @@ body {
     width: 28px;
     height: 19px;
   }
+
+}
+
+
+/* Global Hint/Footer Text (FN, Portfolio) */
+.hint-text {
+  font-family: 'GhostFont', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: normal;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  margin: 0;
+  line-height: 1;
 }

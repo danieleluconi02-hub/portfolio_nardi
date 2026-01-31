@@ -28,8 +28,7 @@ export default function GlobalFooter() {
                 animate={{ opacity: 0.9 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
             >
-                <p className="hint-text">Francesco</p>
-                <p className="hint-text">Nardi</p>
+                <p className="hint-text">FN</p>
             </motion.div>
         </>
     )
