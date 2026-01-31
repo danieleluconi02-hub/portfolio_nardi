@@ -224,9 +224,9 @@ export default function PortfolioView({ category, data, onBack }) {
 
             {/* Image Counter */}
             <motion.div
-                className="image-counter"
+                className="image-counter text-lg font-medium tracking-widest mix-blend-difference text-white"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 0.6 }}
+                animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
             >
                 {String(activeImageIndex + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}

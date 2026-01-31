@@ -132,9 +132,9 @@ export default function CollectionFocus({
 
                         {/* Image counter - subtle, bottom right */}
                         <motion.div
-                            className="focus-image-counter"
+                            className="focus-image-counter text-lg font-medium tracking-widest mix-blend-difference text-white"
                             initial={{ opacity: 0 }}
-                            animate={{ opacity: 0.5 }}
+                            animate={{ opacity: 1 }}
                             transition={{ delay: 0.5, duration: 0.3 }}
                         >
                             {selectedImageIndex + 1}/{images.length}
