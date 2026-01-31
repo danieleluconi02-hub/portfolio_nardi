@@ -1863,7 +1863,7 @@ body {
 .hint-text {
   font-family: 'GhostFont', sans-serif;
   /* Slightly larger than standard but not huge */
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   font-weight: normal;
   color: var(--text-secondary);
   letter-spacing: 0.05em;

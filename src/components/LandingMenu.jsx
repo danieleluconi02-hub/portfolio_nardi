@@ -4,8 +4,16 @@ import LanguageSwitcher from './LanguageSwitcher'
 import { useState, useCallback } from 'react'
 
 export default function LandingMenu({ onNavigate }) {
-    const { t } = useLanguage()
+    const { t, language } = useLanguage()
     const [navigatingTo, setNavigatingTo] = useState(null)
+
+    // Dynamic Font Sizing for long languages (Italian/German)
+    const getDynamicFontSize = () => {
+        // Italian "Progettazione di Moda" is much longer than "Fashion Design"
+        if (language === 'it') return 'clamp(2rem, 3.5vw, 3rem)'
+        // Standard size for English
+        return 'clamp(3rem, 6vw, 5rem)'
+    }
 
     const handleMenuClick = useCallback((id) => {
         setNavigatingTo(id)
@@ -85,6 +93,7 @@ export default function LandingMenu({ onNavigate }) {
                     <motion.button
                         key={item.id}
                         className={`menu-item ${item.primary ? 'menu-item--primary' : ''} ${item.isFilm ? 'menu-item--film' : ''}`}
+                        style={item.primary ? { fontSize: getDynamicFontSize() } : {}}
                         variants={itemVariants}
                         onClick={() => handleMenuClick(item.id)}
                         whileHover={{
