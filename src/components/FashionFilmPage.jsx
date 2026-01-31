@@ -230,7 +230,7 @@ export default function FashionFilmPage({ onBack }) {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
             >
-                Back
+                <img src="/assets/arrow-back.png" alt="Back" />
             </motion.button>
 
             {/* Section Title */}

@@ -25,7 +25,7 @@ export default function AboutPage({ onBack }) {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
             >
-                {t.ui.back}
+                <img src="/assets/arrow-back.png" alt="Back" />
             </motion.button>
 
             {/* Content */}

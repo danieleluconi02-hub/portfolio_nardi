@@ -263,7 +263,7 @@ function App() {
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.5, duration: 0.4 }}
                         >
-                            Back
+                            <img src="/assets/arrow-back.png" alt="Back" />
                         </motion.button>
                     </motion.div>
                 )}
@@ -287,7 +287,7 @@ function App() {
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.4, duration: 0.5 }}
                         >
-                            Back
+                            <img src="/assets/arrow-back.png" alt="Back" />
                         </motion.button>
 
                         {/* Hint - translated */}
