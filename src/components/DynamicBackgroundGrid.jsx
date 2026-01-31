@@ -4,63 +4,106 @@ import { motion, AnimatePresence } from 'framer-motion'
 export default function DynamicBackgroundGrid({ manifest }) {
     const [displayedImages, setDisplayedImages] = useState([])
 
-    // 1. Flatten all available COLLECTIONS from manifest (not just images)
-    const allCollections = useMemo(() => {
-        const collections = []
+    // 1. Flatten all available COLLECTIONS from manifest
+    // And pre-sort images into "photos" and "drawings" for each collection.
+    const processedCollections = useMemo(() => {
+        const results = []
         Object.keys(manifest).forEach(category => {
-            if (category === 'sphereImages') return // Skip non-collection keys
+            if (category === 'sphereImages') return
             const categoryCollections = manifest[category]?.collections || []
+
             categoryCollections.forEach(col => {
-                if (col.images && col.images.length > 0) {
-                    collections.push(col)
+                if (!col.images || col.images.length === 0) return
+
+                // Split images based on path
+                const drawings = col.images.filter(img => img.includes('/Disegni/'))
+                const photos = col.images.filter(img => !img.includes('/Disegni/')) // Assume non-Disegni are photos
+
+                if (drawings.length > 0 || photos.length > 0) {
+                    results.push({
+                        ...col,
+                        drawings,
+                        photos
+                    })
                 }
             })
         })
-        return collections
+        return results
     }, [manifest])
 
-    // 2. Helper to get random images (One per collection)
-    const getDiverseImages = () => {
-        if (allCollections.length === 0) return []
+    // 2. Helper to get stratified images
+    const getStratifiedImages = () => {
+        if (processedCollections.length === 0) return Array(9).fill(null)
 
-        // Shuffle collections to get a random set of styles
-        const shuffledCollections = [...allCollections].sort(() => 0.5 - Math.random())
+        // Shuffle collections for randomness
+        const shuffled = [...processedCollections].sort(() => 0.5 - Math.random())
 
-        // Map to grid slots (9 slots total)
-        // We need to fill slots 0,1,2,3, 5,6,7,8 (Slot 4 is empty)
-        // If we have fewer collections than slots, we cycle through them
-        const result = new Array(9).fill(null)
-        let colIndex = 0
+        // We need 4 distinct collections for Corners (Drawings)
+        // And 4 distinct collections for Sides (Photos)
 
-        for (let i = 0; i < 9; i++) {
-            if (i === 4) continue // Skip center slot
+        // Filter collections that HAVE drawings/photos
+        const drawingCandidates = shuffled.filter(c => c.drawings.length > 0)
+        const photoCandidates = shuffled.filter(c => c.photos.length > 0)
 
-            // Select collection (loop if needed)
-            const collection = shuffledCollections[colIndex % shuffledCollections.length]
-
-            // Pick random image from this collection
-            if (collection && collection.images) {
-                const randomImg = collection.images[Math.floor(Math.random() * collection.images.length)]
-                result[i] = randomImg
+        // Select collections for corners (0, 2, 6, 8)
+        // Prefer uniqueness. If not enough distinct collections, cycle.
+        const cornerCollections = []
+        for (let i = 0; i < 4; i++) {
+            if (drawingCandidates.length > 0) {
+                cornerCollections.push(drawingCandidates[i % drawingCandidates.length])
+            } else {
+                cornerCollections.push(null)
             }
-
-            colIndex++
         }
+
+        // Select collections for sides (1, 3, 5, 7)
+        // Try to pick ones NOT used in corners first for max diversity, but hard with limited collections.
+        // Just pick distinct photo candidates.
+        const sideCollections = []
+        for (let i = 0; i < 4; i++) {
+            if (photoCandidates.length > 0) {
+                sideCollections.push(photoCandidates[i % photoCandidates.length])
+            } else {
+                sideCollections.push(null)
+            }
+        }
+
+        // Fill the grid
+        const result = new Array(9).fill(null)
+
+        // Corners: 0, 2, 6, 8
+        const cornerIndices = [0, 2, 6, 8]
+        cornerIndices.forEach((gridIdx, i) => {
+            const col = cornerCollections[i]
+            if (col) {
+                const randomImg = col.drawings[Math.floor(Math.random() * col.drawings.length)]
+                result[gridIdx] = randomImg
+            }
+        })
+
+        // Sides: 1, 3, 5, 7
+        const sideIndices = [1, 3, 5, 7]
+        sideIndices.forEach((gridIdx, i) => {
+            const col = sideCollections[i]
+            if (col) {
+                const randomImg = col.photos[Math.floor(Math.random() * col.photos.length)]
+                result[gridIdx] = randomImg
+            }
+        })
+
         return result
     }
 
     // 3. Initial Load & Interval
     useEffect(() => {
-        // Initial set
-        setDisplayedImages(getDiverseImages())
+        setDisplayedImages(getStratifiedImages())
 
-        // Interval to update (18s)
         const intervalId = setInterval(() => {
-            setDisplayedImages(getDiverseImages())
+            setDisplayedImages(getStratifiedImages())
         }, 18000)
 
         return () => clearInterval(intervalId)
-    }, [allCollections])
+    }, [processedCollections])
 
     return (
         <div
