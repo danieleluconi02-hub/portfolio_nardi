@@ -124,7 +124,9 @@ export default function LandingMenu({ onNavigate }) {
                 {menuItems.map((item, index) => (
                     <motion.button
                         key={item.id}
-                        className={`menu-item ${item.primary ? 'menu-item--primary' : ''} ${item.isFilm ? 'menu-item--film' : ''}`}
+                        // FORCE ONE LINE for Japanese to prevent vertical pile-up
+                        // Added whitespace-nowrap and leading-none specifically for JP
+                        className={`menu-item ${item.primary ? 'menu-item--primary' : ''} ${item.isFilm ? 'menu-item--film' : ''} ${language === 'jp' ? 'whitespace-nowrap leading-none' : ''}`}
                         variants={itemVariants}
                         onClick={() => handleMenuClick(item.id)}
                         whileHover={{
