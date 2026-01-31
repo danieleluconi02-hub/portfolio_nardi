@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useLanguage } from '../contexts/LanguageContext'
-import LanguageSwitcher from './LanguageSwitcher'
+
 import { useState, useCallback, useEffect } from 'react'
 
 export default function LandingMenu({ onNavigate }) {
@@ -142,7 +142,7 @@ export default function LandingMenu({ onNavigate }) {
                 <p className="hint-text">{t.ui.portfolio}</p>
             </motion.div>
 
-            <LanguageSwitcher />
+
 
             <motion.div
                 className="fixed bottom-[5%] right-[4%] z-10 text-right"

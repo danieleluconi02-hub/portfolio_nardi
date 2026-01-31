@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '../contexts/LanguageContext'
+import LanguageSwitcher from './LanguageSwitcher'
 
 // Apple-like easing
 const appleEasing = [0.25, 0.1, 0.25, 1]
@@ -122,6 +123,17 @@ export default function TopRightMenu({ onNavigate }) {
                                 </motion.button>
                             ))}
                         </nav>
+
+                        {/* Language Switcher - Centered below menu */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 10 }}
+                            transition={{ delay: 0.5, duration: 0.5, ease: appleEasing }}
+                            className="mt-12"
+                        >
+                            <LanguageSwitcher />
+                        </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
