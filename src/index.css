@@ -24,8 +24,8 @@
   --accent: rgba(0, 0, 0, 0.05);
   --accent-hover: rgba(0, 0, 0, 0.08);
 
-  /* Typography - Apple SF Pro */
-  --font-primary: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', sans-serif;
+  /* Typography - Ghost Font Global Override */
+  --font-primary: 'GhostFont', sans-serif;
 
   /* Font Weights */
   --weight-regular: 400;
