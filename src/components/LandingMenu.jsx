@@ -7,12 +7,20 @@ export default function LandingMenu({ onNavigate }) {
     const { t, language } = useLanguage()
     const [navigatingTo, setNavigatingTo] = useState(null)
 
-    // Dynamic Font Sizing for long languages (Italian/German)
-    const getDynamicFontSize = () => {
-        // Italian "Progettazione di Moda" is much longer than "Fashion Design"
-        if (language === 'it') return 'clamp(2rem, 3.5vw, 3rem)'
-        // Standard size for English
-        return 'clamp(3rem, 6vw, 5rem)'
+    // Dynamic Font Sizing based on character count to ensuring fitting in center column
+    const getDynamicFontSize = (text) => {
+        if (!text) return 'clamp(2rem, 4vw, 3.5rem)'
+        const length = text.length
+
+        // Very long strings (e.g., "Progettazione di Moda" ~21 chars)
+        // Needs significant reduction to fit in 25% width
+        if (length > 18) return 'clamp(1.5rem, 2.5vw, 2.5rem)'
+
+        // Medium long strings (e.g., "Fashion Design" ~14 chars)
+        if (length > 10) return 'clamp(1.8rem, 3.5vw, 3.2rem)'
+
+        // Short strings (e.g., "Styling" ~7 chars) - Keep big and impactul
+        return 'clamp(2.5rem, 5vw, 4.5rem)'
     }
 
     const handleMenuClick = useCallback((id) => {
@@ -93,7 +101,6 @@ export default function LandingMenu({ onNavigate }) {
                     <motion.button
                         key={item.id}
                         className={`menu-item ${item.primary ? 'menu-item--primary' : ''} ${item.isFilm ? 'menu-item--film' : ''}`}
-                        style={item.primary ? { fontSize: getDynamicFontSize() } : {}}
                         variants={itemVariants}
                         onClick={() => handleMenuClick(item.id)}
                         whileHover={{
@@ -108,6 +115,9 @@ export default function LandingMenu({ onNavigate }) {
                             transition: { duration: 0.1 }
                         }}
                         style={{
+                            // Apply dynamic font size ONLY for primary items
+                            fontSize: item.primary ? getDynamicFontSize(item.label) : undefined,
+                            // Margin logic for separartion
                             marginTop: index === 3 ? '2.5rem' : (index === 2 ? '1.5rem' : undefined)
                         }}
                     >
