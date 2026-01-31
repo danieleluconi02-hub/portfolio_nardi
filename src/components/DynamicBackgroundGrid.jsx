@@ -4,43 +4,63 @@ import { motion, AnimatePresence } from 'framer-motion'
 export default function DynamicBackgroundGrid({ manifest }) {
     const [displayedImages, setDisplayedImages] = useState([])
 
-    // 1. Flatten all available images from manifest
-    const allImages = useMemo(() => {
-        const images = []
+    // 1. Flatten all available COLLECTIONS from manifest (not just images)
+    const allCollections = useMemo(() => {
+        const collections = []
         Object.keys(manifest).forEach(category => {
-            const collections = manifest[category]?.collections || []
-            collections.forEach(col => {
-                if (col.images) {
-                    col.images.forEach(img => {
-                        // Use thumbnails for performance if available, else full
-                        // Assuming standard path structure, but can fall back to raw string
-                        images.push(img)
-                    })
+            if (category === 'sphereImages') return // Skip non-collection keys
+            const categoryCollections = manifest[category]?.collections || []
+            categoryCollections.forEach(col => {
+                if (col.images && col.images.length > 0) {
+                    collections.push(col)
                 }
             })
         })
-        return images
+        return collections
     }, [manifest])
 
-    // 2. Helper to get random images
-    const getRandomImages = (count) => {
-        if (allImages.length === 0) return []
-        const shuffled = [...allImages].sort(() => 0.5 - Math.random())
-        return shuffled.slice(0, count)
+    // 2. Helper to get random images (One per collection)
+    const getDiverseImages = () => {
+        if (allCollections.length === 0) return []
+
+        // Shuffle collections to get a random set of styles
+        const shuffledCollections = [...allCollections].sort(() => 0.5 - Math.random())
+
+        // Map to grid slots (9 slots total)
+        // We need to fill slots 0,1,2,3, 5,6,7,8 (Slot 4 is empty)
+        // If we have fewer collections than slots, we cycle through them
+        const result = new Array(9).fill(null)
+        let colIndex = 0
+
+        for (let i = 0; i < 9; i++) {
+            if (i === 4) continue // Skip center slot
+
+            // Select collection (loop if needed)
+            const collection = shuffledCollections[colIndex % shuffledCollections.length]
+
+            // Pick random image from this collection
+            if (collection && collection.images) {
+                const randomImg = collection.images[Math.floor(Math.random() * collection.images.length)]
+                result[i] = randomImg
+            }
+
+            colIndex++
+        }
+        return result
     }
 
     // 3. Initial Load & Interval
     useEffect(() => {
         // Initial set
-        setDisplayedImages(getRandomImages(9))
+        setDisplayedImages(getDiverseImages())
 
-        // Interval to update (15-20 seconds specified, using 18s)
+        // Interval to update (18s)
         const intervalId = setInterval(() => {
-            setDisplayedImages(getRandomImages(9))
+            setDisplayedImages(getDiverseImages())
         }, 18000)
 
         return () => clearInterval(intervalId)
-    }, [allImages])
+    }, [allCollections])
 
     return (
         <div
