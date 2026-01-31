@@ -26,12 +26,13 @@ export default function TopRightMenu({ onNavigate }) {
         <>
             {/* Toggle Button (Plus Icon) */}
             <motion.button
-                className="fixed top-8 right-8 z-[201] w-12 h-12 flex items-center justify-center rounded-full backdrop-blur-xl border border-pink-300/30 hover:border-pink-400/50 transition-all duration-300"
+                className="fixed top-8 right-8 z-[201] w-12 h-12 flex items-center justify-center backdrop-blur-xl border border-pink-300/30 hover:border-pink-400/50 transition-all duration-300"
                 onClick={toggleMenu}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
                 style={{
+                    borderRadius: '54% 46% 70% 30% / 36% 56% 44% 64%', // Organic "hand-drawn" shape
                     background: 'linear-gradient(135deg, rgba(255, 182, 193, 0.4) 0%, rgba(255, 105, 180, 0.35) 50%, rgba(219, 112, 147, 0.3) 100%)',
                     boxShadow: '0 8px 32px rgba(255, 105, 180, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.3)'
                 }}
@@ -43,10 +44,10 @@ export default function TopRightMenu({ onNavigate }) {
                 >
                     <span style={{
                         fontFamily: 'GhostFont',
-                        fontSize: '3rem',
+                        fontSize: '4.2rem', // Increased size
                         lineHeight: 0,
                         color: 'white',
-                        transform: 'translateY(-2px)', // Micro-adjustment for visual center
+                        transform: 'translateY(-2px) translateX(1px)', // Slight adjustment for optical center
                         filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.3))',
                         display: 'block'
                     }}>
