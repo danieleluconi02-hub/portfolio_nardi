@@ -22,22 +22,24 @@ export default function LandingMenu({ onNavigate }) {
         // Find longest string among primary items
         const longestLength = Math.max(...items.filter(i => i.primary).map(i => i.label.length))
 
-        // Japanese text is wider per character and denser. 
-        // We treat it as 2.5x length to force it into smaller buckets and avoid overlap.
-        const effectiveLength = language === 'jp' ? longestLength * 2.5 : longestLength
+        // Japanese text is wider per character and denser.
+        if (language === 'jp') {
+            if (isMobile) return 'clamp(1rem, 4vw, 1.5rem)'
+            // Desktop JP: Needs to be tiny to fit in the narrow column without breaking badly
+            return 'clamp(0.7rem, 1.1vw, 1.2rem)'
+        }
+
+        const effectiveLength = longestLength
 
         // MOBILE LOGIC (Wide center column ~75% width)
         if (isMobile) {
-            // We can afford larger VW values because the container is wider relative to screen
-            // But we must still be careful with long words
             if (effectiveLength > 16) return 'clamp(1rem, 5vw, 1.5rem)'
             if (effectiveLength > 10) return 'clamp(1.2rem, 7vw, 2rem)'
             return 'clamp(1.8rem, 10vw, 3rem)'
         }
 
         // DESKTOP LOGIC (Narrow center column ~25% width)
-        // Requires very conservative sizing
-        if (effectiveLength > 16) return 'clamp(0.8rem, 1.5vw, 1.5rem)' // Very Long (IT/JP)
+        if (effectiveLength > 16) return 'clamp(0.8rem, 1.5vw, 1.5rem)' // Very Long (IT)
         if (effectiveLength > 10) return 'clamp(1.2rem, 2vw, 2.2rem)' // Medium
         return 'clamp(2rem, 3.5vw, 3.5rem)' // Short
     }
@@ -112,7 +114,8 @@ export default function LandingMenu({ onNavigate }) {
             {/* Menu content - centered, above background */}
             {/* Added pr-8 to shift content slightly left as requested to avoid right-edge collision */}
             <motion.nav
-                className="flex flex-col items-start relative z-10 pr-8"
+                // Reduce vertical gap significantly for Japanese to preventing vertical blowout
+                className={`flex flex-col items-start relative z-10 pr-8 ${language === 'jp' ? 'gap-4 mt-[-2vh]' : 'gap-8 md:gap-12 mt-[-5vh]'}`}
                 variants={containerVariants}
                 initial="hidden"
                 animate={navigatingTo ? "exit" : "visible"}
@@ -138,8 +141,10 @@ export default function LandingMenu({ onNavigate }) {
                         style={{
                             // Apply dynamic font size ONLY for primary items
                             fontSize: item.primary ? unifiedFontSize : undefined,
-                            // Margin logic for separartion
-                            marginTop: index === 3 ? '2.5rem' : (index === 2 ? '1.5rem' : undefined)
+                            // Margin logic for separartion - Reduced for JP
+                            marginTop: language === 'jp'
+                                ? (index === 3 ? '1rem' : (index === 2 ? '0.5rem' : undefined))
+                                : (index === 3 ? '2.5rem' : (index === 2 ? '1.5rem' : undefined))
                         }}
                     >
                         {item.label}
