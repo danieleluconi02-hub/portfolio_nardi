@@ -21,9 +21,9 @@ export default function LandingMenu({ onNavigate }) {
 
         // Japanese text logic
         if (language === 'jp') {
-            if (isMobile) return 'clamp(1rem, 4vw, 1.5rem)'
-            // Desktop JP: Tiny to fit in narrow column
-            return 'clamp(0.6rem, 0.9vw, 1.1rem)'
+            if (isMobile) return 'clamp(0.8rem, 3.5vw, 1.2rem)' // Mobile: Compact
+            // Desktop JP: Micro-sized to absolutely prevent overlap with images
+            return 'clamp(0.5rem, 0.7vw, 0.9rem)'
         }
 
         const effectiveLength = longestLength
@@ -94,8 +94,8 @@ export default function LandingMenu({ onNavigate }) {
             {/* Menu content - CENTERED via Flexbox, no manual negative margins */}
             <motion.nav
                 // Use GAP for even spacing. 
-                // JP: tighter gap (gap-3). EN: wider gap (gap-8/12).
-                className={`flex flex-col items-start relative z-10 pr-8 ${language === 'jp' ? 'gap-3' : 'gap-8 md:gap-12'}`}
+                // JP: Tightest possible gap. EN: standard.
+                className={`flex flex-col items-start relative z-10 pr-8 ${language === 'jp' ? 'gap-1' : 'gap-8 md:gap-12'}`}
                 variants={containerVariants}
                 initial="hidden"
                 animate={navigatingTo ? "exit" : "visible"}
