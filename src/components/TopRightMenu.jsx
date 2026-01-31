@@ -39,11 +39,18 @@ export default function TopRightMenu({ onNavigate }) {
                 <motion.div
                     animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ duration: 0.4, ease: appleEasing }}
+                    className="flex items-center justify-center"
                 >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.3))' }}>
-                        <line x1="12" y1="5" x2="12" y2="19" />
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
+                    <span style={{
+                        fontFamily: 'GhostFont',
+                        fontSize: '3.5rem',
+                        lineHeight: 1,
+                        color: 'white',
+                        marginTop: '-0.2rem', // Visual centering adjustment for font
+                        filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.3))'
+                    }}>
+                        +
+                    </span>
                 </motion.div>
             </motion.button>
 
