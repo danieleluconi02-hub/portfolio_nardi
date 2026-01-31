@@ -373,9 +373,6 @@ function PhysicsScene({ onNavigate, targetCategory, onTransitionComplete }) {
                 opacity: 1,
                 isExploded: false,
                 fragmentState: null,
-                opacity: 1,
-                isExploded: false,
-                fragmentState: null,
                 explosionScale: 1.0,
                 clickCount: 0,
                 targetScale: 1.0
@@ -410,6 +407,10 @@ function PhysicsScene({ onNavigate, targetCategory, onTransitionComplete }) {
 
     // Unified Click Handler
     const handleSphereClick = (sphereId) => {
+        if (onNavigate) {
+            onNavigate(sphereId)
+            return
+        }
         setSpheres(currentSpheres => {
             return currentSpheres.map(s => {
                 if (s.id !== sphereId || s.isExploded) return s

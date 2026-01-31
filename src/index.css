@@ -48,6 +48,14 @@
   --duration-cinematic: 1.5s;
 }
 
+/* Custom Font - I KNOW A GHOST */
+@font-face {
+  font-family: 'GhostFont';
+  src: url('/fonts/I_KNOW_A_GHOST.ttf?v=1') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -128,13 +136,15 @@ label,
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--bg-primary);
+  /* background: var(--bg-primary); - Removed to allow Dynamic Grid visibility */
+  background: transparent;
   z-index: 50;
 }
 
 .menu-item {
-  font-family: var(--font-display);
-  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-family: 'GhostFont', sans-serif;
+  /* Increased size for handwritten font legibility */
+  font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 400;
   letter-spacing: -0.01em;
   color: var(--text-secondary);
@@ -156,13 +166,43 @@ label,
 }
 
 .menu-item--primary {
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
-  font-weight: 500;
+  /* Massive size boost for custom font */
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: normal;
   color: var(--text-primary);
   letter-spacing: -0.03em;
   line-height: 1.15;
-  min-width: 320px;
+  line-height: 1.15;
+  min-width: unset;
+  /* Remove fixed constraint */
+  width: 100%;
+  /* Allow full available width */
+  max-width: 320px;
+  /* Cap at previous logic if needed, or let it flow */
+  text-align: center;
+  /* Center align on mobile usually looks better in this tight space, or keep left if preferred */
+  /* Forcing left alignment as per requested design, but allowing shrink */
+  /* Forcing left alignment as per requested design, but allowing shrink */
   text-align: left;
+}
+
+/* Styles for the Top Right Overlay Menu items */
+.menu-overlay-item {
+  font-family: 'GhostFont', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: normal;
+  color: white;
+  letter-spacing: 0.05em;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+@media (min-width: 768px) {
+  .menu-item--primary {
+    min-width: 320px;
+  }
 }
 
 .menu-item--primary:hover {

@@ -12,6 +12,8 @@ import ImagePreviewModal from './components/ImagePreviewModal'
 import CollectionFocus from './components/CollectionFocus'
 import PortfolioView from './components/PortfolioView'
 import GlobalFooter from './components/GlobalFooter'
+import CategorySphere from './components/CategorySphere'
+import DynamicBackgroundGrid from './components/DynamicBackgroundGrid'
 import manifest from './data/manifest.json'
 import './index.css'
 
@@ -22,8 +24,9 @@ const cinematicEasing = [0.16, 1, 0.3, 1]
 function App() {
     const { t } = useLanguage()
 
-    // States: 'menu' | 'about' | 'contact' | 'scroll' | 'preview' | 'focus' | 'collection'
-    // Removed 'sphere' and 'entering' states
+    // States: 'menu' | 'sphere' | 'entering' | 'about' | 'contact' | 'scroll' | 'preview' | 'focus' | 'collection'
+    // 'sphere' = Visualization Phase (Single Sphere)
+    // 'entering' = Camera flying into sphere
     const [appState, setAppState] = useState('menu')
     const [selectedCategory, setSelectedCategory] = useState(null)
     const [focusedCollection, setFocusedCollection] = useState(null)
@@ -35,8 +38,8 @@ function App() {
     const handleMenuNavigate = useCallback((destination) => {
         if (destination === 'design' || destination === 'styling') {
             setSelectedCategory(destination)
-            // Go directly to immersion (scroll) instead of sphere view
-            setAppState('scroll')
+            // Go to sphere interaction view
+            setAppState('sphere')
         } else if (destination === 'about') {
             setAppState('about')
         } else if (destination === 'contact') {
@@ -100,6 +103,11 @@ function App() {
                 break
             case 'scroll':
                 setSelectedCategory(null)
+                // Return to menu from immersive view (simplified flow)
+                setAppState('menu')
+                break
+            case 'sphere':
+                setSelectedCategory(null)
                 setAppState('menu')
                 break
             case 'preview':
@@ -131,8 +139,58 @@ function App() {
         return collections.find(c => c.id === previewImageData.collectionId) || null
     }, [previewImageData, selectedCategory])
 
+    // Callback when sphere is clicked (start entry animation)
+    const handleSphereClick = useCallback(() => {
+        setAppState('entering')
+    }, [])
+
+    // Callback when sphere entry animation is complete
+    const handleEnterComplete = useCallback(() => {
+        setAppState('scroll')
+    }, [])
+
     return (
         <div className="w-screen h-screen overflow-hidden spatial-bg">
+            {/* Dedicated Background Layer */}
+            <AnimatePresence>
+                {/* Menu State: Dynamic Grid */}
+                {appState === 'menu' && (
+                    <motion.div
+                        key="grid-bg"
+                        className="fixed inset-0 z-0"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 1.0 }}
+                    >
+                        <DynamicBackgroundGrid manifest={manifest} />
+                    </motion.div>
+                )}
+
+                {/* Sphere/Entering State: Spatial Static Background */}
+                {(appState === 'sphere' || appState === 'entering') && (
+                    <motion.div
+                        key="static-bg"
+                        style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%',
+                            backgroundImage: 'url(/assets/landing-bg.png)',
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat',
+                            zIndex: 0,
+                        }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.9 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.8 }}
+                    />
+                )}
+            </AnimatePresence>
+
             {/* Top Right Navigation Menu */}
             <TopRightMenu onNavigate={handleMenuNavigate} />
 
@@ -169,6 +227,45 @@ function App() {
             <AnimatePresence>
                 {appState === 'fashionfilm' && (
                     <FashionFilmPage onBack={handleBack} />
+                )}
+            </AnimatePresence>
+
+            {/* Interactive Sphere - Visualization Phase */}
+            <AnimatePresence>
+                {(appState === 'sphere' || appState === 'entering') && selectedCategory && (
+                    <motion.div
+                        className="fixed inset-0 z-10"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.8, ease: cinematicEasing }}
+                    >
+                        <Canvas
+                            camera={{ position: [0, 0, 20], fov: 40 }}
+                            dpr={[1, 2]}
+                        >
+                            <Suspense fallback={null}>
+                                <CategorySphere
+                                    category={selectedCategory}
+                                    collections={currentCollections}
+                                    appState={appState}
+                                    onSphereClick={handleSphereClick}
+                                    onEnterComplete={handleEnterComplete}
+                                />
+                            </Suspense>
+                        </Canvas>
+
+                        {/* Back Button for Spheres View */}
+                        <motion.button
+                            className="back-button"
+                            onClick={handleBack}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.5, duration: 0.4 }}
+                        >
+                            Back
+                        </motion.button>
+                    </motion.div>
                 )}
             </AnimatePresence>
 

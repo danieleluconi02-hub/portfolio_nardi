@@ -61,7 +61,7 @@ export default function TopRightMenu({ onNavigate }) {
                             {menuItems.map((item, index) => (
                                 <motion.button
                                     key={item.id}
-                                    className="text-4xl font-light text-white tracking-widest hover:text-gray-300 transition-colors capitalize"
+                                    className="menu-overlay-item hover:text-gray-300 transition-colors capitalize"
                                     onClick={() => handleNavigate(item.id)}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
