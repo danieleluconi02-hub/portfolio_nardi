@@ -59,8 +59,32 @@ async function optimizeImage(inputPath, outputPath, width, quality) {
 }
 
 async function processCollection(category, collectionName, inputPath) {
-    const files = fs.readdirSync(inputPath)
-        .filter(f => SUPPORTED_EXTENSIONS.includes(path.extname(f).toLowerCase()))
+    const items = fs.readdirSync(inputPath, { withFileTypes: true })
+
+    // Check for subdirectories (Recursive mode for things like "Disegni/")
+    const subdirs = items.filter(i => i.isDirectory())
+    if (subdirs.length > 0) {
+        let totalP = 0
+        let totalS = 0
+        let totalC = 0
+
+        for (const subdir of subdirs) {
+            // Recurse with combined name e.g. "Disegni/GreenHeart"
+            const result = await processCollection(
+                category,
+                path.join(collectionName, subdir.name),
+                path.join(inputPath, subdir.name)
+            )
+            totalP += result.processed
+            totalS += result.skipped
+            totalC += result.count
+        }
+        return { processed: totalP, skipped: totalS, count: totalC, collection: collectionName }
+    }
+
+    const files = items
+        .filter(item => !item.isDirectory() && SUPPORTED_EXTENSIONS.includes(path.extname(item.name).toLowerCase()))
+        .map(item => item.name)
 
     if (files.length === 0) return { processed: 0, skipped: 0, collection: collectionName }
 

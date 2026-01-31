@@ -17,71 +17,110 @@ function getCollections(category) {
     const categoryPath = path.join(ASSETS_DIR, category)
 
     if (!fs.existsSync(categoryPath)) {
-        console.log(`⚠️  Cartella non trovata: ${category}`)
         return { collections: [], sphereImages: [] }
     }
 
+    // 1. First Pass: Identify Main Collections (exclude 'Disegni')
     const items = fs.readdirSync(categoryPath, { withFileTypes: true })
-    const subdirs = items.filter(item => item.isDirectory())
+    const mainFolders = items.filter(d => d.isDirectory() && d.name !== 'Disegni')
 
-    const collections = []
-    let sphereImages = []
+    // Map to store collections for easy merging: { "Folder Name": CollectionObj }
+    const collectionsMap = {}
+    const sphereImages = []
 
-    for (const subdir of subdirs) {
-        const collectionName = subdir.name
-        const thumbPath = path.join(categoryPath, collectionName, 'thumb')
-        const fullPath = path.join(categoryPath, collectionName, 'full')
+    // Helper: Process a folder and add to collection
+    const processFolder = (dirName, relativePath, targetCollectionName = null) => {
+        const fullPath = path.join(ASSETS_DIR, category, relativePath)
+        const thumbPath = path.join(fullPath, 'thumb')
+        const fullPathDir = path.join(fullPath, 'full')
 
-        if (!fs.existsSync(thumbPath)) continue
+        if (!fs.existsSync(thumbPath)) return
 
-        const thumbFiles = fs.readdirSync(thumbPath)
-            .filter(f => f.endsWith('.webp'))
-            .sort()
-
-        const fullFiles = fs.existsSync(fullPath)
-            ? fs.readdirSync(fullPath).filter(f => f.endsWith('.webp')).sort()
+        const thumbFiles = fs.readdirSync(thumbPath).filter(f => f.endsWith('.webp')).sort()
+        const fullFiles = fs.existsSync(fullPathDir)
+            ? fs.readdirSync(fullPathDir).filter(f => f.endsWith('.webp')).sort()
             : thumbFiles
 
-        if (thumbFiles.length === 0) continue
+        if (thumbFiles.length === 0) return
 
-        // Check for custom description in source directory
-        const sourceDescPath = path.join(__dirname, '../public/assets', category, collectionName, 'description.txt')
-        let description = `${collectionName} - ${thumbFiles.length} images`
+        // Determine which collection object to attach to
+        const nameToUse = targetCollectionName || dirName
 
-        if (fs.existsSync(sourceDescPath)) {
-            try {
-                description = fs.readFileSync(sourceDescPath, 'utf-8').trim()
-                console.log(`      📝 Descrizione caricata da file per ${collectionName}`)
-            } catch (err) {
-                console.error(`      ⚠️ Errore lettura descrizione per ${collectionName}:`, err.message)
+        // If collection doesn't exist yet, create it (Standard Collection)
+        if (!collectionsMap[nameToUse]) {
+            const title = nameToUse
+            const id = `${category}-${title.toLowerCase().replace(/\s+/g, '-')}`
+
+            // Try load description
+            let description = `${title} - ${thumbFiles.length} images`
+            const descPath = path.join(__dirname, '../public/assets', category, relativePath, 'description.txt')
+            if (fs.existsSync(descPath)) {
+                try { description = fs.readFileSync(descPath, 'utf-8').trim() } catch (e) { }
+            }
+
+            collectionsMap[nameToUse] = {
+                id,
+                title,
+                year: '2024',
+                brand: category === 'design' ? 'Fashion Design' : 'Styling',
+                description,
+                images: []
             }
         }
 
-        // Aggiungi collezione
-        collections.push({
-            id: `${category}-${collectionName.toLowerCase().replace(/\s+/g, '-')}`,
-            title: collectionName,
-            year: '2024',
-            brand: category === 'design' ? 'Fashion Design' : 'Styling',
-            description: description,
-            images: fullFiles.map(f => `/assets-optimized/${category}/${collectionName}/full/${f}`)
-        })
+        // Add Images to Collection
+        const collection = collectionsMap[nameToUse]
+        const newImages = fullFiles.map(f => `/assets-optimized/${category}/${relativePath.replace(/\\/g, '/')}/full/${f}`)
+        collection.images.push(...newImages)
 
-        // Aggiungi a sphereImages
+        // Add to Global Sphere Images
         thumbFiles.forEach((file, index) => {
+            // Unique ID: collection-subpath-index
+            const uniqueSubId = relativePath.replace(/[\\/]/g, '-')
             sphereImages.push({
-                id: `${category}-${collectionName}-${index + 1}`,
-                image: `/assets-optimized/${category}/${collectionName}/thumb/${file}`,
-                fullImage: `/assets-optimized/${category}/${collectionName}/full/${file}`,
+                id: `${category}-${uniqueSubId}-${index}`,
+                image: `/assets-optimized/${category}/${relativePath.replace(/\\/g, '/')}/thumb/${file}`,
+                fullImage: `/assets-optimized/${category}/${relativePath.replace(/\\/g, '/')}/full/${file}`,
                 category: category,
-                collection: collectionName
+                collection: collection.title
             })
         })
 
-        console.log(`   📁 ${collectionName}: ${thumbFiles.length} immagini`)
+        console.log(`   Processed ${relativePath} -> Merged into "${collection.title}" (${newImages.length} images)`)
     }
 
-    return { collections, sphereImages }
+    // Step 1: Process Main Collections
+    mainFolders.forEach(folder => {
+        processFolder(folder.name, folder.name)
+    })
+
+    // Step 2: Process "Disegni" (Drawings)
+    // Look for public/assets-optimized/design/Disegni/[CollectionName]
+    const disegniPath = path.join(categoryPath, 'Disegni')
+    if (fs.existsSync(disegniPath)) {
+        const disegniItems = fs.readdirSync(disegniPath, { withFileTypes: true })
+        const drawingFolders = disegniItems.filter(d => d.isDirectory())
+
+        drawingFolders.forEach(folder => {
+            const collectionName = folder.name // e.g., "GreenHeart"
+
+            // Check if we have a main collection with this name
+            if (collectionsMap[collectionName]) {
+                // Merge these drawings into the main collection
+                processFolder(collectionName, `Disegni/${collectionName}`, collectionName)
+            } else {
+                console.log(`   ⚠️ Orphan Drawing Folder: "Disegni/${collectionName}" (No matching main collection found)`)
+                // Optional: Create standalone? User implied they belong to collections. 
+                // We will create it as a standalone if missing.
+                processFolder(collectionName, `Disegni/${collectionName}`)
+            }
+        })
+    }
+
+    return {
+        collections: Object.values(collectionsMap),
+        sphereImages
+    }
 }
 
 function generateManifest() {
