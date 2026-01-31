@@ -1,25 +1,45 @@
 import { motion } from 'framer-motion'
 import { useLanguage } from '../contexts/LanguageContext'
 import LanguageSwitcher from './LanguageSwitcher'
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 
 export default function LandingMenu({ onNavigate }) {
     const { t, language } = useLanguage()
     const [navigatingTo, setNavigatingTo] = useState(null)
+    const [isMobile, setIsMobile] = useState(false)
+
+    // Check for mobile on mount and resize
+    // We need this because the grid structure changes radically (25% center on desktop vs 75% on mobile)
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768)
+        checkMobile()
+        window.addEventListener('resize', checkMobile)
+        return () => window.removeEventListener('resize', checkMobile)
+    }, [])
 
     // Unified Font Sizing based on the LONGEST primary item
-    // This guarantees visual consistency between items and prevents overflow
     const getUnifiedFontSize = (items) => {
         // Find longest string among primary items
         const longestLength = Math.max(...items.filter(i => i.primary).map(i => i.label.length))
 
-        // Japanese text is wider per character, so we treat it as 40% longer
-        const effectiveLength = language === 'jp' ? longestLength * 1.4 : longestLength
+        // Japanese text is wider per character and denser. 
+        // We treat it as 2.5x length to force it into smaller buckets and avoid overlap.
+        const effectiveLength = language === 'jp' ? longestLength * 2.5 : longestLength
 
-        // Aggressive limits for strict containment
-        if (effectiveLength > 16) return 'clamp(1rem, 1.8vw, 2rem)' // Long phrases
-        if (effectiveLength > 10) return 'clamp(1.5rem, 2.5vw, 2.8rem)' // Medium
-        return 'clamp(2rem, 4vw, 3.5rem)' // Short
+        // MOBILE LOGIC (Wide center column ~75% width)
+        if (isMobile) {
+            // We can afford larger VW values because the container is wider relative to screen
+            // But we must still be careful with long words
+            if (effectiveLength > 16) return 'clamp(1rem, 5vw, 1.5rem)'
+            if (effectiveLength > 10) return 'clamp(1.2rem, 7vw, 2rem)'
+            return 'clamp(1.8rem, 10vw, 3rem)'
+        }
+
+        // DESKTOP LOGIC (Narrow center column ~25% width)
+        // Requires very conservative sizing
+        if (effectiveLength > 16) return 'clamp(0.8rem, 1.5vw, 1.5rem)' // Very Long (IT/JP)
+        if (effectiveLength > 10) return 'clamp(1.2rem, 2vw, 2.2rem)' // Medium
+        return 'clamp(2rem, 3.5vw, 3.5rem)' // Short
     }
 
     const handleMenuClick = useCallback((id) => {
@@ -118,8 +138,7 @@ export default function LandingMenu({ onNavigate }) {
                         style={{
                             // Apply dynamic font size ONLY for primary items
                             fontSize: item.primary ? unifiedFontSize : undefined,
-                            // Margin logic for separation (adjusting indexes since we removed items?)
-                            // Note: original code had strict hardcoded indexes. Keeping safe logic.
+                            // Margin logic for separartion
                             marginTop: index === 3 ? '2.5rem' : (index === 2 ? '1.5rem' : undefined)
                         }}
                     >
