@@ -51,7 +51,7 @@
 /* Custom Font - I KNOW A GHOST */
 @font-face {
   font-family: 'GhostFont';
-  src: url('/fonts/I_KNOW_A_GHOST.ttf?v=1') format('truetype');
+  src: url('/fonts/ghost.ttf?v=2') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
