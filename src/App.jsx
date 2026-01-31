@@ -14,6 +14,7 @@ import PortfolioView from './components/PortfolioView'
 import GlobalFooter from './components/GlobalFooter'
 import CategorySphere from './components/CategorySphere'
 import DynamicBackgroundGrid from './components/DynamicBackgroundGrid'
+import BackButton from './components/BackButton'
 import manifest from './data/manifest.json'
 import './index.css'
 
@@ -256,15 +257,7 @@ function App() {
                         </Canvas>
 
                         {/* Back Button for Spheres View */}
-                        <motion.button
-                            className="back-button"
-                            onClick={handleBack}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.5, duration: 0.4 }}
-                        >
-                            <img src="/assets/arrow-back.png" alt="Back" />
-                        </motion.button>
+                        <BackButton onClick={handleBack} />
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -280,15 +273,7 @@ function App() {
                         transition={{ duration: 0.6, ease: appleEasing }}
                     >
                         {/* Back Button */}
-                        <motion.button
-                            className="back-button"
-                            onClick={handleBack}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.4, duration: 0.5 }}
-                        >
-                            <img src="/assets/arrow-back.png" alt="Back" />
-                        </motion.button>
+                        <BackButton onClick={handleBack} />
 
                         {/* Hint - translated */}
                         <motion.p

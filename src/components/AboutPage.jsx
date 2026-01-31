@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useLanguage } from '../contexts/LanguageContext'
+import BackButton from './BackButton'
 
 // Apple-like easing
 const appleEasing = [0.25, 0.1, 0.25, 1]
@@ -18,15 +19,8 @@ export default function AboutPage({ onBack }) {
             transition={{ duration: 1, ease: appleEasing }}
         >
             {/* Back Button */}
-            <motion.button
-                className="back-button"
-                onClick={onBack}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-            >
-                <img src="/assets/arrow-back.png" alt="Back" />
-            </motion.button>
+            {/* Back Button */}
+            <BackButton onClick={onBack} />
 
             {/* Content */}
             <motion.div

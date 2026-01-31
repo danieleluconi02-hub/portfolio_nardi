@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '../contexts/LanguageContext'
+import BackButton from './BackButton'
 
 // Premium cinematic easing
 const cinematicEasing = [0.16, 1, 0.3, 1]
@@ -81,7 +82,7 @@ export default function PortfolioView({ category, data, onBack }) {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1, ease: cinematicEasing }}
             >
-                <button className="back-button" onClick={onBack}><img src="/assets/arrow-back.png" alt="Back" /></button>
+                <BackButton onClick={onBack} />
                 <p className="text-[var(--text-tertiary)]">No images available</p>
             </motion.div>
         )
@@ -146,15 +147,8 @@ export default function PortfolioView({ category, data, onBack }) {
             transition={{ duration: 1, ease: cinematicEasing }}
         >
             {/* Back Button */}
-            <motion.button
-                className="back-button"
-                onClick={onBack}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-            >
-                <img src="/assets/arrow-back.png" alt="Back" />
-            </motion.button>
+            {/* Back Button */}
+            <BackButton onClick={onBack} />
 
             {/* Main Image Area - Tap left half = prev, right half = next, or Swipe */}
             <div

@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence, useMotionValue, useTransform, animate } from 'framer-motion'
 import { useLanguage } from '../contexts/LanguageContext'
+import BackButton from './BackButton'
 
 // Apple-like easing curves
 const cinematicEasing = [0.16, 1, 0.3, 1]
@@ -223,15 +224,8 @@ export default function FashionFilmPage({ onBack }) {
             onTouchEnd={handleTouchEnd}
         >
             {/* Back Button */}
-            <motion.button
-                className="back-button"
-                onClick={onBack}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-            >
-                <img src="/assets/arrow-back.png" alt="Back" />
-            </motion.button>
+            {/* Back Button */}
+            <BackButton onClick={onBack} />
 
             {/* Section Title */}
             <motion.h1
