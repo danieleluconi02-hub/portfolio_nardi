@@ -15,29 +15,41 @@ export default function LandingMenu({ onNavigate }) {
         return () => window.removeEventListener('resize', checkMobile)
     }, [])
 
+    // Helper: Detect if string contains Japanese characters
+    const isJapaneseText = (text) => {
+        return /[\u3000-\u303f\u3040-\u309f\u30a0-\u30ff\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]/.test(text)
+    }
+
+    const menuItems = [
+        { id: 'design', label: t.menu.fashionDesign, primary: true },
+        { id: 'styling', label: t.menu.styling, primary: true }
+    ]
+
+    // Determine if we are effectively in "Japanese Mode" based on content
+    // This protects against state desync where language='en' but content is JP
+    const hasJapaneseContent = menuItems.some(i => isJapaneseText(i.label))
+    const effectiveLanguage = hasJapaneseContent ? 'jp' : language
+
     // Unified Font Sizing
     const getUnifiedFontSize = (items) => {
-        const longestLength = Math.max(...items.filter(i => i.primary).map(i => i.label.length))
-
-        // Japanese text logic
-        if (language === 'jp') {
-            if (isMobile) return 'clamp(0.8rem, 3.5vw, 1.2rem)' // Mobile: Compact
-            // Desktop JP: Micro-sized to absolutely prevent overlap with images
-            return 'clamp(0.5rem, 0.7vw, 0.9rem)'
+        if (effectiveLanguage === 'jp') {
+            // JP: Hardcoded safe small size. No clamps, no risks. 
+            // 13px on desktop, slightly larger on mobile.
+            return isMobile ? '16px' : '13px'
         }
 
-        const effectiveLength = longestLength
+        const longestLength = Math.max(...items.filter(i => i.primary).map(i => i.label.length))
 
         // MOBILE LOGIC
         if (isMobile) {
-            if (effectiveLength > 16) return 'clamp(1rem, 5vw, 1.5rem)'
-            if (effectiveLength > 10) return 'clamp(1.2rem, 7vw, 2rem)'
+            if (longestLength > 16) return 'clamp(1rem, 5vw, 1.5rem)'
+            if (longestLength > 10) return 'clamp(1.2rem, 7vw, 2rem)'
             return 'clamp(1.8rem, 10vw, 3rem)'
         }
 
         // DESKTOP LOGIC
-        if (effectiveLength > 16) return 'clamp(0.8rem, 1.5vw, 1.5rem)'
-        if (effectiveLength > 10) return 'clamp(1.2rem, 2vw, 2.2rem)'
+        if (longestLength > 16) return 'clamp(0.8rem, 1.5vw, 1.5rem)'
+        if (longestLength > 10) return 'clamp(1.2rem, 2vw, 2.2rem)'
         return 'clamp(2rem, 3.5vw, 3.5rem)'
     }
 
@@ -55,18 +67,11 @@ export default function LandingMenu({ onNavigate }) {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: {
-                duration: 0.25,
-                staggerChildren: 0.04,
-                delayChildren: 0.1
-            }
+            transition: { duration: 0.25, staggerChildren: 0.04, delayChildren: 0.1 }
         },
         exit: {
             opacity: 0,
-            transition: {
-                duration: 0.3,
-                ease: appleEasing
-            }
+            transition: { duration: 0.3, ease: appleEasing }
         }
     }
 
@@ -74,11 +79,6 @@ export default function LandingMenu({ onNavigate }) {
         hidden: { opacity: 0, x: -8, filter: 'blur(2px)' },
         visible: { opacity: 1, x: 0, filter: 'blur(0px)', transition: { duration: 0.35, ease: cinematicEasing } }
     }
-
-    const menuItems = [
-        { id: 'design', label: t.menu.fashionDesign, primary: true },
-        { id: 'styling', label: t.menu.styling, primary: true }
-    ]
 
     const unifiedFontSize = getUnifiedFontSize(menuItems)
 
@@ -91,11 +91,11 @@ export default function LandingMenu({ onNavigate }) {
             transition={{ duration: 0.5, ease: appleEasing }}
             style={{ position: 'relative', overflow: 'hidden' }}
         >
-            {/* Menu content - CENTERED via Flexbox, no manual negative margins */}
+            {/* Menu content - CENTERED via Flexbox */}
             <motion.nav
                 // Use GAP for even spacing. 
-                // JP: Tightest possible gap. EN: standard.
-                className={`flex flex-col items-start relative z-10 pr-8 ${language === 'jp' ? 'gap-1' : 'gap-8 md:gap-12'}`}
+                // JP: Tiny gap. EN: Standard gap.
+                className={`flex flex-col items-start relative z-10 pr-8 ${effectiveLanguage === 'jp' ? 'gap-2' : 'gap-8 md:gap-12'}`}
                 variants={containerVariants}
                 initial="hidden"
                 animate={navigatingTo ? "exit" : "visible"}
@@ -115,10 +115,15 @@ export default function LandingMenu({ onNavigate }) {
                         style={{
                             // Apply unified font size
                             fontSize: item.primary ? unifiedFontSize : undefined,
-                            // FORCE NOWRAP strictly via style to prevent any CSS overrides
-                            whiteSpace: language === 'jp' ? 'nowrap' : 'normal',
-                            // Remove all manual Margins - use Flex Gap!
-                            marginTop: 0
+
+                            // FORCE OVERRIDES FOR JAPANESE
+                            // We use !important behavior by passing these styles which override class names
+                            whiteSpace: effectiveLanguage === 'jp' ? 'nowrap' : 'normal',
+                            lineHeight: effectiveLanguage === 'jp' ? '1' : undefined,
+                            paddingTop: effectiveLanguage === 'jp' ? '0.2rem' : undefined,
+                            paddingBottom: effectiveLanguage === 'jp' ? '0.2rem' : undefined,
+
+                            marginTop: 0 // Ensure no manual margins
                         }}
                     >
                         {item.label}
