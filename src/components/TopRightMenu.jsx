@@ -43,11 +43,12 @@ export default function TopRightMenu({ onNavigate }) {
                 >
                     <span style={{
                         fontFamily: 'GhostFont',
-                        fontSize: '3.5rem',
-                        lineHeight: 1,
+                        fontSize: '3rem',
+                        lineHeight: 0,
                         color: 'white',
-                        marginTop: '-0.2rem', // Visual centering adjustment for font
-                        filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.3))'
+                        transform: 'translateY(-2px)', // Micro-adjustment for visual center
+                        filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.3))',
+                        display: 'block'
                     }}>
                         +
                     </span>
