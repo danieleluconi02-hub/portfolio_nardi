@@ -8,8 +8,6 @@ export default function LandingMenu({ onNavigate }) {
     const [navigatingTo, setNavigatingTo] = useState(null)
     const [isMobile, setIsMobile] = useState(false)
 
-    // Check for mobile on mount and resize
-    // We need this because the grid structure changes radically (25% center on desktop vs 75% on mobile)
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768)
         checkMobile()
@@ -17,46 +15,42 @@ export default function LandingMenu({ onNavigate }) {
         return () => window.removeEventListener('resize', checkMobile)
     }, [])
 
-    // Unified Font Sizing based on the LONGEST primary item
+    // Unified Font Sizing
     const getUnifiedFontSize = (items) => {
-        // Find longest string among primary items
         const longestLength = Math.max(...items.filter(i => i.primary).map(i => i.label.length))
 
-        // Japanese text is wider per character and denser.
+        // Japanese text logic
         if (language === 'jp') {
             if (isMobile) return 'clamp(1rem, 4vw, 1.5rem)'
-            // Desktop JP: Needs to be tiny to fit in the narrow column without breaking badly
-            return 'clamp(0.7rem, 1.1vw, 1.2rem)'
+            // Desktop JP: Tiny to fit in narrow column
+            return 'clamp(0.6rem, 0.9vw, 1.1rem)'
         }
 
         const effectiveLength = longestLength
 
-        // MOBILE LOGIC (Wide center column ~75% width)
+        // MOBILE LOGIC
         if (isMobile) {
             if (effectiveLength > 16) return 'clamp(1rem, 5vw, 1.5rem)'
             if (effectiveLength > 10) return 'clamp(1.2rem, 7vw, 2rem)'
             return 'clamp(1.8rem, 10vw, 3rem)'
         }
 
-        // DESKTOP LOGIC (Narrow center column ~25% width)
-        if (effectiveLength > 16) return 'clamp(0.8rem, 1.5vw, 1.5rem)' // Very Long (IT)
-        if (effectiveLength > 10) return 'clamp(1.2rem, 2vw, 2.2rem)' // Medium
-        return 'clamp(2rem, 3.5vw, 3.5rem)' // Short
+        // DESKTOP LOGIC
+        if (effectiveLength > 16) return 'clamp(0.8rem, 1.5vw, 1.5rem)'
+        if (effectiveLength > 10) return 'clamp(1.2rem, 2vw, 2.2rem)'
+        return 'clamp(2rem, 3.5vw, 3.5rem)'
     }
 
     const handleMenuClick = useCallback((id) => {
         setNavigatingTo(id)
-        // Short delay for exit animation then navigate
         setTimeout(() => {
             onNavigate(id)
         }, 500)
     }, [onNavigate])
 
-    // Apple-like easing curves
     const appleEasing = [0.25, 0.1, 0.25, 1]
     const cinematicEasing = [0.16, 1, 0.3, 1]
 
-    // Container variants - quick but visible fade-in
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -77,20 +71,8 @@ export default function LandingMenu({ onNavigate }) {
     }
 
     const itemVariants = {
-        hidden: {
-            opacity: 0,
-            x: -8,
-            filter: 'blur(2px)'
-        },
-        visible: {
-            opacity: 1,
-            x: 0,
-            filter: 'blur(0px)',
-            transition: {
-                duration: 0.35,
-                ease: cinematicEasing
-            }
-        }
+        hidden: { opacity: 0, x: -8, filter: 'blur(2px)' },
+        visible: { opacity: 1, x: 0, filter: 'blur(0px)', transition: { duration: 0.35, ease: cinematicEasing } }
     }
 
     const menuItems = [
@@ -109,44 +91,34 @@ export default function LandingMenu({ onNavigate }) {
             transition={{ duration: 0.5, ease: appleEasing }}
             style={{ position: 'relative', overflow: 'hidden' }}
         >
-            {/* Background handled in App.jsx for continuity */}
-
-            {/* Menu content - centered, above background */}
-            {/* Added pr-8 to shift content slightly left as requested to avoid right-edge collision */}
+            {/* Menu content - CENTERED via Flexbox, no manual negative margins */}
             <motion.nav
-                // Reduce vertical gap significantly for Japanese to preventing vertical blowout
-                className={`flex flex-col items-start relative z-10 pr-8 ${language === 'jp' ? 'gap-4 mt-[-2vh]' : 'gap-8 md:gap-12 mt-[-5vh]'}`}
+                // Use GAP for even spacing. 
+                // JP: tighter gap (gap-3). EN: wider gap (gap-8/12).
+                className={`flex flex-col items-start relative z-10 pr-8 ${language === 'jp' ? 'gap-3' : 'gap-8 md:gap-12'}`}
                 variants={containerVariants}
                 initial="hidden"
                 animate={navigatingTo ? "exit" : "visible"}
                 exit="exit"
             >
-                {menuItems.map((item, index) => (
+                {menuItems.map((item) => (
                     <motion.button
                         key={item.id}
-                        // FORCE ONE LINE for Japanese to prevent vertical pile-up
-                        // Added whitespace-nowrap and leading-none specifically for JP
-                        className={`menu-item ${item.primary ? 'menu-item--primary' : ''} ${item.isFilm ? 'menu-item--film' : ''} ${language === 'jp' ? 'whitespace-nowrap leading-none' : ''}`}
+                        className={`menu-item ${item.primary ? 'menu-item--primary' : ''} ${item.isFilm ? 'menu-item--film' : ''}`}
                         variants={itemVariants}
                         onClick={() => handleMenuClick(item.id)}
                         whileHover={{
                             x: item.primary ? 12 : 6,
-                            transition: {
-                                duration: 0.4,
-                                ease: cinematicEasing
-                            }
+                            transition: { duration: 0.4, ease: cinematicEasing }
                         }}
-                        whileTap={{
-                            scale: 0.98,
-                            transition: { duration: 0.1 }
-                        }}
+                        whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
                         style={{
-                            // Apply dynamic font size ONLY for primary items
+                            // Apply unified font size
                             fontSize: item.primary ? unifiedFontSize : undefined,
-                            // Margin logic for separartion - Reduced for JP
-                            marginTop: language === 'jp'
-                                ? (index === 3 ? '1rem' : (index === 2 ? '0.5rem' : undefined))
-                                : (index === 3 ? '2.5rem' : (index === 2 ? '1.5rem' : undefined))
+                            // FORCE NOWRAP strictly via style to prevent any CSS overrides
+                            whiteSpace: language === 'jp' ? 'nowrap' : 'normal',
+                            // Remove all manual Margins - use Flex Gap!
+                            marginTop: 0
                         }}
                     >
                         {item.label}
@@ -154,7 +126,6 @@ export default function LandingMenu({ onNavigate }) {
                 ))}
             </motion.nav>
 
-            {/* Subtle branding hint */}
             <motion.div
                 className="fixed bottom-[5%] left-[4%] z-10"
                 initial={{ opacity: 0 }}
@@ -164,10 +135,8 @@ export default function LandingMenu({ onNavigate }) {
                 <p className="hint-text">{t.ui.portfolio}</p>
             </motion.div>
 
-            {/* Language Switcher - Center bottom */}
             <LanguageSwitcher />
 
-            {/* Author name */}
             <motion.div
                 className="fixed bottom-[5%] right-[4%] z-10 text-right"
                 initial={{ opacity: 0 }}
