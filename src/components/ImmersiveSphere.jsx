@@ -187,14 +187,20 @@ export default function ImmersiveSphere({
     // Get all images with collection info
     const allImages = useMemo(() => {
         const images = []
+        const seenPaths = new Set()
+
         collections.forEach(col => {
             if (col.images) {
                 col.images.forEach(img => {
-                    images.push({
-                        path: img.replace('/full/', '/thumb/'),
-                        collectionId: col.id,
-                        collectionTitle: col.title
-                    })
+                    const thumbPath = img.replace('/full/', '/thumb/')
+                    if (!seenPaths.has(thumbPath)) {
+                        seenPaths.add(thumbPath)
+                        images.push({
+                            path: thumbPath,
+                            collectionId: col.id,
+                            collectionTitle: col.title
+                        })
+                    }
                 })
             }
         })

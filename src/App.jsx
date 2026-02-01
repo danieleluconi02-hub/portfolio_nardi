@@ -7,7 +7,6 @@ import LandingMenu from './components/LandingMenu'
 import AboutPage from './components/AboutPage'
 import ContactPage from './components/ContactPage'
 import FashionFilmPage from './components/FashionFilmPage'
-import CategorySphere from './components/CategorySphere'
 import ImmersiveSphere from './components/ImmersiveSphere'
 import ImagePreviewModal from './components/ImagePreviewModal'
 import CollectionFocus from './components/CollectionFocus'
@@ -23,7 +22,8 @@ const cinematicEasing = [0.16, 1, 0.3, 1]
 function App() {
     const { t } = useLanguage()
 
-    // States: 'menu' | 'about' | 'contact' | 'sphere' | 'entering' | 'scroll' | 'preview' | 'focus' | 'collection'
+    // States: 'menu' | 'about' | 'contact' | 'scroll' | 'preview' | 'focus' | 'collection'
+    // Removed 'sphere' and 'entering' states
     const [appState, setAppState] = useState('menu')
     const [selectedCategory, setSelectedCategory] = useState(null)
     const [focusedCollection, setFocusedCollection] = useState(null)
@@ -31,13 +31,12 @@ function App() {
     const [showMenu, setShowMenu] = useState(true)
     const [previewImageData, setPreviewImageData] = useState(null)
 
-
-
     // Handle menu navigation
     const handleMenuNavigate = useCallback((destination) => {
         if (destination === 'design' || destination === 'styling') {
             setSelectedCategory(destination)
-            setAppState('sphere')
+            // Go directly to immersion (scroll) instead of sphere view
+            setAppState('scroll')
         } else if (destination === 'about') {
             setAppState('about')
         } else if (destination === 'contact') {
@@ -45,18 +44,6 @@ function App() {
         } else if (destination === 'fashionfilm') {
             setAppState('fashionfilm')
         }
-    }, [])
-
-    // Handle sphere click - start "entering" animation
-    const handleSphereClick = useCallback(() => {
-        if (appState === 'sphere') {
-            setAppState('entering')
-        }
-    }, [appState])
-
-    // Handle enter sphere complete - transition to immersive sphere
-    const handleEnterComplete = useCallback(() => {
-        setAppState('scroll')
     }, [])
 
     // Handle image click in immersive sphere - show preview modal
@@ -111,13 +98,9 @@ function App() {
             case 'fashionfilm':
                 setAppState('menu')
                 break
-            case 'sphere':
-            case 'entering':
+            case 'scroll':
                 setSelectedCategory(null)
                 setAppState('menu')
-                break
-            case 'scroll':
-                setAppState('sphere')
                 break
             case 'preview':
                 setPreviewImageData(null)
@@ -189,58 +172,6 @@ function App() {
                 )}
             </AnimatePresence>
 
-            {/* Category Sphere - Entry animation */}
-            <AnimatePresence>
-                {(appState === 'sphere' || appState === 'entering') && (
-                    <motion.div
-                        className="canvas-container"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 1, ease: cinematicEasing }}
-                    >
-                        {/* Back Button */}
-                        <motion.button
-                            className="back-button"
-                            onClick={handleBack}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: appState === 'sphere' ? 1 : 0 }}
-                            transition={{ delay: 0.5, duration: 0.5 }}
-                            style={{ pointerEvents: appState === 'sphere' ? 'auto' : 'none' }}
-                        >
-                            Back
-                        </motion.button>
-
-                        {/* Category label removed */}
-
-                        {/* Hint - below sphere */}
-                        <motion.p
-                            className="fixed bottom-[18%] left-1/2 -translate-x-1/2 hint-text z-10"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: appState === 'sphere' ? 0.35 : 0 }}
-                            transition={{ delay: 0.8, duration: 0.6 }}
-                        >
-                            {t.ui.clickToEnter}
-                        </motion.p>
-
-                        <Canvas
-                            camera={{ position: [0, 0, 12], fov: 50 }}
-                            dpr={[1, 2]}
-                        >
-                            <Suspense fallback={null}>
-                                <CategorySphere
-                                    category={selectedCategory}
-                                    collections={currentCollections}
-                                    appState={appState}
-                                    onSphereClick={handleSphereClick}
-                                    onEnterComplete={handleEnterComplete}
-                                />
-                            </Suspense>
-                        </Canvas>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
             {/* Immersive Sphere - Inside the sphere view */}
             <AnimatePresence>
                 {appState === 'scroll' && selectedCategory && (
@@ -261,8 +192,6 @@ function App() {
                         >
                             Back
                         </motion.button>
-
-                        {/* Category label removed */}
 
                         {/* Hint - translated */}
                         <motion.p
@@ -345,4 +274,3 @@ function AppWithLanguage() {
 }
 
 export default AppWithLanguage
-

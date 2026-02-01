@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useLanguage } from '../contexts/LanguageContext'
 import LanguageSwitcher from './LanguageSwitcher'
+import PhysicalSpheres from './PhysicalSpheres'
 
 export default function LandingMenu({ onNavigate }) {
     const { t } = useLanguage()
@@ -81,6 +82,9 @@ export default function LandingMenu({ onNavigate }) {
                 transition={{ duration: 0.4, ease: cinematicEasing }}
             />
 
+            {/* Physical Spheres - Interactive Background Elements */}
+            <PhysicalSpheres />
+
             {/* Menu content - centered, above background */}
             <motion.nav
                 className="flex flex-col items-start relative z-10"
@@ -141,4 +145,3 @@ export default function LandingMenu({ onNavigate }) {
         </motion.div>
     )
 }
-
