@@ -112,7 +112,8 @@ export default function CategorySphere({
     collections,
     appState,
     onSphereClick,
-    onEnterComplete
+    onEnterComplete,
+    onOrbitComplete
 }) {
     const { camera } = useThree()
     const groupRef = useRef()
@@ -215,9 +216,14 @@ export default function CategorySphere({
 
     // Handle sphere click - start entering phase
     useEffect(() => {
-        if (appState === 'entering' && animationState.current.phase === 'idle') {
-            animationState.current.phase = 'entering'
-            animationState.current.startTime = performance.now()
+        if (appState === 'entering') {
+            const currentPhase = animationState.current.phase
+            // Force start 'entering' phase if not already there, regardless of previous phase
+            // This handles both "Idle click" and "Orbit skip"
+            if (currentPhase !== 'entering' && currentPhase !== 'complete') {
+                animationState.current.phase = 'entering'
+                animationState.current.startTime = performance.now()
+            }
         }
     }, [appState])
 
@@ -273,6 +279,8 @@ export default function CategorySphere({
 
             if (progress >= 1) {
                 anim.phase = 'idle'
+                // Notify that orbit is complete to show hint
+                if (onOrbitComplete) onOrbitComplete()
             }
         }
 
@@ -334,10 +342,16 @@ export default function CategorySphere({
         }
     })
 
-    // Handle click on sphere - only after orbit animation
-    const handleSphereClick = useCallback(() => {
-        if (appState === 'sphere' && animationState.current.phase === 'idle' && onSphereClick) {
-            onSphereClick()
+    // Handle click on sphere - Allow during orbit AND idle
+    const handleSphereClick = useCallback((e) => {
+        // Stop propagation to prevent hitting anything behind it
+        e.stopPropagation()
+
+        if (appState === 'sphere' && onSphereClick) {
+            // Permit click during orbit OR idle phases
+            if (animationState.current.phase === 'idle' || animationState.current.phase === 'camera_orbit') {
+                onSphereClick()
+            }
         }
     }, [appState, onSphereClick])
 

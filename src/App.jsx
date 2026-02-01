@@ -128,7 +128,9 @@ function App() {
         }
     }, [appState])
 
-    // Get collections for current category
+    const [showSphereHint, setShowSphereHint] = useState(false)
+
+    // Handle string if we have a valid category
     const currentCollections = selectedCategory
         ? manifest[selectedCategory]?.collections || []
         : []
@@ -142,7 +144,14 @@ function App() {
 
     // Callback when sphere is clicked (start entry animation)
     const handleSphereClick = useCallback(() => {
+        setShowSphereHint(false)
         setAppState('entering')
+    }, [])
+
+    // Callback when orbit animation is complete
+    const handleOrbitComplete = useCallback(() => {
+        // Only show hint if we are still in the sphere state and haven't started entering
+        setShowSphereHint(true)
     }, [])
 
     // Callback when sphere entry animation is complete
@@ -252,12 +261,37 @@ function App() {
                                     appState={appState}
                                     onSphereClick={handleSphereClick}
                                     onEnterComplete={handleEnterComplete}
+                                    onOrbitComplete={handleOrbitComplete}
                                 />
                             </Suspense>
                         </Canvas>
 
                         {/* Back Button for Spheres View */}
                         <BackButton onClick={handleBack} />
+
+                        {/* Click to Enter Hint - Only shows after orbit animation */}
+                        <AnimatePresence>
+                            {showSphereHint && appState === 'sphere' && (
+                                <motion.div
+                                    className="fixed inset-0 z-20 flex items-end justify-center pointer-events-none pb-[15vh]"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.5 }}
+                                >
+                                    <p
+                                        className="text-neutral-500 text-sm tracking-[0.2em] font-light uppercase select-none"
+                                        style={{
+                                            textShadow: '0 1px 4px rgba(255,255,255,0.8)',
+                                            fontFamily: t.ui.clickToEnter.match(/[\u3131-\u314e\u314f-\u3163\uac00-\ud7a3]/) ? '"Noto Sans KR", sans-serif' : undefined,
+                                            fontWeight: t.ui.clickToEnter.match(/[\u3131-\u314e\u314f-\u3163\uac00-\ud7a3]/) ? '500' : undefined
+                                        }}
+                                    >
+                                        {t.ui.clickToEnter}
+                                    </p>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
                     </motion.div>
                 )}
             </AnimatePresence>
