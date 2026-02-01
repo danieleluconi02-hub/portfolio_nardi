@@ -3,7 +3,7 @@ import { useLanguage, LANGUAGES } from '../contexts/LanguageContext'
 import SketchyFlag from './SketchyFlag'
 
 // Order of languages to display
-const LANGUAGE_ORDER = ['it', 'en', 'fr', 'es', 'ja']
+const LANGUAGE_ORDER = ['it', 'en', 'fr', 'es', 'ko']
 
 export default function LanguageSwitcher() {
     const { language, setLanguage } = useLanguage()

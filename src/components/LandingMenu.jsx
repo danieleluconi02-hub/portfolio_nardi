@@ -15,9 +15,9 @@ export default function LandingMenu({ onNavigate }) {
         return () => window.removeEventListener('resize', checkMobile)
     }, [])
 
-    // Helper: Detect if string contains Japanese characters
-    const isJapaneseText = (text) => {
-        return /[\u3000-\u303f\u3040-\u309f\u30a0-\u30ff\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]/.test(text)
+    // Helper: Detect if string contains Korean characters
+    const isKoreanText = (text) => {
+        return /[\u3131-\u314e\u314f-\u3163\uac00-\ud7a3]/.test(text)
     }
 
     const menuItems = [
@@ -25,15 +25,15 @@ export default function LandingMenu({ onNavigate }) {
         { id: 'styling', label: t.menu.styling, primary: true }
     ]
 
-    // Determine if we are effectively in "Japanese Mode" based on content
-    // This protects against state desync where language='en' but content is JP
-    const hasJapaneseContent = menuItems.some(i => isJapaneseText(i.label))
-    const effectiveLanguage = hasJapaneseContent ? 'jp' : language
+    // Determine if we are effectively in "Korean Mode" based on content
+    // This protects against state desync where language='en' but content is KR
+    const hasKoreanContent = menuItems.some(i => isKoreanText(i.label))
+    const effectiveLanguage = hasKoreanContent ? 'ko' : language
 
     // Unified Font Sizing
     const getUnifiedFontSize = (items) => {
-        if (effectiveLanguage === 'jp') {
-            // JP: Tuned larger for readability (Local).
+        if (effectiveLanguage === 'ko') {
+            // KR: Tuned larger for readability (Local).
             // With nowrap active, we can go much larger safely.
             return isMobile ? 'clamp(1.5rem, 5vw, 2.5rem)' : 'clamp(1.2rem, 1.8vw, 2rem)'
         }
@@ -94,10 +94,10 @@ export default function LandingMenu({ onNavigate }) {
             {/* Menu content - CENTERED via Flexbox */}
             <motion.nav
                 // Use GAP for even spacing. 
-                // JP: Massive gap (single lines).
+                // KR: Massive gap (single lines).
                 // IT: Tighter gap (compensate for wrapping/length).
                 // EN: Standard gap.
-                className={`flex flex-col items-start relative z-10 pr-8 ${effectiveLanguage === 'jp' ? 'gap-12 md:gap-24' : (language === 'it' ? 'gap-4 md:gap-8' : 'gap-8 md:gap-12')}`}
+                className={`flex flex-col items-start relative z-10 pr-8 ${effectiveLanguage === 'ko' ? 'gap-12 md:gap-24' : (language === 'it' ? 'gap-4 md:gap-8' : 'gap-8 md:gap-12')}`}
                 variants={containerVariants}
                 initial="hidden"
                 animate={navigatingTo ? "exit" : "visible"}
@@ -118,12 +118,14 @@ export default function LandingMenu({ onNavigate }) {
                             // Apply unified font size
                             fontSize: item.primary ? unifiedFontSize : undefined,
 
-                            // FORCE OVERRIDES FOR JAPANESE
+                            // FORCE OVERRIDES FOR KOREAN
                             // We use !important behavior by passing these styles which override class names
-                            whiteSpace: effectiveLanguage === 'jp' ? 'nowrap' : 'normal',
-                            lineHeight: effectiveLanguage === 'jp' ? '1' : undefined,
-                            paddingTop: effectiveLanguage === 'jp' ? '0.2rem' : undefined,
-                            paddingBottom: effectiveLanguage === 'jp' ? '0.2rem' : undefined,
+                            whiteSpace: effectiveLanguage === 'ko' ? 'nowrap' : 'normal',
+                            lineHeight: effectiveLanguage === 'ko' ? '1.2' : undefined,
+                            paddingTop: effectiveLanguage === 'ko' ? '0.2rem' : undefined,
+                            paddingBottom: effectiveLanguage === 'ko' ? '0.2rem' : undefined,
+                            fontFamily: effectiveLanguage === 'ko' ? '"Noto Sans KR", sans-serif' : undefined,
+                            fontWeight: effectiveLanguage === 'ko' ? '700' : undefined,
 
                             marginTop: 0 // Ensure no manual margins
                         }}

@@ -1,5 +1,6 @@
 /* Typography - Apple SF Pro System */
 /* SF Pro is available on Apple devices; uses system fonts as fallback on other platforms */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
 
 @tailwind base;
 @tailwind components;

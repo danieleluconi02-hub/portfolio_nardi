@@ -10,7 +10,7 @@ export const LANGUAGES = {
     it: { code: 'it', name: 'Italiano', flag: '🇮🇹' },
     es: { code: 'es', name: 'Español', flag: '🇪🇸' },
     fr: { code: 'fr', name: 'Français', flag: '🇫🇷' },
-    ja: { code: 'ja', name: '日本語', flag: '🇯🇵' }
+    ko: { code: 'ko', name: 'Korean', flag: '🇰🇷' }
 }
 
 // Provider component
