@@ -125,15 +125,9 @@ export default function TopRightMenu({ onNavigate }) {
                         </nav>
 
                         {/* Language Switcher - Centered below menu */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 10 }}
-                            transition={{ delay: 0.5, duration: 0.5, ease: appleEasing }}
-                            className="mt-12"
-                        >
+                        <div className="mt-12">
                             <LanguageSwitcher />
-                        </motion.div>
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

@@ -9,12 +9,7 @@ export default function LanguageSwitcher() {
     const { language, setLanguage } = useLanguage()
 
     return (
-        <motion.div
-            className="language-switcher flex gap-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 0.5 }}
-        >
+        <div className="language-switcher flex gap-4">
             {LANGUAGE_ORDER.map((langCode) => (
                 <motion.button
                     key={langCode}
@@ -28,6 +23,6 @@ export default function LanguageSwitcher() {
                     <SketchyFlag code={langCode} />
                 </motion.button>
             ))}
-        </motion.div>
+        </div>
     )
 }
