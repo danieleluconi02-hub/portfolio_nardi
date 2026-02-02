@@ -36,6 +36,7 @@
 
   /* Typography - Ghost Font Global Override */
   --font-primary: 'GhostFont', sans-serif;
+  /* Updated border styles for preview modal */
 
   /* Font Weights */
   --weight-regular: 400;
@@ -842,15 +843,68 @@ label,
   align-items: center;
   justify-content: center;
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
+  /* Allow borders to show */
+  padding: 20px;
+  /* Give space for borders */
 }
 
 .focus-image {
   max-width: 100%;
   max-height: 70vh;
   object-fit: contain;
-  border-radius: 3px;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  display: block;
+  box-shadow: none !important;
+  filter: none !important;
+  /* Ensure no drop-shadows either */
+  background: transparent;
+  border-radius: 0 !important;
+}
+
+.sketchy-image-wrapper {
+  position: relative;
+  display: inline-flex;
+  /* Better strict wrapping */
+  z-index: 10;
+  padding: 0;
+  line-height: 0;
+  /* Kill potential vertical space */
+}
+
+/* Horizontal Lines (Top/Bottom) */
+.sketchy-image-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  left: -4px;
+  right: -4px;
+  border-top: 1px solid #1d1d1f;
+  /* Explicit dark color */
+  border-bottom: 1px solid #1d1d1f;
+  transform: rotate(-0.5deg);
+  pointer-events: none;
+  z-index: 20;
+  /* Ensure on top */
+  opacity: 0.7;
+}
+
+/* Vertical Lines (Left/Right) */
+.sketchy-image-wrapper::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  left: -3px;
+  right: -3px;
+  border-left: 1px solid #1d1d1f;
+  /* Explicit dark color */
+  border-right: 1px solid #1d1d1f;
+  transform: rotate(0.6deg);
+  pointer-events: none;
+  z-index: 20;
+  /* Ensure on top */
+  opacity: 0.7;
 }
 
 /* Image counter - subtle, top right of image container */
@@ -2009,4 +2063,64 @@ body {
   letter-spacing: 0.05em;
   margin: 0;
   line-height: 1;
+}
+
+/* ============================================
+   SKETCHY PREVIEW IMAGE - OVERRIDE
+   ============================================ */
+
+.sketchy-preview-image {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  display: block;
+  box-shadow: none !important;
+  filter: none !important;
+  background: transparent;
+  border-radius: 0 !important;
+}
+
+.sketchy-image-wrapper {
+  position: relative;
+  display: inline-block !important;
+  /* Force inline-block */
+  z-index: 10;
+  padding: 0;
+  line-height: 0;
+  margin: 10px;
+  /* Safe margin */
+}
+
+/* Horizontal Lines (Top/Bottom) */
+.sketchy-image-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  left: -4px;
+  right: -4px;
+  border-top: 2px solid #1d1d1f !important;
+  /* Thicker 2px for visibility */
+  border-bottom: 2px solid #1d1d1f !important;
+  transform: rotate(-0.5deg);
+  pointer-events: none;
+  z-index: 20;
+  opacity: 0.9;
+}
+
+/* Vertical Lines (Left/Right) */
+.sketchy-image-wrapper::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  left: -3px;
+  right: -3px;
+  border-left: 2px solid #1d1d1f !important;
+  /* Thicker 2px */
+  border-right: 2px solid #1d1d1f !important;
+  transform: rotate(0.6deg);
+  pointer-events: none;
+  z-index: 20;
+  opacity: 0.9;
 }
