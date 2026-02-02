@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import content from '../data/content.json'
 import BackButton from './BackButton'
 
+import { LanguageProvider, useLanguage } from '../contexts/LanguageContext'
+
 // Apple-like easing
 const appleEasing = [0.25, 0.1, 0.25, 1]
 const cinematicEasing = [0.16, 1, 0.3, 1]
@@ -12,6 +14,7 @@ export default function CollectionFocus({
     onView,
     onClose
 }) {
+    const { t } = useLanguage()
     const [imageLoaded, setImageLoaded] = useState(false)
     const [selectedImageIndex, setSelectedImageIndex] = useState(0)
 
@@ -153,12 +156,12 @@ export default function CollectionFocus({
                         </div>
 
                         <motion.button
-                            className="focus-button focus-button--primary"
+                            className="btn-sketchy"
                             onClick={onView}
-                            whileHover={{ opacity: 0.85 }}
+                            whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                         >
-                            View Collection
+                            {t.ui.viewCollection} <span className="arrow">→</span>
                         </motion.button>
                     </motion.div>
                 </motion.div>

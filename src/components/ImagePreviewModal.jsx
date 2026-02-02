@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import BackButton from './BackButton'
 
+import { useLanguage } from '../contexts/LanguageContext'
+
 // Apple-like easing
 const appleEasing = [0.25, 0.1, 0.25, 1]
 const cinematicEasing = [0.16, 1, 0.3, 1]
@@ -12,6 +14,7 @@ export default function ImagePreviewModal({
     onViewCollection,
     onClose
 }) {
+    const { t } = useLanguage()
     const [imageLoaded, setImageLoaded] = useState(false)
     const [selectedImageIndex, setSelectedImageIndex] = useState(0)
     const [randomImages, setRandomImages] = useState([])
@@ -156,19 +159,27 @@ export default function ImagePreviewModal({
                                 </div>
                             ))}
                         </div>
-
-                        <motion.button
-                            className="preview-view-collection-inline"
-                            onClick={(e) => { e.stopPropagation(); onViewCollection(); }}
-                            whileHover={{ scale: 1.05, x: 5 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            <span className="view-text">View Collection</span>
-                            <span className="view-icon">→</span>
-                        </motion.button>
                     </motion.div>
                 </div>
-            </motion.div>
-        </motion.div>
+
+                {/* Right Panel - View Collection Button */}
+                <motion.div
+                    className="preview-actions-panel"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3, duration: 0.5, ease: cinematicEasing }}
+                >
+                    <motion.button
+                        className="btn-sketchy"
+                        onClick={(e) => { e.stopPropagation(); onViewCollection(); }}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        style={{ fontSize: '1.2rem', padding: '0.6rem 2rem' }}
+                    >
+                        {t.ui.viewCollection} <span className="arrow">→</span>
+                    </motion.button>
+                </motion.div>
+            </motion.div >
+        </motion.div >
     )
 }

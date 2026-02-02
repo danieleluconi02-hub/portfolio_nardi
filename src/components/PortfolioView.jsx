@@ -88,14 +88,20 @@ export default function PortfolioView({ category, data, onBack }) {
         )
     }
 
+    const [interactionCount, setInteractionCount] = useState(0)
     const activeCollection = collections[activeCollectionIndex]
     const images = activeCollection?.images || []
     const currentImage = images[activeImageIndex]
+
+    const incrementInteraction = useCallback(() => {
+        setInteractionCount(prev => prev + 1)
+    }, [])
 
     const nextImage = useCallback(() => {
         if (isTransitioning) return
         setIsTransitioning(true)
         setImageLoaded(false)
+        incrementInteraction()
 
         setTimeout(() => {
             if (activeImageIndex < images.length - 1) {
@@ -106,12 +112,13 @@ export default function PortfolioView({ category, data, onBack }) {
             }
             setIsTransitioning(false)
         }, 100)
-    }, [activeImageIndex, activeCollectionIndex, images.length, collections.length, isTransitioning])
+    }, [activeImageIndex, activeCollectionIndex, images.length, collections.length, isTransitioning, incrementInteraction])
 
     const prevImage = useCallback(() => {
         if (isTransitioning) return
         setIsTransitioning(true)
         setImageLoaded(false)
+        incrementInteraction()
 
         setTimeout(() => {
             if (activeImageIndex > 0) {
@@ -123,7 +130,7 @@ export default function PortfolioView({ category, data, onBack }) {
             }
             setIsTransitioning(false)
         }, 100)
-    }, [activeImageIndex, activeCollectionIndex, collections, isTransitioning])
+    }, [activeImageIndex, activeCollectionIndex, collections, isTransitioning, incrementInteraction])
 
     const goToSection = useCallback((index) => {
         if (index !== activeCollectionIndex && !isTransitioning) {
@@ -165,17 +172,15 @@ export default function PortfolioView({ category, data, onBack }) {
             >
                 <AnimatePresence mode="wait">
                     {currentImage && (
-                        <motion.img
+                        <motion.div
                             key={`${activeCollectionIndex}-${activeImageIndex}`}
-                            src={currentImage}
-                            alt={`${activeCollection.title} - ${activeImageIndex + 1}`}
-                            className="image-display"
+                            className="relative inline-block"
                             initial={{ opacity: 0, x: 0 }}
                             animate={{
                                 opacity: imageLoaded ? 1 : 0.3,
                                 x: 0
                             }}
-                            exit={{ opacity: 0, x: 0 }} // Simple fade out to avoid conflict with drag
+                            exit={{ opacity: 0, x: 0 }}
                             transition={{
                                 opacity: { duration: 0.2 },
                                 x: { type: "spring", stiffness: 300, damping: 30 }
@@ -191,9 +196,20 @@ export default function PortfolioView({ category, data, onBack }) {
                                     nextImage();
                                 }
                             }}
-                            onLoad={() => setImageLoaded(true)}
-                            draggable={false}
-                        />
+                        >
+                            <img
+                                src={currentImage}
+                                alt={`${activeCollection.title} - ${activeImageIndex + 1}`}
+                                className="image-display block"
+                                onLoad={() => setImageLoaded(true)}
+                                draggable={false}
+                            />
+
+                            {/* Image Counter - Adapted to image corner */}
+                            <div className="image-counter">
+                                {String(activeImageIndex + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
+                            </div>
+                        </motion.div>
                     )}
                 </AnimatePresence>
             </div>
@@ -222,16 +238,6 @@ export default function PortfolioView({ category, data, onBack }) {
                 </AnimatePresence>
             </motion.div>
 
-            {/* Image Counter */}
-            <motion.div
-                className="image-counter text-lg font-medium tracking-widest mix-blend-difference text-white"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.6 }}
-            >
-                {String(activeImageIndex + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
-            </motion.div>
-
             {/* Section Navigation Dots */}
             {collections.length > 1 && (
                 <motion.div
@@ -252,14 +258,19 @@ export default function PortfolioView({ category, data, onBack }) {
             )}
 
             {/* Navigation Hint - centered below image */}
-            <motion.p
-                className="fixed bottom-[8%] left-1/2 -translate-x-1/2 hint-text text-center"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.25 }}
-                transition={{ delay: 1.2 }}
-            >
-                {t.ui.tapNavigation}
-            </motion.p>
+            <AnimatePresence>
+                {interactionCount < 3 && (
+                    <motion.p
+                        className="fixed bottom-[2%] left-1/2 -translate-x-1/2 hint-text text-center"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.6 }} // Less transparent
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 1.0 }} // Faster fade, no delay
+                    >
+                        {t.ui.tapNavigation}
+                    </motion.p>
+                )}
+            </AnimatePresence>
         </motion.div>
     )
 }
