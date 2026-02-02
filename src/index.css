@@ -1575,14 +1575,18 @@ body {
 .fashion-film-title {
   position: absolute;
   top: 6%;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  width: 100%;
   font-family: var(--font-display);
-  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  color: var(--text-secondary);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  /* Larger, matching page titles */
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--text-primary);
+  /* Use primary text color */
   text-transform: uppercase;
+  text-align: center;
+  z-index: 20;
 }
 
 /* Video Cards Container */
@@ -1620,14 +1624,16 @@ body {
   position: relative;
   width: 100%;
   aspect-ratio: 16/9;
-  border-radius: 16px;
+  border-radius: 4px;
+  /* Sharper corners like portfolio */
   overflow: hidden;
   background: #0a0a0a;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  /* Softer shadow */
 }
 
 .video-card--active .video-card-inner {
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
 .video-card-inner video {
@@ -1878,20 +1884,27 @@ body {
   }
 
   .fashion-film-title {
-    top: 4%;
-    font-size: 0.8rem;
+    top: 5%;
+    font-size: 1.2rem;
+    /* Increased from 0.8rem */
+    width: 100%;
+    left: 0;
+    transform: none;
+    /* Ensure no conflict */
   }
 
   .video-cards-container {
-    height: 50vh;
+    height: 55vh;
   }
 
   .video-card {
-    max-width: 90vw;
+    max-width: 85vw;
+    /* Slightly narrower to show next/prev hints */
   }
 
   .video-card-inner {
-    border-radius: 12px;
+    border-radius: 4px;
+    /* Consistent with desktop */
   }
 
   .play-button-large {
@@ -1905,26 +1918,12 @@ body {
     margin-left: 3px;
   }
 
-  .video-indicators {
-    bottom: 8%;
-    gap: 10px;
-  }
-
-  .video-indicator {
-    width: 8px;
-    height: 8px;
-  }
-
-  .swipe-indicator {
-    bottom: 14%;
-  }
-
   .video-card-title {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   .video-card-description {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
   }
 }
 

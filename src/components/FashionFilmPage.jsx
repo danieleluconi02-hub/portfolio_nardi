@@ -52,6 +52,12 @@ export default function FashionFilmPage({ onBack }) {
 
     const currentVideo = videos[currentIndex]
 
+    // Interaction tracking for hint visibility using the same logic as PortfolioView
+    const [interactionCount, setInteractionCount] = useState(0)
+    const incrementInteraction = useCallback(() => {
+        setInteractionCount(prev => prev + 1)
+    }, [])
+
     // Navigate to video
     const navigateTo = useCallback((index) => {
         if (mainVideoRef.current) {
@@ -60,7 +66,8 @@ export default function FashionFilmPage({ onBack }) {
         }
         setIsPlaying(false)
         setCurrentIndex(index)
-    }, [])
+        incrementInteraction()
+    }, [incrementInteraction])
 
     // Navigate prev/next with wrap-around
     const goToPrev = useCallback(() => {
@@ -119,9 +126,10 @@ export default function FashionFilmPage({ onBack }) {
             goToNext()
         }
 
+        incrementInteraction()
         animate(dragX, 0, { duration: 0.3 })
         setIsDragging(false)
-    }, [isDragging, dragX, goToPrev, goToNext])
+    }, [isDragging, dragX, goToPrev, goToNext, incrementInteraction])
 
     // Fullscreen dismiss handlers
     const handleFullscreenTouchStart = useCallback((e) => {
@@ -351,39 +359,32 @@ export default function FashionFilmPage({ onBack }) {
                                 <h3 className="video-card-title">{video.title}</h3>
                                 <p className="video-card-description">{video.description}</p>
                             </motion.div>
+
+                            {/* Image Counter - Adapted to card Top-Center */}
+                            {isActive && (
+                                <div className="image-counter">
+                                    {String(idx + 1).padStart(2, '0')} / {String(videos.length).padStart(2, '0')}
+                                </div>
+                            )}
                         </motion.div>
                     )
                 })}
             </motion.div>
 
-            {/* Swipe Indicator (Mobile) */}
-            <motion.div
-                className="swipe-indicator"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: isPlaying ? 0 : 0.5 }}
-                transition={{ delay: 1, duration: 0.5 }}
-            >
-                <span className="swipe-arrow">←</span>
-                <span className="swipe-text">Swipe</span>
-                <span className="swipe-arrow">→</span>
-            </motion.div>
-
-            {/* Video Indicators */}
-            <motion.div
-                className="video-indicators"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.8 }}
-                transition={{ delay: 0.6, duration: 0.5 }}
-            >
-                {videos.map((video, idx) => (
-                    <button
-                        key={video.id}
-                        className={`video-indicator ${idx === currentIndex ? 'active' : ''}`}
-                        onClick={() => navigateTo(idx)}
-                        aria-label={`Go to ${video.title}`}
-                    />
-                ))}
-            </motion.div>
+            {/* Navigation Hint - Vanishes after 3 interactions */}
+            <AnimatePresence>
+                {interactionCount < 3 && !isPlaying && (
+                    <motion.p
+                        className="fixed bottom-[2%] left-1/2 -translate-x-1/2 hint-text text-center"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.6 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 1.0 }}
+                    >
+                        {t.ui.tapNavigation || "TAP LEFT / RIGHT"}
+                    </motion.p>
+                )}
+            </AnimatePresence>
 
             {/* Fullscreen Dismiss Hint */}
             <AnimatePresence>
