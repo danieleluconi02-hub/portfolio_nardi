@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Suspense } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
 import LanguageSwitcher from './LanguageSwitcher'
 import PhysicalSpheres from './PhysicalSpheres'
@@ -83,7 +84,9 @@ export default function LandingMenu({ onNavigate }) {
             />
 
             {/* Physical Spheres - Interactive Background Elements */}
-            <PhysicalSpheres />
+            <Suspense fallback={null}>
+                <PhysicalSpheres />
+            </Suspense>
 
             {/* Menu content - centered, above background */}
             <motion.nav

@@ -1,5 +1,5 @@
-import React, { useRef, useMemo, useState, forwardRef } from 'react'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import React, { useRef, useMemo, useState, forwardRef, useEffect } from 'react'
+import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber'
 import * as THREE from 'three'
 import manifest from '../data/manifest.json'
 
@@ -54,15 +54,21 @@ const getRandomImages = (categoryKey, count = 40) => {
 // --- Components ---
 
 function ImagePlane({ imagePath, position, quaternion, scale = 1.0, opacity = 1.0 }) {
-    const meshRef = useRef()
-    const texture = useMemo(() => {
-        if (!imagePath) return null
-        return new THREE.TextureLoader().load(imagePath)
-    }, [imagePath])
+    // Optimization: useLoader handles caching automatically
+    const texture = useLoader(THREE.TextureLoader, imagePath)
+
+    // Optimization: Reuse geometry and material props where possible, but here unique opacity/map requires distinct mats
+    // We can at least ensure texture settings are correct once
+    useMemo(() => {
+        if (texture) {
+            texture.colorSpace = THREE.SRGBColorSpace
+            texture.minFilter = THREE.LinearFilter
+            texture.magFilter = THREE.LinearFilter
+        }
+    }, [texture])
 
     return (
         <mesh
-            ref={meshRef}
             position={position}
             quaternion={quaternion}
             scale={[scale, scale, 1]}
@@ -73,18 +79,14 @@ function ImagePlane({ imagePath, position, quaternion, scale = 1.0, opacity = 1.
                 transparent
                 opacity={opacity}
                 side={THREE.DoubleSide}
+                depthWrite={false} // Optimization for transparent objects
             />
         </mesh>
     )
 }
 
 const ParticleMesh = forwardRef(({ image, initPos }, ref) => {
-    const texture = useMemo(() => {
-        if (!image) return null
-        return new THREE.TextureLoader().load(image)
-    }, [image])
-
-    // Use initial position just for spawn
+    const texture = useLoader(THREE.TextureLoader, image)
     return (
         <mesh ref={ref} position={initPos} scale={0.4}>
             <sphereGeometry args={[1, 16, 16]} />
@@ -99,12 +101,11 @@ function ExplosionParticles({ images, origin, radius, onReassemble }) {
     const particlesRef = useRef([])
     const startTime = useRef(Date.now())
 
-    // Calculate target positions on the sphere surface (relative to origin)
     const targetPositions = useMemo(() => fibonacciSphere(images.length, radius), [images.length, radius])
 
-    // Initialize particles state
-    const [particles] = useState(() => {
-        return images.map(img => ({
+    // State for physics calc only (no re-renders needed for physics steps)
+    const physicsState = useRef(
+        images.map(img => ({
             pos: origin.clone().add(new THREE.Vector3(
                 (Math.random() - 0.5) * 2,
                 (Math.random() - 0.5) * 2,
@@ -112,48 +113,44 @@ function ExplosionParticles({ images, origin, radius, onReassemble }) {
             )),
             vel: new THREE.Vector3(
                 (Math.random() - 0.5) * 0.4,
-                (Math.random() - 0.5) * 0.4 + 0.2, // Slight upward burst
+                (Math.random() - 0.5) * 0.4 + 0.2,
                 (Math.random() - 0.5) * 0.4
             ),
             rot: new THREE.Euler(Math.random(), Math.random(), Math.random()),
             rotVel: { x: (Math.random()-0.5)*0.2, y: (Math.random()-0.5)*0.2 },
             image: img
         }))
-    })
+    )
 
     useFrame((state, delta) => {
         const timeSinceExplosion = Date.now() - startTime.current
         const isReassembling = timeSinceExplosion > 2000
 
         let allReassembled = true
+        const particles = physicsState.current
 
         particles.forEach((p, i) => {
             const mesh = particlesRef.current[i]
             if (!mesh) return
 
             if (isReassembling) {
-                // Fly back to target position on surface
                 const targetPos = targetPositions[i].clone().add(origin)
                 const dist = p.pos.distanceTo(targetPos)
 
                 if (dist > 0.1) {
                     allReassembled = false
-                    // Lerp towards target
                     p.pos.lerp(targetPos, delta * 4)
                 } else {
                     p.pos.copy(targetPos)
                 }
             } else {
-                // Physics
-                p.vel.y -= 9.8 * delta * 0.05 // Gravity
+                p.vel.y -= 9.8 * delta * 0.05
                 p.pos.add(p.vel)
 
-                // Bounds (VisualViewport logic handled here simply using useThree viewport for particles for speed)
-                // Actually need to consider bottom of screen.
                 const floorY = -viewport.height/2
                 if (p.pos.y < floorY) {
                     p.pos.y = floorY
-                    p.vel.y *= -0.6 // Dampened bounce
+                    p.vel.y *= -0.6
                 }
                 const wallX = viewport.width/2
                 if (p.pos.x > wallX) { p.pos.x = wallX; p.vel.x *= -1 }
@@ -162,11 +159,9 @@ function ExplosionParticles({ images, origin, radius, onReassemble }) {
                 allReassembled = false
             }
 
-            // Rotation
             p.rot.x += p.rotVel.x
             p.rot.y += p.rotVel.y
 
-            // Update Mesh
             mesh.position.copy(p.pos)
             mesh.rotation.x = p.rot.x
             mesh.rotation.y = p.rot.y
@@ -179,19 +174,19 @@ function ExplosionParticles({ images, origin, radius, onReassemble }) {
 
     return (
         <group>
-            {particles.map((p, i) => (
+            {images.map((img, i) => (
                 <ParticleMesh
                     key={i}
                     ref={el => particlesRef.current[i] = el}
-                    image={p.image}
-                    initPos={p.pos}
+                    image={img}
+                    initPos={physicsState.current[i].pos}
                 />
             ))}
         </group>
     )
 }
 
-function CompositeSphere({ images, radius, opacity, isBackground }) {
+function CompositeSphere({ images, radius, opacity }) {
     const positions = useMemo(() => fibonacciSphere(images.length, radius), [images.length, radius])
     const quaternions = useMemo(() => {
         return positions.map(pos => {
@@ -221,233 +216,275 @@ function CompositeSphere({ images, radius, opacity, isBackground }) {
     )
 }
 
-function PhysicsGroup({ id, config, onInteract, opacity, isBackground }) {
+function PhysicsGroup({ id, radius, images, opacityRef, isExploded, onInteract }) {
     const groupRef = useRef()
     const meshRef = useRef()
     const lastClick = useRef(0)
 
-    useFrame((state, delta) => {
-        if (groupRef.current) {
-            // Apply Physics Position
-            groupRef.current.position.copy(config.pos)
+    // IMPORTANT: The parent controls position via Refs, so we just handle local spin/shake/opacity here
+    // But actually, for performant ref-based physics, the parent needs direct access to this group
+    // or we pass a ref down.
+    // To keep it clean: We will forward the group ref up to the scene manager or let the scene manager
+    // update the group's position directly.
+    // In this refactor, PhysicsScene manages the refs.
 
-            // Apply Spin
-            groupRef.current.rotation.x += delta * config.rotationSpeed.x
-            groupRef.current.rotation.y += delta * config.rotationSpeed.y
+    // However, for the React structure, we render this component.
+    // We need to attach the ref that PhysicsScene uses.
 
-            // Apply Scale & Shake
-            let targetScale = isBackground ? 0.9 : 1.0
+    // Better pattern: PhysicsScene renders the primitives and updates them.
+    // But to keep component separation:
+    // We will use an imperative handle or just pass the ref from parent.
+    // Let's assume parent (PhysicsScene) passes a `sceneRef` for this object.
 
-            // Shake Effect
-            if (config.shake && Date.now() - config.shake < 500) {
-                 const time = Date.now() - config.shake
-                 const intensity = 1 - time / 500
-                 const wobble = Math.sin(time * 0.05) * 0.15 * intensity
-                 targetScale += wobble
-            }
-
-            groupRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), delta * 5)
-        }
-    })
-
-    if (config.isExploded) {
-        return (
-            <ExplosionParticles
-                images={config.images}
-                origin={config.pos}
-                radius={config.radius}
-                onReassemble={() => onInteract(id, 'reassemble')}
-            />
-        )
-    }
-
-    return (
-        <group ref={groupRef}>
-            <mesh
-                ref={meshRef}
-                onClick={(e) => {
-                    e.stopPropagation()
-                    const now = Date.now()
-                    if (now - lastClick.current < 300) {
-                        onInteract(id, 'explode')
-                        lastClick.current = 0
-                    } else {
-                        onInteract(id, 'shake')
-                        lastClick.current = now
-                    }
-                }}
-                onPointerOver={() => document.body.style.cursor = 'pointer'}
-                onPointerOut={() => document.body.style.cursor = 'auto'}
-            >
-                <sphereGeometry args={[config.radius, 16, 16]} />
-                <meshBasicMaterial visible={false} />
-            </mesh>
-
-            <CompositeSphere
-                images={config.images}
-                radius={config.radius}
-                opacity={opacity}
-                isBackground={isBackground}
-            />
-        </group>
-    )
+    return null // Logic moved to PhysicsScene for centralized Ref management
 }
 
 function PhysicsScene() {
     const { viewport } = useThree()
+    const groupRefs = useRef({})
 
     const radius = Math.min(viewport.width, viewport.height) * 0.18
     const IMAGE_COUNT = 25
 
-    const [spheres, setSpheres] = useState(() => {
-        const startY = viewport.height / 2 + radius * 3
-
-        return [
+    // Initial static configuration
+    const [config] = useState(() => {
+         const startY = viewport.height / 2 + radius * 3
+         return [
             {
                 id: 'design',
-                pos: new THREE.Vector3(-viewport.width * 0.1, startY, 0),
-                vel: new THREE.Vector3((Math.random() - 0.5) * 0.15, -0.2, 0),
-                rotationSpeed: { x: 0.2, y: 0.15 },
                 images: getRandomImages('design', IMAGE_COUNT),
                 radius: radius,
-                isBackground: false,
-                isEntering: true,
-                opacity: 1,
-                shake: 0,
-                isExploded: false
+                initialPos: new THREE.Vector3(-viewport.width * 0.1, startY, 0),
+                initialVel: new THREE.Vector3((Math.random() - 0.5) * 0.15, -0.2, 0),
+                rotationSpeed: { x: 0.2, y: 0.15 }
             },
             {
                 id: 'styling',
-                pos: new THREE.Vector3(viewport.width * 0.1, startY * 1.5, -1),
-                vel: new THREE.Vector3((Math.random() - 0.5) * 0.15, -0.25, 0),
-                rotationSpeed: { x: 0.15, y: 0.2 },
                 images: getRandomImages('styling', IMAGE_COUNT),
                 radius: radius,
-                isBackground: true,
-                isEntering: true,
-                opacity: 0.4,
-                shake: 0,
-                isExploded: false
+                initialPos: new THREE.Vector3(viewport.width * 0.1, startY * 1.5, -1),
+                initialVel: new THREE.Vector3((Math.random() - 0.5) * 0.15, -0.25, 0),
+                rotationSpeed: { x: 0.15, y: 0.2 }
             }
-        ]
+         ]
     })
 
+    // Mutable physics state (no re-renders)
+    const physicsState = useRef(config.map(c => ({
+        ...c,
+        pos: c.initialPos.clone(),
+        vel: c.initialVel.clone(),
+        rot: new THREE.Euler(0, 0, 0),
+        isEntering: true,
+        isBackground: false,
+        opacity: 1.0,
+        shakeStartTime: 0,
+        isExploded: false
+    })))
+
+    // React state only for major mode switches (Normal <-> Exploded)
+    // We track which IDs are exploded to conditionally render particles
+    const [explodedIds, setExplodedIds] = useState({})
+
     const handleInteract = (id, type) => {
-        setSpheres(curr => curr.map(s => {
-            if (s.id !== id) return s
-            if (type === 'shake') return { ...s, shake: Date.now() }
-            if (type === 'explode') return { ...s, isExploded: true }
-            if (type === 'reassemble') return { ...s, isExploded: false, shake: 0 }
-            return s
-        }))
+        const idx = config.findIndex(c => c.id === id)
+        if (idx === -1) return
+
+        const state = physicsState.current[idx]
+
+        if (type === 'shake') {
+            state.shakeStartTime = Date.now()
+        } else if (type === 'explode') {
+            state.isExploded = true
+            setExplodedIds(prev => ({ ...prev, [id]: true }))
+        } else if (type === 'reassemble') {
+            state.isExploded = false
+            state.shakeStartTime = 0
+            setExplodedIds(prev => ({ ...prev, [id]: false }))
+        }
     }
 
-    useFrame((state, delta) => {
-        setSpheres(currentSpheres => {
-            const newSpheres = currentSpheres.map(s => ({
-                ...s,
-                pos: s.pos.clone(),
-                vel: s.vel.clone()
-            }))
+    const lastClick = useRef({})
 
-            const s1 = newSpheres[0]
-            const s2 = newSpheres[1]
+    useFrame((_, delta) => {
+        const spheres = physicsState.current
+        const s1 = spheres[0]
+        const s2 = spheres[1]
 
-            newSpheres.forEach(s => {
-                if (s.isExploded) return // Don't move exploded spheres (particles will handle themselves)
+        // 1. Update Physics
+        spheres.forEach((s, i) => {
+            if (s.isExploded) return
 
-                const r = s.radius
-                const vv = window.visualViewport
-                const width = vv ? vv.width / viewport.factor : viewport.width
-                const height = vv ? vv.height / viewport.factor : viewport.height
+            const group = groupRefs.current[s.id]
+            if (!group) return
 
-                const boundsX = width / 2 - r
-                const boundsY = height / 2 - r
+            // Move
+            s.pos.add(s.vel)
 
-                s.pos.add(s.vel)
+            // Bounds
+            const r = s.radius
+            const vv = window.visualViewport
+            const width = vv ? vv.width / viewport.factor : viewport.width
+            const height = vv ? vv.height / viewport.factor : viewport.height
 
-                if (s.isEntering) {
-                    if (s.pos.y < boundsY) {
-                        s.isEntering = false
-                    }
-                } else {
-                    if (s.pos.x > boundsX) { s.pos.x = boundsX; s.vel.x *= -1 }
-                    if (s.pos.x < -boundsX) { s.pos.x = -boundsX; s.vel.x *= -1 }
-                    if (s.pos.y > boundsY) { s.pos.y = boundsY; s.vel.y *= -1 }
-                    if (s.pos.y < -boundsY) { s.pos.y = -boundsY; s.vel.y *= -1 }
+            const boundsX = width / 2 - r
+            const boundsY = height / 2 - r
+
+            if (s.isEntering) {
+                if (s.pos.y < boundsY) {
+                    s.isEntering = false
                 }
-            })
-
-            // Elastic Collision (only if not exploded)
-             if (!s1.isEntering && !s2.isEntering && !s1.isExploded && !s2.isExploded) {
-                const dx = s2.pos.x - s1.pos.x
-                const dy = s2.pos.y - s1.pos.y
-                const dist = Math.sqrt(dx * dx + dy * dy)
-                const minDist = s1.radius + s2.radius
-
-                if (dist < minDist) {
-                    const nx = dx / dist
-                    const ny = dy / dist
-                    const dvx = s1.vel.x - s2.vel.x
-                    const dvy = s1.vel.y - s2.vel.y
-                    const dot = dvx * nx + dvy * ny
-
-                    if (dot > 0) {
-                        const impulse = dot
-                        s1.vel.x -= impulse * nx
-                        s1.vel.y -= impulse * ny
-                        s2.vel.x += impulse * nx
-                        s2.vel.y += impulse * ny
-
-                        const overlap = minDist - dist
-                        s1.pos.x -= nx * overlap * 0.5
-                        s1.pos.y -= ny * overlap * 0.5
-                        s2.pos.x += nx * overlap * 0.5
-                        s2.pos.y += ny * overlap * 0.5
-                    }
-                }
+            } else {
+                if (s.pos.x > boundsX) { s.pos.x = boundsX; s.vel.x *= -1 }
+                if (s.pos.x < -boundsX) { s.pos.x = -boundsX; s.vel.x *= -1 }
+                if (s.pos.y > boundsY) { s.pos.y = boundsY; s.vel.y *= -1 }
+                if (s.pos.y < -boundsY) { s.pos.y = -boundsY; s.vel.y *= -1 }
             }
 
-            // Visual Logic
-            if (!s1.isExploded && !s2.isExploded) {
-                const dx = s2.pos.x - s1.pos.x
-                const dy = s2.pos.y - s1.pos.y
-                const dist2D = Math.sqrt(dx * dx + dy * dy)
-                const overlapThreshold = (s1.radius + s2.radius) * 0.9
+            // Spin
+            s.rot.x += delta * s.rotationSpeed.x
+            s.rot.y += delta * s.rotationSpeed.y
 
-                if (dist2D < overlapThreshold) {
-                    if (s1.pos.z > s2.pos.z) {
-                        s1.isBackground = false; s2.isBackground = true
-                    } else {
-                        s1.isBackground = true; s2.isBackground = false
-                    }
-                } else {
-                    s1.isBackground = false
-                    s2.isBackground = false
+            // Apply to Object
+            group.position.copy(s.pos)
+            group.rotation.x = s.rot.x
+            group.rotation.y = s.rot.y
+
+            // Shake Scale
+            let targetScale = s.isBackground ? 0.9 : 1.0
+            if (s.shakeStartTime && Date.now() - s.shakeStartTime < 500) {
+                 const time = Date.now() - s.shakeStartTime
+                 const intensity = 1 - time / 500
+                 const wobble = Math.sin(time * 0.05) * 0.15 * intensity
+                 targetScale += wobble
+            }
+            // Smooth scale
+            group.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), delta * 5)
+        })
+
+        // 2. Collisions
+        if (!s1.isEntering && !s2.isEntering && !s1.isExploded && !s2.isExploded) {
+            const dx = s2.pos.x - s1.pos.x
+            const dy = s2.pos.y - s1.pos.y
+            const dist = Math.sqrt(dx * dx + dy * dy)
+            const minDist = s1.radius + s2.radius
+
+            if (dist < minDist) {
+                const nx = dx / dist
+                const ny = dy / dist
+                // Simple elastic impulse
+                const dvx = s1.vel.x - s2.vel.x
+                const dvy = s1.vel.y - s2.vel.y
+                const dot = dvx * nx + dvy * ny
+
+                if (dot > 0) {
+                    const impulse = dot
+                    s1.vel.x -= impulse * nx
+                    s1.vel.y -= impulse * ny
+                    s2.vel.x += impulse * nx
+                    s2.vel.y += impulse * ny
+
+                    // Separate
+                    const overlap = minDist - dist
+                    s1.pos.x -= nx * overlap * 0.5
+                    s1.pos.y -= ny * overlap * 0.5
+                    s2.pos.x += nx * overlap * 0.5
+                    s2.pos.y += ny * overlap * 0.5
                 }
             }
+        }
 
-            newSpheres.forEach(s => {
-                const targetOp = s.isBackground ? 0.4 : 1.0
-                s.opacity = THREE.MathUtils.lerp(s.opacity, targetOp, 0.1)
-            })
+        // 3. Depth/Background Logic
+        if (!s1.isExploded && !s2.isExploded) {
+            const dx = s2.pos.x - s1.pos.x
+            const dy = s2.pos.y - s1.pos.y
+            const dist2D = Math.sqrt(dx * dx + dy * dy)
+            const overlapThreshold = (s1.radius + s2.radius) * 0.9
 
-            return newSpheres
+            if (dist2D < overlapThreshold) {
+                if (s1.pos.z > s2.pos.z) {
+                    s1.isBackground = false; s2.isBackground = true
+                } else {
+                    s1.isBackground = true; s2.isBackground = false
+                }
+            } else {
+                s1.isBackground = false
+                s2.isBackground = false
+            }
+        }
+
+        // 4. Update Opacity (Lerp for smoothness)
+        spheres.forEach(s => {
+            const targetOp = s.isBackground ? 0.4 : 1.0
+            s.opacity = THREE.MathUtils.lerp(s.opacity, targetOp, 0.1)
+
+            // We need to pass this opacity down to the materials.
+            // Since we can't easily traverse the scene graph every frame efficiently without refs to materials,
+            // we'll rely on the CompositeSphere to check its parent or use a dedicated OpacityController.
+            // OR: simpler, we assume accessing children of the group is fast enough for 25 items.
+            const group = groupRefs.current[s.id]
+            if (group && group.children[1]) { // [0] is hitbox, [1] is CompositeSphere
+                const composite = group.children[1]
+                 composite.children.forEach(child => {
+                    if (child.material) {
+                        child.material.opacity = s.opacity
+                    }
+                })
+            }
         })
     })
 
     return (
         <group>
-            {spheres.map((s) => (
-                <PhysicsGroup
-                    key={s.id}
-                    id={s.id}
-                    config={s}
-                    opacity={s.opacity}
-                    isBackground={s.isBackground}
-                    onInteract={handleInteract}
-                />
-            ))}
+            {config.map((item, i) => {
+                const isExploded = explodedIds[item.id]
+
+                if (isExploded) {
+                    return (
+                        <ExplosionParticles
+                            key={`explode-${item.id}`}
+                            images={item.images}
+                            origin={physicsState.current[i].pos}
+                            radius={item.radius}
+                            onReassemble={() => handleInteract(item.id, 'reassemble')}
+                        />
+                    )
+                }
+
+                return (
+                    <group
+                        key={item.id}
+                        ref={el => groupRefs.current[item.id] = el}
+                    >
+                         {/* Interaction Mesh */}
+                        <mesh
+                            onClick={(e) => {
+                                e.stopPropagation()
+                                const now = Date.now()
+                                const last = lastClick.current[item.id] || 0
+                                if (now - last < 300) {
+                                    handleInteract(item.id, 'explode')
+                                    lastClick.current[item.id] = 0
+                                } else {
+                                    handleInteract(item.id, 'shake')
+                                    lastClick.current[item.id] = now
+                                }
+                            }}
+                            onPointerOver={() => document.body.style.cursor = 'pointer'}
+                            onPointerOut={() => document.body.style.cursor = 'auto'}
+                        >
+                            <sphereGeometry args={[item.radius, 16, 16]} />
+                            <meshBasicMaterial visible={false} />
+                        </mesh>
+
+                        <CompositeSphere
+                            images={item.images}
+                            radius={item.radius}
+                            opacity={1} // Controlled by useFrame
+                        />
+                    </group>
+                )
+            })}
         </group>
     )
 }
@@ -465,8 +502,12 @@ export default function PhysicalSpheres() {
         }}>
             <Canvas
                 camera={{ position: [0, 0, 10], fov: 50 }}
-                dpr={[1, 2]}
+                dpr={[1, 1.5]} // Optimization: Limit DPR on high-res screens
                 style={{ pointerEvents: 'auto' }}
+                gl={{
+                    antialias: false, // Optimization: Disable AA for performance if using high DPR
+                    powerPreference: "high-performance"
+                }}
             >
                 <ambientLight intensity={1.5} />
                 <PhysicsScene />

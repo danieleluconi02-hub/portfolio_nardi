@@ -1,5 +1,5 @@
 import { useRef, useMemo, useEffect, useState, useCallback } from 'react'
-import { useFrame, useThree } from '@react-three/fiber'
+import { useFrame, useThree, useLoader } from '@react-three/fiber'
 import * as THREE from 'three'
 
 /**
@@ -46,27 +46,19 @@ function GalleryImage({
     index
 }) {
     const meshRef = useRef()
-    const [texture, setTexture] = useState(null)
-    const [loaded, setLoaded] = useState(false)
     const [hovered, setHovered] = useState(false)
     const animatedScale = useRef(scale)
 
-    // Load texture
-    useEffect(() => {
-        if (imagePath) {
-            const loader = new THREE.TextureLoader()
-            loader.load(
-                imagePath,
-                (tex) => {
-                    tex.colorSpace = THREE.SRGBColorSpace
-                    tex.minFilter = THREE.LinearFilter
-                    tex.magFilter = THREE.LinearFilter
-                    setTexture(tex)
-                    setLoaded(true)
-                }
-            )
+    // Use loader for caching and automatic suspense
+    const texture = useLoader(THREE.TextureLoader, imagePath)
+
+    useMemo(() => {
+        if (texture) {
+            texture.colorSpace = THREE.SRGBColorSpace
+            texture.minFilter = THREE.LinearFilter
+            texture.magFilter = THREE.LinearFilter
         }
-    }, [imagePath])
+    }, [texture])
 
     // Calculate rotation to face center (0,0,0)
     const quaternion = useMemo(() => {
@@ -90,7 +82,7 @@ function GalleryImage({
 
     const handleClick = useCallback((e) => {
         e.stopPropagation()
-        if (onImageClick && loaded) {
+        if (onImageClick) {
             onImageClick({
                 imagePath,
                 collectionId,
@@ -98,7 +90,7 @@ function GalleryImage({
                 position
             })
         }
-    }, [onImageClick, imagePath, collectionId, collectionTitle, position, loaded])
+    }, [onImageClick, imagePath, collectionId, collectionTitle, position])
 
     const handlePointerOver = useCallback((e) => {
         e.stopPropagation()
@@ -110,8 +102,6 @@ function GalleryImage({
         document.body.style.cursor = 'default'
         setHovered(false)
     }, [])
-
-    if (!loaded) return null
 
     return (
         <mesh
@@ -128,6 +118,7 @@ function GalleryImage({
                 side={THREE.DoubleSide}
                 transparent
                 opacity={hovered ? 1 : 0.92}
+                depthWrite={false}
             />
         </mesh>
     )
