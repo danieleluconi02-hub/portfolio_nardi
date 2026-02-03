@@ -216,7 +216,7 @@ export default function LandingMenu({ onNavigate, manifest }) {
         if (language === 'it') return 'clamp(1.8rem, 3.2vw, 2.8rem)'
         if (language === 'es') return 'clamp(1.6rem, 2.8vw, 2.5rem)'
         if (language === 'fr') return 'clamp(1.9rem, 3.2vw, 2.8rem)'
-        if (language === 'ko') return 'clamp(2.2rem, 4.2vw, 3.8rem)'
+        if (language === 'ko') return 'clamp(1.8rem, 3.5vw, 3rem)'
         return 'clamp(2.2rem, 4.5vw, 4rem)'
     }
 
@@ -224,16 +224,16 @@ export default function LandingMenu({ onNavigate, manifest }) {
         if (language === 'es') return 'clamp(2rem, 3.5vw, 3rem)'
         if (language === 'it') return 'clamp(1.6rem, 2.8vw, 2.5rem)'
         if (language === 'fr') return 'clamp(2.1rem, 3.8vw, 3rem)'
-        if (language === 'ko') return 'clamp(2.1rem, 3.8vw, 3.2rem)'
+        if (language === 'ko') return 'clamp(1.8rem, 3.2vw, 2.8rem)'
         return 'clamp(2.4rem, 4.2vw, 4rem)'
     }
 
     const getDesignPaperWidth = () => {
         if (language === 'fr') return 'w-72 md:w-[27rem]'
-        if (language === 'ko') return 'w-48 md:w-[12rem]'
+        if (language === 'ko') return 'w-64 md:w-[18rem]'
         if (language === 'es') return 'w-72 md:w-[22rem]'
-        if (language === 'it') return 'w-[16rem]'
-        return 'w-[16rem]'
+        if (language === 'it') return 'w-80 md:w-[28rem]'
+        return 'w-72 md:w-[22rem]'
     }
 
     const getStylingPaperWidth = () => {
@@ -309,8 +309,7 @@ export default function LandingMenu({ onNavigate, manifest }) {
                                 src="/assets/ui/paper-fashion.png"
                                 alt="Fashion Design Paper"
                                 className={`w-full drop-shadow-xl ${(language === 'es' || language === 'fr') ? 'h-[5.5rem] object-fill' :
-                                    (language === 'it') ? 'h-[9rem] object-fill' :
-                                        'h-auto'
+                                    'h-auto'
                                     }`}
                                 draggable={false}
                             />
