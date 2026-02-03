@@ -214,7 +214,7 @@ function App() {
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.6, ease: cinematicEasing }}
                     >
-                        <LandingMenu onNavigate={handleMenuNavigate} />
+                        <LandingMenu onNavigate={handleMenuNavigate} manifest={manifest} />
                     </motion.div>
                 )}
             </AnimatePresence>

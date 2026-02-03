@@ -60,7 +60,7 @@ export default function ContactPage({ onBack }) {
                         <motion.a
                             key={link.label}
                             href={link.href}
-                            className="contact-link flex items-center gap-4"
+                            className="contact-link flex flex-col md:flex-row items-baseline md:items-center gap-2 md:gap-6" // Stack on mobile, row on desktop, larger gap
                             target={link.href.startsWith('http') ? '_blank' : undefined}
                             rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                             initial={{ opacity: 0, y: 15 }}
@@ -70,15 +70,23 @@ export default function ContactPage({ onBack }) {
                                 duration: 0.5,
                                 ease: cinematicEasing
                             }}
-                            whileHover={{ x: 4 }}
+                            whileHover={{ x: 10 }} // Increased hover movement
                         >
                             <span
-                                className="text-sm w-20 text-right"
-                                style={{ color: 'var(--text-muted)' }}
+                                className="text-xl md:text-2xl font-medium text-left md:text-right w-full md:w-32" // Larger label, adjusted width/align
+                                style={{
+                                    color: '#DB7093', // PaleVioletRed (Pink from menu gradient)
+                                    fontFamily: 'GhostFont' // Match menu style potentially? Or keep standard? User didn't specify font, just size/color. Keeping standard for labels usually better, but let's stick to current font family, just bigger.
+                                }}
                             >
                                 {link.label}
                             </span>
-                            <span>{link.display}</span>
+                            <span
+                                className="text-3xl md:text-5xl" // Much larger link text
+                                style={{ fontFamily: 'GhostFont' }} // Using GhostFont for the main link text to match aesthetic
+                            >
+                                {link.display}
+                            </span>
                         </motion.a>
                     ))}
                 </motion.div>

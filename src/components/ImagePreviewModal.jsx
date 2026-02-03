@@ -123,17 +123,25 @@ export default function ImagePreviewModal({
                         transition={{ duration: 0.5, ease: cinematicEasing }}
                     >
                         {currentImage && (
-                            <motion.img
-                                key={selectedImageIndex}
-                                src={currentImage}
-                                alt={`${collection?.title} - ${selectedImageIndex + 1}`}
-                                className="preview-main-image"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: imageLoaded ? 1 : 0.3 }}
-                                transition={{ duration: 0.3 }}
-                                onLoad={() => setImageLoaded(true)}
-                                draggable={false}
-                            />
+                            <div className="sketchy-image-wrapper">
+                                <motion.img
+                                    key={selectedImageIndex}
+                                    src={currentImage}
+                                    alt={`${collection?.title} - ${selectedImageIndex + 1}`}
+                                    className="preview-main-image"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: imageLoaded ? 1 : 0.3 }}
+                                    transition={{ duration: 0.3 }}
+                                    onLoad={() => setImageLoaded(true)}
+                                    draggable={false}
+                                    style={{
+                                        boxShadow: 'none',
+                                        filter: 'none',
+                                        background: 'transparent',
+                                        borderRadius: 0
+                                    }}
+                                />
+                            </div>
                         )}
                     </motion.div>
 
@@ -148,13 +156,29 @@ export default function ImagePreviewModal({
                             {randomImages.map((img, index) => (
                                 <div
                                     key={`${img}-${index}`}
-                                    className="random-image-wrapper"
+                                    className="sketchy-image-wrapper"
+                                    style={{
+                                        margin: '0 8px',
+                                        width: '85px',
+                                        height: '110px',
+                                        cursor: 'default',
+                                        pointerEvents: 'none' // Disable interactions
+                                    }}
                                 >
                                     <img
                                         src={img}
                                         alt={`Collection preview ${index + 1}`}
                                         className="random-image"
                                         draggable={false}
+                                        style={{
+                                            boxShadow: 'none',
+                                            filter: 'none',
+                                            background: 'transparent',
+                                            borderRadius: 0,
+                                            width: '100%',
+                                            height: '100%',
+                                            objectFit: 'cover'
+                                        }}
                                     />
                                 </div>
                             ))}

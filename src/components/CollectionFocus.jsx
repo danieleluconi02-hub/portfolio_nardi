@@ -120,17 +120,24 @@ export default function CollectionFocus({
                         style={{ cursor: 'pointer' }}
                     >
                         {currentImage && (
-                            <motion.img
-                                key={selectedImageIndex}
-                                src={currentImage}
-                                alt={`${collection.title} - ${selectedImageIndex + 1}`}
-                                className="focus-image"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: imageLoaded ? 1 : 0.2 }}
-                                transition={{ duration: 0.2 }}
-                                onLoad={() => setImageLoaded(true)}
-                                draggable={false}
-                            />
+                            <div className="sketchy-image-wrapper">
+                                <motion.img
+                                    key={selectedImageIndex}
+                                    src={currentImage}
+                                    alt={`${collection.title} - ${selectedImageIndex + 1}`}
+                                    className="sketchy-preview-image"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: imageLoaded ? 1 : 0.2 }}
+                                    transition={{ duration: 0.2 }}
+                                    onLoad={() => setImageLoaded(true)}
+                                    draggable={false}
+                                    style={{
+                                        boxShadow: 'none',
+                                        filter: 'none',
+                                        background: 'transparent'
+                                    }}
+                                />
+                            </div>
                         )}
 
                         {/* Image counter - subtle, bottom right */}
