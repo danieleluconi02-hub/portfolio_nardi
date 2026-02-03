@@ -1,5 +1,6 @@
-import { useRef, useMemo, useEffect, useState, useCallback } from 'react'
+import { useRef, useMemo, useEffect, useState, useCallback, Suspense } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
+import { useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 
 /**
@@ -33,6 +34,9 @@ function fibonacciSphereInner(samples, radius) {
     return points
 }
 
+// Shared Geometry
+const sharedPlaneGeometry = new THREE.PlaneGeometry(1, 1)
+
 /**
  * Single image that always faces the camera center
  */
@@ -46,27 +50,15 @@ function GalleryImage({
     index
 }) {
     const meshRef = useRef()
-    const [texture, setTexture] = useState(null)
-    const [loaded, setLoaded] = useState(false)
     const [hovered, setHovered] = useState(false)
     const animatedScale = useRef(scale)
 
-    // Load texture
-    useEffect(() => {
-        if (imagePath) {
-            const loader = new THREE.TextureLoader()
-            loader.load(
-                imagePath,
-                (tex) => {
-                    tex.colorSpace = THREE.SRGBColorSpace
-                    tex.minFilter = THREE.LinearFilter
-                    tex.magFilter = THREE.LinearFilter
-                    setTexture(tex)
-                    setLoaded(true)
-                }
-            )
-        }
-    }, [imagePath])
+    // Automatic texture loading with caching and disposal
+    const texture = useTexture(imagePath, (tex) => {
+        tex.colorSpace = THREE.SRGBColorSpace
+        tex.minFilter = THREE.LinearFilter
+        tex.magFilter = THREE.LinearFilter
+    })
 
     // Calculate rotation to face center (0,0,0)
     const quaternion = useMemo(() => {
@@ -90,7 +82,7 @@ function GalleryImage({
 
     const handleClick = useCallback((e) => {
         e.stopPropagation()
-        if (onImageClick && loaded) {
+        if (onImageClick) {
             onImageClick({
                 imagePath,
                 collectionId,
@@ -98,7 +90,7 @@ function GalleryImage({
                 position
             })
         }
-    }, [onImageClick, imagePath, collectionId, collectionTitle, position, loaded])
+    }, [onImageClick, imagePath, collectionId, collectionTitle, position])
 
     const handlePointerOver = useCallback((e) => {
         e.stopPropagation()
@@ -111,8 +103,6 @@ function GalleryImage({
         setHovered(false)
     }, [])
 
-    if (!loaded) return null
-
     return (
         <mesh
             ref={meshRef}
@@ -121,44 +111,14 @@ function GalleryImage({
             onClick={handleClick}
             onPointerOver={handlePointerOver}
             onPointerOut={handlePointerOut}
+            geometry={sharedPlaneGeometry}
         >
-            <planeGeometry args={[1, 1]} />
             <meshBasicMaterial
                 map={texture}
                 side={THREE.DoubleSide}
                 transparent
                 opacity={hovered ? 1 : 0.92}
             />
-        </mesh>
-    )
-}
-
-/**
- * Central "Start" or category button
- */
-function CenterButton({ label, onClick }) {
-    const meshRef = useRef()
-    const [hovered, setHovered] = useState(false)
-
-    useFrame(() => {
-        if (meshRef.current) {
-            // Subtle pulse animation
-            const pulse = 1 + Math.sin(Date.now() * 0.002) * 0.02
-            const hoverScale = hovered ? 1.05 : 1
-            meshRef.current.scale.setScalar(pulse * hoverScale)
-        }
-    })
-
-    return (
-        <mesh
-            ref={meshRef}
-            position={[0, 0, 0]}
-            onClick={onClick}
-            onPointerOver={() => { document.body.style.cursor = 'pointer'; setHovered(true) }}
-            onPointerOut={() => { document.body.style.cursor = 'default'; setHovered(false) }}
-        >
-            <circleGeometry args={[1.2, 64]} />
-            <meshBasicMaterial color="#0a0a0a" />
         </mesh>
     )
 }
@@ -366,16 +326,17 @@ export default function ImmersiveSphere({
                 {sampledImages.map((img, index) => {
                     if (index >= spherePositions.length) return null
                     return (
-                        <GalleryImage
-                            key={`${img.path}-${index}`}
-                            position={spherePositions[index].position}
-                            scale={spherePositions[index].scale}
-                            imagePath={img.path}
-                            collectionId={img.collectionId}
-                            collectionTitle={img.collectionTitle}
-                            onImageClick={onImageClick}
-                            index={index}
-                        />
+                        <Suspense key={`${img.path}-${index}`} fallback={null}>
+                            <GalleryImage
+                                position={spherePositions[index].position}
+                                scale={spherePositions[index].scale}
+                                imagePath={img.path}
+                                collectionId={img.collectionId}
+                                collectionTitle={img.collectionTitle}
+                                onImageClick={onImageClick}
+                                index={index}
+                            />
+                        </Suspense>
                     )
                 })}
             </group>
