@@ -168,6 +168,7 @@ function CenterButton({ label, onClick }) {
  */
 export default function ImmersiveSphere({
     collections,
+    seed,
     onImageClick,
     onBack
 }) {
@@ -205,9 +206,11 @@ export default function ImmersiveSphere({
     const sampledImages = useMemo(() => {
         if (allImages.length === 0) return []
 
-        const seed = Math.floor(Date.now() / 10000)
+        // Use passed seed for deterministic selection
+        const seedVal = seed || Math.floor(Math.random() * 1000)
+
         const seededRandom = (i) => {
-            const x = Math.sin(seed * 127.1 + i * 311.7) * 43758.5453
+            const x = Math.sin(seedVal * 127.1 + i * 311.7) * 43758.5453
             return x - Math.floor(x)
         }
 

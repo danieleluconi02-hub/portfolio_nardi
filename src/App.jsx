@@ -18,12 +18,17 @@ import BackButton from './components/BackButton'
 import manifest from './data/manifest.json'
 import './index.css'
 
+import PreloadManager from './components/PreloadManager'
+
 // Apple-like easing curves
 const appleEasing = [0.25, 0.1, 0.25, 1]
 const cinematicEasing = [0.16, 1, 0.3, 1]
 
 function App() {
     const { t } = useLanguage()
+
+    // Persistent random seed for the session to ensure preloader matches spheres
+    const [sessionSeed] = useState(() => Math.floor(Math.random() * 10000))
 
     // States: 'menu' | 'sphere' | 'entering' | 'about' | 'contact' | 'scroll' | 'preview' | 'focus' | 'collection'
     // 'sphere' = Visualization Phase (Single Sphere)
@@ -162,7 +167,7 @@ function App() {
     return (
         <div className="w-screen h-screen overflow-hidden spatial-bg">
             {/* Dedicated Background Layer */}
-            <AnimatePresence>
+            <AnimatePresence mode='wait'>
                 {/* Menu State: Dynamic Grid */}
                 {appState === 'menu' && (
                     <motion.div
@@ -170,7 +175,7 @@ function App() {
                         className="fixed inset-0 z-0"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
+                        exit={{ opacity: 0, transition: { duration: 0 } }}
                         transition={{ duration: 1.0 }}
                     >
                         <DynamicBackgroundGrid manifest={manifest} />
@@ -259,6 +264,7 @@ function App() {
                                     category={selectedCategory}
                                     collections={currentCollections}
                                     appState={appState}
+                                    seed={sessionSeed}
                                     onSphereClick={handleSphereClick}
                                     onEnterComplete={handleEnterComplete}
                                     onOrbitComplete={handleOrbitComplete}
@@ -326,6 +332,7 @@ function App() {
                             <Suspense fallback={null}>
                                 <ImmersiveSphere
                                     collections={currentCollections}
+                                    seed={sessionSeed}
                                     onImageClick={handleImageClick}
                                     onBack={handleBack}
                                 />
@@ -371,6 +378,9 @@ function App() {
                     />
                 )}
             </AnimatePresence>
+
+            {/* Background Preloader - Initializes textures internally */}
+            <PreloadManager manifest={manifest} seed={sessionSeed} />
 
             {/* Global Footer - Shows on all pages except landing menu */}
             {appState !== 'menu' && (

@@ -66,36 +66,42 @@ function StaticImagePlane({
         }
     }, [imagePath])
 
+    // Optimize: Only update opacity in the frame loop
+    // Position and Rotation are static for the sphere
     useFrame(() => {
-        if (!meshRef.current) return
+        if (!meshRef.current || !meshRef.current.material) return
 
-        const mesh = meshRef.current
+        // Apply opacity from parent animation
+        // Multiplied by a simple fade-in for the texture itself
+        const globalOpacity = getOpacity()
 
-        // Set fixed position and rotation
-        mesh.position.copy(position)
-        mesh.quaternion.copy(quaternion)
-
-        // Apply opacity
-        if (mesh.material) {
-            mesh.material.opacity = getOpacity()
-        }
+        // Ensure material is transparent and handles sorting better
+        meshRef.current.material.opacity = textureLoaded ? globalOpacity : 0
+        meshRef.current.visible = globalOpacity > 0.01
     })
 
     return (
-        <mesh ref={meshRef} scale={[scale, scale * 1.35, 1]}>
+        <mesh
+            ref={meshRef}
+            position={position}
+            quaternion={quaternion}
+            scale={[scale, scale * 1.35, 1]}
+        >
             <planeGeometry args={[1, 1]} />
             {textureLoaded && textureRef.current ? (
                 <meshBasicMaterial
                     map={textureRef.current}
                     side={THREE.DoubleSide}
-                    transparent
+                    transparent={true}
+                    depthWrite={false} // Crucial for mobile sorting
                     opacity={0}
                 />
             ) : (
                 <meshBasicMaterial
                     color="#1a1a1a"
                     side={THREE.DoubleSide}
-                    transparent
+                    transparent={true}
+                    depthWrite={false}
                     opacity={0}
                 />
             )}
@@ -111,6 +117,7 @@ export default function CategorySphere({
     category,
     collections,
     appState,
+    seed,
     onSphereClick,
     onEnterComplete,
     onOrbitComplete
@@ -155,9 +162,12 @@ export default function CategorySphere({
     const sampledImages = useMemo(() => {
         if (allImages.length === 0) return []
 
-        const seed = Math.floor(Date.now() / 1000)
+        // Use passed seed for deterministic selection (matches PreloadManager)
+        // Fallback to random if no seed provided
+        const seedVal = seed || Math.floor(Math.random() * 1000)
+
         const seededRandom = (i) => {
-            const x = Math.sin(seed * 127.1 + i * 311.7) * 43758.5453
+            const x = Math.sin(seedVal * 127.1 + i * 311.7) * 43758.5453
             return x - Math.floor(x)
         }
 

@@ -178,16 +178,9 @@ export default function LandingMenu({ onNavigate, manifest }) {
     }, [availableItems])
 
 
-    // Initial Load & Interval
+    // Initial Load - Static, no refresh
     useEffect(() => {
         generateScatter() // Initial
-
-        // INCREASED TO 25 SECONDS AS REQUESTED
-        const intervalId = setInterval(() => {
-            generateScatter()
-        }, 25000)
-
-        return () => clearInterval(intervalId)
     }, [generateScatter])
 
 
@@ -295,7 +288,7 @@ export default function LandingMenu({ onNavigate, manifest }) {
                     initial={{ scale: 0.9, opacity: 0, y: 50, rotate: getPaperRotation('design') }}
                     animate={{ scale: 1, opacity: 1, y: 0, rotate: getPaperRotation('design') }}
                     exit={{ scale: 1.1, opacity: 0, filter: 'blur(10px)' }}
-                    transition={{ delay: 0.5, duration: 0.8, ease: "backOut" }}
+                    transition={{ delay: 2.0, duration: 0.8, ease: "backOut" }}
                     whileHover="hover"
                     whileTap="tap"
                 >
@@ -341,7 +334,7 @@ export default function LandingMenu({ onNavigate, manifest }) {
                     initial={{ scale: 0.9, opacity: 0, y: 50, rotate: getPaperRotation('styling') }}
                     animate={{ scale: 1, opacity: 1, y: 0, rotate: getPaperRotation('styling') }}
                     exit={{ scale: 1.1, opacity: 0, filter: 'blur(10px)' }}
-                    transition={{ delay: 0.6, duration: 0.8, ease: "backOut" }}
+                    transition={{ delay: 2.1, duration: 0.8, ease: "backOut" }}
                     whileHover="hover"
                     whileTap="tap"
                 >
