@@ -170,7 +170,10 @@ label,
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); */
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.3s ease;
+  will-change: transform;
+  touch-action: manipulation;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   line-height: 1;
@@ -200,7 +203,9 @@ label,
   /* Lighter shadow */
   opacity: 0.8;
   /* Slightly transparent */
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
+  transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
+  will-change: transform;
 }
 
 /* Vertical Lines (Left/Right) - Extending Top/Bottom */
@@ -224,7 +229,9 @@ label,
   /* Lighter shadow */
   opacity: 0.8;
   /* Slightly transparent */
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
+  transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
+  will-change: transform;
 }
 
 .btn-sketchy:hover {
@@ -274,6 +281,7 @@ label,
   transition:
     color var(--duration-medium) var(--ease-premium),
     transform var(--duration-medium) var(--ease-cinematic);
+  will-change: transform, color;
   text-decoration: none;
 }
 

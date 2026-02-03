@@ -25,7 +25,9 @@ const ScatterItem = ({ item }) => {
                 filter: item.type === 'photo'
                     ? 'brightness(0.9) contrast(1.1) sepia(0.2) drop-shadow(0 4px 6px rgba(0,0,0,0.3))'
                     : 'brightness(1.02) sepia(0.1) contrast(1.1) drop-shadow(0 2px 3px rgba(0,0,0,0.1))',
-                transform: `skew(${skewX}deg, ${skewY}deg)` // Subtle distortion
+                transform: `skew(${skewX}deg, ${skewY}deg)`, // Subtle distortion
+                willChange: 'transform, opacity', // PERFORMANCE: Promote to GPU layer
+                contain: 'content' // PERFORMANCE: Isolate layout
             }}
             initial={{ scale: item.scale * 1.5, rotate: item.rotate + 10, opacity: 0 }}
             animate={{
@@ -45,6 +47,7 @@ const ScatterItem = ({ item }) => {
                         alt=""
                         className="w-full h-auto grayscale-[0.2]"
                         draggable={false}
+                        decoding="async" // PERFORMANCE: Async decoding
                         // onLoad handled by image
                         onLoad={() => setIsLoaded(true)}
                     />
@@ -57,6 +60,7 @@ const ScatterItem = ({ item }) => {
                         alt=""
                         className="w-full h-auto mix-blend-multiply"
                         draggable={false}
+                        decoding="async" // PERFORMANCE: Async decoding
                         style={{ filter: 'grayscale(0.1) contrast(1.2)' }}
                         onLoad={() => setIsLoaded(true)}
                     />
@@ -118,8 +122,11 @@ export default function LandingMenu({ onNavigate, manifest }) {
             }
         })
 
-        // Pass 2: Moderate Fill (Single duplication for balanced density)
-        const densityPool = [...candidateImages, ...candidateImages].sort(() => 0.5 - Math.random())
+        // Pass 2: Moderate Fill (Duplication for balanced density, BUT NO DUPLICATE DRAWINGS)
+        // User Request: Never more than 1 drawing per collection.
+        // We duplicate photos to maintain density, but keep drawings unique.
+        const photosOnly = candidateImages.filter(item => item.type === 'photo')
+        const densityPool = [...candidateImages, ...photosOnly].sort(() => 0.5 - Math.random())
 
         densityPool.forEach((item, i) => {
             let placed = false
@@ -178,9 +185,15 @@ export default function LandingMenu({ onNavigate, manifest }) {
     }, [availableItems])
 
 
-    // Initial Load - Static, no refresh
+    // Initial Load + Auto Refresh (20s)
     useEffect(() => {
         generateScatter() // Initial
+
+        const interval = setInterval(() => {
+            generateScatter()
+        }, 20000)
+
+        return () => clearInterval(interval)
     }, [generateScatter])
 
 
@@ -288,7 +301,7 @@ export default function LandingMenu({ onNavigate, manifest }) {
                     initial={{ scale: 0.9, opacity: 0, y: 50, rotate: getPaperRotation('design') }}
                     animate={{ scale: 1, opacity: 1, y: 0, rotate: getPaperRotation('design') }}
                     exit={{ scale: 1.1, opacity: 0, filter: 'blur(10px)' }}
-                    transition={{ delay: 2.0, duration: 0.8, ease: "backOut" }}
+                    transition={{ delay: 1.8, duration: 0.8, ease: "backOut" }}
                     whileHover="hover"
                     whileTap="tap"
                 >
@@ -334,7 +347,7 @@ export default function LandingMenu({ onNavigate, manifest }) {
                     initial={{ scale: 0.9, opacity: 0, y: 50, rotate: getPaperRotation('styling') }}
                     animate={{ scale: 1, opacity: 1, y: 0, rotate: getPaperRotation('styling') }}
                     exit={{ scale: 1.1, opacity: 0, filter: 'blur(10px)' }}
-                    transition={{ delay: 2.1, duration: 0.8, ease: "backOut" }}
+                    transition={{ delay: 1.9, duration: 0.8, ease: "backOut" }}
                     whileHover="hover"
                     whileTap="tap"
                 >

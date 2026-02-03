@@ -248,7 +248,7 @@ export default function FashionFilmPage({ onBack }) {
             {/* Swipeable Video Cards Container */}
             <motion.div
                 className="video-cards-container"
-                style={{ x: dragX }}
+                style={{ x: dragX, touchAction: 'pan-y' }}
             >
                 {videos.map((video, idx) => {
                     const isActive = idx === currentIndex

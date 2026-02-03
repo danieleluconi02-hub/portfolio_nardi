@@ -8,7 +8,7 @@ const translations = {
             fashionDesign: 'FASHION DESIGN',
             styling: 'STYLING',
             fashionFilm: 'FASHION FILM',
-            about: 'About',
+            about: 'About me',
             contact: 'Contact'
         },
         // UI Elements
@@ -23,7 +23,7 @@ const translations = {
         },
         // About Page
         about: {
-            title: 'About',
+            title: 'About me',
             paragraphs: [
                 "I was born in Macerata in 2002 and raised among the hills of Tolentino, in a context where actions have always counted more than words. Here I developed a concrete approach to creative work, based on attention to process, details, and material.",
                 "I trained in fashion design at NID in Perugia and completed a master's in Styling and Photography. During my three years there, I also deepened my knowledge of color analysis and image consulting, integrating analytical and perceptual skills into my design journey. This allows me to work on image consciously, considering proportions, color, and personal identity.",
@@ -125,7 +125,7 @@ const translations = {
             fashionDesign: 'DESIGN DE MODE',
             styling: 'STYLISME',
             fashionFilm: 'FASHION FILM',
-            about: 'À Propos',
+            about: 'À Propos de moi',
             contact: 'Contact'
         },
         // UI Elements
@@ -140,7 +140,7 @@ const translations = {
         },
         // About Page
         about: {
-            title: 'À Propos',
+            title: 'À Propos de moi',
             paragraphs: [
                 "Je suis né à Macerata en 2002 et j'ai grandi parmi les collines de Tolentino, dans un contexte où les actes ont toujours compté plus que les paroles. C'est là que j'ai développé une approche concrète du travail créatif, basée sur l'attention au processus, aux détails et à la matière.",
                 "Je me suis formé en design de mode au NID de Pérouse et j'ai complété un master en Stylisme et Photographie. Durant ces trois années, j'ai également approfondi la colorimétrie et le conseil en image, intégrant des compétences analytiques et perceptives à mon parcours de conception. Cela me permet de travailler sur l'image de manière consciente, en tenant compte des proportions, de la couleur et de l'identité personnelle.",
@@ -164,7 +164,7 @@ const translations = {
             fashionDesign: '패션 디자인',
             styling: '스타일링',
             fashionFilm: '패션 필름',
-            about: '정보',
+            about: '자기 소개',
             contact: '연락처'
         },
         // UI Elements
@@ -179,7 +179,7 @@ const translations = {
         },
         // About Page
         about: {
-            title: '정보',
+            title: '자기 소개',
             paragraphs: [
                 "2002년 마체라타에서 태어나 톨렌티노의 언덕 사이에서 자랐습니다. 그곳은 말보다 행동이 더 중요하게 여겨지는 환경이었습니다. 여기서 저는 과정, 세부 사항, 소재에 대한 주의를 바탕으로 창의적인 작업에 대한 구체적인 접근 방식을 개발했습니다.",
                 "헤루자의 NID에서 패션 디자인을 공부하고 스타일링 및 사진 석사 학위를 취득했습니다. 3년 동안 퍼스널 컬러 분석과 이미지 컨설팅도 깊이 있게 연구하여 분석적이고 지각적인 기술을 디자인 여정에 통합했습니다. 이를 통해 비율, 색상, 개인의 정체성을 고려하여 의식적으로 이미지를 작업할 수 있습니다.",
