@@ -1,5 +1,6 @@
-﻿import { useRef, useMemo, useEffect, useCallback, useState } from 'react'
+import { useRef, useMemo, useEffect, useCallback, Suspense } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
+import { useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 
 /**
@@ -39,6 +40,9 @@ function smoothEase(t) {
         : 1 - Math.pow(-2 * t + 2, 3) / 2
 }
 
+// Shared Geometry
+const sharedPlaneGeometry = new THREE.PlaneGeometry(1, 1)
+
 /**
  * Static Image Plane Component - images are already positioned on the sphere
  */
@@ -50,55 +54,37 @@ function StaticImagePlane({
     getOpacity
 }) {
     const meshRef = useRef()
-    const textureRef = useRef(null)
-    const [textureLoaded, setTextureLoaded] = useState(false)
 
-    useEffect(() => {
-        if (imagePath && !textureRef.current) {
-            const loader = new THREE.TextureLoader()
-            loader.load(imagePath, (tex) => {
-                tex.colorSpace = THREE.SRGBColorSpace
-                tex.minFilter = THREE.LinearFilter
-                tex.magFilter = THREE.LinearFilter
-                textureRef.current = tex
-                setTextureLoaded(true)
-            })
-        }
-    }, [imagePath])
+    // Automatic texture loading with caching and disposal
+    const texture = useTexture(imagePath, (tex) => {
+        tex.colorSpace = THREE.SRGBColorSpace
+        tex.minFilter = THREE.LinearFilter
+        tex.magFilter = THREE.LinearFilter
+    })
 
     useFrame(() => {
         if (!meshRef.current) return
 
-        const mesh = meshRef.current
-
-        // Set fixed position and rotation
-        mesh.position.copy(position)
-        mesh.quaternion.copy(quaternion)
-
-        // Apply opacity
-        if (mesh.material) {
-            mesh.material.opacity = getOpacity()
+        // Only update opacity dynamically
+        if (meshRef.current.material) {
+            meshRef.current.material.opacity = getOpacity()
         }
     })
 
     return (
-        <mesh ref={meshRef} scale={[scale, scale * 1.35, 1]}>
-            <planeGeometry args={[1, 1]} />
-            {textureLoaded && textureRef.current ? (
-                <meshBasicMaterial
-                    map={textureRef.current}
-                    side={THREE.DoubleSide}
-                    transparent
-                    opacity={0}
-                />
-            ) : (
-                <meshBasicMaterial
-                    color="#1a1a1a"
-                    side={THREE.DoubleSide}
-                    transparent
-                    opacity={0}
-                />
-            )}
+        <mesh
+            ref={meshRef}
+            scale={[scale, scale * 1.35, 1]}
+            position={position}
+            quaternion={quaternion}
+            geometry={sharedPlaneGeometry}
+        >
+            <meshBasicMaterial
+                map={texture}
+                side={THREE.DoubleSide}
+                transparent
+                opacity={0}
+            />
         </mesh>
     )
 }
@@ -372,14 +358,15 @@ export default function CategorySphere({
 
                 {/* Static image planes on sphere surface */}
                 {sampledImages.map((imagePath, index) => (
-                    <StaticImagePlane
-                        key={`${imagePath}-${index}`}
-                        imagePath={imagePath}
-                        position={spherePositions[index]}
-                        quaternion={imageQuaternions[index]}
-                        scale={imageScale}
-                        getOpacity={getOpacity}
-                    />
+                    <Suspense key={`${imagePath}-${index}`} fallback={null}>
+                        <StaticImagePlane
+                            imagePath={imagePath}
+                            position={spherePositions[index]}
+                            quaternion={imageQuaternions[index]}
+                            scale={imageScale}
+                            getOpacity={getOpacity}
+                        />
+                    </Suspense>
                 ))}
             </group>
         </>
