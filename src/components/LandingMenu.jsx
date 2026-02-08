@@ -102,14 +102,30 @@ export default function LandingMenu({ onNavigate, manifest }) {
         const shuffledCollections = [...availableItems].sort(() => 0.5 - Math.random())
         let candidateImages = []
 
+        const usedFilenames = new Set()
+
         shuffledCollections.forEach(col => {
+            // Helper to add unique image
+            const addUniqueImage = (sourceArray, type) => {
+                // Try up to 5 times to find an unused image
+                for (let i = 0; i < 5; i++) {
+                    if (sourceArray.length === 0) return
+                    const randomImg = sourceArray[Math.floor(Math.random() * sourceArray.length)]
+                    const filename = randomImg.split('/').pop() // Get filename only
+
+                    if (!usedFilenames.has(filename)) {
+                        candidateImages.push({ src: randomImg, type })
+                        usedFilenames.add(filename)
+                        return // Found one, stop
+                    }
+                }
+            }
+
             if (col.drawings.length > 0) {
-                const randomDrawing = col.drawings[Math.floor(Math.random() * col.drawings.length)]
-                candidateImages.push({ src: randomDrawing, type: 'drawing' })
+                addUniqueImage(col.drawings, 'drawing')
             }
             if (col.photos.length > 0) {
-                const randomPhoto = col.photos[Math.floor(Math.random() * col.photos.length)]
-                candidateImages.push({ src: randomPhoto, type: 'photo' })
+                addUniqueImage(col.photos, 'photo')
             }
         })
 
@@ -119,6 +135,8 @@ export default function LandingMenu({ onNavigate, manifest }) {
         densityPool.forEach((item, i) => {
             let placed = false
             let attempt = 0
+
+            // ... (rest of placement logic)
 
             const collisionRadius = item.type === 'drawing' ? 9 : 11
 
@@ -264,11 +282,11 @@ export default function LandingMenu({ onNavigate, manifest }) {
                             }}
                         >
                             <img
-                                src="/assets/brand/signature.png"
+                                src="/assets/ui/signature.svg"
                                 alt="Francesco Nardi"
                                 className="w-[85vw] md:w-[65vw] lg:w-[50vw] xl:w-[45vw] h-auto"
                                 style={{
-                                    filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.5)) brightness(1.4) contrast(1.1)',
+                                    filter: 'invert(1) drop-shadow(0 8px 32px rgba(0,0,0,0.5)) brightness(1.4) contrast(1.1)',
                                 }}
                                 draggable={false}
                             />
