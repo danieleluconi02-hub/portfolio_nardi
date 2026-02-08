@@ -1,6 +1,8 @@
 ﻿import { useRef, useMemo, useEffect, useCallback, useState } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
+import SketchySphereGrid from './SketchySphereGrid'
+
 
 /**
  * Fibonacci Sphere Distribution - creates evenly distributed points on a sphere
@@ -86,6 +88,7 @@ function StaticImagePlane({
             position={position}
             quaternion={quaternion}
             scale={[scale, scale * 1.35, 1]}
+            renderOrder={2} // Render ABOVE the grid lines (which have renderOrder=-1)
         >
             <planeGeometry args={[1, 1]} />
             {textureLoaded && textureRef.current ? (
@@ -93,8 +96,12 @@ function StaticImagePlane({
                     map={textureRef.current}
                     side={THREE.DoubleSide}
                     transparent={true}
-                    depthWrite={false} // Crucial for mobile sorting
+                    depthWrite={false}
+                    depthTest={false} // Disable depth test to ensure visibility
                     opacity={0}
+                    polygonOffset={true}
+                    polygonOffsetFactor={-1}
+                    polygonOffsetUnits={-1}
                 />
             ) : (
                 <meshBasicMaterial
@@ -102,6 +109,7 @@ function StaticImagePlane({
                     side={THREE.DoubleSide}
                     transparent={true}
                     depthWrite={false}
+                    depthTest={false}
                     opacity={0}
                 />
             )}
@@ -134,9 +142,9 @@ export default function CategorySphere({
         sphereRotation: 0
     })
 
-    // Sphere parameters - more images for fuller look
+    // Sphere parameters - many more images since grid defines shape
     const sphereRadius = 4.5
-    const TARGET_IMAGE_COUNT = 60  // More images for fuller sphere
+    const TARGET_IMAGE_COUNT = 90  // More images - grid lines define the sphere form
 
     // Timing (milliseconds)
     const CAMERA_ORBIT_DURATION = 5000  // Longer animation - 5 seconds for dramatic effect
@@ -180,12 +188,13 @@ export default function CategorySphere({
         return shuffled.slice(0, Math.min(TARGET_IMAGE_COUNT, shuffled.length))
     }, [allImages])
 
-    // Image scale - balanced to prevent overlap with more images
+    // Image scale - adjusted for higher image count
     const imageScale = useMemo(() => {
         const count = sampledImages.length
         if (count <= 40) return 1.1
-        if (count <= 55) return 0.9
-        return 0.8  // Smaller to prevent overlap at 60 images
+        if (count <= 60) return 0.9
+        if (count <= 80) return 0.75
+        return 0.65  // Smaller to prevent overlap at 90 images
     }, [sampledImages.length])
 
     // Fixed positions on sphere (pre-calculated)
@@ -374,11 +383,21 @@ export default function CategorySphere({
 
             {/* Pre-formed sphere group */}
             <group ref={groupRef}>
-                {/* Invisible click sphere */}
                 <mesh onClick={handleSphereClick}>
                     <sphereGeometry args={[sphereRadius + 0.6, 32, 32]} />
                     <meshBasicMaterial transparent opacity={0} />
                 </mesh>
+
+                {/* Hand-drawn sketchy grid - with image occlusion */}
+                <SketchySphereGrid
+                    radius={sphereRadius * 0.995} // Very tight fit - images are ON the surface
+                    color="#FFC0CB" // Pink to match menu
+                    opacity={0.75}
+                    lineWidth={2.2}
+                    imagePositions={spherePositions} // Pass image positions for occlusion
+                    imageScale={imageScale}          // Pass scale for occlusion radius calculation
+                    renderOrder={-1}                 // Render BELOW images
+                />
 
                 {/* Static image planes on sphere surface */}
                 {sampledImages.map((imagePath, index) => (

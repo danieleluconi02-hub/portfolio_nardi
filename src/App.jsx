@@ -1,4 +1,4 @@
-import { useState, Suspense, useCallback, useMemo } from 'react'
+import { useState, Suspense, useCallback, useMemo, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { motion, AnimatePresence } from 'framer-motion'
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext'
@@ -19,6 +19,7 @@ import manifest from './data/manifest.json'
 import './index.css'
 
 import PreloadManager from './components/PreloadManager'
+import { useHashNavigation } from './hooks/useHashNavigation'
 
 // Apple-like easing curves
 const appleEasing = [0.25, 0.1, 0.25, 1]
@@ -39,6 +40,20 @@ function App() {
     const [viewingCollection, setViewingCollection] = useState(null)
     const [showMenu, setShowMenu] = useState(true)
     const [previewImageData, setPreviewImageData] = useState(null)
+
+    // Sync state with URL hash
+    useHashNavigation({
+        appState,
+        setAppState,
+        selectedCategory,
+        setSelectedCategory,
+        viewingCollection,
+        setViewingCollection,
+        manifest
+    })
+
+    // Persistent camera rotation for immersive sphere - survives state changes
+    const immersiveCameraRotation = useRef({ x: 0, y: 0 })
 
     // Handle menu navigation
     const handleMenuNavigate = useCallback((destination) => {
@@ -192,10 +207,9 @@ function App() {
                             left: 0,
                             width: '100%',
                             height: '100%',
-                            backgroundImage: 'url(/assets/landing-bg.png)',
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                            backgroundRepeat: 'no-repeat',
+                            width: '100%',
+                            height: '100%',
+                            backgroundColor: '#7D7E80',
                             zIndex: 0,
                         }}
                         initial={{ opacity: 0 }}
@@ -286,9 +300,8 @@ function App() {
                                     transition={{ duration: 0.5 }}
                                 >
                                     <p
-                                        className="text-neutral-500 text-sm tracking-[0.2em] font-light uppercase select-none"
+                                        className="text-white/70 text-base tracking-[0.2em] font-medium uppercase select-none"
                                         style={{
-                                            textShadow: '0 1px 4px rgba(255,255,255,0.8)',
                                             fontFamily: t.ui.clickToEnter.match(/[\u3131-\u314e\u314f-\u3163\uac00-\ud7a3]/) ? '"Noto Sans KR", sans-serif' : undefined,
                                             fontWeight: t.ui.clickToEnter.match(/[\u3131-\u314e\u314f-\u3163\uac00-\ud7a3]/) ? '500' : undefined
                                         }}
@@ -315,12 +328,16 @@ function App() {
                         {/* Back Button */}
                         <BackButton onClick={handleBack} />
 
-                        {/* Hint - translated */}
+                        {/* Hint - translated - disappears after 4 seconds */}
                         <motion.p
-                            className="immersive-hint"
+                            className="immersive-hint text-white/60 text-sm tracking-widest"
                             initial={{ opacity: 0 }}
-                            animate={{ opacity: 0.35 }}
-                            transition={{ delay: 1.2, duration: 0.5 }}
+                            animate={{ opacity: [0, 0.8, 0.8, 0] }}
+                            transition={{
+                                delay: 0.5,
+                                duration: 4,
+                                times: [0, 0.1, 0.8, 1]
+                            }}
                         >
                             {t.ui.dragToExplore}
                         </motion.p>
@@ -335,6 +352,7 @@ function App() {
                                     seed={sessionSeed}
                                     onImageClick={handleImageClick}
                                     onBack={handleBack}
+                                    savedRotation={immersiveCameraRotation}
                                 />
                             </Suspense>
                         </Canvas>
@@ -375,6 +393,11 @@ function App() {
                             collections: [viewingCollection]
                         }}
                         onBack={handleBack}
+                        onGoHome={() => {
+                            setViewingCollection(null)
+                            setSelectedCategory(null)
+                            setAppState('menu')
+                        }}
                     />
                 )}
             </AnimatePresence>

@@ -2,9 +2,17 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '../contexts/LanguageContext'
 import LanguageSwitcher from './LanguageSwitcher'
+import content from '../data/content.json'
 
 // Apple-like easing
 const appleEasing = [0.25, 0.1, 0.25, 1]
+
+// Contact info from content.json
+const contactInfo = {
+    email: content.contact.email.address,
+    instagram: content.contact.instagram.url,
+    linkedin: content.contact.linkedin.url
+}
 
 export default function TopRightMenu({ onNavigate }) {
     const { t } = useLanguage()
@@ -17,10 +25,10 @@ export default function TopRightMenu({ onNavigate }) {
         setIsOpen(false)
     }
 
+    // Removed 'contact' from menu items
     const menuItems = [
         { id: 'fashionfilm', label: t.menu.fashionFilm },
-        { id: 'about', label: t.menu.about },
-        { id: 'contact', label: t.menu.contact }
+        { id: 'about', label: t.menu.about }
     ]
 
     return (
@@ -128,6 +136,82 @@ export default function TopRightMenu({ onNavigate }) {
                         <div className="mt-12">
                             <LanguageSwitcher />
                         </div>
+
+                        {/* Contact Section - Email and Social Icons */}
+                        <motion.div
+                            className="mt-24 flex flex-col items-center"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 10 }}
+                            transition={{ delay: 0.4, duration: 0.5, ease: appleEasing }}
+                        >
+                            {/* Email */}
+                            <a
+                                href={`mailto:${contactInfo.email}`}
+                                className="text-white"
+                                style={{
+                                    fontFamily: 'GhostFont',
+                                    fontSize: 'clamp(1.5rem, 3.5vw, 2rem)',
+                                    letterSpacing: '0.02em',
+                                    textDecoration: 'none'
+                                }}
+                            >
+                                {contactInfo.email}
+                            </a>
+
+                            {/* Social Icons Row */}
+                            <div className="flex items-center gap-8 -mt-4">
+                                {/* Instagram Icon */}
+                                <a
+                                    href={contactInfo.instagram}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        width: '100px',
+                                        height: '100px'
+                                    }}
+                                >
+                                    <img
+                                        src="/assets/ui/logo instagram.png"
+                                        alt="Instagram"
+                                        style={{
+                                            width: '100%',
+                                            height: '100%',
+                                            objectFit: 'contain',
+                                            filter: 'invert(1) brightness(1.2)'
+                                        }}
+                                    />
+                                </a>
+
+                                {/* LinkedIn Icon */}
+                                <a
+                                    href={contactInfo.linkedin}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        width: '130px',
+                                        height: '130px'
+                                    }}
+                                >
+                                    <img
+                                        src="/assets/ui/logo linkedin.png"
+                                        alt="LinkedIn"
+                                        style={{
+                                            width: '100%',
+                                            height: '100%',
+                                            objectFit: 'contain',
+                                            filter: 'invert(1) brightness(1.2)'
+                                        }}
+                                    />
+                                </a>
+                            </div>
+                        </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>

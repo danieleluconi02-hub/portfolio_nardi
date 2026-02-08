@@ -17,7 +17,16 @@ export default function ImagePreviewModal({
     const { t } = useLanguage()
     const [imageLoaded, setImageLoaded] = useState(false)
     const [selectedImageIndex, setSelectedImageIndex] = useState(0)
-    const [randomImages, setRandomImages] = useState([])
+    const [deckImages, setDeckImages] = useState([]) // Background deck images
+    const [isMobile, setIsMobile] = useState(false)
+
+    // Detect mobile for responsive deck offsets
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 1024)
+        checkMobile()
+        window.addEventListener('resize', checkMobile)
+        return () => window.removeEventListener('resize', checkMobile)
+    }, [])
 
     // Find the initially clicked image index
     useEffect(() => {
@@ -30,22 +39,25 @@ export default function ImagePreviewModal({
         }
     }, [imageData, collection])
 
-    // Get 3 random images (different from the current one)
+    // Get 2 random images for the deck background (excluding current image)
     useEffect(() => {
         if (!collection?.images || collection.images.length < 2) return
 
         const otherImages = collection.images.filter((_, idx) => idx !== selectedImageIndex)
         const shuffled = [...otherImages].sort(() => Math.random() - 0.5)
-        const selected = shuffled.slice(0, Math.min(3, shuffled.length))
+        // Take 2 images for the deck effect
+        const selected = shuffled.slice(0, Math.min(2, shuffled.length))
 
-        // Convert to thumbnails for display
-        setRandomImages(selected.map(img => img.replace('/full/', '/thumb/')))
+        setDeckImages(selected)
     }, [collection, selectedImageIndex])
+
+    // Helper to get full path
+    const getFullPath = (path) => path ? path.replace('/thumb/', '/full/') : ''
 
     // Get current full-size image
     const currentImage = useMemo(() => {
         if (!collection?.images || collection.images.length === 0) return null
-        return collection.images[selectedImageIndex]
+        return getFullPath(collection.images[selectedImageIndex])
     }, [collection, selectedImageIndex])
 
     // Default description
@@ -86,11 +98,7 @@ export default function ImagePreviewModal({
             onClick={onClose}
         >
             {/* Close Button - Top Left */}
-            {/* Close Button - Top Left */}
             <BackButton onClick={onClose} className="preview-close-btn-override" />
-
-            {/* View Collection Button - Right Side */}
-
 
             {/* Main Content Area */}
             <motion.div
@@ -113,77 +121,104 @@ export default function ImagePreviewModal({
                     <p className="preview-description">{description}</p>
                 </motion.div>
 
-                {/* Center - Main Image and Random Thumbnails */}
+                {/* Center - DECK STACK EFFECT (like a hand of cards) */}
                 <div className="preview-main-area">
-                    {/* Main Image */}
-                    <motion.div
-                        className="preview-image-wrapper"
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, ease: cinematicEasing }}
-                    >
-                        {currentImage && (
-                            <div className="sketchy-image-wrapper">
-                                <motion.img
-                                    key={selectedImageIndex}
-                                    src={currentImage}
-                                    alt={`${collection?.title} - ${selectedImageIndex + 1}`}
-                                    className="preview-main-image"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: imageLoaded ? 1 : 0.3 }}
-                                    transition={{ duration: 0.3 }}
-                                    onLoad={() => setImageLoaded(true)}
+                    <div className="deck-container">
+                        {/* CARD 3 (Terzo Livello) - Sbuca a DESTRA, ruotata in senso ORARIO */}
+                        {deckImages[1] && (
+                            <motion.div
+                                className="deck-card deck-card-back"
+                                initial={{ opacity: 0, rotate: 0, scale: 0.7, x: 0 }}
+                                animate={{
+                                    opacity: 1,
+                                    rotate: isMobile ? 10 : 10,    // Stessa rotazione oraria su mobile e desktop
+                                    scale: isMobile ? 0.85 : 0.88, // Più piccola per effetto profondità
+                                    x: isMobile ? 85 : 120         // Spostamento verso DESTRA (aumentato su mobile)
+                                }}
+                                transition={{ delay: 0.15, duration: 0.7, ease: cinematicEasing }}
+                                style={{
+                                    zIndex: 1,
+                                    transformOrigin: 'bottom center',
+                                    background: 'none',
+                                    padding: 0,
+                                    margin: 0,
+                                    border: 'none',
+                                    backdropFilter: 'none'
+                                }}
+                            >
+                                <img
+                                    src={getFullPath(deckImages[1])}
+                                    alt="Collection preview background 2"
+                                    className="deck-image"
                                     draggable={false}
-                                    style={{
-                                        boxShadow: 'none',
-                                        filter: 'none',
-                                        background: 'transparent',
-                                        borderRadius: 0
-                                    }}
+                                    style={{ opacity: 0.7, filter: 'brightness(0.65)', background: 'none' }}
                                 />
-                            </div>
+                            </motion.div>
                         )}
-                    </motion.div>
 
-                    {/* 3 Random Images Below - "Alive" Effect */}
-                    <motion.div
-                        className="preview-bottom-row"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4, duration: 0.5, ease: cinematicEasing }}
-                    >
-                        <div className="preview-random-images">
-                            {randomImages.map((img, index) => (
-                                <div
-                                    key={`${img}-${index}`}
-                                    className="sketchy-image-wrapper"
-                                    style={{
-                                        margin: '0 8px',
-                                        width: '85px',
-                                        height: '110px',
-                                        cursor: 'default',
-                                        pointerEvents: 'none' // Disable interactions
-                                    }}
-                                >
-                                    <img
-                                        src={img}
-                                        alt={`Collection preview ${index + 1}`}
-                                        className="random-image"
+                        {/* CARD 2 (Secondo Livello) - Sbuca a SINISTRA, ruotata in senso ANTIORARIO */}
+                        {deckImages[0] && (
+                            <motion.div
+                                className="deck-card deck-card-middle"
+                                initial={{ opacity: 0, rotate: 0, scale: 0.8, x: 0 }}
+                                animate={{
+                                    opacity: 1,
+                                    rotate: isMobile ? -8 : -8,    // Stessa rotazione antioraria su mobile e desktop
+                                    scale: isMobile ? 0.9 : 0.92,  // Leggermente più grande della back
+                                    x: isMobile ? -75 : -110       // Spostamento verso SINISTRA (aumentato su mobile)
+                                }}
+                                transition={{ delay: 0.25, duration: 0.65, ease: cinematicEasing }}
+                                style={{
+                                    zIndex: 5,
+                                    transformOrigin: 'bottom center',
+                                    background: 'none',
+                                    padding: 0,
+                                    margin: 0,
+                                    border: 'none',
+                                    backdropFilter: 'none'
+                                }}
+                            >
+                                <img
+                                    src={getFullPath(deckImages[0])}
+                                    alt="Collection preview background 1"
+                                    className="deck-image"
+                                    draggable={false}
+                                    style={{ opacity: 0.8, filter: 'brightness(0.75)', background: 'none' }}
+                                />
+                            </motion.div>
+                        )}
+
+                        {/* MAIN IMAGE - Grid Centered, no offset */}
+                        <motion.div
+                            className="deck-card deck-card-front"
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.5, ease: cinematicEasing }}
+                            style={{ zIndex: 10 }}
+                        >
+                            {currentImage && (
+                                <div className="sketchy-image-wrapper">
+                                    <motion.img
+                                        key={selectedImageIndex}
+                                        src={currentImage}
+                                        alt={`${collection?.title} - ${selectedImageIndex + 1}`}
+                                        className="preview-main-image"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: imageLoaded ? 1 : 0.3 }}
+                                        transition={{ duration: 0.3 }}
+                                        onLoad={() => setImageLoaded(true)}
                                         draggable={false}
                                         style={{
                                             boxShadow: 'none',
                                             filter: 'none',
                                             background: 'transparent',
-                                            borderRadius: 0,
-                                            width: '100%',
-                                            height: '100%',
-                                            objectFit: 'cover'
+                                            borderRadius: 0
                                         }}
                                     />
                                 </div>
-                            ))}
-                        </div>
-                    </motion.div>
+                            )}
+                        </motion.div>
+                    </div>
                 </div>
 
                 {/* Right Panel - View Collection Button */}
@@ -203,7 +238,8 @@ export default function ImagePreviewModal({
                         {t.ui.viewCollection} <span className="arrow">→</span>
                     </motion.button>
                 </motion.div>
-            </motion.div >
-        </motion.div >
+            </motion.div>
+        </motion.div>
     )
 }
+

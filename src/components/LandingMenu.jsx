@@ -3,11 +3,9 @@ import { useLanguage } from '../contexts/LanguageContext'
 import { useState, useEffect, useMemo, useCallback } from 'react'
 import translations from '../data/translations'
 
-// Component for individual scatter items to handle loading state
+// Component for individual scatter items (background images)
 const ScatterItem = ({ item }) => {
     const [isLoaded, setIsLoaded] = useState(false)
-
-    // Helper for random light skew to simulate paper imperfection (static per item)
     const skewX = useMemo(() => Math.random() * 2 - 1, [])
     const skewY = useMemo(() => Math.random() * 2 - 1, [])
 
@@ -20,14 +18,12 @@ const ScatterItem = ({ item }) => {
                 width: item.type === 'drawing' ? '14rem' : '14rem',
                 zIndex: item.zIndex,
                 opacity: isLoaded ? 1 : 0,
-                // Removed heavy SVG filters for performance
-                // Using standard CSS filters for style
                 filter: item.type === 'photo'
                     ? 'brightness(0.9) contrast(1.1) sepia(0.2) drop-shadow(0 4px 6px rgba(0,0,0,0.3))'
                     : 'brightness(1.02) sepia(0.1) contrast(1.1) drop-shadow(0 2px 3px rgba(0,0,0,0.1))',
-                transform: `skew(${skewX}deg, ${skewY}deg)`, // Subtle distortion
-                willChange: 'transform, opacity', // PERFORMANCE: Promote to GPU layer
-                contain: 'content' // PERFORMANCE: Isolate layout
+                transform: `skew(${skewX}deg, ${skewY}deg)`,
+                willChange: 'transform, opacity',
+                contain: 'content'
             }}
             initial={{ scale: item.scale * 1.5, rotate: item.rotate + 10, opacity: 0 }}
             animate={{
@@ -38,29 +34,25 @@ const ScatterItem = ({ item }) => {
             exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.8 } }}
             transition={{ duration: 1.5, delay: Math.random() * 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
-            {/* CONDITIONAL RENDERING BASED ON TYPE */}
             {item.type === 'photo' ? (
-                // PHOTO: Polaroid Style (White bg + padding)
                 <div className="bg-white p-2 pb-8 shadow-2xl transform rotate-1">
                     <img
                         src={item.src}
                         alt=""
                         className="w-full h-auto grayscale-[0.2]"
                         draggable={false}
-                        decoding="async" // PERFORMANCE: Async decoding
-                        // onLoad handled by image
+                        decoding="async"
                         onLoad={() => setIsLoaded(true)}
                     />
                 </div>
             ) : (
-                // DRAWING: Raw Style (No bg, just the image)
                 <div className="transform rotate-0">
                     <img
                         src={item.src}
                         alt=""
                         className="w-full h-auto mix-blend-multiply"
                         draggable={false}
-                        decoding="async" // PERFORMANCE: Async decoding
+                        decoding="async"
                         style={{ filter: 'grayscale(0.1) contrast(1.2)' }}
                         onLoad={() => setIsLoaded(true)}
                     />
@@ -75,7 +67,7 @@ export default function LandingMenu({ onNavigate, manifest }) {
     const [navigatingTo, setNavigatingTo] = useState(null)
     const [scatterItems, setScatterItems] = useState([])
 
-    // Process manifest
+    // Process manifest for background images
     const availableItems = useMemo(() => {
         if (!manifest) return []
         const items = []
@@ -94,23 +86,22 @@ export default function LandingMenu({ onNavigate, manifest }) {
         return items
     }, [manifest])
 
-    // Generation Logic 
+    // Generation Logic for background scatter
     const generateScatter = useCallback(() => {
         if (availableItems.length === 0) return
 
         const generatedItems = []
         const maxAttempts = 200
 
+        // Safe zone in center for hero content
         const safeZone = {
-            xMin: 35, xMax: 65,
-            yMin: 35, yMax: 65
+            xMin: 25, xMax: 75,
+            yMin: 20, yMax: 80
         }
 
         const shuffledCollections = [...availableItems].sort(() => 0.5 - Math.random())
-
         let candidateImages = []
 
-        // Pass 1: One of each (Diversity First)
         shuffledCollections.forEach(col => {
             if (col.drawings.length > 0) {
                 const randomDrawing = col.drawings[Math.floor(Math.random() * col.drawings.length)]
@@ -122,9 +113,6 @@ export default function LandingMenu({ onNavigate, manifest }) {
             }
         })
 
-        // Pass 2: Moderate Fill (Duplication for balanced density, BUT NO DUPLICATE DRAWINGS)
-        // User Request: Never more than 1 drawing per collection.
-        // We duplicate photos to maintain density, but keep drawings unique.
         const photosOnly = candidateImages.filter(item => item.type === 'photo')
         const densityPool = [...candidateImages, ...photosOnly].sort(() => 0.5 - Math.random())
 
@@ -138,6 +126,7 @@ export default function LandingMenu({ onNavigate, manifest }) {
                 const left = Math.random() * 88 + 1
                 const top = Math.random() * 88 + 1
 
+                // Avoid center hero area
                 if (left > safeZone.xMin && left < safeZone.xMax &&
                     top > safeZone.yMin && top < safeZone.yMax) {
                     attempt++
@@ -159,7 +148,6 @@ export default function LandingMenu({ onNavigate, manifest }) {
                 if (!overlap) {
                     const rotationRange = item.type === 'drawing' ? 90 : 25
                     const rotate = Math.random() * rotationRange - (rotationRange / 2)
-
                     const scale = item.type === 'drawing'
                         ? 0.8 + Math.random() * 0.4
                         : 0.6 + Math.random() * 0.3
@@ -184,18 +172,14 @@ export default function LandingMenu({ onNavigate, manifest }) {
         setScatterItems(generatedItems)
     }, [availableItems])
 
-
-    // Initial Load + Auto Refresh (20s)
+    // Initial Load + Auto Refresh (15s as per spec)
     useEffect(() => {
-        generateScatter() // Initial
-
+        generateScatter()
         const interval = setInterval(() => {
             generateScatter()
-        }, 20000)
-
+        }, 15000)
         return () => clearInterval(interval)
     }, [generateScatter])
-
 
     const handleMenuClick = (id) => {
         setNavigatingTo(id)
@@ -204,82 +188,41 @@ export default function LandingMenu({ onNavigate, manifest }) {
         }, 600)
     }
 
-    // --- Dynamic Content & Styling Logic ---
-
+    // --- Labels ---
     const getDesignLabel = () => {
-        const label = t.menu.fashionDesign || translations[language]?.menu.fashionDesign || 'FASHION DESIGN'
-        if (language === 'it' && label.includes('PROGETTAZIONE')) return 'PROGETTAZIONE\nMODA'
+        if (language === 'it') return 'PROGETTAZIONE'
         if (language === 'es') return 'DISEÑO DE MODA'
-        if (language === 'en' || label === 'FASHION DESIGN') return 'FASHION\nDESIGN'
-        return label
+        if (language === 'fr') return 'CRÉATION MODE'
+        if (language === 'ko') return '패션 디자인'
+        return 'FASHION DESIGN'
     }
 
     const getStylingLabel = () => {
-        return t.menu.styling || translations[language]?.menu.styling || 'STYLING'
+        if (language === 'it') return 'CURA IMMAGINE'
+        if (language === 'es') return 'ESTILISMO'
+        if (language === 'fr') return 'STYLISME'
+        if (language === 'ko') return '스타일링'
+        return 'STYLING'
     }
 
-    const getDesignFontSize = () => {
-        if (language === 'it') return 'clamp(1.8rem, 3.2vw, 2.8rem)'
-        if (language === 'es') return 'clamp(1.6rem, 2.8vw, 2.5rem)'
-        if (language === 'fr') return 'clamp(1.9rem, 3.2vw, 2.8rem)'
-        if (language === 'ko') return 'clamp(1.8rem, 3.5vw, 3rem)'
-        return 'clamp(2.2rem, 4.5vw, 4rem)'
-    }
-
-    const getStylingFontSize = () => {
-        if (language === 'es') return 'clamp(2rem, 3.5vw, 3rem)'
-        if (language === 'it') return 'clamp(1.6rem, 2.8vw, 2.5rem)'
-        if (language === 'fr') return 'clamp(2.1rem, 3.8vw, 3rem)'
-        if (language === 'ko') return 'clamp(1.8rem, 3.2vw, 2.8rem)'
-        return 'clamp(2.4rem, 4.2vw, 4rem)'
-    }
-
-    const getDesignPaperWidth = () => {
-        if (language === 'fr') return 'w-72 md:w-[27rem]'
-        if (language === 'ko') return 'w-64 md:w-[18rem]'
-        if (language === 'es') return 'w-72 md:w-[22rem]'
-        if (language === 'it') return 'w-80 md:w-[28rem]'
-        return 'w-72 md:w-[22rem]'
-    }
-
-    const getStylingPaperWidth = () => {
-        if (language === 'it') return 'w-[28rem] md:w-[52rem]'
-        if (language === 'es') return 'w-72 md:w-[26rem]'
-        if (language === 'fr') return 'w-64 md:w-[25rem]'
-        if (language === 'ko') return 'w-64 md:w-[23rem]'
-        return 'w-64 md:w-[24rem]'
-    }
-
-    const getPaperRotation = (type) => {
-        if (type === 'design') {
-            if (language === 'it') return -1
-            if (language === 'es') return -3
-            if (language === 'fr') return -2.5
-            if (language === 'ko') return 1
-            return -2
-        }
-        if (type === 'styling') {
-            if (language === 'it') return 1.5
-            if (language === 'es') return 4
-            if (language === 'fr') return 2
-            if (language === 'ko') return -1
-            return 3
-        }
-        return 0
+    const getRoleLabel = () => {
+        if (language === 'it') return 'FASHION DESIGNER & STYLIST'
+        if (language === 'es') return 'DISEÑADOR DE MODA & ESTILISTA'
+        if (language === 'fr') return 'CRÉATEUR DE MODE & STYLISTE'
+        if (language === 'ko') return '패션 디자이너 & 스타일리스트'
+        return 'FASHION DESIGNER & STYLIST'
     }
 
     return (
         <motion.div
-            className="fixed inset-0 overflow-hidden bg-[#2a2a2a] z-[50]"
+            className="fixed inset-0 overflow-hidden bg-[#7D7E80] z-[50]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
         >
-            {/* REMOVED SVG DEFINITIONS FOR PERFORMANCE */}
-
-            {/* 1. SCATTER BACKGROUND */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {/* 1. SCATTER BACKGROUND (z-index 0) */}
+            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
                 <AnimatePresence mode='popLayout'>
                     {scatterItems.map((item) => (
                         <ScatterItem key={item.id} item={item} />
@@ -287,116 +230,169 @@ export default function LandingMenu({ onNavigate, manifest }) {
                 </AnimatePresence>
             </div>
 
-            {/* 2. ATMOSPHERE */}
-            <div className="absolute inset-0 z-[20] pointer-events-none mix-blend-overlay" style={{ background: 'linear-gradient(120deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 30%, rgba(255,220,200,0.15) 45%, rgba(255,240,220,0.2) 55%, rgba(0,0,0,0.6) 70%, rgba(0,0,0,0.9) 100%)' }} />
-            <div className="absolute inset-0 z-[20] pointer-events-none bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.6)_100%)]" />
+            {/* 2. DARK OVERLAY - 40% black (z-index 1) */}
+            <div
+                className="absolute inset-0 z-[1] pointer-events-none"
+                style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
+            />
 
-            {/* 3. NAVIGATION */}
-            <div className="absolute inset-0 z-[30] flex flex-col items-center justify-center gap-8 drop-shadow-2xl">
+            {/* 3. HERO CONTENT (z-index 10+) */}
+            <div className="absolute inset-0 z-[10] flex flex-col items-center justify-start md:justify-center px-4 pt-[12vh] md:pt-0">
 
-                {/* BUTTON 1: FASHION DESIGN */}
+                {/* BRAND IDENTITY BLOCK - Signature + Role tightly coupled */}
                 <motion.div
-                    onClick={() => handleMenuClick('design')}
-                    className="relative cursor-pointer group z-30"
-                    initial={{ scale: 0.9, opacity: 0, y: 50, rotate: getPaperRotation('design') }}
-                    animate={{ scale: 1, opacity: 1, y: 0, rotate: getPaperRotation('design') }}
-                    exit={{ scale: 1.1, opacity: 0, filter: 'blur(10px)' }}
-                    transition={{ delay: 1.8, duration: 0.8, ease: "backOut" }}
-                    whileHover="hover"
-                    whileTap="tap"
+                    className="flex flex-col items-center mt-0 md:-mt-[5vh]"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3, duration: 0.5 }}
                 >
+                    {/* SIGNATURE - Handwriting reveal animation */}
                     <motion.div
-                        className={`relative flex items-center justify-center ${getDesignPaperWidth()}`}
-                        variants={{ hover: { scale: 1.05, rotate: getPaperRotation('design') + 1, y: -5 }, tap: { scale: 0.98, rotate: getPaperRotation('design') - 1, y: 0 } }}
-                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                        className="relative overflow-visible"
+                        initial={{ rotate: -2 }}
+                        animate={{ rotate: -2 }}
+                        style={{ transformOrigin: 'center center' }}
                     >
-                        <div className="relative w-full">
+                        {/* Animated mask for handwriting effect */}
+                        <motion.div
+                            initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                            animate={{ clipPath: 'inset(0 0% 0 0)' }}
+                            transition={{
+                                delay: 0.5,
+                                duration: 2.0,
+                                ease: [0.25, 0.1, 0.25, 1]
+                            }}
+                        >
                             <img
-                                src="/assets/ui/paper-fashion.png"
-                                alt="Fashion Design Paper"
-                                className={`w-full drop-shadow-xl ${(language === 'es' || language === 'fr') ? 'h-[5.5rem] object-fill' :
-                                    'h-auto'
-                                    }`}
+                                src="/assets/brand/signature.png"
+                                alt="Francesco Nardi"
+                                className="w-[85vw] md:w-[65vw] lg:w-[50vw] xl:w-[45vw] h-auto"
+                                style={{
+                                    filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.5)) brightness(1.4) contrast(1.1)',
+                                }}
                                 draggable={false}
                             />
+                        </motion.div>
+                    </motion.div>
 
-                            <div className="absolute inset-0 flex items-center justify-center pt-3 pr-3 pb-3 pl-3">
-                                <h2
-                                    className="text-black font-normal text-center whitespace-pre-wrap select-none leading-relaxed tracking-wide"
+                </motion.div>
+
+                {/* ROLE - Positioned between signature and navigation */}
+                <motion.p
+                    className="absolute top-[38%] md:top-[58%] text-white text-xs md:text-sm lg:text-base uppercase tracking-[3px] md:tracking-[4px] text-center font-light px-4"
+                    style={{ fontFamily: "'GhostFont', sans-serif" }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 2.5, duration: 0.8 }}
+                >
+                    {getRoleLabel()}
+                </motion.p>
+
+                {/* NAVIGATION - Positioned lower, asymmetric layout */}
+                <motion.div
+                    className="absolute bottom-[26vh] md:bottom-[16vh] left-0 right-0 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-12 px-4"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 2.8, duration: 0.8 }}
+                >
+                    {/* Button 1: Fashion Design / Progettazione */}
+                    <motion.div
+                        onClick={() => handleMenuClick('design')}
+                        className="relative cursor-pointer group"
+                        style={{ rotate: '-3deg' }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 2.8, duration: 1.2, ease: 'easeOut' }}
+                        whileHover={{ scale: 1.03, y: -3 }}
+                        whileTap={{ scale: 0.98 }}
+                    >
+                        <div
+                            className="relative overflow-hidden drop-shadow-2xl"
+                            style={{
+                                width: 'clamp(220px, 30vw, 350px)',
+                                height: 'clamp(55px, 9vw, 85px)'
+                            }}
+                        >
+                            <img
+                                src="/assets/ui/paper-fashion.png"
+                                alt="Fashion Design"
+                                className="w-full h-full object-cover"
+                                draggable={false}
+                            />
+                            <div className="absolute inset-0 flex items-center justify-center px-3">
+                                <span
+                                    className="text-black text-center select-none leading-tight"
                                     style={{
                                         fontFamily: "'GhostFont', sans-serif",
-                                        fontSize: getDesignFontSize(),
-                                        textShadow: '0px 0px 1px rgba(0,0,0,0.2)',
-                                        transform: 'rotate(-1deg)',
-                                        width: '90%',
-                                        whiteSpace: language === 'es' ? 'nowrap' : 'pre-wrap'
+                                        fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)',
+                                        letterSpacing: '1px'
                                     }}
                                 >
                                     {getDesignLabel()}
-                                </h2>
+                                </span>
                             </div>
                         </div>
                     </motion.div>
-                </motion.div>
 
-
-                {/* BUTTON 2: STYLING */}
-                <motion.div
-                    onClick={() => handleMenuClick('styling')}
-                    className="relative cursor-pointer group z-30"
-                    initial={{ scale: 0.9, opacity: 0, y: 50, rotate: getPaperRotation('styling') }}
-                    animate={{ scale: 1, opacity: 1, y: 0, rotate: getPaperRotation('styling') }}
-                    exit={{ scale: 1.1, opacity: 0, filter: 'blur(10px)' }}
-                    transition={{ delay: 1.9, duration: 0.8, ease: "backOut" }}
-                    whileHover="hover"
-                    whileTap="tap"
-                >
+                    {/* Button 2: Styling / Cura Immagine */}
                     <motion.div
-                        className={`relative flex items-center justify-center ${getStylingPaperWidth()}`}
-                        variants={{ hover: { scale: 1.05, rotate: getPaperRotation('styling') - 1, y: -5 }, tap: { scale: 0.98, rotate: getPaperRotation('styling') + 2, y: 0 } }}
-                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                        onClick={() => handleMenuClick('styling')}
+                        className="relative cursor-pointer group md:mt-4"
+                        style={{ rotate: '3deg' }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 3.1, duration: 1.2, ease: 'easeOut' }}
+                        whileHover={{ scale: 1.03, y: -3 }}
+                        whileTap={{ scale: 0.98 }}
                     >
-                        <div className="relative w-full">
+                        <div
+                            className="relative overflow-hidden drop-shadow-2xl"
+                            style={{
+                                width: 'clamp(250px, 33vw, 400px)',
+                                height: 'clamp(80px, 12vw, 120px)'
+                            }}
+                        >
                             <img
                                 src="/assets/ui/paper-styling.png"
-                                alt="Styling Paper"
-                                className={`w-full drop-shadow-xl ${language === 'it' ? 'h-[12rem] object-fill' : 'h-auto'}`}
+                                alt="Styling"
+                                className="w-full h-full object-cover"
                                 draggable={false}
                             />
-
-                            <div className="absolute inset-0 flex items-center justify-center pt-1 px-2">
-                                <h2
-                                    className="text-black font-normal text-center select-none tracking-wide"
+                            <div className="absolute inset-0 flex items-center justify-center px-3">
+                                <span
+                                    className="text-black text-center select-none"
                                     style={{
                                         fontFamily: "'GhostFont', sans-serif",
-                                        fontSize: getStylingFontSize(),
-                                        textShadow: '0px 0px 1px rgba(0,0,0,0.2)',
-                                        transform: 'rotate(1deg)',
-                                        width: '90%'
+                                        fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)',
+                                        letterSpacing: '1px'
                                     }}
                                 >
                                     {getStylingLabel()}
-                                </h2>
+                                </span>
                             </div>
                         </div>
                     </motion.div>
                 </motion.div>
-
             </div>
 
+            {/* 4. CORNER BRANDING - More subtle */}
             <motion.div
-                className="absolute bottom-8 left-8 z-40 text-white/50 font-medium tracking-widest text-sm uppercase mix-blend-difference"
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}
+                className="absolute bottom-4 md:bottom-6 left-4 md:left-6 z-40 text-white/25 font-light tracking-[3px] text-[9px] md:text-xs uppercase"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 2 }}
             >
-                {t.ui.portfolio}
-            </motion.div>
-            <motion.div
-                className="absolute bottom-8 right-8 z-40 text-white/50 font-medium tracking-widest text-sm uppercase mix-blend-difference"
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}
-            >
-                FN
+                {t.ui?.portfolio || 'PORTFOLIO'}
             </motion.div>
 
+            <motion.div
+                className="absolute bottom-4 md:bottom-6 right-4 md:right-6 z-40 text-white/25 font-light tracking-[3px] text-[9px] md:text-xs uppercase"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 2 }}
+            >
+                © 2025
+            </motion.div>
         </motion.div>
     )
 }

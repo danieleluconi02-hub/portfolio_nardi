@@ -140,9 +140,15 @@ export default function CollectionFocus({
                             </div>
                         )}
 
-                        {/* Image counter - subtle, bottom right */}
+                        {/* Image counter - with background for visibility */}
                         <motion.div
-                            className="focus-image-counter text-lg font-medium tracking-widest mix-blend-difference text-white"
+                            className="focus-image-counter text-2xl font-bold tracking-widest"
+                            style={{
+                                backgroundColor: 'rgba(0,0,0,0.6)',
+                                color: 'white',
+                                padding: '8px 16px',
+                                borderRadius: '4px'
+                            }}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.5, duration: 0.3 }}

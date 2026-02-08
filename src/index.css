@@ -17,11 +17,11 @@
 
 :root {
   /* Soft Light Theme - 'Bone' / Light Gray */
-  --bg-primary: #e6e6e6;
-  /* Soft gray, not blinding white */
-  --bg-secondary: #f0f0f0;
-  --bg-tertiary: #ffffff;
-  --bg-elevated: #ffffff;
+  --bg-primary: #7D7E80;
+  /* Dark Gray */
+  --bg-secondary: #3a3a3a;
+  --bg-tertiary: #454545;
+  --bg-elevated: #3a3a3a;
 
   /* Dark Text for Light Theme */
   --text-primary: #1d1d1f;
@@ -323,6 +323,29 @@ label,
   cursor: pointer;
 }
 
+/* Social Icons in Overlay Menu */
+.social-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.social-icon-link:hover {
+  background: rgba(255, 192, 203, 0.15);
+}
+
+.social-icon-link:hover .social-icon {
+  filter: invert(1) brightness(1.4) drop-shadow(0 0 8px rgba(255, 182, 193, 0.6));
+}
+
+.social-icon {
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
 
 @media (min-width: 768px) {
   .menu-item--primary {
@@ -512,6 +535,9 @@ label,
   flex-direction: column;
   justify-content: center;
   text-align: left;
+  position: relative;
+  z-index: 60;
+  /* Ensure text stays readable above fan cards */
 }
 
 .preview-title {
@@ -541,18 +567,87 @@ label,
   line-height: 1.7;
 }
 
-/* Main Area - Image + Random Thumbnails */
-/* NOW STRICTLY CENTERED */
+/* NOW STRICTLY CENTERED - DECK STACK LAYOUT */
 .preview-main-area {
   grid-column: 2;
   justify-self: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
   max-width: 80vh;
-  /* Control width relative to height to keep it manageable */
+  height: 100%;
+  /* Fill the height of the grid cell */
+  min-height: 40vh;
+  position: relative;
 }
+
+/* Deck Container - holds all cards with shared center */
+.deck-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  /* Permettere alle carte di "sbucare" ai lati */
+  padding: 0 80px;
+  box-sizing: content-box;
+}
+
+/* All cards share the same position and pivot at bottom-center */
+.deck-card {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  transform-origin: bottom center;
+  background: transparent;
+  /* Transizione fluida per l'effetto ventaglio */
+  will-change: transform, opacity;
+}
+
+/* Background cards styling - Leggermente più piccole con effetto profondità */
+.deck-card-back,
+.deck-card-middle {
+  width: 100%;
+  max-width: clamp(280px, 70vw, 700px);
+  /* Più piccole della front per effetto profondità */
+  height: auto;
+  pointer-events: none;
+  background: transparent;
+  bottom: 0px;
+  /* Ombra sottile per separazione visiva */
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
+}
+
+/* Front card (main image) - Larger */
+.deck-card-front {
+  position: relative;
+  width: 100%;
+  max-width: clamp(320px, 80vw, 800px);
+  /* Largest max width */
+  z-index: 10 !important;
+  pointer-events: auto;
+  transform-origin: bottom center;
+  background: transparent;
+}
+
+/* Deck images styling - NO card effect, just raw images */
+.deck-image {
+  width: 100%;
+  height: auto;
+  max-height: 75vh;
+  /* Increased height limit */
+  object-fit: contain;
+  border-radius: 0;
+  box-shadow: none;
+  background: none;
+  border: none;
+}
+
 
 .preview-image-wrapper {
   width: 100%;
@@ -563,7 +658,8 @@ label,
 
 .preview-main-image {
   max-width: 100%;
-  max-height: 55vh;
+  max-height: 75vh;
+  /* Increased height limit */
   object-fit: contain;
   border-radius: 4px;
   box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
@@ -600,6 +696,9 @@ label,
   justify-content: flex-end;
   padding-top: 5rem;
   /* Push button down */
+  position: relative;
+  z-index: 60;
+  /* Ensure button stays clickable above fan cards */
 }
 
 .preview-view-collection-inline:hover {
@@ -708,6 +807,15 @@ label,
   .preview-info-panel {
     flex: 0 0 160px;
   }
+
+  /* Deck stack adjustments for tablet/mobile */
+  .deck-card-back,
+  .deck-card-middle,
+  .deck-card-front {
+    width: 100%;
+    /* Ensure all cards have same base sizing */
+    max-width: clamp(260px, 80vw, 500px);
+  }
 }
 
 @media (max-width: 768px) {
@@ -774,7 +882,104 @@ label,
     width: 60px;
     height: 75px;
   }
+
+  /* Deck stack adjustments for mobile - EFFETTO VENTAGLIO DINAMICO */
+  .deck-container {
+    overflow: visible;
+    /* FULL BLEED + CENTER CONTENT */
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    position: relative;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Padding aumentato per permettere alle carte di sbucare ai lati */
+    padding: 0 60px;
+    box-sizing: content-box;
+  }
+
+  /* Force internal centering of the card content */
+  .deck-card-front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    /* Ridotto significativamente per lasciare spazio al ventaglio */
+    max-width: 55vw;
+    margin: 0 auto;
+    z-index: 10;
+  }
+
+  .sketchy-image-wrapper {
+    width: auto;
+    /* Don't stretch to full width */
+    display: flex;
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .preview-main-image,
+  .deck-image {
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  /* GERARCHIA DIMENSIONI MOBILE - Effetto profondit\u00e0 del mazzo (come desktop) */
+  /* Front: Immagine principale, la pi\u00f9 grande e in primo piano */
+  .deck-card-front {
+    width: fit-content;
+    max-width: 55vw;
+    margin: 0 auto;
+    z-index: 10;
+    /* Nessuna trasformazione, resta centrata */
+    transform: none !important;
+  }
+
+  /* Middle (Secondo livello): Sbuca a SINISTRA con rotazione antioraria - MEDIO */
+  .deck-card-middle {
+    width: fit-content;
+    max-width: 42vw;
+    left: 50%;
+    right: auto;
+    margin: 0;
+    z-index: 5;
+    /* FORZA trasformazione: centra e poi sposta a SINISTRA - scala ridotta */
+    transform: translateX(-50%) translateX(-20vw) rotate(-8deg) scale(0.75) !important;
+    transform-origin: bottom center;
+  }
+
+  /* Back (Terzo livello): Sbuca a DESTRA con rotazione oraria - PIÙ PICCOLA */
+  .deck-card-back {
+    width: fit-content;
+    max-width: 40vw;
+    left: 50%;
+    right: auto;
+    margin: 0;
+    z-index: 1;
+    /* FORZA trasformazione: centra e poi sposta a DESTRA - scale minore */
+    transform: translateX(-50%) translateX(22vw) rotate(10deg) scale(0.78) !important;
+    transform-origin: bottom center;
+  }
+
+  .deck-image {
+    max-height: 50vh;
+    /* Default max height */
+  }
+
+  /* Altezze specifiche per le carte di sfondo - proporzioni simili a desktop */
+  .deck-card-middle .deck-image {
+    max-height: 48vh;
+  }
+
+  .deck-card-back .deck-image {
+    max-height: 45vh;
+  }
 }
+
 
 /* Legacy focus styles - keep for CollectionFocus component */
 .focus-overlay {
@@ -915,23 +1120,38 @@ label,
   opacity: 0.7;
 }
 
-/* Image counter - subtle, top right of image container */
+/* Image counter - visible, top right of image container */
 .focus-image-counter {
   position: absolute;
-  top: 12px;
-  /* WAS bottom: 12px */
-  right: 12px;
+  top: 16px;
+  right: 16px;
   font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 400;
-  color: var(--text-secondary);
-  letter-spacing: 0.08em;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #FF6B9D;
+  letter-spacing: 0.1em;
   font-variant-numeric: tabular-nums;
-  background: rgba(255, 255, 255, 0.7);
-  padding: 0.25rem 0.5rem;
-  border-radius: 3px;
-  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.7);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
   pointer-events: none;
+  z-index: 100;
+}
+
+/* Image counter for PortfolioView - minimal, above image */
+.image-counter {
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #FFC0CB !important;
+  letter-spacing: 0.2em;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+  z-index: 100;
 }
 
 .focus-actions {

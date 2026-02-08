@@ -17,7 +17,7 @@ const preloadImage = (src) => {
     })
 }
 
-export default function PortfolioView({ category, data, onBack }) {
+export default function PortfolioView({ category, data, onBack, onGoHome }) {
     const { t } = useLanguage()
     const [activeCollectionIndex, setActiveCollectionIndex] = useState(0)
     const [activeImageIndex, setActiveImageIndex] = useState(0)
@@ -157,17 +157,26 @@ export default function PortfolioView({ category, data, onBack }) {
             {/* Back Button */}
             <BackButton onClick={onBack} />
 
-            {/* Main Image Area - Tap left half = prev, right half = next, or Swipe */}
+            {/* Main Image Area */}
             <div
-                className="relative w-full h-full flex items-center justify-center cursor-pointer px-16"
+                className="relative w-full h-full flex items-center justify-center px-4 md:px-16"
                 onClick={(e) => {
-                    // Only trigger click if we didn't drag
-                    // (Framer motion handles this distinction well usually, but we keep this as fallback for taps)
-                    const rect = e.currentTarget.getBoundingClientRect()
-                    const clickX = e.clientX - rect.left
-                    const containerWidth = rect.width
-                    if (clickX < containerWidth / 2) prevImage()
-                    else nextImage()
+                    // Mobile tap navigation - left half = prev, right half = next
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const clickX = e.clientX - rect.left;
+                    const containerWidth = rect.width;
+
+                    // Calculate global position limits
+                    const totalImagesGlobal = collections.reduce((acc, col) => acc + (col.images?.length || 0), 0);
+                    const currentGlobalIndex = collections.slice(0, activeCollectionIndex).reduce((acc, col) => acc + (col.images?.length || 0), 0) + activeImageIndex;
+                    const isFirstImage = currentGlobalIndex === 0;
+                    const isLastImage = currentGlobalIndex === totalImagesGlobal - 1;
+
+                    if (clickX < containerWidth / 2 && !isFirstImage) {
+                        prevImage();
+                    } else if (clickX >= containerWidth / 2 && !isLastImage) {
+                        nextImage();
+                    }
                 }}
             >
                 <AnimatePresence mode="wait">
@@ -175,24 +184,22 @@ export default function PortfolioView({ category, data, onBack }) {
                         <motion.div
                             key={`${activeCollectionIndex}-${activeImageIndex}`}
                             className="relative inline-block"
-                            initial={{ opacity: 0, x: 0 }}
-                            animate={{
-                                opacity: imageLoaded ? 1 : 0.3,
-                                x: 0
-                            }}
-                            exit={{ opacity: 0, x: 0 }}
-                            transition={{
-                                opacity: { duration: 0.2 },
-                                x: { type: "spring", stiffness: 300, damping: 30 }
-                            }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ opacity: { duration: 0.3 } }}
                             drag="x"
                             dragConstraints={{ left: 0, right: 0 }}
-                            dragElastic={0.2}
-                            onDragEnd={(e, { offset, velocity }) => {
+                            dragElastic={0.1}
+                            onDragEnd={(e, { offset }) => {
                                 const swipeThreshold = 50;
-                                if (offset.x > swipeThreshold) {
+                                // Only allow navigation within limits
+                                const isFirstImage = activeImageIndex === 0 && activeCollectionIndex === 0;
+                                const isLastImage = activeImageIndex === images.length - 1 && activeCollectionIndex === collections.length - 1;
+
+                                if (offset.x > swipeThreshold && !isFirstImage) {
                                     prevImage();
-                                } else if (offset.x < -swipeThreshold) {
+                                } else if (offset.x < -swipeThreshold && !isLastImage) {
                                     nextImage();
                                 }
                             }}
@@ -201,6 +208,7 @@ export default function PortfolioView({ category, data, onBack }) {
                                 src={currentImage}
                                 alt={`${activeCollection.title} - ${activeImageIndex + 1}`}
                                 className="image-display block"
+                                style={{ opacity: imageLoaded ? 1 : 0.5 }}
                                 onLoad={() => setImageLoaded(true)}
                                 draggable={false}
                             />
@@ -212,6 +220,203 @@ export default function PortfolioView({ category, data, onBack }) {
                         </motion.div>
                     )}
                 </AnimatePresence>
+
+                {/* NAVIGATION ARROWS - Handwritten style */}
+                {(() => {
+                    const totalImagesGlobal = collections.reduce((acc, col) => acc + (col.images?.length || 0), 0);
+                    const currentGlobalIndex = collections.slice(0, activeCollectionIndex).reduce((acc, col) => acc + (col.images?.length || 0), 0) + activeImageIndex;
+                    const isFirstImage = currentGlobalIndex === 0;
+                    const isLastImage = currentGlobalIndex === totalImagesGlobal - 1;
+
+                    // Arrow visibility logic:
+                    // First image: only RIGHT arrow
+                    // 2nd and 3rd image: BOTH arrows
+                    // 4th image onwards: NO arrows
+                    // Last image: LEFT arrow + HOME icon
+                    const showLeftArrow = (currentGlobalIndex >= 1 && currentGlobalIndex <= 2) || isLastImage;
+                    const showRightArrow = currentGlobalIndex <= 2 && !isLastImage;
+                    const showHomeIcon = isLastImage;
+
+                    return (
+                        <>
+                            {/* LEFT ARROW - Hand-drawn sketchy style */}
+                            <AnimatePresence>
+                                {showLeftArrow && (
+                                    <motion.button
+                                        className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 cursor-pointer group z-20"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            if (!isFirstImage) prevImage();
+                                        }}
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -10 }}
+                                        transition={{ duration: 0.4 }}
+                                        whileHover={{ scale: 1.1, x: -3 }}
+                                        whileTap={{ scale: 0.95 }}
+                                    >
+                                        <svg
+                                            width="32"
+                                            height="32"
+                                            viewBox="0 0 32 32"
+                                            fill="none"
+                                            className="opacity-50 group-hover:opacity-90 transition-opacity"
+                                        >
+                                            {/* Sketchy hand-drawn left arrow - irregular strokes */}
+                                            <path
+                                                d="M23 5 Q21 7, 18 10 Q14 13, 11 16 Q14 19, 18 22 Q21 25, 23 27"
+                                                stroke="white"
+                                                strokeWidth="1.5"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                fill="none"
+                                            />
+                                            {/* Second slightly offset stroke for hand-drawn effect */}
+                                            <path
+                                                d="M22.5 6 Q20 8, 17 11 Q13 14, 10.5 16.5 Q13 19, 17 22 Q20 24.5, 22.5 26.5"
+                                                stroke="white"
+                                                strokeWidth="0.5"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                fill="none"
+                                                opacity="0.4"
+                                            />
+                                        </svg>
+                                    </motion.button>
+                                )}
+                            </AnimatePresence>
+
+                            {/* RIGHT ARROW - Hand-drawn sketchy style */}
+                            <AnimatePresence>
+                                {showRightArrow && (
+                                    <motion.button
+                                        className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 cursor-pointer group z-20"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            if (!isLastImage) nextImage();
+                                        }}
+                                        initial={{ opacity: 0, x: 10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: 10 }}
+                                        transition={{ duration: 0.4 }}
+                                        whileHover={{ scale: 1.1, x: 3 }}
+                                        whileTap={{ scale: 0.95 }}
+                                    >
+                                        <svg
+                                            width="32"
+                                            height="32"
+                                            viewBox="0 0 32 32"
+                                            fill="none"
+                                            className="opacity-50 group-hover:opacity-90 transition-opacity"
+                                        >
+                                            {/* Sketchy hand-drawn right arrow - irregular strokes */}
+                                            <path
+                                                d="M9 5 Q11 7, 14 10 Q18 13, 21 16 Q18 19, 14 22 Q11 25, 9 27"
+                                                stroke="white"
+                                                strokeWidth="1.5"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                fill="none"
+                                            />
+                                            {/* Second slightly offset stroke for hand-drawn effect */}
+                                            <path
+                                                d="M9.5 6 Q12 8, 15 11 Q19 14, 21.5 16.5 Q19 19, 15 22 Q12 24.5, 9.5 26.5"
+                                                stroke="white"
+                                                strokeWidth="0.5"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                fill="none"
+                                                opacity="0.4"
+                                            />
+                                        </svg>
+                                    </motion.button>
+                                )}
+                            </AnimatePresence>
+
+                            {/* HOME ICON - Only on last image, hand-drawn style, goes to homepage */}
+                            <AnimatePresence>
+                                {showHomeIcon && (
+                                    <motion.button
+                                        className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 cursor-pointer group z-20"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            // On mobile go directly to homepage, on desktop use onBack
+                                            if (onGoHome) {
+                                                onGoHome();
+                                            } else {
+                                                onBack();
+                                            }
+                                        }}
+                                        initial={{ opacity: 0, x: 10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: 10 }}
+                                        transition={{ duration: 0.4 }}
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        title="Return Home"
+                                    >
+                                        <svg
+                                            width="44"
+                                            height="44"
+                                            viewBox="0 0 44 44"
+                                            fill="none"
+                                            className="opacity-50 group-hover:opacity-100 transition-opacity"
+                                        >
+                                            {/* Hand-drawn sketchy house - multiple strokes for organic feel */}
+                                            {/* Roof */}
+                                            <path
+                                                d="M22 6 Q18 10, 12 15 Q8 18, 6 20"
+                                                stroke="white"
+                                                strokeWidth="1.4"
+                                                strokeLinecap="round"
+                                                fill="none"
+                                            />
+                                            <path
+                                                d="M22 6 Q26 10, 32 15 Q36 18, 38 20"
+                                                stroke="white"
+                                                strokeWidth="1.4"
+                                                strokeLinecap="round"
+                                                fill="none"
+                                            />
+                                            {/* Left wall */}
+                                            <path
+                                                d="M10 19 Q10 25, 10 32 Q10 36, 10 38"
+                                                stroke="white"
+                                                strokeWidth="1.3"
+                                                strokeLinecap="round"
+                                                fill="none"
+                                            />
+                                            {/* Right wall */}
+                                            <path
+                                                d="M34 19 Q34 25, 34 32 Q34 36, 34 38"
+                                                stroke="white"
+                                                strokeWidth="1.3"
+                                                strokeLinecap="round"
+                                                fill="none"
+                                            />
+                                            {/* Bottom */}
+                                            <path
+                                                d="M10 38 Q18 38, 22 38 Q30 38, 34 38"
+                                                stroke="white"
+                                                strokeWidth="1.3"
+                                                strokeLinecap="round"
+                                                fill="none"
+                                            />
+                                            {/* Door */}
+                                            <path
+                                                d="M18 38 Q18 33, 18 28 Q20 26, 22 26 Q24 26, 26 28 Q26 33, 26 38"
+                                                stroke="white"
+                                                strokeWidth="1.2"
+                                                strokeLinecap="round"
+                                                fill="none"
+                                            />
+                                        </svg>
+                                    </motion.button>
+                                )}
+                            </AnimatePresence>
+                        </>
+                    );
+                })()}
             </div>
 
             {/* Project Info - Editorial Style */}
@@ -257,15 +462,15 @@ export default function PortfolioView({ category, data, onBack }) {
                 </motion.div>
             )}
 
-            {/* Navigation Hint - centered below image */}
+            {/* Navigation Hint - Only on desktop, centered below image */}
             <AnimatePresence>
                 {interactionCount < 3 && (
                     <motion.p
-                        className="fixed bottom-[2%] left-1/2 -translate-x-1/2 hint-text text-center"
+                        className="fixed bottom-[2%] left-1/2 -translate-x-1/2 hint-text text-center hidden md:block"
                         initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.6 }} // Less transparent
+                        animate={{ opacity: 0.5 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 1.0 }} // Faster fade, no delay
+                        transition={{ duration: 1.0 }}
                     >
                         {t.ui.tapNavigation}
                     </motion.p>

@@ -2,6 +2,8 @@ import { useRef, useMemo, useState, useEffect } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import manifest from '../data/manifest.json'
+import SketchySphereGrid from './SketchySphereGrid'
+
 
 // --- Helpers ---
 
@@ -328,12 +330,20 @@ function PhysicsGroup({ id, config, onNavigate, opacity, scale, isBackground, on
 
             {/* Visual Composite Sphere */}
             {!config.isExploded ? (
-                <CompositeSphere
-                    images={config.images}
-                    radius={config.radius}
-                    opacity={opacity}
-                    isBackground={isBackground}
-                />
+                <>
+                    <CompositeSphere
+                        images={config.images}
+                        radius={config.radius}
+                        opacity={opacity}
+                        isBackground={isBackground}
+                    />
+                    {/* Hand-Drawn Grid - Slightly smaller to sit behind images */}
+                    <SketchySphereGrid
+                        radius={config.radius * 1.05} // Images are at 1.2, so 1.05 sits nicely behind
+                        color={isBackground ? "#444" : "#fff"}
+                        opacity={isBackground ? 0.3 : 0.6}
+                    />
+                </>
             ) : (
                 <ExplodedFragments
                     images={config.images}

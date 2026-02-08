@@ -1,6 +1,8 @@
 import { useRef, useMemo, useEffect, useState, useCallback } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
+import SketchySphereGrid from './SketchySphereGrid'
+
 
 /**
  * Fibonacci Sphere Distribution - same as CategorySphere for consistent look
@@ -170,14 +172,17 @@ export default function ImmersiveSphere({
     collections,
     seed,
     onImageClick,
-    onBack
+    onBack,
+    savedRotation // Ref from parent to persist rotation across state changes
 }) {
     const { camera, gl } = useThree()
     const groupRef = useRef()
 
-    // Camera rotation state
-    const rotationRef = useRef({ x: 0, y: 0 })
-    const targetRotationRef = useRef({ x: 0, y: 0 })
+    // Camera rotation state - initialize from saved rotation if available
+    const initialX = savedRotation?.current?.x || 0
+    const initialY = savedRotation?.current?.y || 0
+    const rotationRef = useRef({ x: initialX, y: initialY })
+    const targetRotationRef = useRef({ x: initialX, y: initialY })
     const isDragging = useRef(false)
     const lastMouse = useRef({ x: 0, y: 0 })
 
@@ -228,10 +233,13 @@ export default function ImmersiveSphere({
         return fibonacciSphereInner(sampledImages.length, SPHERE_RADIUS)
     }, [sampledImages.length])
 
-    // Initialize camera at center
+    // Initialize camera at center with saved rotation
     useEffect(() => {
         camera.position.set(0, 0, 0)
-        camera.rotation.set(0, 0, 0)
+        camera.rotation.order = 'YXZ'
+        // Restore saved rotation if available
+        camera.rotation.y = initialY
+        camera.rotation.x = initialX
         camera.fov = 70
         camera.updateProjectionMatrix()
     }, [camera])
@@ -316,7 +324,7 @@ export default function ImmersiveSphere({
         }
     }, [gl])
 
-    // Animation loop - smooth camera rotation
+    // Animation loop - smooth camera rotation + persist to parent ref
     useFrame(() => {
         const damping = 0.06
         rotationRef.current.x += (targetRotationRef.current.x - rotationRef.current.x) * damping
@@ -325,6 +333,12 @@ export default function ImmersiveSphere({
         camera.rotation.order = 'YXZ'
         camera.rotation.y = rotationRef.current.y
         camera.rotation.x = rotationRef.current.x
+
+        // Persist rotation to parent ref so it survives state changes
+        if (savedRotation) {
+            savedRotation.current.x = rotationRef.current.x
+            savedRotation.current.y = rotationRef.current.y
+        }
     })
 
     // Keyboard navigation
@@ -364,8 +378,15 @@ export default function ImmersiveSphere({
             {/* Ambient lighting */}
             <ambientLight intensity={1.1} />
 
-            {/* Gallery images on fibonacci sphere */}
             <group ref={groupRef}>
+                {/* Hand-drawn sketchy grid - slightly smaller than image radius */}
+                <SketchySphereGrid
+                    radius={SPHERE_RADIUS * 0.99}
+                    color="#FFC0CB"
+                    opacity={0.7}
+                    lineWidth={2.5}
+                />
+
                 {sampledImages.map((img, index) => {
                     if (index >= spherePositions.length) return null
                     return (
