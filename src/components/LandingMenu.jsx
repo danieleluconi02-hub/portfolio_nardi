@@ -282,11 +282,11 @@ export default function LandingMenu({ onNavigate, manifest }) {
                             }}
                         >
                             <img
-                                src="/assets/ui/signature.svg"
+                                src="/assets/brand/signature.png"
                                 alt="Francesco Nardi"
                                 className="w-[85vw] md:w-[65vw] lg:w-[50vw] xl:w-[45vw] h-auto"
                                 style={{
-                                    filter: 'invert(1) drop-shadow(0 8px 32px rgba(0,0,0,0.5)) brightness(1.4) contrast(1.1)',
+                                    filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.5)) brightness(1.4) contrast(1.1)',
                                 }}
                                 draggable={false}
                             />
