@@ -252,10 +252,10 @@ export default function LandingMenu({ onNavigate, manifest }) {
                 </AnimatePresence>
             </div>
 
-            {/* 2. DARK OVERLAY - 40% black (z-index 1) */}
+            {/* 2. DARK OVERLAY - 70% black (z-index 1) */}
             <div
                 className="absolute inset-0 z-[1] pointer-events-none"
-                style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
+                style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }}
             />
 
             {/* 3. HERO CONTENT (z-index 10+) */}
@@ -289,10 +289,11 @@ export default function LandingMenu({ onNavigate, manifest }) {
                             <img
                                 src="/assets/brand/signature.png"
                                 alt="Francesco Nardi"
-                                className="w-[85vw] md:w-[65vw] lg:w-[50vw] xl:w-[45vw] h-auto"
+                                className="w-[110vw] max-w-none md:w-[65vw] lg:w-[50vw] xl:w-[45vw] h-auto"
                                 style={{
                                     // Removed filters as the provided image is already white text on transparent
                                     filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.5))',
+                                    marginLeft: '-5vw' // Shift left to center the oversized signature
                                 }}
                                 draggable={false}
                             />
@@ -303,7 +304,7 @@ export default function LandingMenu({ onNavigate, manifest }) {
 
                 {/* ROLE - Positioned between signature and navigation */}
                 <motion.p
-                    className="absolute top-[38%] md:top-[58%] text-white text-xs md:text-sm lg:text-base uppercase tracking-[3px] md:tracking-[4px] text-center font-light px-4"
+                    className="absolute top-[38%] md:top-[58%] text-white text-[16px] md:text-sm lg:text-base uppercase tracking-[5px] md:tracking-[4px] text-center font-light px-4 w-full"
                     style={{ fontFamily: "'GhostFont', sans-serif" }}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -314,7 +315,7 @@ export default function LandingMenu({ onNavigate, manifest }) {
 
                 {/* NAVIGATION - Positioned lower, asymmetric layout */}
                 <motion.div
-                    className="absolute bottom-[26vh] md:bottom-[16vh] left-0 right-0 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-12 px-4"
+                    className="absolute bottom-[20vh] md:bottom-[16vh] left-0 right-0 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-12 px-4"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 2.8, duration: 0.8 }}
@@ -333,8 +334,8 @@ export default function LandingMenu({ onNavigate, manifest }) {
                         <div
                             className="relative overflow-hidden drop-shadow-2xl"
                             style={{
-                                width: 'clamp(220px, 30vw, 350px)',
-                                height: 'clamp(55px, 9vw, 85px)'
+                                width: 'clamp(290px, 88vw, 350px)',
+                                height: 'clamp(45px, 13vw, 85px)'
                             }}
                         >
                             <img
@@ -348,7 +349,7 @@ export default function LandingMenu({ onNavigate, manifest }) {
                                     className="text-black text-center select-none leading-tight"
                                     style={{
                                         fontFamily: "'GhostFont', sans-serif",
-                                        fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)',
+                                        fontSize: 'clamp(1.4rem, 6vw, 1.8rem)',
                                         letterSpacing: '1px'
                                     }}
                                 >
@@ -372,8 +373,8 @@ export default function LandingMenu({ onNavigate, manifest }) {
                         <div
                             className="relative overflow-hidden drop-shadow-2xl"
                             style={{
-                                width: 'clamp(250px, 33vw, 400px)',
-                                height: 'clamp(80px, 12vw, 120px)'
+                                width: 'clamp(320px, 92vw, 400px)',
+                                height: 'clamp(60px, 17vw, 120px)'
                             }}
                         >
                             <img
@@ -387,7 +388,7 @@ export default function LandingMenu({ onNavigate, manifest }) {
                                     className="text-black text-center select-none"
                                     style={{
                                         fontFamily: "'GhostFont', sans-serif",
-                                        fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)',
+                                        fontSize: 'clamp(1.4rem, 6vw, 1.8rem)',
                                         letterSpacing: '1px'
                                     }}
                                 >

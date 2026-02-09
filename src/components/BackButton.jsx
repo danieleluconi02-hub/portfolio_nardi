@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import arrowIcon from '../assets/arrow-back.png'
 
 export default function BackButton({ onClick, className = '' }) {
     return (
@@ -10,6 +9,8 @@ export default function BackButton({ onClick, className = '' }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
             style={{
                 background: 'none',
                 border: 'none',
@@ -17,15 +18,12 @@ export default function BackButton({ onClick, className = '' }) {
             }}
         >
             <img
-                src={arrowIcon}
-                alt=""
+                src="/assets/arrow_back.png"
+                alt="Back"
                 style={{
-                    width: '3rem', // Adjust size as needed
+                    width: '4rem',
                     height: 'auto',
-                    filter: 'none', // Original is Black on White
-                    mixBlendMode: 'multiply', // Hide white background, show black strokes
-                    // Actually, the uploaded image is Black Arrow on White BG.
-                    // Dark Theme: Invert(1) -> White Arrow on Black BG. Screen -> White Arrow, Black BG transparent.
+                    display: 'block'
                 }}
             />
         </motion.button>
