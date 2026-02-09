@@ -16,8 +16,12 @@
 }
 
 :root {
-  /* Soft Light Theme - 'Bone' / Light Gray */
-  --bg-primary: #7D7E80;
+  /* Gradient Background - Night Blue to Deep Black */
+  --bg-primary: #0F1114;
+  /* Fallback */
+  /* Increased brightness of center blue to #232730 and moved stop to 40% for better visibility */
+  --bg-gradient: radial-gradient(circle at center, #232730 0%, #0F1114 60%, #000000 100%);
+
   /* Dark Gray */
   --bg-secondary: #3a3a3a;
   --bg-tertiary: #454545;
@@ -159,7 +163,7 @@ label,
   font-family: 'GhostFont', sans-serif;
   font-size: 1.3rem;
   background: transparent;
-  color: var(--text-primary);
+  color: #FFC0CB;
   /* No default border on the container itself */
   border: none;
   border-radius: 0;
@@ -192,9 +196,9 @@ label,
   /* Reduced overshoot */
   right: -6px;
   /* Reduced overshoot */
-  border-top: 1px solid var(--text-primary);
+  border-top: 1px solid #FFC0CB;
   /* Thinner (1.5px -> 1px) */
-  border-bottom: 1px solid var(--text-primary);
+  border-bottom: 1px solid #FFC0CB;
   /* Thinner */
   /* slight rotation for hand-drawn feel */
   transform: rotate(-0.5deg);
@@ -218,9 +222,9 @@ label,
   /* Reduced overshoot */
   left: 0;
   right: 0;
-  border-left: 1px solid var(--text-primary);
+  border-left: 1px solid #FFC0CB;
   /* Thinner */
-  border-right: 1px solid var(--text-primary);
+  border-right: 1px solid #FFC0CB;
   /* Thinner */
   /* Opposing rotation */
   transform: rotate(0.8deg);
@@ -236,19 +240,19 @@ label,
 
 .btn-sketchy:hover {
   transform: scale(1.02);
-  color: var(--text-primary);
+  color: #FFC0CB;
 }
 
 .btn-sketchy:hover::before {
   transform: rotate(-1.2deg) scaleX(1.05);
   /* Lines get longer/crooked on hover */
-  border-color: var(--text-primary);
+  border-color: #FFC0CB;
 }
 
 .btn-sketchy:hover::after {
   transform: rotate(1.5deg) scaleY(1.1);
   /* Lines get taller/crooked on hover */
-  border-color: var(--text-primary);
+  border-color: #FFC0CB;
 }
 
 .btn-sketchy:active {
@@ -1092,9 +1096,9 @@ label,
   bottom: -4px;
   left: -4px;
   right: -4px;
-  border-top: 1px solid #1d1d1f;
+  border-top: 1px solid #FFC0CB;
   /* Explicit dark color */
-  border-bottom: 1px solid #1d1d1f;
+  border-bottom: 1px solid #FFC0CB;
   transform: rotate(-0.5deg);
   pointer-events: none;
   z-index: 20;
@@ -1110,9 +1114,9 @@ label,
   bottom: -3px;
   left: -3px;
   right: -3px;
-  border-left: 1px solid #1d1d1f;
+  border-left: 1px solid #FFC0CB;
   /* Explicit dark color */
-  border-right: 1px solid #1d1d1f;
+  border-right: 1px solid #FFC0CB;
   transform: rotate(0.6deg);
   pointer-events: none;
   z-index: 20;
@@ -2327,9 +2331,9 @@ body {
   bottom: -4px;
   left: -4px;
   right: -4px;
-  border-top: 2px solid #1d1d1f !important;
+  border-top: 2px solid #FFC0CB !important;
   /* Thicker 2px for visibility */
-  border-bottom: 2px solid #1d1d1f !important;
+  border-bottom: 2px solid #FFC0CB !important;
   transform: rotate(-0.5deg);
   pointer-events: none;
   z-index: 20;
@@ -2344,9 +2348,9 @@ body {
   bottom: -3px;
   left: -3px;
   right: -3px;
-  border-left: 2px solid #1d1d1f !important;
+  border-left: 2px solid #FFC0CB !important;
   /* Thicker 2px */
-  border-right: 2px solid #1d1d1f !important;
+  border-right: 2px solid #FFC0CB !important;
   transform: rotate(0.6deg);
   pointer-events: none;
   z-index: 20;

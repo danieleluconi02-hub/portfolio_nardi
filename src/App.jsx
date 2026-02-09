@@ -207,7 +207,8 @@ function App() {
                             left: 0,
                             width: '100%',
                             height: '100%',
-                            backgroundColor: '#7D7E80',
+                            background: 'radial-gradient(circle at center, #1A1D23 0%, #0F1114 50%, #0A0B0D 100%)',
+                            backgroundAttachment: 'fixed',
                             zIndex: 0,
                         }}
                         initial={{ opacity: 0 }}

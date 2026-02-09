@@ -233,7 +233,11 @@ export default function LandingMenu({ onNavigate, manifest }) {
 
     return (
         <motion.div
-            className="fixed inset-0 overflow-hidden bg-[#7D7E80] z-[50]"
+            className="fixed inset-0 overflow-hidden z-[50]"
+            style={{
+                background: 'radial-gradient(circle at center, #232730 0%, #0F1114 60%, #000000 100%)',
+                backgroundAttachment: 'fixed'
+            }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
