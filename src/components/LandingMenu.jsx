@@ -285,7 +285,7 @@ export default function LandingMenu({ onNavigate, manifest }) {
                                 ease: [0.25, 0.1, 0.25, 1]
                             }}
                         >
-                            {/* Signature Branding - Restored */}
+                            {/* Branding restored at 2026-02-09T22:58:00 */}
                             <img
                                 src="/assets/brand/signature.png"
                                 alt="Francesco Nardi"
