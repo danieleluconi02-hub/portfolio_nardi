@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150" fill="none">
+  <!-- Francesco Nardi Signature - Based on provided handwritten image, rotated horizontal -->
+  <!-- Original was vertical, this is the horizontal version -->
+  <g stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    
+    <!-- "F" with flourish going down-left -->
+    <path d="M 20 120 
+             Q 25 80 35 50 
+             Q 45 25 80 15 
+             Q 110 10 125 20 
+             Q 135 30 125 40 
+             Q 110 50 60 50"/>
+    <!-- F horizontal stroke -->
+    <path d="M 40 65 Q 70 63 90 68"/>
+    
+    <!-- "r" -->
+    <path d="M 95 50 Q 100 75 105 95"/>
+    <path d="M 100 60 Q 115 50 130 55"/>
+    
+    <!-- "a" -->
+    <path d="M 125 55 
+             Q 145 45 158 55 
+             Q 165 70 155 85 
+             Q 140 92 128 80 
+             Q 125 65 140 55"/>
+    <path d="M 160 55 Q 162 80 165 100"/>
+    
+    <!-- "n" -->
+    <path d="M 175 60 Q 178 85 180 105"/>
+    <path d="M 177 68 Q 195 55 210 60 Q 220 70 218 90 Q 215 105 212 115"/>
+    
+    <!-- "c" -->
+    <path d="M 250 70 
+             Q 235 62 230 75 
+             Q 228 95 240 105 
+             Q 258 112 270 100"/>
+    
+    <!-- "e" -->
+    <path d="M 280 80 Q 300 75 305 88 Q 308 100 290 110 Q 272 115 275 95 Q 278 82 295 78"/>
+    
+    <!-- "s" -->
+    <path d="M 315 70 Q 335 65 338 80 Q 340 90 320 98 Q 305 105 312 118 Q 320 130 345 125"/>
+    
+    <!-- "c" -->
+    <path d="M 355 75 Q 348 68 352 58 Q 362 50 378 55 Q 388 65 382 82 Q 375 95 358 98"/>
+    
+    <!-- "o" with connection -->
+    <path d="M 395 60 
+             Q 415 55 425 72 
+             Q 432 92 418 108 
+             Q 400 118 388 105 
+             Q 380 88 392 70 
+             Q 400 60 415 58"/>
+    
+    <!-- Decorative connecting line -->
+    <path d="M 430 90 Q 445 95 455 85"/>
+    
+    <!-- "N" - distinct capital -->
+    <path d="M 460 130 Q 455 90 450 50"/>
+    <path d="M 452 55 Q 475 110 500 130"/>
+    
+  </g>
+</svg>

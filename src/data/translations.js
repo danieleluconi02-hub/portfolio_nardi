@@ -24,11 +24,27 @@ const translations = {
         // About Page
         about: {
             title: 'About me',
-            paragraphs: [
-                "I was born in Macerata in 2002 and raised among the hills of Tolentino, in a context where actions have always counted more than words. Here I developed a concrete approach to creative work, based on attention to process, details, and material.",
-                "I trained in fashion design at NID in Perugia and completed a master's in Styling and Photography. During my three years there, I also deepened my knowledge of color analysis and image consulting, integrating analytical and perceptual skills into my design journey. This allows me to work on image consciously, considering proportions, color, and personal identity.",
-                "I operate between pattern making, tailoring, and styling, constantly seeking a balance between technical precision and visual expression. I have collaborated with brands such as Dolly Noire, VOA Collective, and Candiani Denim, experiences that have contributed to defining a solid, result-oriented method.",
-                "Today I am Co-Founder and Designer at Growstyled, where I transform ideas and concepts into garments and images designed to be worn, lived, and recognized as authentic. For me, every project is a synthesis of aesthetics, function, and identity."
+            sections: [
+                {
+                    id: '01',
+                    title: 'ROOTS',
+                    content: "I was born in Macerata in 2002. Growing up in Tolentino, a territory where 'know-how' is culture, shaped my approach: design cannot exist without the [concreteness of matter](01_roots/concretezza_della_materia). My aesthetic does not stem from abstraction, but from a physical sensitivity towards the construction process and personal identity."
+                },
+                {
+                    id: '02',
+                    title: 'FORMATION',
+                    content: "Talent needs method. At [NID](02_formation/nid) in Perugia, I integrated creative vision with technical rigor, ranging from Haute Couture to 3D modeling. A path that transformed intuition into [solid design competence](02_formation/solida_competenza_progettuale), where garment construction and styling analysis coexist to guarantee the real feasibility of every vision."
+                },
+                {
+                    id: '03',
+                    title: 'EXPERIENCE',
+                    content: "I operate in the synthesis between technical precision and visual impact. Collaborations with realities like [Dolly Noire, VOA and Candiani](03_experience/dolly_noire_voa_candiani) have validated my ability to navigate between image and styling. [From the runway](03_experience/dalla_passerella) to [editorial](03_experience/editoriale), I adopt an authorial but functional approach to brand logic, ensuring scenic results that do not sacrifice structure."
+                },
+                {
+                    id: '04',
+                    title: 'VISION',
+                    content: "This methodology today defines [Growstyled](04_vision/growstyled), a [project](04_vision/progetto) founded by Lorenzo Ambrogioni of which I am co-founder. We start from the material: using high-end deadstock and digital prototyping to eliminate pre-cut waste. A made-to-order production, where technology and craftsmanship converge to restore ethical and aesthetic value to the garment."
+                }
             ],
             cvNote: 'CV available upon request'
         },
@@ -63,11 +79,27 @@ const translations = {
         // About Page
         about: {
             title: 'Chi Sono',
-            paragraphs: [
-                "Sono nato a Macerata nel 2002 e cresciuto tra le colline di Tolentino, in un contesto dove il fare ha sempre contato più delle parole. Qui ho sviluppato un approccio concreto al lavoro creativo, basato sull’attenzione al processo, ai dettagli e alla materia.",
-                "Mi sono formato in fashion design al NID di Perugia e ho completato un master in Styling e Fotografia. Durante il triennio ho approfondito anche l’armocromia e la consulenza di immagine, integrando competenze analitiche e percettive al mio percorso progettuale. Questo mi permette di lavorare sull’immagine in modo consapevole, considerando proporzioni, colore e identità personale.",
-                "Opero tra modellistica, sartoria e styling, cercando un equilibrio costante tra precisione tecnica ed espressione visiva. Ho collaborato con brand come Dolly Noire, VOA Collective e Candiani Denim, esperienze che hanno contribuito a definire un metodo solido e orientato al risultato.",
-                "Oggi sono Co-Founder e Designer di Growstyled, dove trasformo idee e concept in capi e immagini pensati per essere indossati, vissuti e riconosciuti come autentici. Per me, ogni progetto è una sintesi tra estetica, funzione e identità."
+            sections: [
+                {
+                    id: '01',
+                    title: 'RADICI',
+                    content: "Sono nato a Macerata nel 2002. Crescere a Tolentino, territorio dove il 'saper fare' è cultura, ha plasmato il mio approccio: il design non può prescindere dalla [concretezza della materia](01_roots/concretezza_della_materia). La mia estetica non nasce dall'astrazione, ma da una sensibilità fisica verso il processo costruttivo e l'identità personale."
+                },
+                {
+                    id: '02',
+                    title: 'FORMAZIONE',
+                    content: "Il talento necessita di metodo. Al [NID](02_formation/nid) di Perugia ho integrato la visione creativa con il rigore tecnico, spaziando dall'Alta Sartoria alla modellazione 3D. Un percorso che ha trasformato l'intuizione in una [solida competenza progettuale](02_formation/solida_competenza_progettuale), dove la costruzione del capo e l'analisi dello styling convivono per garantire la fattibilità reale di ogni visione."
+                },
+                {
+                    id: '03',
+                    title: 'ESPERIENZA',
+                    content: "Opero nella sintesi tra precisione tecnica e impatto visivo. Le collaborazioni con realtà come [Dolly Noire, VOA e Candiani](03_experience/dolly_noire_voa_candiani) hanno validato la mia capacità di navigare tra immagine e styling. [Dalla passerella](03_experience/dalla_passerella) all'[editoriale](03_experience/editoriale), adotto un approccio autoriale ma funzionale alle logiche di brand, garantendo risultati scenici che non sacrificano la struttura."
+                },
+                {
+                    id: '04',
+                    title: 'VISIONE',
+                    content: "Questa metodologia definisce oggi [Growstyled](04_vision/growstyled), [progetto](04_vision/progetto) fondato da Lorenzo Ambrogioni di cui sono co-founder. Partiamo dalla materia: utilizziamo deadstock di alta gamma e prototipazione digitale per annullare gli sprechi pre-taglio. Una produzione made-to-order, dove tecnologia e artigianato convergono per restituire valore etico ed estetico al capo."
+                }
             ],
             cvNote: 'CV disponibile su richiesta'
         },
@@ -102,11 +134,27 @@ const translations = {
         // About Page
         about: {
             title: 'Sobre Mí',
-            paragraphs: [
-                "Nací en Macerata en 2002 y crecí entre las colinas de Tolentino, en un entorno donde el hacer siempre ha contado más que las palabras. Aquí desarrollé un enfoque concreto del trabajo creativo, basado en la atención al proceso, los detalles y la materia.",
-                "Me formé en diseño de moda en el NID de Perugia y completé un máster en Estilismo y Fotografía. Durante el trienio, también profundicé en la armocromía y la asesoría de imagen, integrando competencias analíticas y perceptivas en mi trayectoria de diseño. Esto me permite trabajar la imagen de manera consciente, considerando proporciones, color e identidad personal.",
-                "Trabajo entre el patronaje, la sastrería y el estilismo, buscando un equilibrio constante entre precisión técnica y expresión visual. He colaborado con marcas como Dolly Noire, VOA Collective y Candiani Denim, experiencias que han contribuido a definir un método sólido y orientado al resultado.",
-                "Hoy soy Co-Founder y Designer de Growstyled, donde transformo ideas y conceptos en prendas e imágenes pensadas para ser llevadas, vividas y reconocidas como auténticas. Para mí, cada proyecto es una síntesis entre estética, función e identidad."
+            sections: [
+                {
+                    id: '01',
+                    title: 'RAÍCES',
+                    content: "Nací en Macerata en 2002. Crecer en Tolentino, un territorio donde el 'saber hacer' es cultura, ha moldeado mi enfoque: el diseño no puede prescindir de la [concreción de la materia](01_roots/concretezza_della_materia). Mi estética no nace de la abstracción, sino de una sensibilidad física hacia el proceso constructivo y la identidad personal."
+                },
+                {
+                    id: '02',
+                    title: 'FORMACIÓN',
+                    content: "El talento necesita método. En [NID](02_formation/nid) de Perugia integré la visión creativa con el rigor técnico, abarcando desde la Alta Costura hasta el modelado 3D. Un camino que ha transformado la intuición en una [sólida competencia proyectual](02_formation/solida_competenza_progettuale), donde la construcción de la prenda y el análisis del estilismo conviven para garantizar la viabilidad real de cada visión."
+                },
+                {
+                    id: '03',
+                    title: 'EXPERIENCIA',
+                    content: "Opero en la síntesis entre precisión técnica e impacto visual. Las colaboraciones con realidades como [Dolly Noire, VOA y Candiani](03_experience/dolly_noire_voa_candiani) han validado mi capacidad para navegar entre imagen y estilismo. [Desde la pasarela](03_experience/dalla_passerella) hasta el [editorial](03_experience/editoriale), adopto un enfoque de autor pero funcional a las lógicas de marca, garantizando resultados escénicos que no sacrifican la estructura."
+                },
+                {
+                    id: '04',
+                    title: 'VISIÓN',
+                    content: "Esta metodología define hoy [Growstyled](04_vision/growstyled), [proyecto](04_vision/progetto) fundado por Lorenzo Ambrogioni del cual soy co-founder. Partimos de la materia: utilizamos deadstock de alta gama y prototipado digital para anular los desperdicios pre-corte. Una producción made-to-order, donde tecnología y artesanía convergen para devolver valor ético y estético a la prenda."
+                }
             ],
             cvNote: 'CV disponible bajo petición'
         },
@@ -141,11 +189,27 @@ const translations = {
         // About Page
         about: {
             title: 'À Propos de moi',
-            paragraphs: [
-                "Je suis né à Macerata en 2002 et j'ai grandi parmi les collines de Tolentino, dans un contexte où les actes ont toujours compté plus que les paroles. C'est là que j'ai développé une approche concrète du travail créatif, basée sur l'attention au processus, aux détails et à la matière.",
-                "Je me suis formé en design de mode au NID de Pérouse et j'ai complété un master en Stylisme et Photographie. Durant ces trois années, j'ai également approfondi la colorimétrie et le conseil en image, intégrant des compétences analytiques et perceptives à mon parcours de conception. Cela me permet de travailler sur l'image de manière consciente, en tenant compte des proportions, de la couleur et de l'identité personnelle.",
-                "J'opère entre modélisme, couture et stylisme, cherchant un équilibre constant entre précision technique et expression visuelle. J'ai collaboré avec des marques comme Dolly Noire, VOA Collective et Candiani Denim, des expériences qui ont contribué à définir une méthode solide et orientée vers le résultat.",
-                "Aujourd'hui, je suis Co-Fondateur et Designer chez Growstyled, où je transforme des idées et des concepts en vêtements et images pensés pour être portés, vécus et reconnus comme authentiques. Pour moi, chaque projet est une synthèse entre esthétique, fonction et identité."
+            sections: [
+                {
+                    id: '01',
+                    title: 'RACINES',
+                    content: "Je suis né à Macerata en 2002. Grandir à Tolentino, un territoire où le 'savoir-faire' est culture, a façonné mon approche : le design ne peut se passer de la [concrétude de la matière](01_roots/concretezza_della_materia). Mon esthétique ne naît pas de l'abstraction, mais d'une sensibilité physique envers le processus de construction et l'identité personnelle."
+                },
+                {
+                    id: '02',
+                    title: 'FORMATION',
+                    content: "Le talent nécessite de la méthode. Au [NID](02_formation/nid) de Pérouse, j'ai intégré la vision créative à la rigueur technique, allant de la Haute Couture à la modélisation 3D. Un parcours qui a transformé l'intuition en une [solide compétence conceptuelle](02_formation/solida_competenza_progettuale), où la construction du vêtement et l'analyse du stylisme coexistent pour garantir la faisabilité réelle de chaque vision."
+                },
+                {
+                    id: '03',
+                    title: 'EXPÉRIENCE',
+                    content: "J'opère dans la synthèse entre précision technique et impact visuel. Les collaborations avec des réalités comme [Dolly Noire, VOA et Candiani](03_experience/dolly_noire_voa_candiani) ont validé ma capacité à naviguer entre image et stylisme. [Du podium](03_experience/dalla_passerella) à l'[éditorial](03_experience/editoriale), j'adopte une approche d'auteur mais fonctionnelle aux logiques de marque, garantissant des résultats scéniques qui ne sacrifient pas la structure."
+                },
+                {
+                    id: '04',
+                    title: 'VISION',
+                    content: "Cette méthodologie définit aujourd'hui [Growstyled](04_vision/growstyled), [projet](04_vision/progetto) fondé par Lorenzo Ambrogioni dont je suis co-fondateur. Nous partons de la matière : nous utilisons des stocks dormants haut de gamme et le prototypage numérique pour annuler les déchets pré-coupe. Une production à la commande, où technologie et artisanat convergent pour restituer une valeur éthique et esthétique au vêtement."
+                }
             ],
             cvNote: 'CV disponible sur demande'
         },
@@ -180,11 +244,27 @@ const translations = {
         // About Page
         about: {
             title: '자기 소개',
-            paragraphs: [
-                "2002년 마체라타에서 태어나 톨렌티노의 언덕 사이에서 자랐습니다. 그곳은 말보다 행동이 더 중요하게 여겨지는 환경이었습니다. 여기서 저는 과정, 세부 사항, 소재에 대한 주의를 바탕으로 창의적인 작업에 대한 구체적인 접근 방식을 개발했습니다.",
-                "헤루자의 NID에서 패션 디자인을 공부하고 스타일링 및 사진 석사 학위를 취득했습니다. 3년 동안 퍼스널 컬러 분석과 이미지 컨설팅도 깊이 있게 연구하여 분석적이고 지각적인 기술을 디자인 여정에 통합했습니다. 이를 통해 비율, 색상, 개인의 정체성을 고려하여 의식적으로 이미지를 작업할 수 있습니다.",
-                "저는 패턴 제작, 재단, 스타일링 사이를 오가며 기술적 정확성과 시각적 표현 사이의 균형을 끊임없이 추구합니다. Dolly Noire, VOA Collective, Candiani Denim과 같은 브랜드와 협업했으며, 이러한 경험은 견고하고 결과 지향적인 방법을 정의하는 데 기여했습니다.",
-                "오늘날 저는 Growstyled의 공동 창립자이자 디자이너로서 아이디어와 개념을 입고, 생활하며, 진정성 있게 인식되는 의류와 이미지로 변환합니다. 저에게 모든 프로젝트는 미학, 기능, 정체성의 통합입니다."
+            sections: [
+                {
+                    id: '01',
+                    title: '뿌리',
+                    content: "저는 2002년 마체라타에서 태어났습니다. '노하우'가 문화인 톨렌티노에서 자란 것은 저의 접근 방식을 형성했습니다. 디자인은 [물질의 구체성](01_roots/concretezza_della_materia) 없이는 존재할 수 없습니다. 저의 미학은 추상화에서 비롯된 것이 아니라, 제작 과정과 개인의 정체성에 대한 물리적 감수성에서 비롯됩니다."
+                },
+                {
+                    id: '02',
+                    title: '교육',
+                    content: "재능에는 방법이 필요합니다. 페루자의 [NID](02_formation/nid)에서 저는 오트 쿠튀르에서 3D 모델링에 이르기까지 창의적 비전과 기술적 엄격함을 통합했습니다. 직관을 [견고한 디자인 역량](02_formation/solida_competenza_progettuale)으로 변화시킨 여정으로, 의복 제작과 스타일링 분석이 공존하여 모든 비전의 실제 실현 가능성을 보장합니다."
+                },
+                {
+                    id: '03',
+                    title: '경험',
+                    content: "저는 기술적 정확성과 시각적 임팩트 사이의 통합에서 작업합니다. [Dolly Noire, VOA 및 Candiani](03_experience/dolly_noire_voa_candiani)와 같은 기업과의 협업은 이미지와 스타일링 사이를 탐색하는 저의 능력을 검증했습니다. [런웨이](03_experience/dalla_passerella)에서 [에디토리얼](03_experience/editoriale)에 이르기까지, 저는 브랜드 로직에 기능적이면서도 작가적인 접근 방식을 채택하여 구조를 희생하지 않는 무대 결과를 보장합니다."
+                },
+                {
+                    id: '04',
+                    title: '비전',
+                    content: "이 방법론은 오늘날 Lorenzo Ambrogioni가 설립하고 제가 공동 창립자인 [Growstyled](04_vision/growstyled) [프로젝트](04_vision/progetto)를 정의합니다. 우리는 소재에서 시작합니다. 고급 데드스탁과 디지털 프로토타이핑을 사용하여 재단 전 낭비를 없앱니다. 기술과 장인 정신이 융합되어 의류에 윤리적, 미학적 가치를 환원하는 주문 제작 방식입니다."
+                }
             ],
             cvNote: '요청 시 이력서 제공 가능'
         },

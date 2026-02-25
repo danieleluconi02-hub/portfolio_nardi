@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <!-- FN Logo based on signature paths -->
+  <g stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    
+    <!-- F (Scaled and positioned) -->
+    <!-- Original F bounding box approx 20,10 to 135,120. Width~115, Height~110 -->
+    <!-- Scaling down to approx width 50 -->
+    <g transform="translate(10, 10) scale(0.6)">
+        <path d="M 20 120 
+                 Q 25 80 35 50 
+                 Q 45 25 80 15 
+                 Q 110 10 125 20 
+                 Q 135 30 125 40 
+                 Q 110 50 60 50"/>
+        <!-- F horizontal stroke -->
+        <path d="M 40 65 Q 70 63 90 68"/>
+    </g>
+
+    <!-- N (Scaled and positioned) -->
+    <!-- Original N bounding box approx 450,50 to 500,130. Width~50, Height~80 -->
+    <!-- Needs to be moved left significantly. 450 -> ~80 -->
+    <g transform="translate(-190, 18) scale(0.6)">
+        <path d="M 460 130 Q 455 90 450 50"/>
+        <path d="M 452 55 Q 475 110 500 130"/>
+        <!-- Adding a third stroke for N to make it more readable if needed, mimicking the style -->
+        <path d="M 498 125 Q 500 90 505 50"/>
+    </g>
+    
+  </g>
+</svg>
