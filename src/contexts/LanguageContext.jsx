@@ -17,16 +17,17 @@ export const LANGUAGES = {
 export function LanguageProvider({ children }) {
     // Initialize from localStorage or default to 'en'
     const [language, setLanguageState] = useState(() => {
-        if (typeof window !== 'undefined') {
+        try {
             const saved = localStorage.getItem('portfolio-language')
             return saved && translations[saved] ? saved : 'en'
+        } catch {
+            return 'en'
         }
-        return 'en'
     })
 
     // Save to localStorage when language changes
     useEffect(() => {
-        localStorage.setItem('portfolio-language', language)
+        try { localStorage.setItem('portfolio-language', language) } catch { /* storage disabled */ }
     }, [language])
 
     // Set language with validation

@@ -15,7 +15,7 @@ import GlobalFooter from './components/GlobalFooter'
 import CategorySphere from './components/CategorySphere'
 import DynamicBackgroundGrid from './components/DynamicBackgroundGrid'
 import BackButton from './components/BackButton'
-import manifest from './data/manifest.json'
+import { useCollections } from './hooks/useCollections'
 import './index.css'
 
 import PreloadManager from './components/PreloadManager'
@@ -27,6 +27,7 @@ const cinematicEasing = [0.16, 1, 0.3, 1]
 
 function App() {
     const { t } = useLanguage()
+    const { manifest } = useCollections()
 
     // Persistent random seed for the session to ensure preloader matches spheres
     const [sessionSeed] = useState(() => Math.floor(Math.random() * 10000))

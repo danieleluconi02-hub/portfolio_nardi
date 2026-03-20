@@ -171,7 +171,7 @@ function ExplodedFragments({ images, radius, opacity, fragmentState }) {
         physicsRef.current.capturePos = []
         physicsRef.current.captureQuat = []
 
-        console.log("ExplodedFragments initialized", physicsRef.current.fragments.length)
+        // ExplodedFragments initialized
     }, [fragmentState?.fragments])
 
     useFrame((state, delta) => {
@@ -456,7 +456,7 @@ function PhysicsScene({ onNavigate, targetCategory, onTransitionComplete }) {
                 }
 
                 // Level 5: EXPLOSION!
-                console.log(`Sphere ${sphereId} reached max clicks - EXPLOSION!`)
+                // EXPLOSION
 
                 // Match visual structure (use actual images on sphere)
                 const displayImages = s.images

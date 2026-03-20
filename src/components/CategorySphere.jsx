@@ -155,11 +155,16 @@ export default function CategorySphere({
 
     // Get all images with collection info
     const allImages = useMemo(() => {
+        const seen = new Set()
         const images = []
         collections.forEach(col => {
             if (col.images) {
                 col.images.forEach(img => {
-                    images.push(img.replace('/full/', '/thumb/'))
+                    const thumb = img.replace('/full/', '/thumb/')
+                    if (!seen.has(thumb)) {
+                        seen.add(thumb)
+                        images.push(thumb)
+                    }
                 })
             }
         })

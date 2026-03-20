@@ -99,7 +99,11 @@ export default function LandingMenu({ onNavigate, manifest }) {
             yMin: 20, yMax: 80
         }
 
-        const shuffledCollections = [...availableItems].sort(() => 0.5 - Math.random())
+        const shuffledCollections = [...availableItems]
+        for (let i = shuffledCollections.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledCollections[i], shuffledCollections[j]] = [shuffledCollections[j], shuffledCollections[i]]
+        }
         let candidateImages = []
 
         const usedFilenames = new Set()
@@ -129,8 +133,16 @@ export default function LandingMenu({ onNavigate, manifest }) {
             }
         })
 
-        const photosOnly = candidateImages.filter(item => item.type === 'photo')
-        const densityPool = [...candidateImages, ...photosOnly].sort(() => 0.5 - Math.random())
+        const seenSrcs = new Set()
+        const densityPool = candidateImages.filter(item => {
+            if (seenSrcs.has(item.src)) return false
+            seenSrcs.add(item.src)
+            return true
+        })
+        for (let i = densityPool.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [densityPool[i], densityPool[j]] = [densityPool[j], densityPool[i]]
+        }
 
         densityPool.forEach((item, i) => {
             let placed = false

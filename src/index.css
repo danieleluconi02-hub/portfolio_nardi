@@ -6,6 +6,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Admin panel utilities ────────────────────────────────────────────────── */
+@layer components {
+  .admin-label {
+    @apply block text-white/40 text-xs tracking-widest uppercase mb-2;
+  }
+  .admin-input {
+    @apply w-full bg-white/5 border border-white/10 text-white px-4 py-3 text-sm focus:outline-none focus:border-white/30 transition-colors;
+  }
+  select.admin-input {
+    @apply appearance-none cursor-pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23ffffff50' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+  }
+}
+
 /* Custom Font Definition */
 @font-face {
   font-family: 'GhostFont';

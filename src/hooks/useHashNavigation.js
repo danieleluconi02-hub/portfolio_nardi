@@ -32,8 +32,6 @@ export const useHashNavigation = ({
             // Reset generic states first to avoid conflicts
             // But we do it carefully based on the target view
 
-            console.log('Hash changed:', view, category, id);
-
             switch (view) {
                 case 'menu':
                     setAppState('menu');

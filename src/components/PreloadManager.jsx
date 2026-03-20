@@ -62,9 +62,7 @@ export default function PreloadManager({ manifest, seed }) {
                     setTimeout(() => loadNext(index + 1), 20)
                 },
                 undefined, // onProgress
-                (err) => {
-                    console.warn('Failed to preload:', imgPath)
-                    // Continue anyway
+                () => {
                     loadNext(index + 1)
                 }
             )

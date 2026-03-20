@@ -36,7 +36,11 @@ export default function DynamicBackgroundGrid({ manifest }) {
         if (processedCollections.length === 0) return Array(9).fill(null)
 
         // Shuffle collections for randomness
-        const shuffled = [...processedCollections].sort(() => 0.5 - Math.random())
+        const shuffled = [...processedCollections]
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+        }
 
         // We need 4 distinct collections for Corners (Drawings)
         // And 4 distinct collections for Sides (Photos)

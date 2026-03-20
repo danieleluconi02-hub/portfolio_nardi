@@ -362,16 +362,6 @@ export default function DualSphereBg({
         camera.fov = cameraFov
         camera.updateProjectionMatrix()
 
-        console.log('DualSphereBg initialized:', {
-            camera: { x: camera.position.x, y: camera.position.y.toFixed(2), z: camera.position.z.toFixed(2) },
-            fov: camera.fov,
-            sphereRadius,
-            designPos: { x: designAnimState.current.position.x, y: designAnimState.current.position.y, z: designAnimState.current.position.z },
-            stylingPos: { x: stylingAnimState.current.position.x, y: stylingAnimState.current.position.y, z: stylingAnimState.current.position.z },
-            designOpacity: designAnimState.current.opacity,
-            stylingOpacity: stylingAnimState.current.opacity
-        })
-
         setAnimPhase('physics')
     }, [])
 

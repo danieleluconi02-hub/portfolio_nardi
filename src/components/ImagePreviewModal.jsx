@@ -1,5 +1,6 @@
-import { useState, useEffect, useCallback, useMemo } from 'react'
+import { useState, useEffect, useCallback, useMemo, memo } from 'react'
 import { motion } from 'framer-motion'
+import ReactMarkdown from 'react-markdown'
 import BackButton from './BackButton'
 
 import { useLanguage } from '../contexts/LanguageContext'
@@ -8,7 +9,7 @@ import { useLanguage } from '../contexts/LanguageContext'
 const appleEasing = [0.25, 0.1, 0.25, 1]
 const cinematicEasing = [0.16, 1, 0.3, 1]
 
-export default function ImagePreviewModal({
+const ImagePreviewModal = memo(function ImagePreviewModal({
     imageData,
     collection,
     onViewCollection,
@@ -43,9 +44,18 @@ export default function ImagePreviewModal({
     useEffect(() => {
         if (!collection?.images || collection.images.length < 2) return
 
-        const otherImages = collection.images.filter((_, idx) => idx !== selectedImageIndex)
-        const shuffled = [...otherImages].sort(() => Math.random() - 0.5)
-        // Take 2 images for the deck effect
+        const seen = new Set()
+        seen.add(collection.images[selectedImageIndex])
+        const otherImages = collection.images.filter((img, idx) => {
+            if (idx === selectedImageIndex || seen.has(img)) return false
+            seen.add(img)
+            return true
+        })
+        const shuffled = [...otherImages]
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+        }
         const selected = shuffled.slice(0, Math.min(2, shuffled.length))
 
         setDeckImages(selected)
@@ -60,9 +70,7 @@ export default function ImagePreviewModal({
         return getFullPath(collection.images[selectedImageIndex])
     }, [collection, selectedImageIndex])
 
-    // Default description
-    const description = collection?.description ||
-        "A curated collection showcasing distinctive visual narratives and artistic vision. Each piece represents a unique exploration of form, texture, and composition."
+    const description = collection?.description || ''
 
     // Keyboard controls
     useEffect(() => {
@@ -89,6 +97,7 @@ export default function ImagePreviewModal({
     if (!imageData) return null
 
     return (
+
         <motion.div
             className="preview-modal-overlay"
             initial={{ opacity: 0 }}
@@ -118,7 +127,11 @@ export default function ImagePreviewModal({
                 >
                     <h2 className="preview-title">{collection?.title || 'Collection'}</h2>
 
-                    <p className="preview-description">{description}</p>
+                    {description && (
+                        <div className="preview-description">
+                            <ReactMarkdown>{description}</ReactMarkdown>
+                        </div>
+                    )}
                 </motion.div>
 
                 {/* Center - DECK STACK EFFECT (like a hand of cards) */}
@@ -241,5 +254,7 @@ export default function ImagePreviewModal({
             </motion.div>
         </motion.div>
     )
-}
+})
+
+export default ImagePreviewModal
 
