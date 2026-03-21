@@ -43,7 +43,14 @@ export default function ImageUploader({ category, slug, onUploaded, disabled }) 
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
-        accept: { 'image/*': ['.jpg', '.jpeg', '.png', '.webp', '.heic', '.tiff'] },
+        accept: {
+            'image/jpeg': ['.jpg', '.jpeg'],
+            'image/png': ['.png'],
+            'image/webp': ['.webp'],
+            'image/heic': ['.heic'],
+            'image/heif': ['.heif'],
+            'image/tiff': ['.tiff'],
+        },
         disabled: disabled || uploading,
         multiple: true,
     })

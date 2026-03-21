@@ -66,13 +66,31 @@ export async function deleteCollection(id) {
 // ─── Image upload ────────────────────────────────────────────────────────────
 
 /**
- * Resize & convert a File to WebP using the canvas API.
+ * If the file is HEIC/HEIF, convert it to JPEG using heic2any (lazy-loaded).
+ * Returns the original file unchanged for all other formats.
+ */
+async function maybeDecodeHeic(file) {
+    const isHeic =
+        file.type === 'image/heic' ||
+        file.type === 'image/heif' ||
+        /\.(heic|heif)$/i.test(file.name)
+
+    if (!isHeic) return file
+
+    const heic2any = (await import('heic2any')).default
+    const converted = await heic2any({ blob: file, toType: 'image/jpeg', quality: 0.95 })
+    // heic2any may return an array for multi-frame images; take the first
+    return Array.isArray(converted) ? converted[0] : converted
+}
+
+/**
+ * Resize & convert a File/Blob to WebP using the canvas API.
  * Returns a Blob.
  */
-async function processImage(file, maxWidth, quality) {
+async function processImage(source, maxWidth, quality) {
     return new Promise((resolve, reject) => {
         const img = new Image()
-        const objectUrl = URL.createObjectURL(file)
+        const objectUrl = URL.createObjectURL(source)
 
         img.onload = () => {
             URL.revokeObjectURL(objectUrl)
@@ -104,6 +122,7 @@ async function processImage(file, maxWidth, quality) {
 /**
  * Upload one image to Supabase Storage.
  * Produces both a /full/ (2000px, 0.82) and /thumb/ (600px, 0.65) version.
+ * HEIC/HEIF files are decoded to JPEG first, then converted to WebP.
  *
  * Returns { fullUrl, thumbUrl }
  */
@@ -111,10 +130,13 @@ export async function uploadImage(file, category, slug) {
     const uniqueId = `${Date.now()}-${Math.random().toString(36).slice(2)}`
     const filename = `${uniqueId}.webp`
 
+    // Convert HEIC/HEIF → JPEG before canvas processing
+    const source = await maybeDecodeHeic(file)
+
     // Process full and thumb in parallel
     const [fullBlob, thumbBlob] = await Promise.all([
-        processImage(file, 2000, 0.82),
-        processImage(file, 600, 0.65),
+        processImage(source, 2000, 0.82),
+        processImage(source, 600, 0.65),
     ])
 
     const fullPath = `${category}/${slug}/full/${filename}`
