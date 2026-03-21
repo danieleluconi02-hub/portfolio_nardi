@@ -12,10 +12,16 @@ export default function ImageUploader({ category, slug, onUploaded, disabled }) 
     const [errors, setErrors] = useState([])
 
     const onDrop = useCallback(
-        async (acceptedFiles) => {
+        async (acceptedFiles, fileRejections) => {
+            // Show why files were rejected (wrong type, etc.)
+            if (fileRejections?.length) {
+                setErrors(fileRejections.map(r =>
+                    `${r.file.name}: rejected (type: ${r.file.type || 'unknown'}) — ${r.errors.map(e => e.message).join(', ')}`
+                ))
+            }
             if (!acceptedFiles.length) return
             if (!category || !slug) {
-                alert('Please set the category and collection slug before uploading images.')
+                setErrors(['Set the category and title before uploading.'])
                 return
             }
 
@@ -43,14 +49,7 @@ export default function ImageUploader({ category, slug, onUploaded, disabled }) 
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
-        accept: {
-            'image/jpeg': ['.jpg', '.jpeg'],
-            'image/png': ['.png'],
-            'image/webp': ['.webp'],
-            'image/heic': ['.heic'],
-            'image/heif': ['.heif'],
-            'image/tiff': ['.tiff'],
-        },
+        accept: { 'image/*': [] },
         disabled: disabled || uploading,
         multiple: true,
     })
@@ -67,7 +66,9 @@ export default function ImageUploader({ category, slug, onUploaded, disabled }) 
             >
                 <input {...getInputProps()} />
 
-                {uploading ? (
+                {disabled && !uploading ? (
+                    <p className="text-white/40 text-sm">Enter a title above to enable uploads</p>
+                ) : uploading ? (
                     <div className="space-y-2">
                         <p className="text-white/60 text-sm">
                             Processing {progress.done} / {progress.total}…
@@ -78,7 +79,7 @@ export default function ImageUploader({ category, slug, onUploaded, disabled }) 
                                 style={{ width: `${(progress.done / progress.total) * 100}%` }}
                             />
                         </div>
-                        <p className="text-white/30 text-xs">Resizing and converting to WebP…</p>
+                        <p className="text-white/30 text-xs">Resizing and optimizing…</p>
                     </div>
                 ) : isDragActive ? (
                     <p className="text-white/70 text-sm tracking-widest uppercase">Drop images here</p>
@@ -89,16 +90,16 @@ export default function ImageUploader({ category, slug, onUploaded, disabled }) 
                             Drag & drop images, or click to select
                         </p>
                         <p className="text-white/20 text-xs">
-                            JPG, PNG, WEBP, HEIC — any size, automatically optimized to WebP
+                            JPG, PNG, WEBP, HEIC — any size, automatically optimized
                         </p>
                     </div>
                 )}
             </div>
 
             {errors.length > 0 && (
-                <div className="space-y-1">
+                <div className="bg-red-900/30 border border-red-500/30 p-3 space-y-1">
                     {errors.map((e, i) => (
-                        <p key={i} className="text-red-400 text-xs">{e}</p>
+                        <p key={i} className="text-red-400 text-sm">{e}</p>
                     ))}
                 </div>
             )}
