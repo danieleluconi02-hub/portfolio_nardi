@@ -84,8 +84,9 @@ async function maybeDecodeHeic(file) {
 }
 
 /**
- * Resize & convert a File/Blob to WebP using the canvas API.
- * Returns a Blob.
+ * Resize an image using canvas and encode to WebP (with JPEG fallback for
+ * browsers that don't support WebP encoding, e.g. Safari < 16).
+ * Returns { blob, contentType }.
  */
 async function processImage(source, maxWidth, quality) {
     return new Promise((resolve, reject) => {
@@ -100,10 +101,20 @@ async function processImage(source, maxWidth, quality) {
             canvas.height = Math.round(img.height * scale)
             const ctx = canvas.getContext('2d')
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+
+            // Try WebP first; fall back to JPEG for browsers that don't support WebP encoding
             canvas.toBlob(
                 (blob) => {
-                    if (blob) resolve(blob)
-                    else reject(new Error('canvas.toBlob returned null'))
+                    if (blob) return resolve({ blob, contentType: 'image/webp' })
+                    // WebP not supported (Safari < 16) — fall back to JPEG
+                    canvas.toBlob(
+                        (jpegBlob) => {
+                            if (jpegBlob) resolve({ blob: jpegBlob, contentType: 'image/jpeg' })
+                            else reject(new Error('Image encoding failed'))
+                        },
+                        'image/jpeg',
+                        quality
+                    )
                 },
                 'image/webp',
                 quality
@@ -128,27 +139,30 @@ async function processImage(source, maxWidth, quality) {
  */
 export async function uploadImage(file, category, slug) {
     const uniqueId = `${Date.now()}-${Math.random().toString(36).slice(2)}`
-    const filename = `${uniqueId}.webp`
 
     // Convert HEIC/HEIF → JPEG before canvas processing
     const source = await maybeDecodeHeic(file)
 
     // Process full and thumb in parallel
-    const [fullBlob, thumbBlob] = await Promise.all([
+    const [full, thumb] = await Promise.all([
         processImage(source, 2000, 0.82),
         processImage(source, 600, 0.65),
     ])
+
+    // Use the extension that matches the actual encoded format
+    const ext = full.contentType === 'image/webp' ? 'webp' : 'jpg'
+    const filename = `${uniqueId}.${ext}`
 
     const fullPath = `${category}/${slug}/full/${filename}`
     const thumbPath = `${category}/${slug}/thumb/${filename}`
 
     const [fullResult, thumbResult] = await Promise.all([
-        supabase.storage.from('portfolio-assets').upload(fullPath, fullBlob, {
-            contentType: 'image/webp',
+        supabase.storage.from('portfolio-assets').upload(fullPath, full.blob, {
+            contentType: full.contentType,
             upsert: false,
         }),
-        supabase.storage.from('portfolio-assets').upload(thumbPath, thumbBlob, {
-            contentType: 'image/webp',
+        supabase.storage.from('portfolio-assets').upload(thumbPath, thumb.blob, {
+            contentType: thumb.contentType,
             upsert: false,
         }),
     ])
