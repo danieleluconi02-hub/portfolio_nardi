@@ -66,7 +66,8 @@ export async function deleteCollection(id) {
 // ─── Image upload ────────────────────────────────────────────────────────────
 
 /**
- * If the file is HEIC/HEIF, convert it to JPEG using heic2any (lazy-loaded).
+ * If the file is HEIC/HEIF, convert it to JPEG via the server-side API route
+ * (/api/convert-heic) which uses sharp for full HEVC codec support.
  * Returns the original file unchanged for all other formats.
  */
 async function maybeDecodeHeic(file) {
@@ -77,10 +78,17 @@ async function maybeDecodeHeic(file) {
 
     if (!isHeic) return file
 
-    const heic2any = (await import('heic2any')).default
-    const converted = await heic2any({ blob: file, toType: 'image/jpeg', quality: 0.95 })
-    // heic2any may return an array for multi-frame images; take the first
-    return Array.isArray(converted) ? converted[0] : converted
+    const resp = await fetch('/api/convert-heic', {
+        method: 'POST',
+        body: file,
+    })
+
+    if (!resp.ok) {
+        const err = await resp.json().catch(() => ({ error: resp.statusText }))
+        throw new Error(err.error || 'HEIC conversion failed')
+    }
+
+    return new Blob([await resp.arrayBuffer()], { type: 'image/jpeg' })
 }
 
 /**
