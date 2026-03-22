@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo, memo } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
 import BackButton from './BackButton'
 
@@ -20,6 +20,7 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
     const [selectedImageIndex, setSelectedImageIndex] = useState(0)
     const [deckImages, setDeckImages] = useState([]) // Background deck images
     const [isMobile, setIsMobile] = useState(false)
+    const [showDetails, setShowDetails] = useState(false)
 
     // Detect mobile for responsive deck offsets
     useEffect(() => {
@@ -39,6 +40,11 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
             }
         }
     }, [imageData, collection])
+
+    // Close details drawer when image changes
+    useEffect(() => {
+        setShowDetails(false)
+    }, [selectedImageIndex])
 
     // Get 2 random images for the deck background (excluding current image)
     useEffect(() => {
@@ -71,12 +77,14 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
     }, [collection, selectedImageIndex])
 
     const description = collection?.description || ''
+    const hasInfo = !!(description || collection?.credits)
 
     // Keyboard controls
     useEffect(() => {
         const handleKeyDown = (e) => {
             if (e.key === 'Escape') {
-                onClose()
+                if (showDetails) setShowDetails(false)
+                else onClose()
             } else if (e.key === 'Enter') {
                 onViewCollection()
             }
@@ -84,7 +92,7 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
 
         window.addEventListener('keydown', handleKeyDown)
         return () => window.removeEventListener('keydown', handleKeyDown)
-    }, [onClose, onViewCollection])
+    }, [onClose, onViewCollection, showDetails])
 
     // Prevent scroll when modal is open
     useEffect(() => {
@@ -97,14 +105,13 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
     if (!imageData) return null
 
     return (
-
         <motion.div
             className="preview-modal-overlay"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: appleEasing }}
-            onClick={onClose}
+            onClick={showDetails ? () => setShowDetails(false) : onClose}
         >
             {/* Close Button - Top Left */}
             <BackButton onClick={onClose} className="preview-close-btn-override" />
@@ -118,7 +125,7 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
                 transition={{ duration: 0.5, ease: cinematicEasing }}
                 onClick={(e) => e.stopPropagation()}
             >
-                {/* Left Panel - Title and Description */}
+                {/* Left Panel - Title and Description (desktop only, hidden on mobile via CSS) */}
                 <motion.div
                     className="preview-info-panel"
                     initial={{ opacity: 0, x: -30 }}
@@ -144,9 +151,9 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
                                 initial={{ opacity: 0, rotate: 0, scale: 0.7, x: 0 }}
                                 animate={{
                                     opacity: 1,
-                                    rotate: isMobile ? 10 : 10,    // Stessa rotazione oraria su mobile e desktop
-                                    scale: isMobile ? 0.85 : 0.88, // Più piccola per effetto profondità
-                                    x: isMobile ? 85 : 120         // Spostamento verso DESTRA (aumentato su mobile)
+                                    rotate: isMobile ? 10 : 10,
+                                    scale: isMobile ? 0.85 : 0.88,
+                                    x: isMobile ? 85 : 120
                                 }}
                                 transition={{ delay: 0.15, duration: 0.7, ease: cinematicEasing }}
                                 style={{
@@ -176,9 +183,9 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
                                 initial={{ opacity: 0, rotate: 0, scale: 0.8, x: 0 }}
                                 animate={{
                                     opacity: 1,
-                                    rotate: isMobile ? -8 : -8,    // Stessa rotazione antioraria su mobile e desktop
-                                    scale: isMobile ? 0.9 : 0.92,  // Leggermente più grande della back
-                                    x: isMobile ? -75 : -110       // Spostamento verso SINISTRA (aumentato su mobile)
+                                    rotate: isMobile ? -8 : -8,
+                                    scale: isMobile ? 0.9 : 0.92,
+                                    x: isMobile ? -75 : -110
                                 }}
                                 transition={{ delay: 0.25, duration: 0.65, ease: cinematicEasing }}
                                 style={{
@@ -234,7 +241,7 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
                     </div>
                 </div>
 
-                {/* Credits - Bottom Left */}
+                {/* Credits - desktop only (hidden on mobile via CSS) */}
                 {collection?.credits && (
                     <motion.div
                         className="preview-credits"
@@ -264,9 +271,43 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
                     </motion.button>
                 </motion.div>
             </motion.div>
+
+            {/* ── Mobile only ──────────────────────────────────────── */}
+
+            {/* Info trigger — bottom-right pill, above View Collection */}
+            {isMobile && hasInfo && (
+                <button
+                    className={`mobile-info-trigger${showDetails ? ' mobile-info-trigger--open' : ''}`}
+                    onClick={(e) => { e.stopPropagation(); setShowDetails(v => !v) }}
+                >
+                    {showDetails ? '✕' : 'Info'}
+                </button>
+            )}
+
+            {/* Slide-up info drawer */}
+            <AnimatePresence>
+                {isMobile && showDetails && (
+                    <motion.div
+                        className="mobile-info-drawer"
+                        initial={{ y: '100%' }}
+                        animate={{ y: 0 }}
+                        exit={{ y: '100%' }}
+                        transition={{ duration: 0.38, ease: appleEasing }}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        {description && (
+                            <div className="mobile-info-description">
+                                <ReactMarkdown>{description}</ReactMarkdown>
+                            </div>
+                        )}
+                        {collection?.credits && (
+                            <p className="mobile-info-credits">{collection.credits}</p>
+                        )}
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.div>
     )
 })
 
 export default ImagePreviewModal
-
