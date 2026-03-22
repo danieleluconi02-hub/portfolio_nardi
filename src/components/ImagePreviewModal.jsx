@@ -274,10 +274,10 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
 
             {/* ── Mobile only ──────────────────────────────────────── */}
 
-            {/* Task B: Collection title pinned at top */}
+            {/* Task B: Collection title — header bar aligned with back/menu center-line */}
             {isMobile && (
                 <div className="mobile-preview-title">
-                    {collection?.title}
+                    <span>{collection?.title}</span>
                 </div>
             )}
 

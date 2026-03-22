@@ -1026,37 +1026,52 @@ label,
     display: none !important;
   }
 
-  /* Task A: Pin View Collection button — full-width flex row, centered */
+  /* Task A: Bulletproof centering — remove from grid flow, anchor to viewport center */
   .preview-actions-panel {
-    position: fixed;
-    bottom: 1.5rem;
-    left: 0;
-    right: 0;
+    position: fixed !important;
+    bottom: 1.5rem !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: max-content !important;
+    margin: 0 !important;
+    padding-top: 0 !important;
     z-index: 106;
-    padding-top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* Reset any grid/flex alignment inherited from desktop */
+    grid-column: unset;
+    justify-self: unset;
+    align-self: unset;
+    display: block;
   }
 }
 
-/* Task B: Persistent collection title — top of mobile viewport */
+/* Task B: Header bar — full-width, height aligns title center with back/menu button center-line */
 .mobile-preview-title {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 108; /* below back btn (110) and menu; pointer-events:none so they stay tappable */
-  padding: 0.9rem 5.5rem; /* side clearance for back btn (left) and menu (right) */
-  text-align: center;
-  font-family: var(--font-primary);
-  font-size: 0.65rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.42);
+  /* height 4rem → center at 32px, matching back-btn (top:2%≈17px + pad 8px + half-icon 7px ≈ 32px) */
+  height: 4rem;
+  z-index: 108; /* below back btn z-110 and menu; pointer-events:none keeps them tappable */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   pointer-events: none;
-  /* subtle gradient so title stays legible over any image */
-  background: linear-gradient(to bottom, rgba(10, 12, 15, 0.55) 0%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(10, 12, 15, 0.62) 0%, transparent 100%);
+}
+
+.mobile-preview-title span {
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  /* Prevent collision with back btn (left) and menu trigger (right) */
+  max-width: 58vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* Info trigger pill — bottom-right, vertically above View Collection */
