@@ -1045,14 +1045,13 @@ label,
   top: 0;
   left: 0;
   right: 0;
+  /* height = top-8 (2rem) + h-16 (4rem) = 6rem, matching the bottom edge of the buttons */
+  height: 6rem;
   z-index: 108;
-  /* padding-top: 2% matches back-btn top:2%;
-     align-items: flex-end + padding-bottom: 0.5rem matches back-btn bottom padding,
-     so the title text baseline sits on the same axis as the button baselines */
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding: 2% 5.5rem 0.5rem;
+  padding: 0 5.5rem 0.25rem;
   pointer-events: none;
   background: linear-gradient(to bottom, rgba(10, 12, 15, 0.62) 0%, transparent 100%);
 }
