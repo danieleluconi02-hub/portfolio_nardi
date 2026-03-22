@@ -14,7 +14,6 @@ export default function PreloadManager({ manifest, seed }) {
         // 1. Gather all images (thumbs)
         const allImages = []
         Object.keys(manifest).forEach(category => {
-            if (category === 'sphereImages') return
             const collections = manifest[category]?.collections || []
             collections.forEach(col => {
                 if (col.images) {

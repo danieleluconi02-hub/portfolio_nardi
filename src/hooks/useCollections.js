@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { fetchPublishedCollections } from '../lib/collectionsApi'
-import staticManifest from '../data/manifest.json'
 
-const SUPABASE_CONFIGURED = !!import.meta.env.VITE_SUPABASE_URL
+const EMPTY_MANIFEST = {
+    design: { title: 'Fashion Design', collections: [] },
+    styling: { title: 'Styling', collections: [] },
+}
 
-/** Convert a Supabase collection row → manifest collection entry */
+/** Convert a Supabase collection row → manifest-compatible entry */
 function toManifestEntry(col) {
     return {
         id: col.slug,
@@ -19,69 +21,48 @@ function toManifestEntry(col) {
 }
 
 /**
- * Merge Supabase dynamic collections on top of the static manifest.
- *
- * Priority rules:
- * - If a slug exists in BOTH sources, Supabase wins (fresher description, metadata).
- * - If Supabase has an empty image_urls array for a known slug, the static image
- *   paths are preserved so the site never shows a blank collection.
- * - Collections that only exist in Supabase are appended.
- * - Collections that only exist in static manifest are kept as-is (fallback).
+ * Build the manifest entirely from Supabase collections.
+ * Collections with no images are excluded — they won't appear on the site.
  */
-function buildMergedManifest(supabaseCollections) {
-    const merged = {
-        design: {
-            title: staticManifest.design?.title || 'Fashion Design',
-            collections: [...(staticManifest.design?.collections || [])],
-        },
-        styling: {
-            title: staticManifest.styling?.title || 'Styling',
-            collections: [...(staticManifest.styling?.collections || [])],
-        },
+function buildManifest(supabaseCollections) {
+    const manifest = {
+        design: { title: 'Fashion Design', collections: [] },
+        styling: { title: 'Styling', collections: [] },
     }
 
     for (const col of supabaseCollections) {
-        const category = col.category // 'design' | 'styling'
-        if (!merged[category]) {
-            merged[category] = { title: category, collections: [] }
+        const category = col.category
+        if (!manifest[category]) {
+            manifest[category] = { title: category, collections: [] }
         }
 
         const entry = toManifestEntry(col)
-        const existingIdx = merged[category].collections.findIndex((c) => c.id === col.slug)
-
-        if (existingIdx !== -1) {
-            // Supabase overrides static — but preserve static image URLs if Supabase has none yet
-            if (!entry.images.length) {
-                entry.images = merged[category].collections[existingIdx].images
-                entry.thumbnails = merged[category].collections[existingIdx].thumbnails
-            }
-            merged[category].collections[existingIdx] = entry
-        } else {
-            merged[category].collections.push(entry)
+        // Only include collections that have images — ghost/empty collections are excluded
+        if (entry.images.length) {
+            manifest[category].collections.push(entry)
         }
     }
 
-    return merged
+    return manifest
 }
 
 /**
- * Hook that provides the manifest compatible with the existing App.jsx contract.
- * - Immediately returns the static manifest so the UI is never blocked.
- * - Upgrades to the merged manifest once Supabase responds.
+ * Single source of truth: Supabase is the ONLY data source.
+ * - Starts with an empty manifest (no flash of stale static data)
+ * - Populates once Supabase responds
+ * - If Supabase fails or returns nothing, the site shows no collections
  */
 export function useCollections() {
-    const [manifest, setManifest] = useState(staticManifest)
-    const [loading, setLoading] = useState(SUPABASE_CONFIGURED)
+    const [manifest, setManifest] = useState(EMPTY_MANIFEST)
+    const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
     useEffect(() => {
-        if (!SUPABASE_CONFIGURED) return
-
         let cancelled = false
 
         fetchPublishedCollections()
             .then((collections) => {
-                if (!cancelled) setManifest(buildMergedManifest(collections))
+                if (!cancelled) setManifest(buildManifest(collections))
             })
             .catch((err) => {
                 if (!cancelled) setError(err)
@@ -90,9 +71,7 @@ export function useCollections() {
                 if (!cancelled) setLoading(false)
             })
 
-        return () => {
-            cancelled = true
-        }
+        return () => { cancelled = true }
     }, [])
 
     return { manifest, loading, error }
