@@ -12,6 +12,7 @@ function toManifestEntry(col) {
         year: col.year || '',
         brand: col.category === 'design' ? 'Fashion Design' : 'Styling',
         description: col.description || '',
+        credits: col.credits || '',
         images: col.image_urls || [],
         thumbnails: col.thumb_urls || col.image_urls || [],
     }

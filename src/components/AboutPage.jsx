@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useAnimation, useInView } from 'framer-motion'
 import { useLanguage } from '../contexts/LanguageContext'
 import BackButton from './BackButton'
 import { fetchKeywordsMap } from '../lib/keywordsApi'
+import { getStaticImagesForKeyword } from '../lib/aboutAssets'
 
 // --- CONSTANTS ---
 const PINK_COLOR = '#FFC0CB'
@@ -84,23 +85,6 @@ const COMPETENCE_DATA = {
 }
 
 // --- ASSETS LOADER ---
-// Updated to use relative path which is safer in Vite
-const aboutImages = import.meta.glob('../assets/about/**/*.{png,jpg,jpeg,webp,svg}', { eager: true })
-
-const getImagesForKeyword = (folderName) => {
-    const images = []
-    if (!folderName) return images
-
-    // Normalize folder name to avoid issues with slashes
-    const normalize = (path) => path.replace(/\\/g, '/')
-
-    for (const path in aboutImages) {
-        if (normalize(path).includes(folderName)) {
-            images.push(aboutImages[path].default)
-        }
-    }
-    return images
-}
 
 // --- COMPONENTS ---
 
@@ -443,7 +427,7 @@ export default function AboutPage({ onBack }) {
 
         // Prefer Supabase images; fall back to static assets
         const supabaseImages = supabaseKeywords[folderName]
-        const sourceImages = supabaseImages?.length ? supabaseImages : getImagesForKeyword(folderName)
+        const sourceImages = supabaseImages?.length ? supabaseImages : getStaticImagesForKeyword(folderName)
 
         const shuffled = [...sourceImages]
         for (let i = shuffled.length - 1; i > 0; i--) {

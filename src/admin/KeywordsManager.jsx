@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { fetchAllKeywords, createKeyword, updateKeyword, deleteKeyword } from '../lib/keywordsApi'
 import { deleteImages } from '../lib/collectionsApi'
+import { getStaticImagesForKeyword } from '../lib/aboutAssets'
 import ImageUploader from './ImageUploader'
 
 export default function KeywordsManager() {
@@ -177,6 +178,7 @@ export default function KeywordsManager() {
                         <KeywordRow
                             key={kw.id}
                             keyword={kw}
+                            staticImages={getStaticImagesForKeyword(kw.folder_name)}
                             expanded={expandedId === kw.id}
                             onToggle={() => setExpandedId(id => id === kw.id ? null : kw.id)}
                             onDelete={() => handleDelete(kw)}
@@ -190,23 +192,24 @@ export default function KeywordsManager() {
     )
 }
 
-function KeywordRow({ keyword, expanded, onToggle, onDelete, onImageUploaded, onRemoveImage }) {
-    const thumbs = keyword.thumb_urls?.length ? keyword.thumb_urls : keyword.image_urls || []
+function KeywordRow({ keyword, staticImages, expanded, onToggle, onDelete, onImageUploaded, onRemoveImage }) {
+    const supabaseImgs = keyword.image_urls || []
+    const supabaseThumbs = keyword.thumb_urls || []
+    // Preview strip: prefer supabase thumbs, fall back to static
+    const previewImgs = supabaseThumbs.length ? supabaseThumbs : supabaseImgs.length ? supabaseImgs : staticImages
 
     return (
         <div className="py-4">
             <div className="flex items-center gap-4">
                 {/* Thumbnail strip */}
                 <div className="flex gap-1 flex-shrink-0">
-                    {thumbs.slice(0, 3).map((url, i) => (
+                    {previewImgs.slice(0, 3).map((url, i) => (
                         <div key={i} className="w-10 h-10 bg-white/5 overflow-hidden flex-shrink-0">
                             <img src={url} alt="" className="w-full h-full object-cover" loading="lazy" />
                         </div>
                     ))}
-                    {!thumbs.length && (
-                        <div className="w-10 h-10 bg-white/5 flex items-center justify-center text-white/15 text-[9px] flex-shrink-0">
-                            —
-                        </div>
+                    {!previewImgs.length && (
+                        <div className="w-10 h-10 bg-white/5 flex items-center justify-center text-white/15 text-[9px] flex-shrink-0">—</div>
                     )}
                 </div>
 
@@ -217,7 +220,9 @@ function KeywordRow({ keyword, expanded, onToggle, onDelete, onImageUploaded, on
                 </div>
 
                 <div className="flex items-center gap-3 flex-shrink-0">
-                    <span className="text-white/25 text-xs">{keyword.image_urls?.length || 0} img</span>
+                    <span className="text-white/25 text-xs">
+                        {supabaseImgs.length ? `${supabaseImgs.length} custom` : `${staticImages.length} static`}
+                    </span>
                     <button
                         onClick={onToggle}
                         className="text-white/40 hover:text-white text-xs tracking-wider uppercase transition-colors"
@@ -234,32 +239,56 @@ function KeywordRow({ keyword, expanded, onToggle, onDelete, onImageUploaded, on
             </div>
 
             {expanded && (
-                <div className="mt-4 space-y-4 border-t border-white/5 pt-4">
+                <div className="mt-4 space-y-5 border-t border-white/5 pt-4">
+                    {/* Upload zone */}
                     <ImageUploader
                         category="about"
                         slug={keyword.folder_name}
                         onUploaded={onImageUploaded}
                         disabled={false}
                     />
-                    {keyword.image_urls?.length > 0 && (
-                        <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
-                            {keyword.image_urls.map((url, i) => (
-                                <div key={i} className="relative group aspect-square bg-white/5">
-                                    <img
-                                        src={keyword.thumb_urls?.[i] || url}
-                                        alt=""
-                                        className="w-full h-full object-cover"
-                                        loading="lazy"
-                                    />
-                                    <button
-                                        type="button"
-                                        onClick={() => onRemoveImage(i)}
-                                        className="absolute inset-0 bg-black/70 text-white/80 text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                                    >
-                                        Remove
-                                    </button>
-                                </div>
-                            ))}
+
+                    {/* Supabase images (editable) */}
+                    {supabaseImgs.length > 0 && (
+                        <div className="space-y-2">
+                            <p className="text-white/40 text-[10px] tracking-[0.2em] uppercase">
+                                Custom images — active on site
+                            </p>
+                            <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
+                                {supabaseImgs.map((url, i) => (
+                                    <div key={i} className="relative group aspect-square bg-white/5">
+                                        <img
+                                            src={supabaseThumbs[i] || url}
+                                            alt=""
+                                            className="w-full h-full object-cover"
+                                            loading="lazy"
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => onRemoveImage(i)}
+                                            className="absolute inset-0 bg-black/70 text-white/80 text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                                        >
+                                            Remove
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Static fallback images (read-only) */}
+                    {staticImages.length > 0 && (
+                        <div className="space-y-2">
+                            <p className="text-white/25 text-[10px] tracking-[0.2em] uppercase">
+                                {supabaseImgs.length ? 'Static fallback (inactive — overridden)' : 'Static assets — currently active'}
+                            </p>
+                            <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
+                                {staticImages.map((url, i) => (
+                                    <div key={i} className={`aspect-square bg-white/5 overflow-hidden ${supabaseImgs.length ? 'opacity-30' : ''}`}>
+                                        <img src={url} alt="" className="w-full h-full object-cover" loading="lazy" />
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     )}
                 </div>
