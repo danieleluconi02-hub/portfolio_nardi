@@ -274,6 +274,13 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
 
             {/* ── Mobile only ──────────────────────────────────────── */}
 
+            {/* Task B: Collection title pinned at top */}
+            {isMobile && (
+                <div className="mobile-preview-title">
+                    {collection?.title}
+                </div>
+            )}
+
             {/* Info trigger — bottom-right pill, above View Collection */}
             {isMobile && hasInfo && (
                 <button
