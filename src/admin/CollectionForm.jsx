@@ -25,6 +25,7 @@ export default function CollectionForm({ collection, onSaved, onCancel }) {
         title: collection?.title || '',
         year: collection?.year || '',
         description: collection?.description || '',
+        credits: collection?.credits || '',
         published: collection?.published ?? false,
         sort_order: collection?.sort_order ?? 0,
     })
@@ -185,6 +186,18 @@ export default function CollectionForm({ collection, onSaved, onCancel }) {
                         className="admin-input resize-y min-h-[120px] text-sm leading-relaxed"
                     />
                 )}
+            </div>
+
+            {/* Credits */}
+            <div>
+                <label className="admin-label">Credits</label>
+                <input
+                    type="text"
+                    value={form.credits}
+                    onChange={set('credits')}
+                    placeholder="e.g. Photo: Mario Rossi — MUA: Anna Bianchi"
+                    className="admin-input text-sm"
+                />
             </div>
 
             {/* Image Uploader */}

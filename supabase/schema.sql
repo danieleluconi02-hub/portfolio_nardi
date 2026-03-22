@@ -14,9 +14,13 @@ CREATE TABLE IF NOT EXISTS public.collections (
     year        TEXT,
     image_urls  TEXT[] DEFAULT '{}' NOT NULL,
     thumb_urls  TEXT[] DEFAULT '{}' NOT NULL,
+    credits     TEXT,
     published   BOOLEAN DEFAULT FALSE NOT NULL,
     sort_order  INTEGER DEFAULT 0 NOT NULL
 );
+
+-- Migration: add credits column if table already exists
+ALTER TABLE public.collections ADD COLUMN IF NOT EXISTS credits TEXT;
 
 -- Enable Row Level Security
 ALTER TABLE public.collections ENABLE ROW LEVEL SECURITY;
@@ -30,6 +34,34 @@ CREATE POLICY "Public read published"
 -- Authenticated users (site owner) have full access
 CREATE POLICY "Authenticated full access"
     ON public.collections
+    FOR ALL
+    USING (auth.role() = 'authenticated');
+
+-- ─────────────────────────────────────────────────────────────────────────────
+-- About Keywords table
+-- ─────────────────────────────────────────────────────────────────────────────
+
+CREATE TABLE IF NOT EXISTS public.about_keywords (
+    id           UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    created_at   TIMESTAMPTZ DEFAULT NOW() NOT NULL,
+    folder_name  TEXT UNIQUE NOT NULL,
+    keyword_text TEXT NOT NULL,
+    image_urls   TEXT[] DEFAULT '{}' NOT NULL,
+    thumb_urls   TEXT[] DEFAULT '{}' NOT NULL
+);
+
+-- Enable Row Level Security
+ALTER TABLE public.about_keywords ENABLE ROW LEVEL SECURITY;
+
+-- Public can read all keywords (used by the frontend)
+CREATE POLICY "Public read keywords"
+    ON public.about_keywords
+    FOR SELECT
+    USING (TRUE);
+
+-- Authenticated users have full access
+CREATE POLICY "Authenticated full access keywords"
+    ON public.about_keywords
     FOR ALL
     USING (auth.role() = 'authenticated');
 

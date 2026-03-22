@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect, useRef } from 'react'
 import { motion, AnimatePresence, useAnimation, useInView } from 'framer-motion'
 import { useLanguage } from '../contexts/LanguageContext'
 import BackButton from './BackButton'
+import { fetchKeywordsMap } from '../lib/keywordsApi'
 
 // --- CONSTANTS ---
 const PINK_COLOR = '#FFC0CB'
@@ -311,14 +312,7 @@ const ImageGalleryPopup = ({ isOpen, onClose, images, keyword }) => {
                         )
                     })}
 
-                    <button
-                        onClick={onClose}
-                        className="fixed bottom-8 md:bottom-auto md:top-8 right-8 pointer-events-auto text-white/70 hover:text-white mix-blend-difference z-50 text-lg uppercase tracking-widest"
-                    >
-                        Close
-                    </button>
-
-                    <div className="absolute bottom-12 md:bottom-8 left-0 w-full text-center text-white/30 text-xs tracking-[0.3em] uppercase pointer-events-none">
+                    <div className="absolute bottom-8 left-0 w-full text-center text-white/30 text-xs tracking-[0.3em] uppercase pointer-events-none">
                         {images.length > 0 ? `${keyword} / Gallery` : ''}
                     </div>
                 </div>
@@ -432,6 +426,14 @@ export default function AboutPage({ onBack }) {
     const [popupMode, setPopupMode] = useState(null)
     const [activeImages, setActiveImages] = useState([])
     const [activeKeyword, setActiveKeyword] = useState('')
+    const [supabaseKeywords, setSupabaseKeywords] = useState({})
+
+    // Fetch keyword images from Supabase (falls back to static if not found)
+    useEffect(() => {
+        fetchKeywordsMap()
+            .then(setSupabaseKeywords)
+            .catch(() => {}) // silent: static assets are the fallback
+    }, [])
 
     const handleKeywordClick = (keyword, folderName) => {
         if (folderName.includes('solida_competenza_progettuale')) {
@@ -439,15 +441,16 @@ export default function AboutPage({ onBack }) {
             return
         }
 
-        const allImages = getImagesForKeyword(folderName)
-        // Shuffle and take top 3
-        const shuffled = [...allImages]
+        // Prefer Supabase images; fall back to static assets
+        const supabaseImages = supabaseKeywords[folderName]
+        const sourceImages = supabaseImages?.length ? supabaseImages : getImagesForKeyword(folderName)
+
+        const shuffled = [...sourceImages]
         for (let i = shuffled.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
         }
         const selectedImages = shuffled.slice(0, 3)
-
 
         setActiveKeyword(keyword)
         setActiveImages(selectedImages)

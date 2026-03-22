@@ -721,6 +721,20 @@ label,
   /* Ensure button stays clickable above fan cards */
 }
 
+/* Credits overlay - bottom left of the modal */
+.preview-credits {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 2rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+  z-index: 60;
+  max-width: 260px;
+}
+
 .preview-view-collection-inline:hover {
   opacity: 1;
   border-color: var(--text-secondary);

@@ -234,6 +234,18 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
                     </div>
                 </div>
 
+                {/* Credits - Bottom Left */}
+                {collection?.credits && (
+                    <motion.div
+                        className="preview-credits"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.5, duration: 0.4 }}
+                    >
+                        {collection.credits}
+                    </motion.div>
+                )}
+
                 {/* Right Panel - View Collection Button */}
                 <motion.div
                     className="preview-actions-panel"

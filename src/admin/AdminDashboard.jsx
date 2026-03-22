@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { fetchAllCollections, deleteCollection, updateCollection } from '../lib/collectionsApi'
 import { supabase } from '../lib/supabase'
 import CollectionForm from './CollectionForm'
+import KeywordsManager from './KeywordsManager'
 
 const CATEGORY_LABELS = { design: 'Fashion Design', styling: 'Styling' }
 
@@ -11,6 +12,7 @@ export default function AdminDashboard() {
     const [view, setView] = useState('list') // 'list' | 'create' | 'edit'
     const [editingCollection, setEditingCollection] = useState(null)
     const [filterCategory, setFilterCategory] = useState('all')
+    const [section, setSection] = useState('collections') // 'collections' | 'keywords'
 
     const load = useCallback(async () => {
         setLoading(true)
@@ -108,57 +110,79 @@ export default function AdminDashboard() {
             </header>
 
             <main className="max-w-5xl mx-auto px-6 py-8 space-y-6">
-                {/* Actions row */}
-                <div className="flex items-center justify-between gap-4 flex-wrap">
-                    {/* Category filter */}
-                    <div className="flex items-center gap-2">
-                        {['all', 'design', 'styling'].map((cat) => (
-                            <button
-                                key={cat}
-                                onClick={() => setFilterCategory(cat)}
-                                className={`text-xs tracking-widest uppercase px-3 py-1.5 border transition-colors ${filterCategory === cat
-                                    ? 'border-white text-white'
-                                    : 'border-white/10 text-white/30 hover:border-white/30 hover:text-white/60'
-                                    }`}
-                            >
-                                {cat === 'all' ? 'All' : CATEGORY_LABELS[cat]}
-                            </button>
-                        ))}
-                    </div>
-
-                    <button
-                        onClick={() => setView('create')}
-                        className="bg-white text-black text-xs tracking-[0.2em] uppercase px-5 py-2.5 font-medium hover:bg-white/90 transition-colors"
-                    >
-                        + New Collection
-                    </button>
+                {/* Section tabs */}
+                <div className="flex items-center gap-1 border-b border-white/10 pb-4">
+                    {[['collections', 'Collections'], ['keywords', 'Keywords']].map(([key, label]) => (
+                        <button
+                            key={key}
+                            onClick={() => setSection(key)}
+                            className={`text-xs tracking-widest uppercase px-4 py-2 transition-colors ${section === key
+                                ? 'text-white border-b-2 border-white -mb-[18px] pb-[18px]'
+                                : 'text-white/30 hover:text-white/60'
+                            }`}
+                        >
+                            {label}
+                        </button>
+                    ))}
                 </div>
 
-                {/* Collection list */}
-                {loading ? (
-                    <div className="text-white/30 text-sm tracking-widest py-16 text-center">Loading…</div>
-                ) : filtered.length === 0 ? (
-                    <div className="text-center py-16 border border-dashed border-white/10">
-                        <p className="text-white/30 text-sm tracking-wide">No collections yet.</p>
-                        <button
-                            onClick={() => setView('create')}
-                            className="mt-4 text-white/50 hover:text-white text-xs tracking-widest uppercase underline underline-offset-4 transition-colors"
-                        >
-                            Create the first one
-                        </button>
-                    </div>
+                {section === 'keywords' ? (
+                    <KeywordsManager />
                 ) : (
-                    <div className="divide-y divide-white/5">
-                        {filtered.map((col) => (
-                            <CollectionRow
-                                key={col.id}
-                                collection={col}
-                                onEdit={() => handleEdit(col)}
-                                onDelete={() => handleDelete(col)}
-                                onTogglePublished={() => handleTogglePublished(col)}
-                            />
-                        ))}
-                    </div>
+                    <>
+                        {/* Actions row */}
+                        <div className="flex items-center justify-between gap-4 flex-wrap">
+                            {/* Category filter */}
+                            <div className="flex items-center gap-2">
+                                {['all', 'design', 'styling'].map((cat) => (
+                                    <button
+                                        key={cat}
+                                        onClick={() => setFilterCategory(cat)}
+                                        className={`text-xs tracking-widest uppercase px-3 py-1.5 border transition-colors ${filterCategory === cat
+                                            ? 'border-white text-white'
+                                            : 'border-white/10 text-white/30 hover:border-white/30 hover:text-white/60'
+                                            }`}
+                                    >
+                                        {cat === 'all' ? 'All' : CATEGORY_LABELS[cat]}
+                                    </button>
+                                ))}
+                            </div>
+
+                            <button
+                                onClick={() => setView('create')}
+                                className="bg-white text-black text-xs tracking-[0.2em] uppercase px-5 py-2.5 font-medium hover:bg-white/90 transition-colors"
+                            >
+                                + New Collection
+                            </button>
+                        </div>
+
+                        {/* Collection list */}
+                        {loading ? (
+                            <div className="text-white/30 text-sm tracking-widest py-16 text-center">Loading…</div>
+                        ) : filtered.length === 0 ? (
+                            <div className="text-center py-16 border border-dashed border-white/10">
+                                <p className="text-white/30 text-sm tracking-wide">No collections yet.</p>
+                                <button
+                                    onClick={() => setView('create')}
+                                    className="mt-4 text-white/50 hover:text-white text-xs tracking-widest uppercase underline underline-offset-4 transition-colors"
+                                >
+                                    Create the first one
+                                </button>
+                            </div>
+                        ) : (
+                            <div className="divide-y divide-white/5">
+                                {filtered.map((col) => (
+                                    <CollectionRow
+                                        key={col.id}
+                                        collection={col}
+                                        onEdit={() => handleEdit(col)}
+                                        onDelete={() => handleDelete(col)}
+                                        onTogglePublished={() => handleTogglePublished(col)}
+                                    />
+                                ))}
+                            </div>
+                        )}
+                    </>
                 )}
             </main>
         </div>
