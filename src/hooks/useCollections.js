@@ -8,6 +8,11 @@ const EMPTY_MANIFEST = {
 
 /** Convert a Supabase collection row → manifest-compatible entry */
 function toManifestEntry(col) {
+    const photos = col.image_urls || []
+    const photoThumbs = col.thumb_urls || photos
+    const drawings = col.drawing_urls || []
+    const drawingThumbs = col.drawing_thumb_urls || drawings
+
     return {
         id: col.slug,
         title: col.title,
@@ -15,8 +20,12 @@ function toManifestEntry(col) {
         brand: col.category === 'design' ? 'Fashion Design' : 'Styling',
         description: col.description || '',
         credits: col.credits || '',
-        images: col.image_urls || [],
-        thumbnails: col.thumb_urls || col.image_urls || [],
+        // Separate arrays for visual distinction (Landing, Grid, Spheres)
+        photos,
+        drawings,
+        // Merged arrays for collection viewing (photos first, then drawings)
+        images: [...photos, ...drawings],
+        thumbnails: [...photoThumbs, ...drawingThumbs],
     }
 }
 
@@ -37,8 +46,8 @@ function buildManifest(supabaseCollections) {
         }
 
         const entry = toManifestEntry(col)
-        // Only include collections that have images — ghost/empty collections are excluded
-        if (entry.images.length) {
+        // Only include collections that have images or drawings
+        if (entry.images.length || entry.drawings.length) {
             manifest[category].collections.push(entry)
         }
     }

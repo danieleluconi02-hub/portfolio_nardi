@@ -67,15 +67,17 @@ export default function LandingMenu({ onNavigate, manifest }) {
     const [navigatingTo, setNavigatingTo] = useState(null)
     const [scatterItems, setScatterItems] = useState([])
 
-    // Process manifest for background images — all images treated as photos (Supabase source)
+    // Process manifest for background images — distinguish photos from drawings via Supabase metadata
     const availableItems = useMemo(() => {
         if (!manifest) return []
         const items = []
         Object.keys(manifest).forEach(category => {
             const collections = manifest[category]?.collections || []
             collections.forEach(col => {
-                if (!col.images || col.images.length === 0) return
-                items.push({ collectionId: col.id, drawings: [], photos: col.images })
+                const photos = col.photos || col.images || []
+                const drawings = col.drawings || []
+                if (photos.length === 0 && drawings.length === 0) return
+                items.push({ collectionId: col.id, drawings, photos })
             })
         })
         return items

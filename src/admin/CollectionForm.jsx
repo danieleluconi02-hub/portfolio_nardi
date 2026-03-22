@@ -33,6 +33,8 @@ export default function CollectionForm({ collection, onSaved, onCancel }) {
     const [slug, setSlug] = useState(collection?.slug || '')
     const [imageUrls, setImageUrls] = useState(collection?.image_urls || [])
     const [thumbUrls, setThumbUrls] = useState(collection?.thumb_urls || [])
+    const [drawingUrls, setDrawingUrls] = useState(collection?.drawing_urls || [])
+    const [drawingThumbUrls, setDrawingThumbUrls] = useState(collection?.drawing_thumb_urls || [])
 
     const [saving, setSaving] = useState(false)
     const [error, setError] = useState(null)
@@ -53,20 +55,32 @@ export default function CollectionForm({ collection, onSaved, onCancel }) {
         setThumbUrls((prev) => [...prev, thumbUrl])
     }
 
+    const handleDrawingUploaded = ({ fullUrl, thumbUrl }) => {
+        setDrawingUrls((prev) => [...prev, fullUrl])
+        setDrawingThumbUrls((prev) => [...prev, thumbUrl])
+    }
+
     const handleRemoveImage = async (index) => {
         const fullUrl = imageUrls[index]
         const thumbUrl = thumbUrls[index]
-        // Remove from storage (best-effort)
         await deleteImages([fullUrl, thumbUrl].filter(Boolean))
         setImageUrls((prev) => prev.filter((_, i) => i !== index))
         setThumbUrls((prev) => prev.filter((_, i) => i !== index))
+    }
+
+    const handleRemoveDrawing = async (index) => {
+        const fullUrl = drawingUrls[index]
+        const thumbUrl = drawingThumbUrls[index]
+        await deleteImages([fullUrl, thumbUrl].filter(Boolean))
+        setDrawingUrls((prev) => prev.filter((_, i) => i !== index))
+        setDrawingThumbUrls((prev) => prev.filter((_, i) => i !== index))
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (!form.title.trim()) return setError('Title is required.')
         if (!slug.trim()) return setError('Slug is required.')
-        if (!imageUrls.length) return setError('Upload at least one image.')
+        if (!imageUrls.length && !drawingUrls.length) return setError('Upload at least one image or drawing.')
 
         setSaving(true)
         setError(null)
@@ -76,6 +90,8 @@ export default function CollectionForm({ collection, onSaved, onCancel }) {
             slug: slug.trim(),
             image_urls: imageUrls,
             thumb_urls: thumbUrls,
+            drawing_urls: drawingUrls,
+            drawing_thumb_urls: drawingThumbUrls,
         }
 
         try {
@@ -200,45 +216,81 @@ export default function CollectionForm({ collection, onSaved, onCancel }) {
                 />
             </div>
 
-            {/* Image Uploader */}
-            <div>
-                <label className="admin-label">Images</label>
+            {/* ── Section 1: Photos ── */}
+            <div className="space-y-4">
+                <label className="admin-label">Photos</label>
                 <ImageUploader
                     category={form.category}
                     slug={slug}
                     onUploaded={handleImageUploaded}
                     disabled={!slug}
                 />
+                {imageUrls.length > 0 && (
+                    <div>
+                        <label className="admin-label">
+                            Uploaded Photos
+                            <span className="text-white/30 ml-2 font-normal normal-case text-[10px]">{imageUrls.length} total</span>
+                        </label>
+                        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
+                            {imageUrls.map((url, i) => (
+                                <div key={i} className="relative group aspect-square bg-white/5">
+                                    <img
+                                        src={thumbUrls[i] || url}
+                                        alt=""
+                                        className="w-full h-full object-cover"
+                                        loading="lazy"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => handleRemoveImage(i)}
+                                        className="absolute inset-0 bg-black/70 text-white/80 text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                                    >
+                                        Remove
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
             </div>
 
-            {/* Image Grid Preview */}
-            {imageUrls.length > 0 && (
-                <div>
-                    <label className="admin-label">
-                        Uploaded Images
-                        <span className="text-white/30 ml-2 font-normal normal-case text-[10px]">{imageUrls.length} total</span>
-                    </label>
-                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
-                        {imageUrls.map((url, i) => (
-                            <div key={i} className="relative group aspect-square bg-white/5">
-                                <img
-                                    src={thumbUrls[i] || url}
-                                    alt=""
-                                    className="w-full h-full object-cover"
-                                    loading="lazy"
-                                />
-                                <button
-                                    type="button"
-                                    onClick={() => handleRemoveImage(i)}
-                                    className="absolute inset-0 bg-black/70 text-white/80 text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                                >
-                                    Remove
-                                </button>
-                            </div>
-                        ))}
+            {/* ── Section 2: Drawings / Sketches ── */}
+            <div className="space-y-4 border-t border-white/10 pt-6">
+                <label className="admin-label">Drawings / Sketches</label>
+                <ImageUploader
+                    category={form.category}
+                    slug={slug}
+                    onUploaded={handleDrawingUploaded}
+                    disabled={!slug}
+                />
+                {drawingUrls.length > 0 && (
+                    <div>
+                        <label className="admin-label">
+                            Uploaded Drawings
+                            <span className="text-white/30 ml-2 font-normal normal-case text-[10px]">{drawingUrls.length} total</span>
+                        </label>
+                        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
+                            {drawingUrls.map((url, i) => (
+                                <div key={i} className="relative group aspect-square bg-white/5 border border-dashed border-white/10">
+                                    <img
+                                        src={drawingThumbUrls[i] || url}
+                                        alt=""
+                                        className="w-full h-full object-cover"
+                                        loading="lazy"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => handleRemoveDrawing(i)}
+                                        className="absolute inset-0 bg-black/70 text-white/80 text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                                    >
+                                        Remove
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
 
             {/* Footer controls */}
             <div className="flex items-center justify-between pt-4 border-t border-white/10">
