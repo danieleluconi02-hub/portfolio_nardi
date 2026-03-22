@@ -13,6 +13,7 @@ export default defineConfig({
         outDir: 'dist',
         assetsDir: 'assets',
         target: 'esnext',
+        minify: 'esbuild',
         rollupOptions: {
             output: {
                 manualChunks: {
@@ -20,8 +21,10 @@ export default defineConfig({
                     'react-vendor': ['react', 'react-dom'],
                     // Framer Motion — animation runtime
                     'framer': ['framer-motion'],
-                    // Three.js + R3F — heaviest dependency, load separately
-                    'three-vendor': ['three', '@react-three/fiber', '@react-three/drei'],
+                    // Three.js core — heaviest dependency
+                    'three-core': ['three'],
+                    // R3F + Drei — split from three core for better caching
+                    'three-react': ['@react-three/fiber', '@react-three/drei'],
                     // Supabase client
                     'supabase': ['@supabase/supabase-js'],
                 },

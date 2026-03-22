@@ -1,25 +1,27 @@
-import { useState, Suspense, useCallback, useMemo, useRef } from 'react'
+import React, { useState, Suspense, useCallback, useMemo, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { motion, AnimatePresence } from 'framer-motion'
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext'
 import TopRightMenu from './components/TopRightMenu'
 import LandingMenu from './components/LandingMenu'
-import AboutPage from './components/AboutPage'
-import ContactPage from './components/ContactPage'
-import FashionFilmPage from './components/FashionFilmPage'
-import ImmersiveSphere from './components/ImmersiveSphere'
-import ImagePreviewModal from './components/ImagePreviewModal'
-import CollectionFocus from './components/CollectionFocus'
-import PortfolioView from './components/PortfolioView'
-import GlobalFooter from './components/GlobalFooter'
-import CategorySphere from './components/CategorySphere'
-import DynamicBackgroundGrid from './components/DynamicBackgroundGrid'
 import BackButton from './components/BackButton'
+import GlobalFooter from './components/GlobalFooter'
+import DynamicBackgroundGrid from './components/DynamicBackgroundGrid'
 import { useCollections } from './hooks/useCollections'
 import './index.css'
 
 import PreloadManager from './components/PreloadManager'
 import { useHashNavigation } from './hooks/useHashNavigation'
+
+// Lazy-loaded: only fetched when the corresponding appState is active
+const AboutPage = React.lazy(() => import('./components/AboutPage'))
+const ContactPage = React.lazy(() => import('./components/ContactPage'))
+const FashionFilmPage = React.lazy(() => import('./components/FashionFilmPage'))
+const ImmersiveSphere = React.lazy(() => import('./components/ImmersiveSphere'))
+const ImagePreviewModal = React.lazy(() => import('./components/ImagePreviewModal'))
+const CollectionFocus = React.lazy(() => import('./components/CollectionFocus'))
+const PortfolioView = React.lazy(() => import('./components/PortfolioView'))
+const CategorySphere = React.lazy(() => import('./components/CategorySphere'))
 
 // Apple-like easing curves
 const appleEasing = [0.25, 0.1, 0.25, 1]
@@ -241,21 +243,27 @@ function App() {
             {/* About Page */}
             <AnimatePresence>
                 {appState === 'about' && (
-                    <AboutPage onBack={handleBack} />
+                    <Suspense fallback={null}>
+                        <AboutPage onBack={handleBack} />
+                    </Suspense>
                 )}
             </AnimatePresence>
 
             {/* Contact Page */}
             <AnimatePresence>
                 {appState === 'contact' && (
-                    <ContactPage onBack={handleBack} />
+                    <Suspense fallback={null}>
+                        <ContactPage onBack={handleBack} />
+                    </Suspense>
                 )}
             </AnimatePresence>
 
             {/* Fashion Film Page */}
             <AnimatePresence>
                 {appState === 'fashionfilm' && (
-                    <FashionFilmPage onBack={handleBack} />
+                    <Suspense fallback={null}>
+                        <FashionFilmPage onBack={handleBack} />
+                    </Suspense>
                 )}
             </AnimatePresence>
 
@@ -363,30 +371,35 @@ function App() {
             {/* Image Preview Modal */}
             <AnimatePresence>
                 {appState === 'preview' && previewImageData && previewCollection && (
-                    <ImagePreviewModal
-                        imageData={previewImageData}
-                        collection={previewCollection}
-                        onViewCollection={handleViewCollectionFromPreview}
-                        onClose={handleClosePreview}
-                    />
+                    <Suspense fallback={null}>
+                        <ImagePreviewModal
+                            imageData={previewImageData}
+                            collection={previewCollection}
+                            onViewCollection={handleViewCollectionFromPreview}
+                            onClose={handleClosePreview}
+                        />
+                    </Suspense>
                 )}
             </AnimatePresence>
 
             {/* Collection Focus State (legacy - keeping for compatibility) */}
             <AnimatePresence>
                 {appState === 'focus' && focusedCollection && (
-                    <CollectionFocus
-                        collection={focusedCollection}
-                        onView={handleViewCollection}
-                        onClose={handleCloseFocus}
-                    />
+                    <Suspense fallback={null}>
+                        <CollectionFocus
+                            collection={focusedCollection}
+                            onView={handleViewCollection}
+                            onClose={handleCloseFocus}
+                        />
+                    </Suspense>
                 )}
             </AnimatePresence>
 
             {/* Portfolio View - Full Collection */}
             <AnimatePresence>
                 {appState === 'collection' && viewingCollection && (
-                    <PortfolioView
+                    <Suspense fallback={null}>
+                        <PortfolioView
                         category={selectedCategory}
                         data={{
                             title: viewingCollection.title,
@@ -399,6 +412,7 @@ function App() {
                             setAppState('menu')
                         }}
                     />
+                    </Suspense>
                 )}
             </AnimatePresence>
 
