@@ -20,6 +20,13 @@ export default function PreloadManager({ manifest, seed }) {
             const { sampleSphereImages, loadTexture } = await import('../lib/sphereImages')
             if (cancelled) return
 
+            // Warm the 3D code too, so the sphere is ready the moment a menu button is clicked
+            Promise.all([
+                import('@react-three/fiber'),
+                import('./CategorySphere'),
+                import('./ImmersiveSphere'),
+            ]).catch(() => { })
+
             // Interleave categories so both get their first images early
             const lists = Object.values(manifest).map(cat =>
                 sampleSphereImages(cat?.collections, seed, PRELOAD_PER_CATEGORY)

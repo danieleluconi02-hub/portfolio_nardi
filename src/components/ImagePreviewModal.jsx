@@ -5,28 +5,57 @@ import BackButton from './BackButton'
 
 import { useLanguage } from '../contexts/LanguageContext'
 
-// Thumbnails are what the sphere just showed, so they're already cached:
-// show them instantly and swap in the full-size file once it has downloaded.
+// Thumbnails are what the sphere just showed, so they're already cached.
+// The thumbnail is shown at once and holds the layout, sized by CSS exactly as
+// the full image will be (from its aspect ratio, see .pv-sized in index.css).
+// The full-size file is laid over it and fades in once downloaded:
+// instant image, no size jump, no empty box while the big file loads.
 const toThumb = (path) => path ? path.replace('/full/', '/thumb/') : ''
 
-function useProgressiveSrc(fullSrc) {
-    const thumbSrc = toThumb(fullSrc)
-    const [loadedFull, setLoadedFull] = useState(null)
+function ProgressiveImage({ src, alt, className, style, wrapperStyle }) {
+    const thumbSrc = toThumb(src)
+    const [ratio, setRatio] = useState(null)
+    const [thumbFailed, setThumbFailed] = useState(false)
+    const [fullLoaded, setFullLoaded] = useState(false)
 
-    useEffect(() => {
-        if (!fullSrc || thumbSrc === fullSrc) return
-        let cancelled = false
-        const img = new Image()
-        img.crossOrigin = 'anonymous' // same request mode as the <img> below, so it's reused
-        img.onload = () => {
-            const done = () => { if (!cancelled) setLoadedFull(fullSrc) }
-            img.decode ? img.decode().catch(() => { }).then(done) : done()
-        }
-        img.src = fullSrc
-        return () => { cancelled = true }
-    }, [fullSrc, thumbSrc])
+    if (!src) return null
 
-    return loadedFull === fullSrc ? fullSrc : thumbSrc
+    // No separate thumbnail (or it failed): plain image, as before
+    if (thumbSrc === src || thumbFailed) {
+        return <img src={src} alt={alt} className={className} style={style} draggable={false} />
+    }
+
+    return (
+        <span style={{ position: 'relative', display: 'block', lineHeight: 0, ...wrapperStyle }}>
+            <img
+                src={thumbSrc}
+                crossOrigin="anonymous" // same request mode as the sphere textures, so it's a cache hit
+                alt={alt}
+                className={`${className}${ratio ? ' pv-sized' : ''}`}
+                style={{ ...style, ...(ratio ? { '--pv-ratio': ratio } : null) }}
+                onLoad={(e) => setRatio(e.currentTarget.naturalWidth / e.currentTarget.naturalHeight)}
+                onError={() => setThumbFailed(true)}
+                draggable={false}
+            />
+            <img
+                src={src}
+                alt=""
+                aria-hidden="true"
+                onLoad={() => setFullLoaded(true)}
+                draggable={false}
+                style={{
+                    position: 'absolute',
+                    inset: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    pointerEvents: 'none',
+                    opacity: fullLoaded ? 1 : 0,
+                    transition: 'opacity 0.3s ease',
+                }}
+            />
+        </span>
+    )
 }
 
 // Apple-like easing
@@ -40,7 +69,6 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
     onClose
 }) {
     const { t } = useLanguage()
-    const [imageLoaded, setImageLoaded] = useState(false)
     // Start on the clicked image right away (starting at 0 and correcting it in an
     // effect flashed the wrong photo and reshuffled the deck twice)
     const [selectedImageIndex, setSelectedImageIndex] = useState(() => {
@@ -103,9 +131,6 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
         return getFullPath(collection.images[selectedImageIndex])
     }, [collection, selectedImageIndex])
 
-    const currentSrc = useProgressiveSrc(currentImage)
-    const deckSrc0 = useProgressiveSrc(getFullPath(deckImages[0]))
-    const deckSrc1 = useProgressiveSrc(getFullPath(deckImages[1]))
 
     const description = collection?.description || ''
     const hasInfo = !!(description || collection?.credits)
@@ -170,6 +195,11 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
                             <ReactMarkdown>{description}</ReactMarkdown>
                         </div>
                     )}
+
+                    {/* Credits live in the panel (they used to float over the photos) */}
+                    {collection?.credits && (
+                        <p className="preview-panel-credits">{collection.credits}</p>
+                    )}
                 </motion.div>
 
                 {/* Center - DECK STACK EFFECT (like a hand of cards) */}
@@ -197,13 +227,12 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
                                     backdropFilter: 'none'
                                 }}
                             >
-                                <img
-                                    src={deckSrc1}
-                                    crossOrigin="anonymous"
+                                <ProgressiveImage
+                                    src={getFullPath(deckImages[1])}
                                     alt="Collection preview background 2"
                                     className="deck-image"
-                                    draggable={false}
-                                    style={{ opacity: 0.7, filter: 'brightness(0.65)', background: 'none' }}
+                                    style={{ background: 'none' }}
+                                    wrapperStyle={{ opacity: 0.7, filter: 'brightness(0.65)' }}
                                 />
                             </motion.div>
                         )}
@@ -230,13 +259,12 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
                                     backdropFilter: 'none'
                                 }}
                             >
-                                <img
-                                    src={deckSrc0}
-                                    crossOrigin="anonymous"
+                                <ProgressiveImage
+                                    src={getFullPath(deckImages[0])}
                                     alt="Collection preview background 1"
                                     className="deck-image"
-                                    draggable={false}
-                                    style={{ opacity: 0.8, filter: 'brightness(0.75)', background: 'none' }}
+                                    style={{ background: 'none' }}
+                                    wrapperStyle={{ opacity: 0.8, filter: 'brightness(0.75)' }}
                                 />
                             </motion.div>
                         )}
@@ -244,24 +272,19 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
                         {/* MAIN IMAGE - Grid Centered, no offset */}
                         <motion.div
                             className="deck-card deck-card-front"
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
+                            // fade only: the old 0.95 -> 1 zoom read as "small, then big"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
                             transition={{ duration: 0.5, ease: cinematicEasing }}
                             style={{ zIndex: 10 }}
                         >
                             {currentImage && (
                                 <div className="sketchy-image-wrapper">
-                                    <motion.img
+                                    <ProgressiveImage
                                         key={selectedImageIndex}
-                                        src={currentSrc}
-                                        crossOrigin="anonymous"
+                                        src={currentImage}
                                         alt={`${collection?.title} - ${selectedImageIndex + 1}`}
                                         className="preview-main-image"
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: imageLoaded ? 1 : 0.3 }}
-                                        transition={{ duration: 0.3 }}
-                                        onLoad={() => setImageLoaded(true)}
-                                        draggable={false}
                                         style={{
                                             boxShadow: 'none',
                                             filter: 'none',
@@ -274,18 +297,6 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
                         </motion.div>
                     </div>
                 </div>
-
-                {/* Credits - desktop only (hidden on mobile via CSS) */}
-                {collection?.credits && (
-                    <motion.div
-                        className="preview-credits"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.5, duration: 0.4 }}
-                    >
-                        {collection.credits}
-                    </motion.div>
-                )}
 
                 {/* Right Panel - View Collection Button */}
                 <motion.div

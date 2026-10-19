@@ -29,7 +29,9 @@
     url('/fonts/ghost.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  /* block, not swap: swapping from a fallback font made the landing buttons
+     and labels visibly flicker. The woff2 is preloaded, so the wait is short */
+  font-display: block;
 }
 
 :root {
@@ -707,6 +709,92 @@ label,
   position: relative;
   z-index: 60;
   /* Ensure button stays clickable above fan cards */
+}
+
+/* Desktop info panel: a readable card (like the mobile drawer) that sits
+   cleanly above the fanned deck instead of grey text over the photos */
+@media (min-width: 769px) {
+  .preview-content {
+    grid-template-columns: minmax(240px, 22vw) minmax(0, 1fr) minmax(200px, 17vw);
+    column-gap: clamp(16px, 2.5vw, 48px);
+  }
+
+  .preview-info-panel {
+    align-self: center;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 1.6rem 1.7rem;
+    background: rgba(10, 12, 15, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+    scrollbar-width: thin;
+  }
+
+  .preview-info-panel .preview-title {
+    color: #ffffff;
+    margin-bottom: 0.9rem;
+  }
+
+  .preview-info-panel .preview-description {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .preview-info-panel .preview-description p + p {
+    margin-top: 0.8em;
+  }
+
+  .preview-panel-credits {
+    font-family: var(--font-primary);
+    font-size: 0.68rem;
+    line-height: 1.7;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 1.2rem 0 0;
+    padding-top: 1.1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* Preview thumbnails sized like the full image will be (contain-fit within the
+   same max height), so swapping to the full-size file never resizes anything.
+   --pv-ratio (width / height) is set inline once the thumbnail has loaded. */
+.preview-main-image {
+  --pv-max-h: 75vh;
+}
+
+.preview-main-image.pv-sized {
+  width: calc(var(--pv-max-h) * var(--pv-ratio));
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .preview-main-image {
+    --pv-max-h: 40vh;
+  }
+
+  .deck-image {
+    --pv-max-h: 50vh;
+  }
+
+  .deck-card-middle .deck-image {
+    --pv-max-h: 48vh;
+  }
+
+  .deck-card-back .deck-image {
+    --pv-max-h: 45vh;
+  }
+
+  /* Desktop deck images are width: 100%, so only mobile needs this */
+  .deck-image.pv-sized {
+    width: calc(var(--pv-max-h) * var(--pv-ratio));
+    height: auto;
+  }
 }
 
 /* Credits overlay - bottom left of the modal */

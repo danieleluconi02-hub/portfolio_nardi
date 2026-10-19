@@ -138,7 +138,7 @@ export default function CategorySphere({
     // Animation state
     const animationState = useRef({
         phase: 'camera_orbit',
-        startTime: 0,
+        startTime: null, // set on the first frame (0 made the first frame think the intro was already over)
         opacity: 0,
         enterComplete: false,
         sphereRotation: 0
@@ -194,10 +194,12 @@ export default function CategorySphere({
             camera.fov = 40
             camera.updateProjectionMatrix()
 
-            // Start camera orbit animation
+            // Start camera orbit animation (keep the clock if the first frame already started it)
             animationState.current = {
                 phase: 'camera_orbit',
-                startTime: performance.now(),
+                startTime: animationState.current.phase === 'camera_orbit'
+                    ? animationState.current.startTime ?? performance.now()
+                    : performance.now(),
                 opacity: 0,
                 enterComplete: false,
                 sphereRotation: 0
@@ -224,6 +226,10 @@ export default function CategorySphere({
     useFrame(() => {
         const anim = animationState.current
         const now = performance.now()
+
+        // A frame can render before the init effect runs: start the clock here so the
+        // intro never begins "finished" (big empty sphere) and then restarts
+        if (anim.startTime === null) anim.startTime = now
 
         // PHASE 1: Camera zooms in from far away, sphere rotates with progressive acceleration
         if (anim.phase === 'camera_orbit') {
