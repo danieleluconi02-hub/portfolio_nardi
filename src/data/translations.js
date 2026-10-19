@@ -17,6 +17,8 @@ const translations = {
             portfolio: 'Portfolio',
             close: 'Close',
             viewCollection: 'View Collection',
+            readMore: 'Read more',
+            readLess: 'Show less',
             clickToEnter: 'Click to enter',
             dragToExplore: 'Drag to explore · Click image for preview',
             tapNavigation: '← Tap left | Tap right →'
@@ -72,6 +74,8 @@ const translations = {
             portfolio: 'Portfolio',
             close: 'Chiudi',
             viewCollection: 'Vedi Collezione',
+            readMore: 'Leggi tutto',
+            readLess: 'Mostra meno',
             clickToEnter: 'Clicca per entrare',
             dragToExplore: 'Trascina per esplorare · Clicca sull\'immagine per anteprima',
             tapNavigation: '← Tocca a sinistra | Tocca a destra →'
@@ -127,6 +131,8 @@ const translations = {
             portfolio: 'Portafolio',
             close: 'Cerrar',
             viewCollection: 'Ver Colección',
+            readMore: 'Leer más',
+            readLess: 'Mostrar menos',
             clickToEnter: 'Haz clic para entrar',
             dragToExplore: 'Arrastra para explorar · Haz clic en la imagen para vista previa',
             tapNavigation: '← Toca izquierda | Toca derecha →'
@@ -182,6 +188,8 @@ const translations = {
             portfolio: 'Portfolio',
             close: 'Fermer',
             viewCollection: 'Voir Collection',
+            readMore: 'Lire la suite',
+            readLess: 'Réduire',
             clickToEnter: 'Cliquez pour entrer',
             dragToExplore: 'Glissez pour explorer · Cliquez sur l\'image pour aperçu',
             tapNavigation: '← Touchez à gauche | Touchez à droite →'
@@ -237,6 +245,8 @@ const translations = {
             portfolio: '포트폴리오',
             close: '닫기',
             viewCollection: '컬렉션 보기',
+            readMore: '더 보기',
+            readLess: '접기',
             clickToEnter: '입장하려면 클릭',
             dragToExplore: '드래그하여 탐색 · 미리보기를 보려면 이미지 클릭',
             tapNavigation: '← 왼쪽 탭 | 오른쪽 탭 →'

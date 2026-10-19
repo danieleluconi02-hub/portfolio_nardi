@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo, memo } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef, useCallback, useMemo, memo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
 import BackButton from './BackButton'
@@ -55,6 +55,59 @@ function ProgressiveImage({ src, alt, className, style, wrapperStyle }) {
                 }}
             />
         </span>
+    )
+}
+
+// Desktop info panel body: description and credits are clipped to a few lines
+// with a soft fade; "Read more" only appears when something is actually hidden.
+// Expanded, the panel may scroll (thin scrollbar, see .preview-info-panel).
+function InfoPanelBody({ description, credits, t }) {
+    const [expanded, setExpanded] = useState(false)
+    const [clipped, setClipped] = useState({ desc: false, credits: false })
+    const overflowing = clipped.desc || clipped.credits
+    const descRef = useRef(null)
+    const creditsRef = useRef(null)
+
+    useLayoutEffect(() => {
+        if (expanded) return
+        const isClipped = (el) => !!el && el.scrollHeight > el.clientHeight + 1
+        const measure = () => setClipped({
+            desc: isClipped(descRef.current),
+            credits: isClipped(creditsRef.current),
+        })
+        measure()
+        // Fonts can change line breaks after the first measurement
+        document.fonts?.ready?.then(measure)
+        window.addEventListener('resize', measure)
+        return () => window.removeEventListener('resize', measure)
+    }, [description, credits, expanded])
+
+    // has-more (the fade) only on the block that actually hides text
+    const state = (isClipped) => expanded ? 'is-expanded' : `is-collapsed${isClipped ? ' has-more' : ''}`
+
+    return (
+        <>
+            {description && (
+                <div ref={descRef} className={`preview-description ${state(clipped.desc)}`}>
+                    <ReactMarkdown>{description}</ReactMarkdown>
+                </div>
+            )}
+
+            {credits && (
+                <p ref={creditsRef} className={`preview-panel-credits ${state(clipped.credits)}`}>{credits}</p>
+            )}
+
+            {(overflowing || expanded) && (
+                <button
+                    type="button"
+                    className="preview-read-more"
+                    onClick={(e) => { e.stopPropagation(); setExpanded(v => !v) }}
+                >
+                    {expanded ? (t.ui.readLess || 'Show less') : (t.ui.readMore || 'Read more')}
+                    <span className={`preview-read-more-arrow${expanded ? ' is-up' : ''}`} aria-hidden="true">↓</span>
+                </button>
+            )}
+        </>
     )
 }
 
@@ -190,16 +243,8 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
                 >
                     <h2 className="preview-title">{collection?.title || 'Collection'}</h2>
 
-                    {description && (
-                        <div className="preview-description">
-                            <ReactMarkdown>{description}</ReactMarkdown>
-                        </div>
-                    )}
-
                     {/* Credits live in the panel (they used to float over the photos) */}
-                    {collection?.credits && (
-                        <p className="preview-panel-credits">{collection.credits}</p>
-                    )}
+                    <InfoPanelBody description={description} credits={collection?.credits} t={t} />
                 </motion.div>
 
                 {/* Center - DECK STACK EFFECT (like a hand of cards) */}
