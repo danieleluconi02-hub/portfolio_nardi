@@ -15,12 +15,8 @@ function readBody(req) {
 }
 
 export default async function handler(req, res) {
-    // CORS headers for the admin panel
-    res.setHeader('Access-Control-Allow-Origin', '*')
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
-
-    if (req.method === 'OPTIONS') return res.status(200).end()
+    // No CORS headers: the admin panel calls this from the same origin, and a
+    // wildcard let any other site use the function on this account's quota.
     if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
 
     try {
