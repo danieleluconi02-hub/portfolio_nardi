@@ -8,6 +8,8 @@ const ScatterItem = ({ item }) => {
     const [isLoaded, setIsLoaded] = useState(false)
     const skewX = useMemo(() => Math.random() * 2 - 1, [])
     const skewY = useMemo(() => Math.random() * 2 - 1, [])
+    // Fixed per item: re-rolling it on every render restarted the fade (flicker)
+    const delay = useMemo(() => Math.random() * 0.5, [])
 
     return (
         <motion.div
@@ -17,7 +19,8 @@ const ScatterItem = ({ item }) => {
                 top: item.top,
                 width: item.type === 'drawing' ? '14rem' : '14rem',
                 zIndex: item.zIndex,
-                opacity: isLoaded ? 1 : 0,
+                // opacity is driven only by `animate`: also setting it here made it
+                // jump 0 -> 1 -> 0 -> 1 when the image arrived
                 filter: item.type === 'photo'
                     ? 'brightness(0.9) contrast(1.1) sepia(0.2) drop-shadow(0 4px 6px rgba(0,0,0,0.3))'
                     : 'brightness(1.02) sepia(0.1) contrast(1.1) drop-shadow(0 2px 3px rgba(0,0,0,0.1))',
@@ -32,7 +35,7 @@ const ScatterItem = ({ item }) => {
                 opacity: isLoaded ? 1 : 0
             }}
             exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.8 } }}
-            transition={{ duration: 1.5, delay: Math.random() * 0.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.5, delay, ease: [0.16, 1, 0.3, 1] }}
         >
             {item.type === 'photo' ? (
                 <div className="bg-white p-2 pb-8 shadow-2xl transform rotate-1">

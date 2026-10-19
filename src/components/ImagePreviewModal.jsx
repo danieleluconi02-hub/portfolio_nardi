@@ -5,6 +5,30 @@ import BackButton from './BackButton'
 
 import { useLanguage } from '../contexts/LanguageContext'
 
+// Thumbnails are what the sphere just showed, so they're already cached:
+// show them instantly and swap in the full-size file once it has downloaded.
+const toThumb = (path) => path ? path.replace('/full/', '/thumb/') : ''
+
+function useProgressiveSrc(fullSrc) {
+    const thumbSrc = toThumb(fullSrc)
+    const [loadedFull, setLoadedFull] = useState(null)
+
+    useEffect(() => {
+        if (!fullSrc || thumbSrc === fullSrc) return
+        let cancelled = false
+        const img = new Image()
+        img.crossOrigin = 'anonymous' // same request mode as the <img> below, so it's reused
+        img.onload = () => {
+            const done = () => { if (!cancelled) setLoadedFull(fullSrc) }
+            img.decode ? img.decode().catch(() => { }).then(done) : done()
+        }
+        img.src = fullSrc
+        return () => { cancelled = true }
+    }, [fullSrc, thumbSrc])
+
+    return loadedFull === fullSrc ? fullSrc : thumbSrc
+}
+
 // Apple-like easing
 const appleEasing = [0.25, 0.1, 0.25, 1]
 const cinematicEasing = [0.16, 1, 0.3, 1]
@@ -17,8 +41,13 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
 }) {
     const { t } = useLanguage()
     const [imageLoaded, setImageLoaded] = useState(false)
-    const [selectedImageIndex, setSelectedImageIndex] = useState(0)
-    const [deckImages, setDeckImages] = useState([]) // Background deck images
+    // Start on the clicked image right away (starting at 0 and correcting it in an
+    // effect flashed the wrong photo and reshuffled the deck twice)
+    const [selectedImageIndex, setSelectedImageIndex] = useState(() => {
+        if (!imageData?.imagePath || !collection?.images) return 0
+        const fullPath = imageData.imagePath.replace('/thumb/', '/full/')
+        return Math.max(0, collection.images.indexOf(fullPath))
+    })
     const [isMobile, setIsMobile] = useState(false)
     const [showDetails, setShowDetails] = useState(false)
 
@@ -47,8 +76,8 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
     }, [selectedImageIndex])
 
     // Get 2 random images for the deck background (excluding current image)
-    useEffect(() => {
-        if (!collection?.images || collection.images.length < 2) return
+    const deckImages = useMemo(() => {
+        if (!collection?.images || collection.images.length < 2) return []
 
         const seen = new Set()
         seen.add(collection.images[selectedImageIndex])
@@ -62,9 +91,7 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
             const j = Math.floor(Math.random() * (i + 1));
             [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
         }
-        const selected = shuffled.slice(0, Math.min(2, shuffled.length))
-
-        setDeckImages(selected)
+        return shuffled.slice(0, Math.min(2, shuffled.length))
     }, [collection, selectedImageIndex])
 
     // Helper to get full path
@@ -75,6 +102,10 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
         if (!collection?.images || collection.images.length === 0) return null
         return getFullPath(collection.images[selectedImageIndex])
     }, [collection, selectedImageIndex])
+
+    const currentSrc = useProgressiveSrc(currentImage)
+    const deckSrc0 = useProgressiveSrc(getFullPath(deckImages[0]))
+    const deckSrc1 = useProgressiveSrc(getFullPath(deckImages[1]))
 
     const description = collection?.description || ''
     const hasInfo = !!(description || collection?.credits)
@@ -167,7 +198,8 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
                                 }}
                             >
                                 <img
-                                    src={getFullPath(deckImages[1])}
+                                    src={deckSrc1}
+                                    crossOrigin="anonymous"
                                     alt="Collection preview background 2"
                                     className="deck-image"
                                     draggable={false}
@@ -199,7 +231,8 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
                                 }}
                             >
                                 <img
-                                    src={getFullPath(deckImages[0])}
+                                    src={deckSrc0}
+                                    crossOrigin="anonymous"
                                     alt="Collection preview background 1"
                                     className="deck-image"
                                     draggable={false}
@@ -220,7 +253,8 @@ const ImagePreviewModal = memo(function ImagePreviewModal({
                                 <div className="sketchy-image-wrapper">
                                     <motion.img
                                         key={selectedImageIndex}
-                                        src={currentImage}
+                                        src={currentSrc}
+                                        crossOrigin="anonymous"
                                         alt={`${collection?.title} - ${selectedImageIndex + 1}`}
                                         className="preview-main-image"
                                         initial={{ opacity: 0 }}

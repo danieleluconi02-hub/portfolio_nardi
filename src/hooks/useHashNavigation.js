@@ -130,11 +130,14 @@ export const useHashNavigation = ({
                 newHash = '/fashionfilm';
                 break;
             case 'sphere':
-            case 'entering': // Keep same hash for entering animation
                 if (selectedCategory) {
                     newHash = `/sphere/${selectedCategory}`;
                 }
                 break;
+            // 'entering' already counts as the immersive view: the history entry is
+            // created on the click itself, not ~1s later when the fly-in ends.
+            // Browsers may skip entries added without a recent user gesture.
+            case 'entering':
             case 'scroll': // Immersive view
             case 'preview': // Keep immersive hash for preview modal too, or we could add '/preview'
             case 'focus':
