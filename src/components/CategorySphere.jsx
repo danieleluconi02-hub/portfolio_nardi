@@ -2,6 +2,7 @@
 import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import SketchySphereGrid from './SketchySphereGrid'
+import { sampleSphereImages, loadTexture, SPHERE_IMAGE_COUNT } from '../lib/sphereImages'
 
 
 /**
@@ -56,16 +57,17 @@ function StaticImagePlane({
     const [textureLoaded, setTextureLoaded] = useState(false)
 
     useEffect(() => {
+        let cancelled = false
         if (imagePath && !textureRef.current) {
-            const loader = new THREE.TextureLoader()
-            loader.load(imagePath, (tex) => {
-                tex.colorSpace = THREE.SRGBColorSpace
-                tex.minFilter = THREE.LinearFilter
-                tex.magFilter = THREE.LinearFilter
-                textureRef.current = tex
-                setTextureLoaded(true)
-            })
+            loadTexture(imagePath)
+                .then((tex) => {
+                    if (cancelled) return
+                    textureRef.current = tex
+                    setTextureLoaded(true)
+                })
+                .catch(() => { /* leave placeholder on failed image */ })
         }
+        return () => { cancelled = true }
     }, [imagePath])
 
     // Optimize: Only update opacity in the frame loop
@@ -144,7 +146,6 @@ export default function CategorySphere({
 
     // Sphere parameters - many more images since grid defines shape
     const sphereRadius = 4.5
-    const TARGET_IMAGE_COUNT = 90  // More images - grid lines define the sphere form
 
     // Timing (milliseconds)
     const CAMERA_ORBIT_DURATION = 5000  // Longer animation - 5 seconds for dramatic effect
@@ -153,45 +154,11 @@ export default function CategorySphere({
     // Camera distance - stays well OUTSIDE the sphere
     const cameraDistance = 22  // Increased to ensure external view
 
-    // Get all images with collection info
-    const allImages = useMemo(() => {
-        const seen = new Set()
-        const images = []
-        collections.forEach(col => {
-            if (col.images) {
-                col.images.forEach(img => {
-                    const thumb = img.replace('/full/', '/thumb/')
-                    if (!seen.has(thumb)) {
-                        seen.add(thumb)
-                        images.push(thumb)
-                    }
-                })
-            }
-        })
-        return images
-    }, [collections])
-
-    // Sample random images
-    const sampledImages = useMemo(() => {
-        if (allImages.length === 0) return []
-
-        // Use passed seed for deterministic selection (matches PreloadManager)
-        // Fallback to random if no seed provided
-        const seedVal = seed || Math.floor(Math.random() * 1000)
-
-        const seededRandom = (i) => {
-            const x = Math.sin(seedVal * 127.1 + i * 311.7) * 43758.5453
-            return x - Math.floor(x)
-        }
-
-        const shuffled = [...allImages]
-        for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(seededRandom(i) * (i + 1))
-                ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
-        }
-
-        return shuffled.slice(0, Math.min(TARGET_IMAGE_COUNT, shuffled.length))
-    }, [allImages])
+    // Seeded sample - shared with PreloadManager so preloaded textures are reused
+    const sampledImages = useMemo(
+        () => sampleSphereImages(collections, seed, SPHERE_IMAGE_COUNT).map(img => img.path),
+        [collections, seed]
+    )
 
     // Image scale - adjusted for higher image count
     const imageScale = useMemo(() => {

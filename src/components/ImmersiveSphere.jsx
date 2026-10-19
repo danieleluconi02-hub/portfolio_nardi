@@ -2,6 +2,7 @@ import { useRef, useMemo, useEffect, useState, useCallback } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import SketchySphereGrid from './SketchySphereGrid'
+import { sampleSphereImages, loadTexture, IMMERSIVE_IMAGE_COUNT } from '../lib/sphereImages'
 
 
 /**
@@ -51,24 +52,28 @@ function GalleryImage({
     const [texture, setTexture] = useState(null)
     const [loaded, setLoaded] = useState(false)
     const [hovered, setHovered] = useState(false)
+    const hoveredRef = useRef(false)
     const animatedScale = useRef(scale)
 
-    // Load texture
+    // Load texture (shared cache - already warm if the external sphere showed it)
     useEffect(() => {
+        let cancelled = false
         if (imagePath) {
-            const loader = new THREE.TextureLoader()
-            loader.load(
-                imagePath,
-                (tex) => {
-                    tex.colorSpace = THREE.SRGBColorSpace
-                    tex.minFilter = THREE.LinearFilter
-                    tex.magFilter = THREE.LinearFilter
+            loadTexture(imagePath)
+                .then((tex) => {
+                    if (cancelled) return
                     setTexture(tex)
                     setLoaded(true)
-                }
-            )
+                })
+                .catch(() => { /* skip images that fail to load */ })
         }
+        return () => { cancelled = true }
     }, [imagePath])
+
+    // Reset the cursor if this image unmounts while hovered (e.g. after a click opens the preview)
+    useEffect(() => () => {
+        if (hoveredRef.current) document.body.style.cursor = 'default'
+    }, [])
 
     // Calculate rotation to face center (0,0,0)
     const quaternion = useMemo(() => {
@@ -105,11 +110,13 @@ function GalleryImage({
     const handlePointerOver = useCallback((e) => {
         e.stopPropagation()
         document.body.style.cursor = 'pointer'
+        hoveredRef.current = true
         setHovered(true)
     }, [])
 
     const handlePointerOut = useCallback(() => {
         document.body.style.cursor = 'default'
+        hoveredRef.current = false
         setHovered(false)
     }, [])
 
@@ -188,46 +195,12 @@ export default function ImmersiveSphere({
 
     // Fibonacci sphere configuration - same distribution as external sphere
     const SPHERE_RADIUS = 12
-    const TOTAL_IMAGES = 60  // Same as external sphere
 
-    // Get all images with collection info
-    const allImages = useMemo(() => {
-        const seen = new Set()
-        const images = []
-        collections.forEach(col => {
-            if (col.images) {
-                col.images.forEach(img => {
-                    const path = img.replace('/full/', '/thumb/')
-                    if (!seen.has(path)) {
-                        seen.add(path)
-                        images.push({ path, collectionId: col.id, collectionTitle: col.title })
-                    }
-                })
-            }
-        })
-        return images
-    }, [collections])
-
-    // Sample random images (stable during session)
-    const sampledImages = useMemo(() => {
-        if (allImages.length === 0) return []
-
-        // Use passed seed for deterministic selection
-        const seedVal = seed || Math.floor(Math.random() * 1000)
-
-        const seededRandom = (i) => {
-            const x = Math.sin(seedVal * 127.1 + i * 311.7) * 43758.5453
-            return x - Math.floor(x)
-        }
-
-        const shuffled = [...allImages]
-        for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(seededRandom(i) * (i + 1))
-                ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
-        }
-
-        return shuffled.slice(0, Math.min(TOTAL_IMAGES, shuffled.length))
-    }, [allImages])
+    // Seeded sample - the first 60 of the same shuffle the external sphere uses
+    const sampledImages = useMemo(
+        () => sampleSphereImages(collections, seed, IMMERSIVE_IMAGE_COUNT),
+        [collections, seed]
+    )
 
     // Generate fibonacci sphere positions - same as external sphere
     const spherePositions = useMemo(() => {

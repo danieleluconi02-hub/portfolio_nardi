@@ -73,21 +73,6 @@ export default function PortfolioView({ category, data, onBack, onGoHome }) {
         })
     }, [activeImageIndex, activeCollectionIndex, collections])
 
-    if (collections.length === 0) {
-        return (
-            <motion.div
-                className="portfolio-container"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1, ease: cinematicEasing }}
-            >
-                <BackButton onClick={onBack} />
-                <p className="text-[var(--text-tertiary)]">No images available</p>
-            </motion.div>
-        )
-    }
-
     const [interactionCount, setInteractionCount] = useState(0)
     const activeCollection = collections[activeCollectionIndex]
     const images = activeCollection?.images || []
@@ -144,6 +129,22 @@ export default function PortfolioView({ category, data, onBack, onGoHome }) {
             }, 100)
         }
     }, [activeCollectionIndex, isTransitioning])
+
+    // Early return only after every hook has run (Rules of Hooks)
+    if (collections.length === 0) {
+        return (
+            <motion.div
+                className="portfolio-container"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1, ease: cinematicEasing }}
+            >
+                <BackButton onClick={onBack} />
+                <p className="text-[var(--text-tertiary)]">No images available</p>
+            </motion.div>
+        )
+    }
 
     return (
         <motion.div

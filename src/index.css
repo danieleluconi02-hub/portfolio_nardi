@@ -25,7 +25,8 @@
 /* Custom Font Definition */
 @font-face {
   font-family: 'GhostFont';
-  src: url('/fonts/ghost.ttf') format('truetype');
+  src: url('/fonts/ghost.woff2') format('woff2'),
+    url('/fonts/ghost.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -79,13 +80,6 @@
   --duration-cinematic: 1.5s;
 }
 
-/* Custom Font - I KNOW A GHOST */
-@font-face {
-  font-family: 'GhostFont';
-  src: url('/fonts/ghost.ttf?v=2') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
 
 * {
   margin: 0;

@@ -74,8 +74,9 @@ export default function LandingMenu({ onNavigate, manifest }) {
         Object.keys(manifest).forEach(category => {
             const collections = manifest[category]?.collections || []
             collections.forEach(col => {
-                const photos = col.photos || col.images || []
-                const drawings = col.drawings || []
+                // Tiles are ~14rem wide: thumbnails are plenty and ~10x lighter than full images
+                const photos = col.photoThumbs || col.photos || col.images || []
+                const drawings = col.drawingThumbs || col.drawings || []
                 if (photos.length === 0 && drawings.length === 0) return
                 items.push({ collectionId: col.id, drawings, photos })
             })
@@ -296,7 +297,7 @@ export default function LandingMenu({ onNavigate, manifest }) {
                         >
                             {/* Branding restored at 2026-02-09T22:58:00 */}
                             <img
-                                src="/assets/brand/signature.png"
+                                src="/assets/brand/signature.webp"
                                 alt="Francesco Nardi"
                                 className="w-[110vw] max-w-none md:w-[65vw] lg:w-[50vw] xl:w-[45vw] h-auto"
                                 style={{
@@ -348,7 +349,7 @@ export default function LandingMenu({ onNavigate, manifest }) {
                             }}
                         >
                             <img
-                                src="/assets/ui/paper-fashion.png"
+                                src="/assets/ui/paper-fashion.webp"
                                 alt="Fashion Design"
                                 className="w-full h-full object-cover"
                                 draggable={false}
@@ -387,7 +388,7 @@ export default function LandingMenu({ onNavigate, manifest }) {
                             }}
                         >
                             <img
-                                src="/assets/ui/paper-styling.png"
+                                src="/assets/ui/paper-styling.webp"
                                 alt="Styling"
                                 className="w-full h-full object-cover"
                                 draggable={false}

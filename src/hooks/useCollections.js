@@ -23,6 +23,9 @@ function toManifestEntry(col) {
         // Separate arrays for visual distinction (Landing, Grid, Spheres)
         photos,
         drawings,
+        // 600px versions for small decorative uses (landing scatter)
+        photoThumbs,
+        drawingThumbs,
         // Merged arrays for collection viewing (photos first, then drawings)
         images: [...photos, ...drawings],
         thumbnails: [...photoThumbs, ...drawingThumbs],

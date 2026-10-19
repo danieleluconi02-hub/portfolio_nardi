@@ -1,79 +1,54 @@
 import { useEffect } from 'react'
-import * as THREE from 'three'
+
+const PRELOAD_PER_CATEGORY = 30 // the rest stream in during the 5s sphere intro
+const START_DELAY = 4000        // let the landing page finish loading first
 
 /**
- * PreloadManager - Silently loads textures in the background
- * Uses the EXACT same seeding logic as CategorySphere to ensure we load the right images.
+ * PreloadManager - Silently warms the sphere texture cache in the background.
+ * Uses the shared sampler, so it loads exactly the images CategorySphere and
+ * ImmersiveSphere will show, into the same cache they read from.
+ * three.js is imported dynamically so it stays out of the landing bundle.
  */
 export default function PreloadManager({ manifest, seed }) {
     useEffect(() => {
-        if (!manifest || !seed) return
+        if (!manifest) return
 
-        const TARGET_IMAGE_COUNT = 60 // Must match CategorySphere
+        let cancelled = false
+        let idleId = null
 
-        // 1. Gather all images (thumbs)
-        const allImages = []
-        Object.keys(manifest).forEach(category => {
-            const collections = manifest[category]?.collections || []
-            collections.forEach(col => {
-                if (col.images) {
-                    col.images.forEach(img => {
-                        allImages.push(img.replace('/full/', '/thumb/'))
-                    })
-                }
-            })
-        })
+        const run = async () => {
+            const { sampleSphereImages, loadTexture } = await import('../lib/sphereImages')
+            if (cancelled) return
 
-        if (allImages.length === 0) return
-
-        // 2. Replicate the Seeding Logic exactly
-        const seededRandom = (i) => {
-            const x = Math.sin(seed * 127.1 + i * 311.7) * 43758.5453
-            return x - Math.floor(x)
-        }
-
-        const shuffled = [...allImages]
-        for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(seededRandom(i) * (i + 1))
-                ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
-        }
-
-        const imagesToLoad = shuffled.slice(0, Math.min(TARGET_IMAGE_COUNT, shuffled.length))
-
-        // 3. Preload logic
-        const loader = new THREE.TextureLoader()
-
-        // Low priority loading
-        let loadedCount = 0
-
-        const loadNext = (index) => {
-            if (index >= imagesToLoad.length) return
-
-            const imgPath = imagesToLoad[index]
-
-            loader.load(
-                imgPath,
-                (texture) => {
-                    // Cache logic is handled internally by THREE.TextureLoader
-                    // as long as we use the same URL.
-                    loadedCount++
-                    // Chain load next to avoid blocking main thread too hard
-                    setTimeout(() => loadNext(index + 1), 20)
-                },
-                undefined, // onProgress
-                () => {
-                    loadNext(index + 1)
-                }
+            // Interleave categories so both get their first images early
+            const lists = Object.values(manifest).map(cat =>
+                sampleSphereImages(cat?.collections, seed, PRELOAD_PER_CATEGORY)
             )
+            const queue = []
+            for (let i = 0; i < PRELOAD_PER_CATEGORY; i++) {
+                lists.forEach(list => { if (list[i]) queue.push(list[i].path) })
+            }
+
+            // Sequential, low priority
+            for (const url of queue) {
+                if (cancelled) return
+                await loadTexture(url).catch(() => { })
+            }
         }
 
-        // Start loading
-        if (window.requestIdleCallback) {
-            window.requestIdleCallback(() => loadNext(0))
-        } else {
-            setTimeout(() => loadNext(0), 1000)
-        }
+        const timer = setTimeout(() => {
+            if (window.requestIdleCallback) {
+                idleId = window.requestIdleCallback(run)
+            } else {
+                run()
+            }
+        }, START_DELAY)
 
+        return () => {
+            cancelled = true
+            clearTimeout(timer)
+            if (idleId && window.cancelIdleCallback) window.cancelIdleCallback(idleId)
+        }
     }, [manifest, seed])
 
     return null // Invisible component

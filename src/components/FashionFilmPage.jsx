@@ -13,18 +13,21 @@ const videos = [
         title: 'Shinrai - Part 1',
         description: 'A cinematic journey through fashion and trust.',
         src: '/assets/videos/Shinrai parte 1.mp4',
+        preview: '/assets/videos/shinrai-parte-1-preview.mp4',
     },
     {
         id: 'shinrai-2',
         title: 'Shinrai - Part 2',
         description: 'The continuation of the Shinrai story.',
-        src: '/assets/videos/Shinrai Parte2 .mov',
+        src: '/assets/videos/shinrai-parte-2.mp4',
+        preview: '/assets/videos/shinrai-parte-2-preview.mp4',
     },
     {
         id: 'tetsu-no-hana',
         title: 'Tetsu no Hana',
         description: 'Iron Flower - A visual poem.',
         src: '/assets/videos/Tetsu no hana.mp4',
+        preview: '/assets/videos/tetsu-no-hana-preview.mp4',
     }
 ]
 
@@ -284,7 +287,8 @@ export default function FashionFilmPage({ onBack }) {
                                 >
                                     <video
                                         ref={isActive ? mainVideoRef : (el => previewRefs.current[idx] = el)}
-                                        src={video.src}
+                                        // Side cards loop a light 640px muted copy instead of the full film
+                                        src={isActive ? video.src : (video.preview || video.src)}
                                         muted={!isActive || !isPlaying}
                                         loop={!isActive}
                                         playsInline

@@ -175,7 +175,7 @@ export default function TopRightMenu({ onNavigate }) {
                                     }}
                                 >
                                     <img
-                                        src="/assets/ui/logo instagram.png"
+                                        src="/assets/ui/logo instagram.webp"
                                         alt="Instagram"
                                         style={{
                                             width: '100%',
@@ -200,7 +200,7 @@ export default function TopRightMenu({ onNavigate }) {
                                     }}
                                 >
                                     <img
-                                        src="/assets/ui/logo linkedin.png"
+                                        src="/assets/ui/logo linkedin.webp"
                                         alt="LinkedIn"
                                         style={{
                                             width: '100%',

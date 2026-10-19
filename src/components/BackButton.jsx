@@ -18,7 +18,7 @@ export default function BackButton({ onClick, className = '' }) {
             }}
         >
             <img
-                src="/assets/arrow_back.png"
+                src="/assets/arrow_back.webp"
                 alt="Back"
                 style={{
                     width: '4rem',

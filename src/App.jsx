@@ -1,12 +1,10 @@
 import React, { useState, Suspense, useCallback, useMemo, useRef } from 'react'
-import { Canvas } from '@react-three/fiber'
 import { motion, AnimatePresence } from 'framer-motion'
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext'
 import TopRightMenu from './components/TopRightMenu'
 import LandingMenu from './components/LandingMenu'
 import BackButton from './components/BackButton'
 import GlobalFooter from './components/GlobalFooter'
-import DynamicBackgroundGrid from './components/DynamicBackgroundGrid'
 import { useCollections } from './hooks/useCollections'
 import './index.css'
 
@@ -22,6 +20,8 @@ const ImagePreviewModal = React.lazy(() => import('./components/ImagePreviewModa
 const CollectionFocus = React.lazy(() => import('./components/CollectionFocus'))
 const PortfolioView = React.lazy(() => import('./components/PortfolioView'))
 const CategorySphere = React.lazy(() => import('./components/CategorySphere'))
+// three.js / R3F stay out of the landing bundle until a sphere is opened
+const Canvas = React.lazy(() => import('@react-three/fiber').then(m => ({ default: m.Canvas })))
 
 // Apple-like easing curves
 const appleEasing = [0.25, 0.1, 0.25, 1]
@@ -29,7 +29,7 @@ const cinematicEasing = [0.16, 1, 0.3, 1]
 
 function App() {
     const { t } = useLanguage()
-    const { manifest } = useCollections()
+    const { manifest, loading: collectionsLoading } = useCollections()
 
     // Persistent random seed for the session to ensure preloader matches spheres
     const [sessionSeed] = useState(() => Math.floor(Math.random() * 10000))
@@ -52,7 +52,8 @@ function App() {
         setSelectedCategory,
         viewingCollection,
         setViewingCollection,
-        manifest
+        manifest,
+        ready: !collectionsLoading
     })
 
     // Persistent camera rotation for immersive sphere - survives state changes
@@ -97,7 +98,7 @@ function App() {
                 setAppState('collection')
             }
         }
-    }, [previewImageData, selectedCategory])
+    }, [previewImageData, selectedCategory, manifest])
 
     // Handle collection selection (direct) - go to collection
     const handleCollectionSelect = useCallback((collection) => {
@@ -163,7 +164,7 @@ function App() {
         if (!previewImageData || !selectedCategory) return null
         const collections = manifest[selectedCategory]?.collections || []
         return collections.find(c => c.id === previewImageData.collectionId) || null
-    }, [previewImageData, selectedCategory])
+    }, [previewImageData, selectedCategory, manifest])
 
     // Callback when sphere is clicked (start entry animation)
     const handleSphereClick = useCallback(() => {
@@ -186,20 +187,6 @@ function App() {
         <div className="w-screen h-screen overflow-hidden spatial-bg">
             {/* Dedicated Background Layer */}
             <AnimatePresence mode='wait'>
-                {/* Menu State: Dynamic Grid */}
-                {appState === 'menu' && (
-                    <motion.div
-                        key="grid-bg"
-                        className="fixed inset-0 z-0"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0, transition: { duration: 0 } }}
-                        transition={{ duration: 1.0 }}
-                    >
-                        <DynamicBackgroundGrid manifest={manifest} />
-                    </motion.div>
-                )}
-
                 {/* Sphere/Entering State: Spatial Static Background */}
                 {(appState === 'sphere' || appState === 'entering') && (
                     <motion.div
@@ -277,6 +264,7 @@ function App() {
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.8, ease: cinematicEasing }}
                     >
+                        <Suspense fallback={null}>
                         <Canvas
                             camera={{ position: [0, 0, 20], fov: 40 }}
                             dpr={[1, 2]}
@@ -293,6 +281,7 @@ function App() {
                                 />
                             </Suspense>
                         </Canvas>
+                        </Suspense>
 
                         {/* Back Button for Spheres View */}
                         <BackButton onClick={handleBack} />
@@ -350,6 +339,7 @@ function App() {
                             {t.ui.dragToExplore}
                         </motion.p>
 
+                        <Suspense fallback={null}>
                         <Canvas
                             camera={{ position: [0, 0, 0], fov: 75 }}
                             dpr={[1, 2]}
@@ -364,6 +354,7 @@ function App() {
                                 />
                             </Suspense>
                         </Canvas>
+                        </Suspense>
                     </motion.div>
                 )}
             </AnimatePresence>

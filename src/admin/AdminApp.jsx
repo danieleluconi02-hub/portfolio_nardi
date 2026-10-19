@@ -7,6 +7,15 @@ export default function AdminApp() {
     const [session, setSession] = useState(null)
     const [loading, setLoading] = useState(true)
 
+    // Admin-only web fonts (kept off the public site's critical path)
+    useEffect(() => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@200;300;400&display=swap'
+        document.head.appendChild(link)
+        return () => link.remove()
+    }, [])
+
     // Allow the page to scroll — the main site locks overflow globally
     useEffect(() => {
         document.documentElement.style.overflow = 'auto'

@@ -18,13 +18,19 @@ export const useHashNavigation = ({
     setSelectedCategory,
     viewingCollection,
     setViewingCollection,
-    manifest
+    manifest,
+    ready = true // false until Supabase has answered: deep links must wait for the data
 }) => {
     // Flag to prevent infinite loops when updating state from hash vs hash from state
     const isUpdatingFromHash = useRef(false);
+    const hasSynced = useRef(false);
 
     // 1. Listen for hash changes (Browser Back/Forward)
     useEffect(() => {
+        // Without data every collection/category link would look invalid and get
+        // redirected away, breaking shared links and page reloads.
+        if (!ready) return
+
         const handleHashChange = () => {
             isUpdatingFromHash.current = true;
             const { view, category, id } = parseHash();
@@ -97,11 +103,16 @@ export const useHashNavigation = ({
 
         window.addEventListener('hashchange', handleHashChange);
         return () => window.removeEventListener('hashchange', handleHashChange);
-    }, [manifest, setAppState, setSelectedCategory, setViewingCollection]);
+    }, [manifest, ready, setAppState, setSelectedCategory, setViewingCollection]);
 
     // 2. Update hash when State Changes
     useEffect(() => {
-        if (isUpdatingFromHash.current) return;
+        if (!ready) return;
+        // State came from the URL, so the URL is already right
+        if (isUpdatingFromHash.current) {
+            hasSynced.current = true;
+            return;
+        }
 
         let newHash = '/';
 
@@ -140,11 +151,18 @@ export const useHashNavigation = ({
                 newHash = '/';
         }
 
-        // Only update if changed prevents unnecessary history entries (replaceState vs pushState could be considered)
-        const currentHash = window.location.hash.replace('#', '');
+        // pushState so the browser/phone Back button walks back through the site
+        // (hashchange above restores the state) instead of leaving it.
+        // The first sync after load only normalises the URL, so it replaces.
+        const currentHash = window.location.hash.replace('#', '') || '/';
         if (currentHash !== newHash) {
-            window.history.replaceState(null, '', '#' + newHash);
+            if (hasSynced.current) {
+                window.history.pushState(null, '', '#' + newHash);
+            } else {
+                window.history.replaceState(null, '', '#' + newHash);
+            }
         }
+        hasSynced.current = true;
 
-    }, [appState, selectedCategory, viewingCollection]);
+    }, [appState, selectedCategory, viewingCollection, ready]);
 };
