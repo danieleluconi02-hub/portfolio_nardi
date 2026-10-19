@@ -786,11 +786,12 @@ label,
 
   .preview-panel-credits {
     font-family: var(--font-primary);
-    font-size: 0.66rem;
-    line-height: 1.7;
-    letter-spacing: 0.12em;
+    font-size: 0.74rem;
+    line-height: 1.75;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.45);
+    /* brighter than before: the thin handwritten font needs the contrast */
+    color: rgba(255, 255, 255, 0.72);
     margin: 0.9rem 0 0;
     padding-top: 0.8rem;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -800,7 +801,7 @@ label,
 
   .preview-panel-credits.is-collapsed {
     /* ~3 lines (+ top padding) */
-    max-height: calc(0.66rem * 1.7 * 3 + 0.8rem);
+    max-height: calc(0.74rem * 1.75 * 3 + 0.8rem);
   }
 
   .preview-panel-credits.is-expanded {
@@ -811,7 +812,7 @@ label,
     display: inline-flex;
     align-items: center;
     gap: 0.45em;
-    margin-top: 0.85rem;
+    margin-top: 0.55rem;
     padding: 0;
     background: none;
     border: none;

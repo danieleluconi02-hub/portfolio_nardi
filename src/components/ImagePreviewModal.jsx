@@ -65,25 +65,45 @@ function InfoPanelBody({ description, credits, t }) {
     const [expanded, setExpanded] = useState(false)
     const [clipped, setClipped] = useState({ desc: false, credits: false })
     const overflowing = clipped.desc || clipped.credits
+    const expandedRef = useRef(false)
     const descRef = useRef(null)
     const creditsRef = useRef(null)
 
+    expandedRef.current = expanded
+
+    // Measured only while collapsed and only when the content or the window
+    // changes. Not on "Show less": the close animation is still running then,
+    // so the text looked unclipped and the button disappeared for good.
     useLayoutEffect(() => {
-        if (expanded) return
         const isClipped = (el) => !!el && el.scrollHeight > el.clientHeight + 1
-        const measure = () => setClipped({
-            desc: isClipped(descRef.current),
-            credits: isClipped(creditsRef.current),
-        })
+        const measure = () => {
+            if (expandedRef.current) return
+            setClipped({
+                desc: isClipped(descRef.current),
+                credits: isClipped(creditsRef.current),
+            })
+        }
         measure()
         // Fonts can change line breaks after the first measurement
         document.fonts?.ready?.then(measure)
         window.addEventListener('resize', measure)
         return () => window.removeEventListener('resize', measure)
-    }, [description, credits, expanded])
+    }, [description, credits])
 
     // has-more (the fade) only on the block that actually hides text
     const state = (isClipped) => expanded ? 'is-expanded' : `is-collapsed${isClipped ? ' has-more' : ''}`
+
+    const toggle = (overflowing || expanded) && (
+        <button
+            type="button"
+            className="preview-read-more"
+            aria-expanded={expanded}
+            onClick={(e) => { e.stopPropagation(); setExpanded(v => !v) }}
+        >
+            {expanded ? (t.ui.readLess || 'Show less') : (t.ui.readMore || 'Read more')}
+            <span className={`preview-read-more-arrow${expanded ? ' is-up' : ''}`} aria-hidden="true">↓</span>
+        </button>
+    )
 
     return (
         <>
@@ -93,20 +113,14 @@ function InfoPanelBody({ description, credits, t }) {
                 </div>
             )}
 
+            {/* The toggle belongs to the text it opens: right under the description */}
+            {description && toggle}
+
             {credits && (
                 <p ref={creditsRef} className={`preview-panel-credits ${state(clipped.credits)}`}>{credits}</p>
             )}
 
-            {(overflowing || expanded) && (
-                <button
-                    type="button"
-                    className="preview-read-more"
-                    onClick={(e) => { e.stopPropagation(); setExpanded(v => !v) }}
-                >
-                    {expanded ? (t.ui.readLess || 'Show less') : (t.ui.readMore || 'Read more')}
-                    <span className={`preview-read-more-arrow${expanded ? ' is-up' : ''}`} aria-hidden="true">↓</span>
-                </button>
-            )}
+            {!description && toggle}
         </>
     )
 }
